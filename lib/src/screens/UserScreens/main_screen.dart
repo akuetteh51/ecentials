@@ -1,4 +1,4 @@
-import 'package:ecentialsclone/Themes/colors.dart';
+import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {

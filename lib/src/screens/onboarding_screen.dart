@@ -1,11 +1,11 @@
-import 'package:ecentialsclone/Themes/colors.dart';
-import 'package:ecentialsclone/screens/AuthScreens/login.dart';
-import 'package:ecentialsclone/widgets/button.dart';
-import 'package:flutter/gestures.dart';
+import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import '../Themes/colors.dart';
+import 'AuthScreens/login.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);

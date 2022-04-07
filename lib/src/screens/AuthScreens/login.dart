@@ -1,10 +1,10 @@
-import 'package:ecentialsclone/Themes/colors.dart';
-import 'package:ecentialsclone/ecentials_icons_icons.dart';
-import 'package:ecentialsclone/screens/MainScreens/main_screen.dart';
-import 'package:ecentialsclone/widgets/button.dart';
+import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
+
+import '../../Themes/colors.dart';
+import '../UserScreens/main_screen.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -38,17 +38,17 @@ class _LoginState extends State<Login> {
         ),
       ],
     );
-
     // Email Input text
     final _formkey = GlobalKey<FormState>();
     final _emailController = TextEditingController();
     final _email = Column(
       children: [
+        const SizedBox(height: 40),
         const Align(
           alignment: Alignment.centerLeft,
           child: Text(
             "Email",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ),
         const SizedBox(
@@ -89,7 +89,7 @@ class _LoginState extends State<Login> {
           alignment: Alignment.centerLeft,
           child: Text(
             "Password",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ),
         const SizedBox(
