@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'src/screens/test_widgets_screen.dart';
+
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final preference = await SharedPreferences.getInstance();
@@ -28,7 +30,8 @@ class MyApp extends StatelessWidget {
         centered: true,
         duration: 2000,
         splashIconSize: 500,
-        nextScreen: showLogin ? const Login() : const OnboardingScreen(),
+        nextScreen:
+            showLogin ? const TestWidgetsScreen() : const OnboardingScreen(),
       ),
       theme: ThemeData(
         fontFamily: "Montserrat",
