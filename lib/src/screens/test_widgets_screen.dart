@@ -17,18 +17,8 @@ class TestWidgetsScreen extends StatefulWidget {
 class _TestWidgetsScreenState extends State<TestWidgetsScreen> {
   @override
   Widget build(BuildContext context) {
-    return const BottomNavBar(
-      body: Center(
-          child: LabResultsCrad(
-        image: "assets/images/card.png",
-        labName: "Ziky Clinical Laboratory",
-        openingHours: "7:00am - 5:00pm",
-        service1: " Research |",
-        service2: " Test |",
-        service3: " Examination |",
-        service4: " X-Rays ",
-        price: "12",
-      )),
+    return BottomNavBar(
+      backgroundColor: AppColors.primaryDeepColor,
     );
   }
 }

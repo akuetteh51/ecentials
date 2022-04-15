@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
 import '../Themes/colors.dart';
 import '../Themes/ecentials_icons_icons.dart';
 
-class BottomNavBar extends StatelessWidget {
+class BottomNavBar extends StatefulWidget {
   final Color backgroundColor;
   final Widget? body;
   final AppBar? appBar;
@@ -15,9 +14,15 @@ class BottomNavBar extends StatelessWidget {
       this.appBar,
       this.drawer})
       : super(key: key);
+  @override
+  State<BottomNavBar> createState() => _BottomNavBarState();
+}
 
+class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
+    int currentIndex =
+        0; //Takes the current index of the Icop pressed and set the corressponding page
     // Icons
     final _icons = [
       Icon(
@@ -38,6 +43,13 @@ class BottomNavBar extends StatelessWidget {
       ),
     ];
 
+// Icons tooltips
+    final _tooltip = [
+      "Home",
+      "Store",
+      "Notifications",
+      "Chat Bot",
+    ];
 // Floating Ambulance Center docked
     final _floatinfAmbulance = Container(
       height: 60,
@@ -48,6 +60,8 @@ class BottomNavBar extends StatelessWidget {
         ),
       ),
     );
+
+    // Create Pages as a list and pass it to BottomNavBar body and use the current index to loop through pages
 
     return Scaffold(
       extendBody: true,
@@ -68,21 +82,29 @@ class BottomNavBar extends StatelessWidget {
             topRight: Radius.circular(30),
           ),
           child: BottomAppBar(
-            color: backgroundColor,
+            color: widget.backgroundColor,
             shape: const CircularNotchedRectangle(),
             notchMargin: 10,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: List.generate(
                 4,
-                (index) => _icons[index],
+                (index) => IconButton(
+                  onPressed: () {
+                    setState(() {
+                      currentIndex = index;
+                    });
+                  },
+                  tooltip: _tooltip[index],
+                  icon: _icons[index],
+                ),
               ),
             ),
           ),
         ),
       ),
-      appBar: appBar,
-      body: body,
+      appBar: widget.appBar,
+      drawer: widget.drawer,
     );
   }
 }
