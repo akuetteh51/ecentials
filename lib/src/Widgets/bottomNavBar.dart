@@ -43,8 +43,10 @@ class BottomNavBar extends StatelessWidget {
       height: 60,
       width: 60,
       decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/images/nav_ambulance.png"))),
+        image: DecorationImage(
+          image: AssetImage("assets/images/nav_ambulance.png"),
+        ),
+      ),
     );
 
     return Scaffold(
