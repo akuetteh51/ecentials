@@ -30,8 +30,7 @@ class MyApp extends StatelessWidget {
         centered: true,
         duration: 2000,
         splashIconSize: 500,
-        nextScreen:
-            showLogin ? const TestWidgetsScreen() : const OnboardingScreen(),
+        nextScreen: showLogin ? const TestWidgetsScreen() : const OnboardingScreen(),
       ),
       theme: ThemeData(
         fontFamily: "Montserrat",
