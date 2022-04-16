@@ -1,4 +1,5 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:ecentialsclone/src/Widgets/ambulanceList.dart';
 import 'package:ecentialsclone/src/Widgets/cartCard.dart';
 import 'package:ecentialsclone/src/Widgets/doctorCard.dart';
 import 'package:ecentialsclone/src/Widgets/drugCard.dart';
@@ -33,7 +34,7 @@ Future main() async {
         //   quantity: 14,
         //   price: 2.00,
         // ),
-        body: cartCard(),
+        body: ambulanceList(),
       ),
     ),
   );
