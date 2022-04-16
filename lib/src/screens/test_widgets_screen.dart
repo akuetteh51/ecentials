@@ -1,6 +1,7 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/addSchoolButton.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
+import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/Widgets/infoCard.dart';
 import 'package:ecentialsclone/src/Widgets/labResultsCard.dart';
 import 'package:ecentialsclone/src/Widgets/schoolsAttendedCard.dart';
@@ -17,8 +18,18 @@ class TestWidgetsScreen extends StatefulWidget {
 class _TestWidgetsScreenState extends State<TestWidgetsScreen> {
   @override
   Widget build(BuildContext context) {
-    return BottomNavBar(
-      backgroundColor: AppColors.primaryDeepColor,
+    return Scaffold(
+      backgroundColor: AppColors.primaryRedColor,
+      body: const BottomNavBar(
+        body: Center(
+          child: LabResultsCard(
+            image: 'assets/images/card.png',
+            labName: 'Ziky Mediacl Laboratory',
+            openingHours: '5:00am - 7:00pm',
+            isBookMarked: true,
+          ),
+        ),
+      ),
     );
   }
 }
