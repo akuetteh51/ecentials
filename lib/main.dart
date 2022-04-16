@@ -1,5 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:ecentialsclone/src/Widgets/test.dart';
+import 'package:ecentialsclone/src/Widgets/doctorCard.dart';
+import 'package:ecentialsclone/src/Widgets/drugCard.dart';
+import 'package:ecentialsclone/src/Widgets/pharmacyCard.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 import 'package:ecentialsclone/src/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
@@ -16,12 +18,24 @@ Future main() async {
     // MyApp(showLogin: showLogin),
     MaterialApp(
       home: Scaffold(
-        body: Pharmacy(
-          pharmacyName: "Top up Ghana",
-          location: "ucc",
-          address: "capecoast",
-          country: "Ghana",
+        // body: Pharmacy(
+        //   pharmacyName: "Top up Ghana",
+        //   location: "ucc",
+        //   address: "capecoast",
+        //   country: "Ghana",
+        // ),
+        body: doctorCard(
+          fname: "Michael",
+          lname: "Akuetteh",
+          role: "peogrammer",
+          hospital: "ucc",
         ),
+        //  drug(
+        //   drugName: "Botin",
+        //   drugType: "pills",
+        //   quantity: 14,
+        //   price: 2.00,
+        // ),
       ),
     ),
   );
