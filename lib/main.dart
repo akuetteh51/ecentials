@@ -1,4 +1,5 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:ecentialsclone/src/Widgets/test.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 import 'package:ecentialsclone/src/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,17 @@ Future main() async {
   final preference = await SharedPreferences.getInstance();
   final showLogin = preference.getBool('showLogin') ?? false;
   runApp(
-    MyApp(showLogin: showLogin),
+    // MyApp(showLogin: showLogin),
+    MaterialApp(
+      home: Scaffold(
+        body: Pharmacy(
+          pharmacyName: "Top up Ghana",
+          location: "ucc",
+          address: "capecoast",
+          country: "Ghana",
+        ),
+      ),
+    ),
   );
 }
 
