@@ -53,13 +53,15 @@ class Pharmacy extends StatelessWidget {
             Center(
               child: Text(
                 "$pharmacyName",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold, fontSize: 18.0),
               ),
             ),
             Center(
               child: Text(
                 " -$location",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold, fontSize: 18.0),
               ),
             ),
             Center(
