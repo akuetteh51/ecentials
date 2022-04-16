@@ -15,29 +15,7 @@ Future main() async {
   final preference = await SharedPreferences.getInstance();
   final showLogin = preference.getBool('showLogin') ?? false;
   runApp(
-    // MyApp(showLogin: showLogin),
-    MaterialApp(
-      home: Scaffold(
-        // body: Pharmacy(
-        //   pharmacyName: "Top up Ghana",
-        //   location: "ucc",
-        //   address: "capecoast",
-        //   country: "Ghana",
-        // ),
-        body: doctorCard(
-          fname: "Michael",
-          lname: "Akuetteh",
-          role: "peogrammer",
-          hospital: "ucc",
-        ),
-        //  drug(
-        //   drugName: "Botin",
-        //   drugType: "pills",
-        //   quantity: 14,
-        //   price: 2.00,
-        // ),
-      ),
-    ),
+    MyApp(showLogin: showLogin),
   );
 }
 
