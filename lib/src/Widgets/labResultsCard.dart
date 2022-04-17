@@ -118,10 +118,12 @@ class LabResultsCard extends StatelessWidget {
                                 fontWeight: FontWeight.bold, fontSize: 20),
                             children: [
                               TextSpan(
-                                  text: " / hr",
-                                  style: TextStyle(
-                                      color: AppColors.primaryWhiteColor
-                                          .withOpacity(0.5))),
+                                text: " / hr",
+                                style: TextStyle(
+                                  color: AppColors.primaryWhiteColor
+                                      .withOpacity(0.5),
+                                ),
+                              ),
                             ],
                           ),
                         )

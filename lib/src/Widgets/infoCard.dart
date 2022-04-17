@@ -52,9 +52,9 @@ class InfoCard extends StatelessWidget {
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ],
-              ))
+              ),)
             ],
-          )),
+          ),),
     );
   }
 }

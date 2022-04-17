@@ -98,7 +98,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
                   onPressed: () {
                     setState(() {
                       currentIndex = index;
-                      print(currentIndex);
                     });
                   },
                   tooltip: _tooltip[index],
