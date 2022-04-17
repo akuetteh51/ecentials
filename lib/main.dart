@@ -1,10 +1,12 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:ecentialsclone/src/Widgets/ambulanceList.dart';
+
 import 'package:ecentialsclone/src/Widgets/cartCard.dart';
 import 'package:ecentialsclone/src/Widgets/doctorCard.dart';
 import 'package:ecentialsclone/src/Widgets/drugCard.dart';
 import 'package:ecentialsclone/src/Widgets/pharmacyCard.dart';
 import 'package:ecentialsclone/src/Widgets/pickUpLocation.dart';
+import 'package:ecentialsclone/src/Widgets/storeList.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 import 'package:ecentialsclone/src/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
@@ -18,25 +20,7 @@ Future main() async {
   final preference = await SharedPreferences.getInstance();
   final showLogin = preference.getBool('showLogin') ?? false;
   runApp(
-    // MyApp(showLogin: showLogin),
-    MaterialApp(
-      home: Scaffold(
-        // body: Pharmacy(
-        //   pharmacyName: "Top up Ghana",
-        //   location: "ucc",
-        //   address: "capecoast",
-        //   country: "Ghana",
-        // ),
-        // body: pickup(location: "ucc", address: "kotokrabaa", country: "Gh"),
-        //  drug(
-        //   drugName: "Botin",
-        //   drugType: "pills",
-        //   quantity: 14,
-        //   price: 2.00,
-        // ),
-        body: ambulanceList(),
-      ),
-    ),
+    MyApp(showLogin: showLogin),
   );
 }
 
