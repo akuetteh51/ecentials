@@ -18,7 +18,7 @@ class ambulanceList extends StatelessWidget {
                   const TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
             ),
             Text(
-              "10%discount",
+              "10% discount",
               style: const TextStyle(fontSize: 14.0),
             ),
             Text(
