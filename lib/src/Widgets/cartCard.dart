@@ -40,6 +40,9 @@ class cartCard extends StatelessWidget {
             ),
           ),
         ),
+        SizedBox(
+          height: 10,
+        ),
         Positioned(
           top: 19,
           left: 100,
@@ -95,7 +98,7 @@ class cartCard extends StatelessWidget {
         ),
         Positioned(
           top: 80,
-          left: 0,
+          left: -35,
           right: 90,
           child: Center(
             child: Text(
