@@ -25,7 +25,7 @@ class doctorCard extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-        color: AppColors.primaryBlueColor,
+        color: AppColors.primaryDeepColor,
         child: Center(
           child: Column(
             children: [
@@ -73,8 +73,8 @@ class doctorCard extends StatelessWidget {
                         shape: MaterialStateProperty.all(
                           RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
-                            side:
-                                BorderSide(color: AppColors.primaryGreenColor),
+                            // side:
+                            //     BorderSide(color: AppColors.primaryGreenColor),
                           ),
                         ),
                       ),

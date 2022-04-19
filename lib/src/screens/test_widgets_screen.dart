@@ -2,6 +2,8 @@ import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/ambulanceList.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/cartCard.dart';
+import 'package:ecentialsclone/src/Widgets/doctorCard.dart';
+import 'package:ecentialsclone/src/Widgets/drugCard.dart';
 import 'package:ecentialsclone/src/Widgets/infoCard.dart';
 import 'package:ecentialsclone/src/Widgets/schoolsAttendedCard.dart';
 import 'package:flutter/material.dart';
@@ -18,12 +20,11 @@ class _TestWidgetsScreenState extends State<TestWidgetsScreen> {
   Widget build(BuildContext context) {
     return BottomNavBar(
       body: Center(
-        child: cartCard(
-            pharmacyName: "Top up Pharmacy-Spintex",
-            location: "I",
-            drugName: "Ibuprofen",
-            price: 12),
-      ),
+          child: drug(
+              drugName: "Ibuprofen",
+              drugType: "drugType",
+              quantity: 20,
+              price: 09)),
     );
   }
 }
