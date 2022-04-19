@@ -22,7 +22,8 @@ class _TestWidgetsScreenState extends State<TestWidgetsScreen> {
   @override
   Widget build(BuildContext context) {
     return BottomNavBar(
-      body: Center(child: storeListing(storeName: "storeName")),
+      body:
+          Center(child: InfoCard(topText: "topText", bottomText: "bottomText")),
     );
   }
 }
