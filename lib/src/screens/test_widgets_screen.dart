@@ -1,6 +1,7 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/addSchoolButton.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
+import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/Widgets/infoCard.dart';
 import 'package:ecentialsclone/src/Widgets/labResultsCard.dart';
 import 'package:ecentialsclone/src/Widgets/schoolsAttendedCard.dart';
@@ -17,8 +18,17 @@ class TestWidgetsScreen extends StatefulWidget {
 class _TestWidgetsScreenState extends State<TestWidgetsScreen> {
   @override
   Widget build(BuildContext context) {
-    return BottomNavBar(
-      backgroundColor: AppColors.primaryDeepColor,
-    );
+    return
+
+        //bottom navbar
+        // BottomNavBar(
+        //   backgroundColor: AppColors.primaryDeepColor,
+        // );
+        Scaffold(
+            body: Center(
+                child: LabResultsCrad(
+                    image: "assets/images/card-1.png",
+                    labName: "labName",
+                    openingHours: "openingHours")));
   }
 }
