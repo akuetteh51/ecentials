@@ -64,6 +64,9 @@ class Pharmacy extends StatelessWidget {
                     fontWeight: FontWeight.bold, fontSize: 18.0),
               ),
             ),
+            SizedBox(
+              height: 7,
+            ),
             Center(
               child: Text(
                 "$address,$country",

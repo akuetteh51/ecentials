@@ -2,11 +2,11 @@ import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:flutter/material.dart';
 
-class pickup extends StatelessWidget {
+class pickupLocationCard extends StatelessWidget {
   final String location;
   final String address;
   final String country;
-  const pickup(
+  const pickupLocationCard(
       {Key? key,
       required this.location,
       required this.address,
@@ -17,7 +17,7 @@ class pickup extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 96.0,
-      width: 330.0,
+      width: double.infinity,
       child: Card(
         elevation: 10,
         child: Column(children: [
