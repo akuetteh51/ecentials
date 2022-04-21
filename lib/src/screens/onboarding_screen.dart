@@ -78,7 +78,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
 
     // Next Button
-    final _nextButton = GestureDetector(
+    final _nextButton = Button(
       onTap: () async {
         final preference = await SharedPreferences.getInstance();
         preference.setBool("showLogin", true);
@@ -88,12 +88,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           duration: const Duration(seconds: 1),
         );
       },
-      child: Button(
-        text: "Next",
-        style: TextStyle(
-          color: AppColors.primaryWhiteColor,
-          fontWeight: FontWeight.bold,
-        ),
+      text: "Next",
+      style: TextStyle(
+        color: AppColors.primaryWhiteColor,
+        fontWeight: FontWeight.bold,
       ),
     );
 
