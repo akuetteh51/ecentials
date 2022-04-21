@@ -11,6 +11,7 @@ Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final preference = await SharedPreferences.getInstance();
   final showLogin = preference.getBool('showLogin') ?? false;
+
   runApp(
     MyApp(showLogin: showLogin),
   );

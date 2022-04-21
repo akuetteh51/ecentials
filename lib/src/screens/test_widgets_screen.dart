@@ -1,9 +1,13 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
+import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/addSchoolButton.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/Widgets/infoCard.dart';
 import 'package:ecentialsclone/src/Widgets/labResultsCard.dart';
+import 'package:ecentialsclone/src/Widgets/outlinedButton.dart';
+import 'package:ecentialsclone/src/Widgets/prominentDoctors.dart';
+import 'package:ecentialsclone/src/Widgets/recentChatsCard.dart';
 import 'package:ecentialsclone/src/Widgets/schedulesCard.dart';
 import 'package:ecentialsclone/src/Widgets/schoolsAttendedCard.dart';
 import 'package:ecentialsclone/src/Widgets/search.dart';
@@ -19,9 +23,21 @@ class TestWidgetsScreen extends StatefulWidget {
 class _TestWidgetsScreenState extends State<TestWidgetsScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.primaryRedColor,
-      body: const BottomNavBar(),
+    return BottomNavBar(
+      body: Center(
+        child: ButtonOutlined(
+          text: "chat",
+          width: 150,
+          style: const TextStyle(fontSize: 20),
+          hasIcon: true,
+          icon: Icons.chat,
+          radius: 50,
+          color: AppColors.primaryGreenColor,
+          OnTap: () {
+            print("chat");
+          },
+        ),
+      ),
     );
   }
 }
