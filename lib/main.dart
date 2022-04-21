@@ -11,6 +11,7 @@ Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final preference = await SharedPreferences.getInstance();
   final showLogin = preference.getBool('showLogin') ?? false;
+
   runApp(
     MyApp(showLogin: showLogin),
   );
@@ -30,7 +31,8 @@ class MyApp extends StatelessWidget {
         centered: true,
         duration: 2000,
         splashIconSize: 500,
-        nextScreen: showLogin ? const TestWidgetsScreen() : const OnboardingScreen(),
+        nextScreen:
+            showLogin ? const TestWidgetsScreen() : const OnboardingScreen(),
       ),
       theme: ThemeData(
         fontFamily: "Montserrat",

@@ -7,10 +7,17 @@ import '../Themes/colors.dart';
 class Search extends StatelessWidget {
   final double width;
   final String text;
+  final searchPressed;
+  final micPressed;
   final TextEditingController? controller;
 
   const Search(
-      {Key? key, this.width = 300, this.text = "Search...", this.controller})
+      {Key? key,
+      this.width = 300,
+      this.text = "Search...",
+      this.controller,
+      this.searchPressed,
+      this.micPressed})
       : super(key: key);
 
   @override
@@ -39,14 +46,14 @@ class Search extends StatelessWidget {
                 EcentialsIcons.search,
                 color: AppColors.primaryBlackColor,
               ),
-              onPressed: () {},
+              onPressed: searchPressed,
             ),
             suffixIcon: IconButton(
               icon: Icon(
                 EcentialsIcons.mic,
                 color: AppColors.primaryBlackColor,
               ),
-              onPressed: () {},
+              onPressed: micPressed,
             ),
             hintText: text,
             iconColor: AppColors.primaryDeepColor,

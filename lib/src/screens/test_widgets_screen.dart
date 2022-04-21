@@ -1,10 +1,18 @@
+// ignore_for_file: prefer_const_constructors, unused_import
+
 import 'package:ecentialsclone/src/Themes/colors.dart';
+import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/addSchoolButton.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
+import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/Widgets/infoCard.dart';
 import 'package:ecentialsclone/src/Widgets/labResultsCard.dart';
+import 'package:ecentialsclone/src/Widgets/prominentDoctors.dart';
+import 'package:ecentialsclone/src/Widgets/recentChatsCard.dart';
+import 'package:ecentialsclone/src/Widgets/schedulesCard.dart';
 import 'package:ecentialsclone/src/Widgets/schoolsAttendedCard.dart';
 import 'package:ecentialsclone/src/Widgets/search.dart';
+import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
 import 'package:flutter/material.dart';
 
 class TestWidgetsScreen extends StatefulWidget {
@@ -18,7 +26,15 @@ class _TestWidgetsScreenState extends State<TestWidgetsScreen> {
   @override
   Widget build(BuildContext context) {
     return BottomNavBar(
-      backgroundColor: AppColors.primaryDeepColor,
+        
+           body :Center(
+            child: TopDoctor(
+      docName: 'Sussan Agams',
+      image: 'assets/images/sussan.png',
+      specialization: 'Heart surgery',
+      experience: '5 years+',
+    )
+    )
     );
   }
 }

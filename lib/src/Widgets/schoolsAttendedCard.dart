@@ -63,7 +63,7 @@ class SchoolsAttendedCard extends StatelessWidget {
                           ),
                           IconButton(
                             onPressed: () {},
-                            icon: const Icon(EcentialsIcons.delete),
+                            icon: const Icon(EcentialsIcons.bin),
                           ),
                         ],
                       )
