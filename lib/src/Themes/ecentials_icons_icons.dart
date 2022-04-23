@@ -11,7 +11,7 @@
 ///      fonts:
 ///       - asset: fonts/EcentialsIcons.ttf
 ///
-/// 
+///
 ///
 import 'package:flutter/widgets.dart';
 
@@ -65,4 +65,6 @@ class EcentialsIcons {
   static const IconData ambulance = IconData(0xe82e, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData chat_heart = IconData(0xe830, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData mic = IconData(0xe831, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData heart_outlined =
+      IconData(0xe831, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
