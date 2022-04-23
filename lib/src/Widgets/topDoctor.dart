@@ -2,7 +2,6 @@
 
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
-import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_widget_cache.dart';
 
@@ -11,7 +10,6 @@ class TopDoctor extends StatelessWidget {
   final String docName;
   final String specialization;
   final String experience;
-
 
   const TopDoctor(
       {Key? key,
@@ -25,7 +23,7 @@ class TopDoctor extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 350,
-      height: 110,
+      height: 120,
       child: Card(
         elevation: 15,
         child: Container(
@@ -83,20 +81,25 @@ class TopDoctor extends StatelessWidget {
                       color: Colors.grey,
                     ),
                   ),
+                  SizedBox(
+                    height: 5,
+                  ),
                   RichText(
                     text: TextSpan(
-                      text: "Area of specialization: " ,
+                      text: "Area of specialization: ",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: AppColors.primaryBlackColor),
                       children: [
                         TextSpan(
-                          
-                          text: specialization  ,
+                          text: specialization,
                           style: TextStyle(fontWeight: FontWeight.normal),
                         ),
                       ],
                     ),
+                  ),
+                  SizedBox(
+                    height: 5,
                   ),
                   RichText(
                     text: TextSpan(

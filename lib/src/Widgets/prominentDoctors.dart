@@ -15,7 +15,7 @@ class ProminentDoctors extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = 150;
-    double height = 200;
+    double height = 210;
     return SizedBox(
       width: width,
       height: height,

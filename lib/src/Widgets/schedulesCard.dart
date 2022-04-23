@@ -26,7 +26,7 @@ class SchedulesCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = 150;
+    double height = 190;
     return SizedBox(
       width: width - 40,
       height: height,
@@ -49,6 +49,9 @@ class SchedulesCard extends StatelessWidget {
                           fontSize: 20,
                         ),
                       ),
+                      SizedBox(
+                        height: 8,
+                      ),
                       RichText(
                         text: TextSpan(
                           text: specialization,
@@ -66,7 +69,7 @@ class SchedulesCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(
-                        height: 5,
+                        height: 8,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -82,7 +85,7 @@ class SchedulesCard extends StatelessWidget {
                               Text(
                                 time,
                                 style: const TextStyle(
-                                  color: Colors.grey,
+                                  color: Colors.black,
                                 ),
                               ),
                             ],
@@ -101,7 +104,7 @@ class SchedulesCard extends StatelessWidget {
                               Text(
                                 date,
                                 style: const TextStyle(
-                                  color: Colors.grey,
+                                  color: Colors.black,
                                 ),
                               ),
                             ],
@@ -150,16 +153,25 @@ class SchedulesCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  CircleAvatar(
-                    backgroundColor: AppColors.primaryWhiteColor,
-                    backgroundImage: AssetImage(
+                  // CircleAvatar(
+                  //   backgroundColor: AppColors.primaryWhiteColor,
+                  //   backgroundImage: AssetImage(
+                  //     image,
+                  //   ),
+                  // ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.asset(
                       image,
+                      fit: BoxFit.contain,
+                      height: 100.0,
+                      width: 80.0,
                     ),
-                  ),
+                  )
                 ],
               ),
               const SizedBox(
-                height: 10,
+                height: 15,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
