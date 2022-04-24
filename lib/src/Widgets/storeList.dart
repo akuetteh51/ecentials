@@ -22,7 +22,7 @@ class storeListing extends StatelessWidget {
             ),
             Text(
               " $storeName",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24.0),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

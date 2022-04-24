@@ -36,7 +36,7 @@ class cartCard extends StatelessWidget {
             "$pharmacyName -$location",
             style: TextStyle(
               color: Colors.blue[900],
-              fontSize: 17.0,
+              fontSize: 16.0,
             ),
           ),
         ),
@@ -117,7 +117,7 @@ class cartCard extends StatelessWidget {
               print("hello");
             },
             icon: Icon(
-              EcentialsIcons.delete,
+              EcentialsIcons.bin,
               size: 15.0,
             ),
           ),

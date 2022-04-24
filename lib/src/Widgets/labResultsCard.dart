@@ -75,7 +75,7 @@ class LabResultsCard extends StatelessWidget {
                       "Ziky Clinical Laboratory",
                       style: TextStyle(
                         color: AppColors.primaryWhiteColor,
-                        fontSize: 20,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -83,7 +83,7 @@ class LabResultsCard extends StatelessWidget {
                       "Weekdays | 7:00am - 5:00pm",
                       style: TextStyle(
                         color: AppColors.primaryWhiteColor,
-                        fontSize: 16,
+                        fontSize: 14,
                       ),
                     ),
                     const SizedBox(
@@ -101,6 +101,7 @@ class LabResultsCard extends StatelessWidget {
                             ),
                             RichText(
                               text: TextSpan(
+                                style: TextStyle(fontSize: 11.0),
                                 text: service1,
                                 children: [
                                   TextSpan(text: " | $service2"),
@@ -115,7 +116,7 @@ class LabResultsCard extends StatelessWidget {
                           text: TextSpan(
                             text: "\$$price",
                             style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
+                                fontWeight: FontWeight.bold, fontSize: 16),
                             children: [
                               TextSpan(
                                 text: " / hr",

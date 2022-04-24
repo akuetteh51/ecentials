@@ -46,7 +46,7 @@ class SchedulesCard extends StatelessWidget {
                         docName,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 20,
+                          fontSize: 18,
                         ),
                       ),
                       SizedBox(
@@ -57,6 +57,7 @@ class SchedulesCard extends StatelessWidget {
                           text: specialization,
                           style: const TextStyle(
                             color: Colors.grey,
+                            fontSize: 12,
                           ),
                           children: [
                             const TextSpan(
@@ -79,13 +80,14 @@ class SchedulesCard extends StatelessWidget {
                             children: [
                               const Icon(
                                 EcentialsIcons.clock,
-                                size: 15,
+                                size: 13,
                                 color: Colors.grey,
                               ),
                               Text(
                                 time,
                                 style: const TextStyle(
                                   color: Colors.black,
+                                  fontSize: 12,
                                 ),
                               ),
                             ],
@@ -98,13 +100,14 @@ class SchedulesCard extends StatelessWidget {
                             children: [
                               const Icon(
                                 EcentialsIcons.calender,
-                                size: 15,
+                                size: 13,
                                 color: Colors.grey,
                               ),
                               Text(
                                 date,
                                 style: const TextStyle(
                                   color: Colors.black,
+                                  fontSize: 12,
                                 ),
                               ),
                             ],
@@ -126,6 +129,7 @@ class SchedulesCard extends StatelessWidget {
                                       "Unconfirmed",
                                       style: TextStyle(
                                         color: AppColors.primaryRedColor,
+                                        fontSize: 12,
                                       ),
                                     ),
                                   ],
@@ -179,7 +183,7 @@ class SchedulesCard extends StatelessWidget {
                   ButtonOutlined(
                     text: "Cancel",
                     style: TextStyle(color: AppColors.primaryGreenColor),
-                    width: 150,
+                    width: 130,
                     height: 40,
                     OnTap: () {
                       print("Cancel");
@@ -188,7 +192,7 @@ class SchedulesCard extends StatelessWidget {
                   Button(
                     text: "Reschedule",
                     style: TextStyle(color: AppColors.primaryWhiteColor),
-                    width: 150,
+                    width: 130,
                     height: 40,
                     onTap: () {
                       print("Reschedule");

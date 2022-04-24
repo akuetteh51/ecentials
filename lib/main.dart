@@ -13,7 +13,7 @@ Future main() async {
   final showLogin = preference.getBool('showLogin') ?? false;
 
   runApp(
-    MyApp(showLogin: showLogin),
+    MyApp(showLogin: true),
   );
 }
 

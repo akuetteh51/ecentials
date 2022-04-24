@@ -30,7 +30,7 @@ class PharmacyCard extends StatelessWidget {
                 children: [
                   IconButton(
                     icon: const Icon(
-                      EcentialsIcons.heart_outlined,
+                      EcentialsIcons.heart_fill,
                       color: Colors.red,
                     ),
                     onPressed: () {
@@ -54,14 +54,14 @@ class PharmacyCard extends StatelessWidget {
               child: Text(
                 "$pharmacyName",
                 style: const TextStyle(
-                    fontWeight: FontWeight.bold, fontSize: 18.0),
+                    fontWeight: FontWeight.bold, fontSize: 16.0),
               ),
             ),
             Center(
               child: Text(
                 " -$location",
                 style: const TextStyle(
-                    fontWeight: FontWeight.bold, fontSize: 18.0),
+                    fontWeight: FontWeight.bold, fontSize: 16.0),
               ),
             ),
             SizedBox(

@@ -23,7 +23,7 @@ class TopDoctor extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 350,
-      height: 120,
+      height: 113,
       child: Card(
         elevation: 15,
         child: Container(
@@ -53,7 +53,7 @@ class TopDoctor extends StatelessWidget {
                       Text(
                         docName,
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -77,9 +77,7 @@ class TopDoctor extends StatelessWidget {
                   ),
                   Text(
                     "3 days ago",
-                    style: TextStyle(
-                      color: Colors.grey,
-                    ),
+                    style: TextStyle(color: Colors.grey, fontSize: 13),
                   ),
                   SizedBox(
                     height: 5,
@@ -88,6 +86,7 @@ class TopDoctor extends StatelessWidget {
                     text: TextSpan(
                       text: "Area of specialization: ",
                       style: TextStyle(
+                          fontSize: 12,
                           fontWeight: FontWeight.bold,
                           color: AppColors.primaryBlackColor),
                       children: [
@@ -106,7 +105,8 @@ class TopDoctor extends StatelessWidget {
                       text: "Experience: ",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: AppColors.primaryBlackColor),
+                          color: AppColors.primaryBlackColor,
+                          fontSize: 12),
                       children: [
                         TextSpan(
                           text: "$experience years",

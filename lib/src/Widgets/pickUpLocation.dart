@@ -42,7 +42,9 @@ class pickupLocationCard extends StatelessWidget {
                   color: AppColors.primaryBlueColor,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 120.0),
+                  padding: const EdgeInsets.only(
+                    left: 20,
+                  ),
                   child: Text("$location,$address,$country"),
                 ),
               ],

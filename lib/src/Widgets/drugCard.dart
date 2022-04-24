@@ -48,7 +48,7 @@ class drugCard extends StatelessWidget {
                       child: Text(
                         "$drugName",
                         style: TextStyle(
-                            fontSize: 19, fontWeight: FontWeight.bold),
+                            fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -58,7 +58,7 @@ class drugCard extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "$drugType * $quantity pieces",
-                        style: TextStyle(fontSize: 13),
+                        style: TextStyle(fontSize: 12),
                       ),
                     ),
                   ),
@@ -70,7 +70,7 @@ class drugCard extends StatelessWidget {
                     child: Text(
                       "\$ $price",
                       style: TextStyle(
-                          fontSize: 15,
+                          fontSize: 14,
                           color: AppColors.primaryDeepColor,
                           fontWeight: FontWeight.bold),
                     ),

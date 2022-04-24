@@ -79,7 +79,7 @@ class _TestWidgetsScreenState extends State<TestWidgetsScreen> {
                   text: "Confirm",
                   color: AppColors.primaryRedColor,
                   style: TextStyle(
-                      fontSize: 18, color: AppColors.primaryWhiteColor)),
+                      fontSize: 16, color: AppColors.primaryWhiteColor)),
             ),
             //BUTTON-1
             SizedBox(
@@ -99,7 +99,7 @@ class _TestWidgetsScreenState extends State<TestWidgetsScreen> {
               child: Button(
                   text: "Confirm",
                   style: TextStyle(
-                      fontSize: 18, color: AppColors.primaryWhiteColor)),
+                      fontSize: 16, color: AppColors.primaryWhiteColor)),
             ),
             //BUTTO2
             SizedBox(

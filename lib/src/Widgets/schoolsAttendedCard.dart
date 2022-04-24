@@ -21,7 +21,7 @@ class SchoolsAttendedCard extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return SizedBox(
-      height: 180,
+      height: 170,
       width: width,
       child: Card(
           elevation: 10,
@@ -33,7 +33,7 @@ class SchoolsAttendedCard extends StatelessWidget {
                 Text(
                   schoolName,
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 15,
                     fontWeight: FontWeight.bold,
                     color: AppColors.primaryDeepColor,
                   ),
@@ -43,13 +43,18 @@ class SchoolsAttendedCard extends StatelessWidget {
                   child: Text(
                     program,
                     style: const TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.grey),
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey,
+                        fontSize: 13),
                   ),
                 ),
                 Text(
                   year,
                   style: const TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.grey),
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey,
+                    fontSize: 13,
+                  ),
                 ),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -66,7 +71,6 @@ class SchoolsAttendedCard extends StatelessWidget {
                             onPressed: () {},
                             icon: const Icon(EcentialsIcons.delete,
                                 color: Color(0xFF033A64)),
-
                           ),
                         ],
                       )

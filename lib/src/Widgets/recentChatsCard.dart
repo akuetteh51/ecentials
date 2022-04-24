@@ -20,7 +20,7 @@ class RecentChatsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
-    double height = 70;
+    double height = 60;
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
@@ -78,14 +78,14 @@ class RecentChatsCard extends StatelessWidget {
                         docName,
                         style: TextStyle(
                             color: Colors.black,
-                            fontSize: 20,
+                            fontSize: 18,
                             fontWeight: FontWeight.bold),
                       ),
                       Align(
                         alignment: Alignment.centerRight,
                         child: Text(
                           time,
-                          style: TextStyle(fontSize: 15, color: Colors.grey),
+                          style: TextStyle(fontSize: 13, color: Colors.grey),
                         ),
                       )
                     ],
@@ -94,7 +94,7 @@ class RecentChatsCard extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       message,
-                      style: TextStyle(fontSize: 15, color: Colors.grey),
+                      style: TextStyle(fontSize: 14, color: Colors.grey),
                     ),
                   )
                 ],
