@@ -103,8 +103,8 @@ class LabResultsCard extends StatelessWidget {
                               text: TextSpan(
                                 text: service1,
                                 children: [
-                                  TextSpan(text: service2),
-                                  TextSpan(text: service3),
+                                  TextSpan(text: " | $service2"),
+                                  TextSpan(text: " | $service3"),
                                   TextSpan(text: service4),
                                 ],
                               ),
@@ -113,7 +113,7 @@ class LabResultsCard extends StatelessWidget {
                         ),
                         RichText(
                           text: TextSpan(
-                            text: price,
+                            text: "\$$price",
                             style: const TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 20),
                             children: [

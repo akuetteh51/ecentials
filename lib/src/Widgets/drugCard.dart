@@ -2,13 +2,13 @@ import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:flutter/material.dart';
 
-class drug extends StatelessWidget {
+class drugCard extends StatelessWidget {
   final String drugName;
   final String drugType;
   final int quantity;
   final double price;
 
-  const drug(
+  const drugCard(
       {Key? key,
       required this.drugName,
       required this.drugType,
@@ -19,7 +19,6 @@ class drug extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200.0,
       width: 174.0,
       child: Card(
         shape: RoundedRectangleBorder(
@@ -49,7 +48,7 @@ class drug extends StatelessWidget {
                       child: Text(
                         "$drugName",
                         style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
+                            fontSize: 19, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -59,7 +58,7 @@ class drug extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "$drugType * $quantity pieces",
-                        style: TextStyle(fontSize: 12),
+                        style: TextStyle(fontSize: 13),
                       ),
                     ),
                   ),
@@ -71,7 +70,7 @@ class drug extends StatelessWidget {
                     child: Text(
                       "\$ $price",
                       style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 15,
                           color: AppColors.primaryDeepColor,
                           fontWeight: FontWeight.bold),
                     ),

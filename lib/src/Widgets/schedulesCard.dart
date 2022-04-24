@@ -26,7 +26,7 @@ class SchedulesCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = 190;
+    double height = 170;
     return SizedBox(
       width: width - 40,
       height: height,
@@ -164,8 +164,8 @@ class SchedulesCard extends StatelessWidget {
                     child: Image.asset(
                       image,
                       fit: BoxFit.contain,
-                      height: 100.0,
-                      width: 80.0,
+                      height: 80.0,
+                      width: 50.0,
                     ),
                   )
                 ],

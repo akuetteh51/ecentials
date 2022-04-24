@@ -9,7 +9,7 @@ class TopDoctor extends StatelessWidget {
   final String image;
   final String docName;
   final String specialization;
-  final String experience;
+  final int experience;
 
   const TopDoctor(
       {Key? key,
@@ -109,7 +109,7 @@ class TopDoctor extends StatelessWidget {
                           color: AppColors.primaryBlackColor),
                       children: [
                         TextSpan(
-                          text: experience,
+                          text: "$experience years",
                           style: TextStyle(fontWeight: FontWeight.normal),
                         ),
                       ],

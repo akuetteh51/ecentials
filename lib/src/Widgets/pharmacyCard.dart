@@ -1,12 +1,12 @@
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:flutter/material.dart';
 
-class Pharmacy extends StatelessWidget {
+class PharmacyCard extends StatelessWidget {
   final String pharmacyName;
   final String location;
   final String address;
   final String country;
-  const Pharmacy(
+  const PharmacyCard(
       {Key? key,
       required this.pharmacyName,
       required this.location,

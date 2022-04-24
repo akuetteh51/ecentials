@@ -39,12 +39,6 @@ class Button extends StatelessWidget {
           borderRadius: BorderRadius.circular(radius),
         ),
         child: Center(
-<<<<<<< HEAD
-          child: Text(
-            text,
-            style: style,
-          ),
-=======
           child: hasIcon == true
               ? Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -65,7 +59,6 @@ class Button extends StatelessWidget {
                   text,
                   style: style,
                 ),
->>>>>>> main
         ),
       ),
     );

@@ -3,11 +3,13 @@ import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:flutter/material.dart';
 
 class pickupLocationCard extends StatelessWidget {
+  final String title;
   final String location;
   final String address;
   final String country;
   const pickupLocationCard(
       {Key? key,
+      required this.title,
       required this.location,
       required this.address,
       required this.country})
@@ -25,7 +27,7 @@ class pickupLocationCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(15.0, 25.0, 150.0, 0.0),
             child: Text(
-              "Pick-up Location",
+              title,
               style:
                   const TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
             ),
@@ -33,14 +35,14 @@ class pickupLocationCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(15.0, 10.0, 30.0, 0.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Icon(
                   Icons.location_on,
                   color: AppColors.primaryBlueColor,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(right: 120.0),
+                  padding: const EdgeInsets.only(left: 20, right: 120.0),
                   child: Text("$location,$address,$country"),
                 ),
               ],

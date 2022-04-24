@@ -20,7 +20,7 @@ class RecentChatsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
-    double height = 80;
+    double height = 70;
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
@@ -78,7 +78,7 @@ class RecentChatsCard extends StatelessWidget {
                         docName,
                         style: TextStyle(
                             color: Colors.black,
-                            fontSize: 25,
+                            fontSize: 20,
                             fontWeight: FontWeight.bold),
                       ),
                       Align(
