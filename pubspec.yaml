@@ -45,3 +45,4 @@ flutter:
 # Images route
   assets:
     - assets/images/
+    - assets/icons/

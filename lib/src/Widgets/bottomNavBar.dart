@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../Themes/colors.dart';
-import '../Themes/ecentials_icons_icons.dart';
+import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 
 class BottomNavBar extends StatefulWidget {
   final Color backgroundColor;
