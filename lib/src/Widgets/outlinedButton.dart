@@ -1,5 +1,4 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
-import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,27 +12,28 @@ class ButtonOutlined extends StatelessWidget {
   final bool? hasIcon;
   final IconData? icon;
   final Color? iconColor;
-  final OnTap;
   final double? iconSize;
-  const ButtonOutlined({
-    Key? key,
-    this.width,
-    this.height = 50,
-    this.color = const Color(0xFF033A64),
-    required this.text,
-    this.style,
-    this.radius = 5,
-    this.OnTap,
-    this.hasIcon = false,
-    this.icon,
-    this.iconColor,
-    this.iconSize,
-  }) : super(key: key);
+  final onTap;
+
+  const ButtonOutlined(
+      {Key? key,
+      this.width,
+      this.height = 50,
+      this.color = const Color(0xFF033A64),
+      required this.text,
+      this.style,
+      this.radius = 5,
+      this.hasIcon,
+      this.icon,
+      this.iconColor,
+      this.iconSize,
+      this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: OnTap,
+      onTap: onTap,
       child: Container(
         width: width,
         height: height,
