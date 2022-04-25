@@ -6,9 +6,7 @@ import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/Widgets/infoCard.dart';
 import 'package:ecentialsclone/src/Widgets/labResultsCard.dart';
 import 'package:ecentialsclone/src/Widgets/outlinedButton.dart';
-import 'package:ecentialsclone/src/Widgets/prominentDoctors.dart';
-import 'package:ecentialsclone/src/Widgets/recentChatsCard.dart';
-import 'package:ecentialsclone/src/Widgets/schedulesCard.dart';
+
 import 'package:ecentialsclone/src/Widgets/schoolsAttendedCard.dart';
 import 'package:ecentialsclone/src/Widgets/search.dart';
 import 'package:flutter/material.dart';
