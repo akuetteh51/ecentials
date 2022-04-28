@@ -1,4 +1,6 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
+import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
+import 'package:ecentialsclone/src/Widgets/outlinedButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -51,46 +53,36 @@ class doctorCard extends StatelessWidget {
                   style: TextStyle(
                       color: AppColors.primaryWhiteColor, fontSize: 14.0),
                 ),
+                SizedBox(
+                  height: 10,
+                ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    ElevatedButton.icon(
-                      style: ButtonStyle(
-                        shape: MaterialStateProperty.all(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50.0),
-                            side:
-                                BorderSide(color: AppColors.primaryGreenColor),
-                          ),
-                        ),
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.transparent),
-                      ),
-                      onPressed: () {
-                        print("chat");
-                      },
-                      icon: Icon(Icons.message_rounded),
-                      label: Text("Chat"),
+                    ButtonOutlined(
+                      text: "Chat",
+                      style: TextStyle(color: AppColors.primaryWhiteColor),
+                      color: AppColors.primaryGreenColor,
+                      width: 100,
+                      height: 40,
+                      radius: 50,
+                      hasIcon: true,
+                      icon: Icons.message_rounded,
+                      iconColor: AppColors.primaryWhiteColor,
                     ),
-                    ElevatedButton.icon(
-                        style: ButtonStyle(
-                          shape: MaterialStateProperty.all(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50.0),
-                              side: BorderSide(
-                                  color: AppColors.primaryGreenColor),
-                            ),
-                          ),
-                          backgroundColor: MaterialStateProperty.all(
-                            Colors.transparent,
-                          ),
-                        ),
-                        onPressed: () {
-                          print("chat");
-                        },
-                        icon: Icon(Icons.call),
-                        label: Text("Call")),
+                    ButtonOutlined(
+                      text: "Call",
+                      style: TextStyle(color: AppColors.primaryWhiteColor),
+                      color: AppColors.primaryGreenColor,
+                      width: 100,
+                      height: 40,
+                      radius: 50,
+                      hasIcon: true,
+                      icon: EcentialsIcons.phone,
+                      iconSize: 20,
+                      iconColor: AppColors.primaryWhiteColor,
+                    ),
                   ],
                 ),
               ],
