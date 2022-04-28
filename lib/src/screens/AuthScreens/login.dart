@@ -1,7 +1,11 @@
 import 'package:ecentialsclone/src/Widgets/button.dart';
+import 'package:ecentialsclone/src/screens/AuthScreens/agreement.dart';
+import 'package:ecentialsclone/src/screens/AuthScreens/registration.dart';
+import 'package:ecentialsclone/src/screens/AuthScreens/reset.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../Themes/colors.dart';
 import '../UserScreens/main_screen.dart';
@@ -133,23 +137,27 @@ class _LoginState extends State<Login> {
               fontSize: 16,
               decoration: TextDecoration.underline),
         ),
-        onPressed: () {},
+        onPressed: () {
+          Get.to(() => PasswordReset(),
+              transition: Transition.rightToLeft,
+              duration: Duration(seconds: 1));
+        },
       ),
     );
 
 // Sign in Button
-    final _signin = GestureDetector(
-      onTap: () {
+    final _signin = Button(
+      onTap: () async {
+        final preference = await SharedPreferences.getInstance();
+        preference.setBool("showSignup", true);
         Get.to(
           () => const MainScreen(),
           transition: Transition.fadeIn,
           duration: const Duration(seconds: 1),
         );
       },
-      child: Button(
-        text: "Sign in",
-        style: TextStyle(color: AppColors.primaryWhiteColor, fontSize: 20),
-      ),
+      text: "Sign in",
+      style: TextStyle(color: AppColors.primaryWhiteColor, fontSize: 20),
     );
 
     // New User Button
@@ -170,7 +178,12 @@ class _LoginState extends State<Login> {
                 color: AppColors.primaryDeepColor,
                 fontFamily: "Montserrat",
               ),
-              recognizer: TapGestureRecognizer()..onTap = () {}),
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  Get.to(() => const Agreement(),
+                      transition: Transition.rightToLeft,
+                      duration: Duration(seconds: 1));
+                }),
         ],
       ),
     );

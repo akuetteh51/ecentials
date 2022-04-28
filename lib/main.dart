@@ -1,5 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/main_screen.dart';
 import 'package:ecentialsclone/src/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,15 +12,21 @@ Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final preference = await SharedPreferences.getInstance();
   final showLogin = preference.getBool('showLogin') ?? false;
+  final showSignup = preference.getBool('showSignup') ?? false;
 
   runApp(
-    MyApp(showLogin: true),
+    MyApp(
+      showLogin: true,
+      showSignup: false,
+    ),
   );
 }
 
 class MyApp extends StatelessWidget {
   final bool showLogin;
-  const MyApp({Key? key, required this.showLogin}) : super(key: key);
+  final bool showSignup;
+  const MyApp({Key? key, required this.showLogin, required this.showSignup})
+      : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -31,8 +38,7 @@ class MyApp extends StatelessWidget {
         centered: true,
         duration: 2000,
         splashIconSize: 500,
-        nextScreen:
-            showLogin ? const TestWidgetsScreen() : const OnboardingScreen(),
+        nextScreen: showLogin ? const MainScreen() : const OnboardingScreen(),
       ),
       theme: ThemeData(
         fontFamily: "Montserrat",

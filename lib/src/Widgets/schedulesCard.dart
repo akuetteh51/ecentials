@@ -185,9 +185,6 @@ class SchedulesCard extends StatelessWidget {
                     style: TextStyle(color: AppColors.primaryGreenColor),
                     width: 130,
                     height: 40,
-                    OnTap: () {
-                      print("Cancel");
-                    },
                   ),
                   Button(
                     text: "Reschedule",
