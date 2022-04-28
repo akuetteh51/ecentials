@@ -62,7 +62,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           preference.setBool("showLogin", true);
           Get.to(
             () => const Login(),
-            transition: Transition.fadeIn,
+            transition: Transition.rightToLeft,
             duration: const Duration(seconds: 1),
           );
         },
@@ -78,22 +78,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
 
     // Next Button
-    final _nextButton = GestureDetector(
+    final _nextButton = Button(
       onTap: () async {
         final preference = await SharedPreferences.getInstance();
         preference.setBool("showLogin", true);
         Get.to(
           () => const Login(),
-          transition: Transition.fadeIn,
-          duration: const Duration(seconds: 1),
+          transition: Transition.rightToLeft,
+          duration: const Duration(milliseconds: 500),
         );
       },
-      child: Button(
-        text: "Next",
-        style: TextStyle(
-          color: AppColors.primaryWhiteColor,
-          fontWeight: FontWeight.bold,
-        ),
+      text: "Next",
+      style: TextStyle(
+        color: AppColors.primaryWhiteColor,
+        fontWeight: FontWeight.bold,
       ),
     );
 

@@ -1,19 +1,23 @@
+import 'package:ecentialsclone/src/screens/UserScreens/Chat/chat.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/homeScreen.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Notifications/notifications.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/store.dart';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../Themes/colors.dart';
-import '../Themes/ecentials_icons_icons.dart';
+import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 
 class BottomNavBar extends StatefulWidget {
   final Color backgroundColor;
-  final Widget? body;
-  final AppBar? appBar;
-  final Drawer? drawer;
-  const BottomNavBar(
-      {Key? key,
-      this.backgroundColor = const Color(0xFF033A64),
-      this.body,
-      this.appBar,
-      this.drawer})
-      : super(key: key);
+  int index;
+  int onPressed;
+  BottomNavBar({
+    Key? key,
+    this.backgroundColor = const Color(0xFF033A64),
+    this.index = 0,
+    this.onPressed = 0,
+  }) : super(key: key);
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
 }
@@ -21,8 +25,6 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
-    int currentIndex =
-        0; //Takes the current index of the Icop pressed and set the corressponding page
     // Icons
     final _icons = [
       Icon(
@@ -50,61 +52,43 @@ class _BottomNavBarState extends State<BottomNavBar> {
       "Notifications",
       "Chat Bot",
     ];
-// Floating Ambulance Center docked
-    final _floatinfAmbulance = Container(
-      height: 60,
-      width: 60,
+
+    onPressed(int ind) {
+      return ind;
+    }
+
+    return Container(
+      height: 70,
       decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/images/nav_ambulance.png"),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
         ),
       ),
-    );
-
-    // Create Pages as a list and pass it to BottomNavBar body and use the current index to loop through pages
-
-    return Scaffold(
-      extendBody: true,
-      backgroundColor: AppColors.primaryWhiteColor,
-      floatingActionButton: _floatinfAmbulance,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: Container(
-        height: 70,
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
-          ),
+      child: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
         ),
-        child: ClipRRect(
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
-          ),
-          child: BottomAppBar(
-            color: widget.backgroundColor,
-            shape: const CircularNotchedRectangle(),
-            notchMargin: 10,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: List.generate(
-                4,
-                (index) => IconButton(
-                  onPressed: () {
-                    setState(() {
-                      currentIndex = index;
-                    });
-                  },
-                  tooltip: _tooltip[index],
-                  icon: _icons[index],
-                ),
+        child: BottomAppBar(
+          color: widget.backgroundColor,
+          shape: const CircularNotchedRectangle(),
+          notchMargin: 10,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: List.generate(
+              4,
+              (index) => IconButton(
+                onPressed: () {
+                  widget.index = index;
+                },
+                tooltip: _tooltip[index],
+                icon: _icons[index],
               ),
             ),
           ),
         ),
       ),
-      appBar: widget.appBar,
-      drawer: widget.drawer,
     );
   }
 }
