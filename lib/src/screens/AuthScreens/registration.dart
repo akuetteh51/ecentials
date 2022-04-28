@@ -195,7 +195,7 @@ class _RegistrationState extends State<Registration> {
     final _signin = Button(
       onTap: () {
         Get.to(
-          () => const MainScreen(),
+          () => MainScreen(),
           transition: Transition.fadeIn,
           duration: const Duration(seconds: 1),
         );

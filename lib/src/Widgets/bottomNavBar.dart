@@ -10,13 +10,11 @@ import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 
 class BottomNavBar extends StatefulWidget {
   final Color backgroundColor;
-  int index;
-  int onPressed;
+  final onPressed;
   BottomNavBar({
     Key? key,
     this.backgroundColor = const Color(0xFF033A64),
-    this.index = 0,
-    this.onPressed = 0,
+    this.onPressed,
   }) : super(key: key);
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
@@ -79,9 +77,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
             children: List.generate(
               4,
               (index) => IconButton(
-                onPressed: () {
-                  widget.index = index;
-                },
+                onPressed: () => widget.onPressed(index),
                 tooltip: _tooltip[index],
                 icon: _icons[index],
               ),

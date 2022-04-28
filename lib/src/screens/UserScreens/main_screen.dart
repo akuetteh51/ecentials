@@ -10,13 +10,24 @@ import 'package:ecentialsclone/src/screens/UserScreens/Store/store.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  const MainScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
+  // Setting index to navigate to current page
+  int currentIndex = 0;
+  Future<void> onPress(int index) async {
+    int myIndex = index;
+    setState(() {
+      currentIndex = myIndex;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // Pages
@@ -40,9 +51,12 @@ class _MainScreenState extends State<MainScreen> {
           icon: const Icon(EcentialsIcons.menu_icon),
         ),
       ),
-      title: Image.asset(
-        "assets/images/logo.png",
-        scale: 1.5,
+      title: Container(
+        margin: EdgeInsets.only(bottom: 5),
+        child: Image.asset(
+          "assets/images/logo.png",
+          scale: 1.5,
+        ),
       ),
       centerTitle: true,
       actions: [
@@ -58,10 +72,12 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       floatingActionButton: FloatingAmbulance(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(
+        onPressed: onPress,
+      ),
       appBar: _appBar,
       drawer: const NavDrawer(),
-      body: _pages[BottomNavBar().onPressed],
+      body: _pages[currentIndex],
     );
   }
 }

@@ -150,7 +150,7 @@ class _PasswordResetState extends State<PasswordReset> {
     final _signin = GestureDetector(
       onTap: () {
         Get.to(
-          () => const MainScreen(),
+          () => MainScreen(),
           transition: Transition.fadeIn,
           duration: const Duration(seconds: 1),
         );

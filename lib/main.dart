@@ -15,7 +15,7 @@ Future main() async {
   final showSignup = preference.getBool('showSignup') ?? false;
 
   runApp(
-    MyApp(
+    const MyApp(
       showLogin: true,
       showSignup: false,
     ),

@@ -2,6 +2,11 @@ import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/Dashboard.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Chat/chat.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/minuteHome.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/homeScreen.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Notifications/notifications.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/store.dart';
 import 'package:flutter/material.dart';
 
 class MinuteClinic extends StatefulWidget {
@@ -12,22 +17,16 @@ class MinuteClinic extends StatefulWidget {
 }
 
 class _MinuteClinicState extends State<MinuteClinic> {
+  int currentIndex = 0;
+  Future<void> onPress(int index) async {
+    int myIndex = index;
+    setState(() {
+      currentIndex = myIndex;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    // Images
-    final _images = [
-      "assets/images/hospital.png",
-      "assets/images/pharmacy.png",
-      "assets/images/lab.png",
-    ];
-
-    // Button Names
-    final _btnNames = [
-      "Hospital",
-      "Pharmacy",
-      "Lab",
-    ];
-
     final _appBar = AppBar(
       backgroundColor: AppColors.primaryWhiteColor,
       foregroundColor: AppColors.primaryBlackColor,
@@ -45,27 +44,31 @@ class _MinuteClinicState extends State<MinuteClinic> {
             "Minute Clinic",
             style: TextStyle(
               fontSize: 20,
+              fontWeight: FontWeight.bold,
             ),
           )
         ],
       ),
     );
 
+    // Pages
+    final _pages = [
+      MinuteHome(),
+      Stores(),
+      Notifications(),
+      Chat(),
+    ];
+
     return Scaffold(
       backgroundColor: AppColors.primaryWhiteColor,
-      bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(
+        backgroundColor: AppColors.primaryDeepColor,
+        onPressed: onPress,
+      ),
       floatingActionButton: FloatingAmbulance(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       appBar: _appBar,
-      body: ListView(
-        children: List.generate(
-          3,
-          (index) => DashBoard(
-            image: _images[index],
-            btnName: _btnNames[index],
-          ),
-        ),
-      ),
+      body: _pages[currentIndex],
     );
   }
 }
