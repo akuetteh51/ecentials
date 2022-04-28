@@ -62,7 +62,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           preference.setBool("showLogin", true);
           Get.to(
             () => const Login(),
-            transition: Transition.fadeIn,
+            transition: Transition.rightToLeft,
             duration: const Duration(seconds: 1),
           );
         },
@@ -84,8 +84,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         preference.setBool("showLogin", true);
         Get.to(
           () => const Login(),
-          transition: Transition.fadeIn,
-          duration: const Duration(seconds: 1),
+          transition: Transition.rightToLeft,
+          duration: const Duration(milliseconds: 500),
         );
       },
       text: "Next",
