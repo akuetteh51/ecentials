@@ -1,4 +1,5 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:ecentialsclone/src/screens/AuthScreens/AmbulanceScreens/ambulance_map.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 import 'package:ecentialsclone/src/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,10 @@ Future main() async {
   final showLogin = preference.getBool('showLogin') ?? false;
 
   runApp(
-    MyApp(showLogin: true),
+    // MyApp(showLogin: true),
+    MaterialApp(
+      home: mapScreen(),
+    ),
   );
 }
 
