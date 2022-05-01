@@ -5,8 +5,9 @@ import 'package:ecentialsclone/src/Widgets/doctorCard.dart';
 import 'package:ecentialsclone/src/Widgets/search.dart';
 
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Sreen3.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/ambulance_map.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/screen4.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/screen5.dart';
 
 import 'package:ecentialsclone/src/screens/UserScreens/main_screen.dart';
 import 'package:ecentialsclone/src/screens/onboarding_screen.dart';
@@ -24,7 +25,8 @@ Future main() async {
 
   runApp(
     MaterialApp(
-      home: DocotorInfo(),
+      debugShowCheckedModeBanner: false,
+      home: labScreen(),
     ),
   );
 }
