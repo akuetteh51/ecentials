@@ -224,7 +224,7 @@ class _RegistrationState extends State<Registration> {
               ),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  Get.to(() => const Login(),
+                  Get.to(() => Login(),
                       transition: Transition.leftToRight,
                       duration: const Duration(seconds: 1));
                 }),

@@ -11,7 +11,8 @@ import '../../Themes/colors.dart';
 import '../UserScreens/main_screen.dart';
 
 class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+  bool isVisible;
+  Login({Key? key, this.isVisible = false}) : super(key: key);
 
   @override
   State<Login> createState() => _LoginState();
@@ -116,7 +117,19 @@ class _LoginState extends State<Login> {
             style: const TextStyle(fontSize: 20),
             cursorColor: AppColors.primaryDeepColor,
             controller: _passwordController,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
+              suffixIcon: IconButton(
+                onPressed: () {
+                  setState(() {
+                    widget.isVisible = !widget.isVisible;
+                  });
+                },
+                icon: widget.isVisible == true
+                    ? Icon(Icons.visibility)
+                    : Icon(
+                        Icons.visibility_off,
+                      ),
+              ),
               hintText: "********",
               border: UnderlineInputBorder(
                 borderSide: BorderSide.none,
@@ -151,7 +164,7 @@ class _LoginState extends State<Login> {
         final preference = await SharedPreferences.getInstance();
         preference.setBool("showSignup", true);
         Get.to(
-          () => MainScreen(),
+          () => const MainScreen(),
           transition: Transition.fadeIn,
           duration: const Duration(seconds: 1),
         );
@@ -207,7 +220,6 @@ class _LoginState extends State<Login> {
                       height: 20,
                     ),
                     Form(
-                      key: _formkey,
                       child: SingleChildScrollView(
                         child: Column(
                           children: [

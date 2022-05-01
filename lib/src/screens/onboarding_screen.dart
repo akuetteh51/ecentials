@@ -61,7 +61,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           final preference = await SharedPreferences.getInstance();
           preference.setBool("showLogin", true);
           Get.to(
-            () => const Login(),
+            () => Login(),
             transition: Transition.rightToLeft,
             duration: const Duration(seconds: 1),
           );
@@ -83,7 +83,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         final preference = await SharedPreferences.getInstance();
         preference.setBool("showLogin", true);
         Get.to(
-          () => const Login(),
+          () => Login(),
           transition: Transition.rightToLeft,
           duration: const Duration(milliseconds: 500),
         );

@@ -11,6 +11,7 @@ import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 class BottomNavBar extends StatefulWidget {
   final Color backgroundColor;
   final onPressed;
+
   BottomNavBar({
     Key? key,
     this.backgroundColor = const Color(0xFF033A64),
@@ -43,6 +44,13 @@ class _BottomNavBarState extends State<BottomNavBar> {
       ),
     ];
 
+    final _pages = [
+      HomeScreen(),
+      Stores(),
+      Notifications(),
+      Chat(),
+    ];
+
 // Icons tooltips
     final _tooltip = [
       "Home",
@@ -51,22 +59,18 @@ class _BottomNavBarState extends State<BottomNavBar> {
       "Chat Bot",
     ];
 
-    onPressed(int ind) {
-      return ind;
-    }
-
     return Container(
       height: 70,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30),
-          topRight: Radius.circular(30),
+          topLeft: Radius.circular(10),
+          topRight: Radius.circular(10),
         ),
       ),
       child: ClipRRect(
         borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(30),
-          topRight: Radius.circular(30),
+          topLeft: Radius.circular(10),
+          topRight: Radius.circular(10),
         ),
         child: BottomAppBar(
           color: widget.backgroundColor,
@@ -77,7 +81,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
             children: List.generate(
               4,
               (index) => IconButton(
-                onPressed: () => widget.onPressed(index),
+                // onPressed: () => widget.onPressed(index),
+                onPressed: () {
+                  Get.to(() => _pages[index]);
+                  print(index);
+                },
                 tooltip: _tooltip[index],
                 icon: _icons[index],
               ),

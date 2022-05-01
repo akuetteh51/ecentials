@@ -51,24 +51,37 @@ class _MinuteClinicState extends State<MinuteClinic> {
       ),
     );
 
-    // Pages
-    final _pages = [
-      MinuteHome(),
-      Stores(),
-      Notifications(),
-      Chat(),
+    // Images
+    final _images = [
+      "assets/images/hospital.png",
+      "assets/images/pharmacy.png",
+      "assets/images/lab.png",
+    ];
+
+    // Button Names
+    final _btnNames = [
+      "Hospital",
+      "Pharmacy",
+      "Lab",
     ];
 
     return Scaffold(
       backgroundColor: AppColors.primaryWhiteColor,
       bottomNavigationBar: BottomNavBar(
         backgroundColor: AppColors.primaryDeepColor,
-        onPressed: onPress,
       ),
       floatingActionButton: FloatingAmbulance(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       appBar: _appBar,
-      body: _pages[currentIndex],
+      body: ListView(
+        children: List.generate(
+          3,
+          (index) => DashBoard(
+            image: _images[index],
+            btnName: _btnNames[index],
+          ),
+        ),
+      ),
     );
   }
 }

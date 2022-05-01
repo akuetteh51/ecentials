@@ -16,7 +16,7 @@ Future main() async {
 
   runApp(
     const MyApp(
-      showLogin: true,
+      showLogin: false,
       showSignup: false,
     ),
   );
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         centered: true,
         duration: 2000,
         splashIconSize: 500,
-        nextScreen: showLogin ? const MainScreen() : const OnboardingScreen(),
+        nextScreen: showLogin ? Login() : const OnboardingScreen(),
       ),
       theme: ThemeData(
         fontFamily: "Montserrat",
