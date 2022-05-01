@@ -1,6 +1,13 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:ecentialsclone/src/screens/AuthScreens/AmbulanceScreens/ambulance_map.dart';
+import 'package:ecentialsclone/src/Widgets/Dashboard.dart';
+import 'package:ecentialsclone/src/Widgets/ambulanceResultsList.dart';
+import 'package:ecentialsclone/src/Widgets/doctorCard.dart';
+import 'package:ecentialsclone/src/Widgets/search.dart';
+
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/ambulance_map.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/screen4.dart';
+
 import 'package:ecentialsclone/src/screens/UserScreens/main_screen.dart';
 import 'package:ecentialsclone/src/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
@@ -16,15 +23,8 @@ Future main() async {
   final showSignup = preference.getBool('showSignup') ?? false;
 
   runApp(
-<<<<<<< HEAD
-    // MyApp(showLogin: true),
     MaterialApp(
-      home: mapScreen(),
-=======
-    MyApp(
-      showLogin: true,
-      showSignup: false,
->>>>>>> 364609324662a5403fbdb4289257c6a4d8f44a34
+      home: DocotorInfo(),
     ),
   );
 }
