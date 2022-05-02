@@ -66,8 +66,9 @@ class _MainScreenState extends State<MainScreen> {
     );
 
     return Scaffold(
-        backgroundColor: AppColors.primaryWhiteColor,
-        extendBody: true,
-        body: HomeScreen());
+      backgroundColor: AppColors.primaryWhiteColor,
+      extendBody: true,
+      body: HomeScreen(),
+    );
   }
 }

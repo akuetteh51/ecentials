@@ -14,38 +14,81 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryWhiteColor,
-      floatingActionButton: FloatingAmbulance(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      body: Column(
-        children: [
-          Profile(),
-          SizedBox(
-            height: 10,
+      floatingActionButton: const FloatingAmbulance(),
+      bottomNavigationBar: BottomNavBar(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      body: CustomScrollView(
+        slivers: [
+          SliverPersistentHeader(
+            delegate: CustomSliverAppBarDelegate(expandedHeight: 300),
+            pinned: true,
           ),
-          Button(
-            text: "Complete Profile",
-            width: MediaQuery.of(context).size.width - 60,
-            style: TextStyle(
-              color: AppColors.primaryWhiteColor,
-              fontSize: 20,
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              InfoCard(topText: "Personal", bottomText: "Information"),
-              InfoCard(
-                topText: "Health",
-                bottomText: "Information",
-                showlock: true,
-              ),
-            ],
-          )
+          buildInfoCard(),
         ],
       ),
     );
   }
+
+  Widget buildInfoCard() => SliverGrid(
+        gridDelegate:
+            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        delegate: SliverChildBuilderDelegate(
+            (context, index) => InfoCard(
+                  topText: "Health ",
+                  bottomText: "Information",
+                  showlock: index == 1 ? true : false,
+                ),
+            childCount: 3),
+      );
+}
+
+class CustomSliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  final double expandedHeight;
+
+  const CustomSliverAppBarDelegate({required this.expandedHeight});
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Stack(
+      fit: StackFit.expand,
+      overflow: Overflow.visible,
+      children: [
+        buildBackground(),
+        buildAppBar(shrinkOffset),
+        Positioned(
+            bottom: 10,
+            right: 20,
+            child: FloatingActionButton(
+              backgroundColor: AppColors.primaryOrangeColor,
+              mini: true,
+              onPressed: () {},
+              child: Icon(EcentialsIcons.pencil),
+            ))
+      ],
+    );
+  }
+
+  Widget buildAppBar(double shrinkOffset) => Opacity(
+        opacity: appear(shrinkOffset),
+        child: AppBar(
+          foregroundColor: AppColors.primaryWhiteColor,
+        ),
+      );
+
+  double appear(double shrinkOffset) => shrinkOffset / expandedHeight;
+
+  Widget buildBackground() => Image.asset(
+        "assets/images/profile.png",
+        fit: BoxFit.cover,
+      );
+
+  @override
+  double get maxExtent => expandedHeight;
+
+  @override
+  double get minExtent => kToolbarHeight + 30;
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
+      false;
 }
