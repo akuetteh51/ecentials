@@ -1,3 +1,4 @@
+import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/outlinedButton.dart';
 import 'package:ecentialsclone/src/Widgets/prominentDoctors.dart';
@@ -23,26 +24,64 @@ class _labScreenState extends State<labScreen> {
                 Image(
                   image: AssetImage("assets/images/hospitallabs.png"),
                 ),
-                Text(
-                  "AnuTech National Hospital",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
-                ),
-                Row(
-                  children: [
-                    Text(
-                      "3.5km away",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
-                    ),
-                    Text(
-                      "Ratings:",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
-                    ),
-                  ],
+                SizedBox(
+                  height: 29,
+                  width: 10,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.only(right: 67, bottom: 10),
+                  child: Text(
+                    "AnuTech National Hospital",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 28),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        "3.5km away",
+                        style: TextStyle(fontSize: 17),
+                      ),
+                      SizedBox(
+                        width: 80,
+                      ),
+                      Text(
+                        "Ratings: ",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 17),
+                      ),
+                      Icon(
+                        Icons.star,
+                        size: 15,
+                        color: AppColors.primaryOrangeColor,
+                      ),
+                      Icon(
+                        Icons.star,
+                        size: 15,
+                        color: AppColors.primaryOrangeColor,
+                      ),
+                      Icon(
+                        Icons.star,
+                        size: 15,
+                        color: AppColors.primaryOrangeColor,
+                      ),
+                      Icon(
+                        Icons.star,
+                        size: 15,
+                        color: AppColors.primaryOrangeColor,
+                      ),
+                      Icon(
+                        Icons.star,
+                        size: 15,
+                        color: AppColors.primaryOrangeColor,
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(30, 2, 0, 2),
                   child: Row(
                     children: [
                       Text(
@@ -51,18 +90,15 @@ class _labScreenState extends State<labScreen> {
                             fontWeight: FontWeight.bold, fontSize: 17),
                       ),
                       Text(
-                        "Accra,Ghana",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 17),
+                        "  Accra,Ghana",
+                        style: TextStyle(fontSize: 17),
                       ),
                     ],
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.fromLTRB(30, 2, 0, 2),
                   child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
                         "Hours:",
@@ -71,8 +107,7 @@ class _labScreenState extends State<labScreen> {
                       ),
                       Text(
                         "24H",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 17),
+                        style: TextStyle(fontSize: 17),
                       ),
                     ],
                   ),
@@ -83,15 +118,17 @@ class _labScreenState extends State<labScreen> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text(
-                        "Phone:",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 17),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 56),
+                        child: Text(
+                          "Phone:",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 17),
+                        ),
                       ),
                       Text(
                         "+233 xxxxxxxxxxxxx",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 17),
+                        style: TextStyle(fontSize: 17),
                       ),
                     ],
                   ),
@@ -100,44 +137,90 @@ class _labScreenState extends State<labScreen> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    ButtonOutlined(
-                      text: "Chat",
-                      style: TextStyle(color: Colors.white),
-                      color: const Color(0xFF033A64),
-                      width: 100,
-                      height: 40,
-                      radius: 50,
-                      hasIcon: true,
-                      icon: Icons.message_rounded,
-                      iconColor: Colors.white,
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.only(
+                          top: 4,
+                          bottom: 4,
+                          left: 14,
+                          right: 14,
+                        ),
+                        backgroundColor: const Color(0xFF033A64),
+                        primary: Colors.white,
+                        textStyle: const TextStyle(fontSize: 12),
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(30),
+                          ),
+                        ),
+                      ),
+                      onPressed: () {
+                        print("booked");
+                      },
+                      child: Row(children: [
+                        Icon(Icons.message_outlined),
+                        Text(" Chat")
+                      ]),
                     ),
-                    ButtonOutlined(
-                      text: "Call",
-                      style: TextStyle(color: Colors.white),
-                      color: const Color(0xFF033A64),
-                      width: 100,
-                      height: 40,
-                      radius: 50,
-                      hasIcon: true,
-                      icon: EcentialsIcons.phone,
-                      iconSize: 20,
-                      iconColor: Colors.white,
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.only(
+                          top: 4,
+                          bottom: 4,
+                          left: 14,
+                          right: 14,
+                        ),
+                        backgroundColor: const Color(0xFF033A64),
+                        primary: Colors.white,
+                        textStyle: const TextStyle(fontSize: 18),
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(30),
+                          ),
+                        ),
+                      ),
+                      onPressed: () {
+                        print("booked");
+                      },
+                      child: Row(children: [
+                        Icon(Icons.phone_in_talk),
+                        Text("  Call"),
+                      ]),
                     ),
-                    ButtonOutlined(
-                      text: "Call",
-                      style: TextStyle(color: Colors.white),
-                      color: const Color(0xFF033A64),
-                      width: 100,
-                      height: 40,
-                      radius: 50,
-                      hasIcon: true,
-                      icon: EcentialsIcons.phone,
-                      iconSize: 20,
-                      iconColor: Colors.white,
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.only(
+                          top: 4,
+                          bottom: 4,
+                          left: 14,
+                          right: 14,
+                        ),
+                        backgroundColor: const Color(0xFF033A64),
+                        primary: Colors.white,
+                        textStyle: const TextStyle(fontSize: 18),
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(50),
+                          ),
+                        ),
+                      ),
+                      onPressed: () {
+                        print("booked");
+                      },
+                      child: Row(children: [
+                        Icon(Icons.directions),
+                        Text("Direction"),
+                      ]),
                     ),
                   ],
                 ),
-                Text("Prominent doctors"),
+                Padding(
+                  padding: const EdgeInsets.only(left: 0),
+                  child: Text(
+                    "Prominent doctors",
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                  ),
+                ),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
@@ -169,11 +252,18 @@ class _labScreenState extends State<labScreen> {
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
                     ),
+                    SizedBox(
+                      height: 29,
+                      width: 150,
+                    ),
                     IconButton(
                       onPressed: () {
                         print("clicked");
                       },
-                      icon: Icon(Icons.compare_arrows_sharp),
+                      icon: Icon(
+                        Icons.compare_arrows_sharp,
+                        color: const Color(0xFF033A64),
+                      ),
                     )
                   ],
                 ),
@@ -187,7 +277,7 @@ class _labScreenState extends State<labScreen> {
                       color: const Color(0xFF033A64),
                       width: 100,
                       height: 40,
-                      radius: 50,
+                      radius: 8,
                     ),
                     ButtonOutlined(
                       text: "Urine Test",
@@ -195,7 +285,7 @@ class _labScreenState extends State<labScreen> {
                       color: const Color(0xFF033A64),
                       width: 100,
                       height: 40,
-                      radius: 50,
+                      radius: 8,
                     ),
                     ButtonOutlined(
                       text: "DNA test",
@@ -203,7 +293,7 @@ class _labScreenState extends State<labScreen> {
                       color: const Color(0xFF033A64),
                       width: 100,
                       height: 40,
-                      radius: 50,
+                      radius: 8,
                     ),
                   ],
                 ),
@@ -211,10 +301,11 @@ class _labScreenState extends State<labScreen> {
                   child: Card(
                     child: TextButton(
                       style: TextButton.styleFrom(
-                        padding: const EdgeInsets.all(16.0),
+                        padding: const EdgeInsets.only(
+                            left: 80, right: 80, top: 15, bottom: 15),
                         backgroundColor: const Color(0xFF033A64),
                         primary: Colors.white,
-                        textStyle: const TextStyle(fontSize: 18),
+                        textStyle: const TextStyle(fontSize: 15),
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(
                             Radius.circular(5),
