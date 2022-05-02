@@ -3,6 +3,7 @@ import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/Widgets/labResultsCard.dart';
 import 'package:ecentialsclone/src/Widgets/search.dart';
+import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
 import 'package:flutter/material.dart';
 
@@ -49,9 +50,25 @@ class _NearbyHState extends State<NearbyH> {
               ),
               SizedBox(
                 height: 10,
-                width: 0,
               ),
-              Search(),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Search4(),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.toggle_off_outlined),
+                      Icon(Icons.toggle_off_outlined),
+                    ],
+                  )
+                ],
+              ),
               SizedBox(
                 height: 40,
               ),
