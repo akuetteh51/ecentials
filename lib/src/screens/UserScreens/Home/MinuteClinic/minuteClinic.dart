@@ -16,14 +16,6 @@ class MinuteClinic extends StatefulWidget {
 }
 
 class _MinuteClinicState extends State<MinuteClinic> {
-  int currentIndex = 0;
-  Future<void> onPress(int index) async {
-    int myIndex = index;
-    setState(() {
-      currentIndex = myIndex;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final _appBar = AppBar(

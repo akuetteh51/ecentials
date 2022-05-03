@@ -81,7 +81,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
             children: List.generate(
               4,
               (index) => IconButton(
-                // onPressed: () => widget.onPressed(index),
                 onPressed: () {
                   Get.to(() => _pages[index]);
                   print(index);

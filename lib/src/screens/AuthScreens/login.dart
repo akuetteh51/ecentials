@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/agreement.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/registration.dart';
@@ -19,6 +21,23 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  late TextEditingController _emailController;
+  late TextEditingController _passwordController;
+
+  @override
+  void initState() {
+    super.initState();
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     // Logo  and Login text
@@ -45,7 +64,7 @@ class _LoginState extends State<Login> {
     );
     // Email Input text
     final _formkey = GlobalKey<FormState>();
-    final _emailController = TextEditingController();
+
     final _email = Column(
       children: [
         const SizedBox(height: 40),
@@ -87,7 +106,6 @@ class _LoginState extends State<Login> {
 
     // Password Input text
 
-    final _passwordController = TextEditingController();
     final _password = Column(
       children: [
         const Align(
@@ -113,7 +131,7 @@ class _LoginState extends State<Login> {
           ),
           child: TextField(
             obscuringCharacter: '*',
-            obscureText: true,
+            obscureText: !widget.isVisible,
             style: const TextStyle(fontSize: 20),
             cursorColor: AppColors.primaryDeepColor,
             controller: _passwordController,
@@ -124,11 +142,14 @@ class _LoginState extends State<Login> {
                     widget.isVisible = !widget.isVisible;
                   });
                 },
-                icon: widget.isVisible == true
-                    ? Icon(Icons.visibility)
-                    : Icon(
-                        Icons.visibility_off,
-                      ),
+                icon: Icon(
+                  widget.isVisible == true
+                      ? Icons.visibility
+                      : Icons.visibility_off,
+                  color: AppColors.primaryBlackColor.withOpacity(
+                    .50,
+                  ),
+                ),
               ),
               hintText: "********",
               border: UnderlineInputBorder(
