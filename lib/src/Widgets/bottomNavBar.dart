@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, must_be_immutable
+
 import 'package:ecentialsclone/src/screens/UserScreens/Chat/chat.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/homeScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Notifications/notifications.dart';
@@ -16,7 +18,7 @@ class BottomNavBar extends StatefulWidget {
     Key? key,
     this.backgroundColor = const Color(0xFF033A64),
     this.index = 0,
-    this.onPressed = 0,
+    this.onPressed = 0, required SingleChildScrollView body,
   }) : super(key: key);
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();

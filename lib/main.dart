@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/AmbulanceScreens/ambulance_map.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
@@ -16,16 +18,15 @@ Future main() async {
   final showSignup = preference.getBool('showSignup') ?? false;
 
   runApp(
-<<<<<<< HEAD
     // MyApp(showLogin: true),
-    MaterialApp(
-      home: mapScreen(),
-=======
+    //MaterialApp(
+     // home: mapScreen(),
+
     MyApp(
       showLogin: true,
       showSignup: false,
->>>>>>> 364609324662a5403fbdb4289257c6a4d8f44a34
-    ),
+       ),
+   // ),
   );
 }
 

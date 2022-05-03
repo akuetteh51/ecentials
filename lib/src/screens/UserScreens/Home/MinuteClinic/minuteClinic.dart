@@ -1,8 +1,11 @@
+// ignore_for_file: file_names, prefer_const_constructors
+
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/Dashboard.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MinuteClinic extends StatefulWidget {
   const MinuteClinic({Key? key}) : super(key: key);
