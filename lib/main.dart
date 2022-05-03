@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unused_import, unused_local_variable
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/AmbulanceScreens/ambulance_map.dart';
@@ -18,15 +18,18 @@ Future main() async {
   final showSignup = preference.getBool('showSignup') ?? false;
 
   runApp(
+
     // MyApp(showLogin: true),
     //MaterialApp(
      // home: mapScreen(),
 
-    MyApp(
-      showLogin: true,
+   // MyApp(
+     // showLogin: true,
+
+    const MyApp(
+      showLogin: false,
       showSignup: false,
-       ),
-   // ),
+    ),
   );
 }
 
@@ -46,7 +49,7 @@ class MyApp extends StatelessWidget {
         centered: true,
         duration: 2000,
         splashIconSize: 500,
-        nextScreen: showLogin ? const MainScreen() : const OnboardingScreen(),
+        nextScreen: showLogin ? Login() : const OnboardingScreen(),
       ),
       theme: ThemeData(
         fontFamily: "Montserrat",

@@ -1,6 +1,9 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/minuteClinic.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class NavDrawer extends StatelessWidget {
   final bool hasShop;
@@ -9,6 +12,7 @@ class NavDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      elevation: 100,
       backgroundColor: AppColors.primaryWhiteColor,
       child: ListView(
         children: [
@@ -32,6 +36,16 @@ class NavDrawer extends StatelessWidget {
             height: 2,
           ),
           ListTile(
+            onTap: () {
+              Get.to(
+                () => ProfileScreen(),
+                transition: Transition.rightToLeft,
+                duration: Duration(
+                  seconds: 1,
+                ),
+              );
+              Scaffold.of(context).openEndDrawer();
+            },
             leading: Icon(
               EcentialsIcons.profile,
               size: 30,
@@ -70,6 +84,16 @@ class NavDrawer extends StatelessWidget {
                 )
               : Container(),
           ListTile(
+            onTap: () {
+              Get.to(
+                () => MinuteClinic(),
+                transition: Transition.rightToLeft,
+                duration: Duration(
+                  seconds: 1,
+                ),
+              );
+              Scaffold.of(context).openEndDrawer();
+            },
             leading: Icon(
               EcentialsIcons.hospital,
               size: 25,

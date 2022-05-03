@@ -9,6 +9,7 @@ class InfoCard extends StatelessWidget {
   final Color shadowColor;
   final String topText;
   final String bottomText;
+  final onTap;
   const InfoCard({
     Key? key,
     this.showlock = false,
@@ -17,14 +18,17 @@ class InfoCard extends StatelessWidget {
     this.shadowColor = const Color(0xFFFFFFFF),
     required this.topText,
     required this.bottomText,
+    this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: width,
-      height: height,
-      child: Card(
+    return GestureDetector(
+      onTap: onTap,
+      child: SizedBox(
+        width: width,
+        height: height,
+        child: Card(
           elevation: 10,
           shadowColor: shadowColor,
           child: Stack(
@@ -40,21 +44,26 @@ class InfoCard extends StatelessWidget {
                     )
                   : Container(),
               Center(
-                  child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    topText,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    bottomText,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),)
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      topText,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                    Text(
+                      bottomText,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                  ],
+                ),
+              )
             ],
-          ),),
+          ),
+        ),
+      ),
     );
   }
 }

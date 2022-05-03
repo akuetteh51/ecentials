@@ -61,7 +61,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           final preference = await SharedPreferences.getInstance();
           preference.setBool("showLogin", true);
           Get.to(
-            () => const Login(),
+            () => Login(),
             transition: Transition.rightToLeft,
             duration: const Duration(seconds: 1),
           );
@@ -83,7 +83,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         final preference = await SharedPreferences.getInstance();
         preference.setBool("showLogin", true);
         Get.to(
-          () => const Login(),
+          () => Login(),
           transition: Transition.rightToLeft,
           duration: const Duration(milliseconds: 500),
         );
@@ -115,6 +115,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: AppColors.primaryWhiteColor,
+        elevation: 0,
+        title: _pageIndicator,
+        centerTitle: true,
+      ),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 40),
         child: PageView.builder(
@@ -125,9 +131,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 _onboard(index),
-                _pageIndicator,
                 const SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 index != 3 ? skip : _nextButton,
               ],
