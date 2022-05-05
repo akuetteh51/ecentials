@@ -22,14 +22,14 @@ dependencies:
   curved_navigation_bar: ^1.0.3
   dotted_border: ^2.0.0+2
   intl: ^0.17.0
-  sliver_fab: "^1.0.0"
+  pin_code_fields: ^7.4.0
+
   
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
- 
   flutter_lints: ^1.0.0
 
 

@@ -31,18 +31,13 @@ class _EducationalInfoState extends State<EducationalInfo> {
           horizontal: 20,
           vertical: 20,
         ),
-        child: ListView(
+        child: Stack(
           children: [
-            Text(
-              "SCHOOLS ATTENDED",
-              style: TextStyle(
-                  color: AppColors.primaryDeepColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18),
-            ),
-            const Center(
+            Positioned(
+              bottom: 15,
               child: AddSchoolButton(),
-            )
+            ),
+            // Text("Hello"),
           ],
         ),
       ),

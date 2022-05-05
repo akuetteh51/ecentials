@@ -49,13 +49,19 @@ class InfoCard extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       topText,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 20),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: AppColors.primaryDeepColor,
+                      ),
                     ),
                     Text(
                       bottomText,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 20),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: AppColors.primaryDeepColor,
+                      ),
                     ),
                   ],
                 ),

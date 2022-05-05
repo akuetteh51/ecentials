@@ -219,6 +219,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.5"
+  pin_code_fields:
+    dependency: "direct main"
+    description:
+      name: pin_code_fields
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "7.4.0"
   platform:
     dependency: transitive
     description:
@@ -301,13 +308,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
-  sliver_fab:
-    dependency: "direct main"
-    description:
-      name: sliver_fab
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
   smooth_page_indicator:
     dependency: "direct main"
     description:

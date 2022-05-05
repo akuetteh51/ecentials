@@ -24,7 +24,10 @@ class HomeScreen extends StatelessWidget {
           onPressed: () {
             Scaffold.of(context).openDrawer();
           },
-          icon: const Icon(EcentialsIcons.menu_icon),
+          icon: Icon(
+            EcentialsIcons.menu_icon,
+            color: AppColors.primaryDeepColor,
+          ),
         ),
       ),
       title: Container(
