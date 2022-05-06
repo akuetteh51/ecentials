@@ -1,4 +1,5 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:ecentialsclone/src/screens/AuthScreens/AmbulanceScreens/ambulance_map.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/main_screen.dart';
 import 'package:ecentialsclone/src/screens/onboarding_screen.dart';
@@ -16,7 +17,7 @@ Future main() async {
 
   runApp(
     const MyApp(
-      showLogin: false,
+      showLogin: true,
       showSignup: false,
     ),
   );
