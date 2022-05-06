@@ -12,6 +12,26 @@ class EducationalInfo extends StatefulWidget {
 }
 
 class _EducationalInfoState extends State<EducationalInfo> {
+  openDialog() => showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(
+            "Add Educational Inlformation",
+          ),
+          content: Container(
+            height: 150,
+            child: Column(children: [
+              TextFormField(
+                decoration: InputDecoration(
+                  label: Text("School Name"),
+                  border: OutlineInputBorder(),
+                ),
+              )
+            ]),
+          ),
+        ),
+      );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +55,11 @@ class _EducationalInfoState extends State<EducationalInfo> {
           children: [
             Positioned(
               bottom: 15,
-              child: AddSchoolButton(),
+              child: AddSchoolButton(
+                onTap: () {
+                  openDialog();
+                },
+              ),
             ),
             // Text("Hello"),
           ],

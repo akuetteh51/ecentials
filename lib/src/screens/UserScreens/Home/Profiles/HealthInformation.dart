@@ -17,12 +17,20 @@ class _HealthInformationState extends State<HealthInformation> {
     "GENOTYPE",
     "ALERGIES",
     "MEDICAL ID NUMBER",
+    "PULSE RATE",
+    "RESPIRATION RATE",
+    "BLOOD PRESSURE",
+    "TEMPERATURE",
   ];
   final _text = [
     "O RhD positive(O+)",
     "AA",
     "Cats, Pepper",
     "EC4744643",
+    "200 bpm",
+    "80 bpm",
+    "40mm HG",
+    "35.6 C",
   ];
   @override
   Widget build(BuildContext context) {

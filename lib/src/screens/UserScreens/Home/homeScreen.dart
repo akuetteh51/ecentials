@@ -4,6 +4,7 @@ import 'package:ecentialsclone/src/Widgets/Dashboard.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/Widgets/navDrawer.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulanceNear.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/minuteClinic.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
 import 'package:flutter/material.dart';
@@ -78,7 +79,14 @@ class HomeScreen extends StatelessWidget {
           const SizedBox(
             height: 40,
           ),
-          const DashBoard(
+          DashBoard(
+            onTap: () {
+              Get.to(
+                () => AmbulanceNear(),
+                transition: Transition.rightToLeft,
+                duration: Duration(seconds: 1),
+              );
+            },
             image: "assets/images/ambulance.png",
             btnName: "Ambulance Services",
           ),

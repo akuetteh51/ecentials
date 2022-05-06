@@ -1,7 +1,9 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/notificationsHistory.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/setting.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Notifications extends StatefulWidget {
   const Notifications({Key? key}) : super(key: key);
@@ -30,9 +32,18 @@ class _NotificationsState extends State<Notifications> {
               ),
               child: CircleAvatar(
                 backgroundColor: AppColors.primaryDeepColor,
-                child: Icon(
-                  EcentialsIcons.settings_2,
-                  color: AppColors.primaryWhiteColor,
+                child: IconButton(
+                  icon: Icon(
+                    EcentialsIcons.settings_2,
+                    color: AppColors.primaryWhiteColor,
+                  ),
+                  onPressed: () {
+                    Get.to(
+                      () => Settings(),
+                      transition: Transition.rightToLeft,
+                      duration: Duration(milliseconds: 500),
+                    );
+                  },
                 ),
               ),
             ),

@@ -19,7 +19,22 @@ class _AmbulanceNearState extends State<AmbulanceNear> {
     return Scaffold(
       backgroundColor: AppColors.primaryWhiteColor,
       drawer: const NavDrawer(),
-      body: Column(
+      bottomNavigationBar: Container(
+        margin: EdgeInsets.only(
+          bottom: 40,
+          left: 40,
+          right: 40,
+        ),
+        child: Button(
+          width: MediaQuery.of(context).size.width - 40,
+          text: "Find Ambulance",
+          color: AppColors.primaryRedColor,
+          style: TextStyle(
+            color: AppColors.primaryWhiteColor,
+          ),
+        ),
+      ),
+      body: ListView(
         children: [
           Container(
             height: 250,
@@ -130,14 +145,20 @@ class _AmbulanceNearState extends State<AmbulanceNear> {
           const SizedBox(
             height: 40,
           ),
-          Button(
-            width: MediaQuery.of(context).size.width - 40,
-            text: "Find Ambulance",
-            color: AppColors.primaryRedColor,
-            style: TextStyle(
-              color: AppColors.primaryWhiteColor,
+          Container(
+            margin: const EdgeInsets.symmetric(
+              horizontal: 20,
             ),
-          )
+            child: const pickupLocationCard(
+              title: "Pick-up Location",
+              location: "location",
+              address: "address",
+              country: "country",
+            ),
+          ),
+          const SizedBox(
+            height: 40,
+          ),
         ],
       ),
     );

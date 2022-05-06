@@ -15,9 +15,14 @@ import 'package:ecentialsclone/src/Widgets/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     // Text
@@ -34,6 +39,7 @@ class ProfileScreen extends StatelessWidget {
       EducationalInfo(),
     ];
     String text = "";
+    String text2 = "";
 
     Future confirmPin() => showDialog(
         context: context,
@@ -43,10 +49,15 @@ class ProfileScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(
-                      EcentialsIcons.lock,
-                      color: AppColors.primaryDeepColor,
-                    ),
+                    text == text2
+                        ? Icon(
+                            EcentialsIcons.secure,
+                            color: AppColors.primaryGreenColor,
+                          )
+                        : Icon(
+                            EcentialsIcons.lock,
+                            color: AppColors.primaryDeepColor,
+                          ),
                     const Text(
                       "Re-enter 4-digit Pincode",
                       style: TextStyle(
@@ -58,8 +69,14 @@ class ProfileScreen extends StatelessWidget {
                       appContext: context,
                       length: 4,
                       onChanged: (String value) {},
-                      onCompleted: (value) {
-                        Get.to(() => HealthInformation());
+                      onCompleted: (pintwo) {
+                        text2 = pintwo;
+                        Navigator.of(context).pop();
+                        text == text2
+                            ? Get.to(
+                                () => HealthInformation(),
+                              )
+                            : ProfileScreen();
                       },
                       enablePinAutofill: false,
                       keyboardType: TextInputType.number,
@@ -112,7 +129,7 @@ class ProfileScreen extends StatelessWidget {
                       color: AppColors.primaryDeepColor,
                     ),
                     const Text(
-                      "Enter 4-digit Pincode",
+                      "Enter your 4-digit Pincode",
                       style: TextStyle(
                         fontSize: 20,
                       ),
@@ -122,8 +139,10 @@ class ProfileScreen extends StatelessWidget {
                       appContext: context,
                       length: 4,
                       onChanged: (String value) {},
-                      onCompleted: (value) {
-                        text == value;
+                      onCompleted: (pinone) {
+                        Navigator.of(context).pop();
+                        text = pinone;
+
                         confirmPin();
                       },
                       enablePinAutofill: false,

@@ -25,6 +25,17 @@ class _EditProfileState extends State<EditProfile> {
     "Height",
     "Weight",
   ];
+  final _text = [
+    "ANDREWS OPOKU",
+    "AOPOKU255@GMAIL.COM",
+    "+233545098438",
+    "MALE",
+    "PLT 16 BLK III",
+    "MEDICAL DOCTOR",
+    "093356147",
+    "6.0ft",
+    "80 lbs",
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -125,6 +136,7 @@ class _EditProfileState extends State<EditProfile> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: TextFormField(
+                        initialValue: _text[index],
                         cursorColor: AppColors.primaryDeepColor,
                         decoration: const InputDecoration(
                           contentPadding: EdgeInsets.symmetric(
