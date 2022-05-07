@@ -16,15 +16,9 @@ Future main() async {
   final showSignup = preference.getBool('showSignup') ?? false;
 
   runApp(
-<<<<<<< HEAD
-    // MyApp(showLogin: true),
-    MaterialApp(
-      home: mapScreen(),
-=======
     MyApp(
       showLogin: true,
       showSignup: false,
->>>>>>> 364609324662a5403fbdb4289257c6a4d8f44a34
     ),
   );
 }
