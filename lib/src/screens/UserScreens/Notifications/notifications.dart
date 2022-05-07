@@ -39,75 +39,86 @@ class _NotificationsState extends State<Notifications> {
                   ),
                   onPressed: () {
                     Get.to(
-                      () => Settings(),
+                      () => const Settings(),
                       transition: Transition.rightToLeft,
-                      duration: Duration(milliseconds: 500),
+                      duration: const Duration(milliseconds: 500),
                     );
                   },
                 ),
               ),
             ),
           ],
-          bottom: TabBar(
-              indicatorSize: TabBarIndicatorSize.label,
-              labelStyle: TextStyle(
-                fontSize: 20,
-              ),
-              labelColor: AppColors.primaryBlackColor,
-              indicatorColor: AppColors.primaryDeepColor,
-              indicatorWeight: 3.0,
-              tabs: [
-                Tab(
-                  text: "General",
-                ),
-                Tab(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("Recommended"),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Container(
-                        height: 22,
-                        width: 25,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(3),
-                          color: AppColors.primaryRedColor,
-                        ),
-                        child: Center(
-                          child: Text(
-                            "10+",
-                            style: TextStyle(
-                              color: AppColors.primaryWhiteColor,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ]),
         ),
-        body: TabBarView(
+        body: Column(
           children: [
-            Center(
-              child: Text(
-                "OPPS!!! Nothing for you at the moment",
-                style: TextStyle(
-                  fontSize: 20,
-                ),
-              ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: TabBar(
+                  indicatorSize: TabBarIndicatorSize.label,
+                  isScrollable: true,
+                  labelStyle: const TextStyle(
+                    fontSize: 20,
+                  ),
+                  labelColor: AppColors.primaryBlackColor,
+                  indicatorColor: AppColors.primaryDeepColor,
+                  indicatorWeight: 3.0,
+                  tabs: [
+                    const Tab(
+                      text: "General",
+                    ),
+                    Tab(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text("Recommended"),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Container(
+                            height: 22,
+                            width: 25,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(3),
+                              color: AppColors.primaryRedColor,
+                            ),
+                            child: Center(
+                              child: Text(
+                                "10+",
+                                style: TextStyle(
+                                  color: AppColors.primaryWhiteColor,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ]),
             ),
-            Container(
-              margin: EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 40,
-              ),
-              child: ListView(
-                children: List.generate(10, (index) => NotificationsHistory()),
+            Expanded(
+              child: TabBarView(
+                children: [
+                  const Center(
+                    child: Text(
+                      "OPPS!!! Nothing for you at the moment",
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 40,
+                    ),
+                    child: ListView(
+                      children: List.generate(
+                          10, (index) => const NotificationsHistory()),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

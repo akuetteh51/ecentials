@@ -50,6 +50,9 @@ class NotificationsHistory extends StatelessWidget {
               children: [
                 Text(
                   "SCAN RESULT IS READY",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text(
                   "Hello Andrews please note that your scan results is reaady...",

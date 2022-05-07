@@ -1,10 +1,12 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:ecentialsclone/src/screens/AuthScreens/AmbulanceScreens/ambulance_map.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulance_map.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/main_screen.dart';
 import 'package:ecentialsclone/src/screens/onboarding_screen.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'src/screens/test_widgets_screen.dart';
@@ -17,7 +19,7 @@ Future main() async {
 
   runApp(
     const MyApp(
-      showLogin: true,
+      showLogin: false,
       showSignup: false,
     ),
   );

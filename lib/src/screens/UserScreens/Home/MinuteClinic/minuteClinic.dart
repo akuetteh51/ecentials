@@ -1,5 +1,5 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
-import 'package:ecentialsclone/src/Widgets/Dashboard.dart';
+import 'package:ecentialsclone/src/Widgets/dashboard.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Chat/chat.dart';
@@ -7,6 +7,7 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/homeScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Notifications/notifications.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/store.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MinuteClinic extends StatefulWidget {
   const MinuteClinic({Key? key}) : super(key: key);
@@ -22,6 +23,17 @@ class _MinuteClinicState extends State<MinuteClinic> {
       backgroundColor: AppColors.primaryWhiteColor,
       foregroundColor: AppColors.primaryBlackColor,
       elevation: 0,
+      leading: IconButton(
+        icon: Icon(
+          Icons.arrow_back,
+          color: AppColors.primaryDeepColor,
+        ),
+        onPressed: () {
+          Get.to(
+            () => HomeScreen(),
+          );
+        },
+      ),
       title: Row(
         children: [
           Container(

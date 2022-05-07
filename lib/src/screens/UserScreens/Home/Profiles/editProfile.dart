@@ -63,7 +63,8 @@ class _EditProfileState extends State<EditProfile> {
           ),
         ),
         floatingPosition: FloatingPosition(
-          right: MediaQuery.of(context).size.width * 0.6 / 2,
+          right: 0,
+          left: 0,
         ),
         expandedHeight: MediaQuery.of(context).size.height * 0.2,
         slivers: [

@@ -22,51 +22,56 @@ class _SettingsState extends State<Settings> {
       ),
       body: ListView(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              const CircleAvatar(
-                radius: 40,
-                backgroundImage: const AssetImage(
-                  "assets/images/profile.png",
+          Container(
+            margin: EdgeInsets.symmetric(
+              horizontal: 10,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                const CircleAvatar(
+                  radius: 40,
+                  backgroundImage: const AssetImage(
+                    "assets/images/profile.png",
+                  ),
                 ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        "Andrews Opoku",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.primaryBlackColor.withOpacity(.50),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          "Andrews Opoku",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.primaryBlackColor.withOpacity(.50),
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          EcentialsIcons.pen_underlined,
-                          color: AppColors.primaryBlueColor,
-                          size: 20,
+                        const SizedBox(
+                          width: 5,
                         ),
-                      ),
-                    ],
-                  ),
-                  const Text(
-                    "My name is Andrews Opoku...",
-                  ),
-                ],
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(EcentialsIcons.qrcode),
-              ),
-            ],
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            EcentialsIcons.pen_underlined,
+                            color: AppColors.primaryBlueColor,
+                            size: 20,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Text(
+                      "My name is Andrews Opoku...",
+                    ),
+                  ],
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(EcentialsIcons.qrcode),
+                ),
+              ],
+            ),
           ),
           const SizedBox(
             height: 20,

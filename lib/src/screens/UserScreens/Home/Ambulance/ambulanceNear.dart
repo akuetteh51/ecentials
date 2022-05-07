@@ -3,8 +3,10 @@ import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/Widgets/navDrawer.dart';
 import 'package:ecentialsclone/src/Widgets/pickUpLocation.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/findAmbulance.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:get/get.dart';
 
 class AmbulanceNear extends StatefulWidget {
   const AmbulanceNear({Key? key}) : super(key: key);
@@ -26,6 +28,9 @@ class _AmbulanceNearState extends State<AmbulanceNear> {
           right: 40,
         ),
         child: Button(
+          onTap: () {
+            Get.to(() => FindAmulance());
+          },
           width: MediaQuery.of(context).size.width - 40,
           text: "Find Ambulance",
           color: AppColors.primaryRedColor,
