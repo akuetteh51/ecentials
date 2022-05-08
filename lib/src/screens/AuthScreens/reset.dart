@@ -1,4 +1,5 @@
 import 'package:ecentialsclone/src/Widgets/button.dart';
+import 'package:ecentialsclone/src/screens/AuthScreens/emailSuccess.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -16,6 +17,23 @@ class PasswordReset extends StatefulWidget {
 }
 
 class _PasswordResetState extends State<PasswordReset> {
+  late TextEditingController _passwordController;
+  late TextEditingController _confirmPasswordController;
+
+  @override
+  void initState() {
+    super.initState();
+    _passwordController = TextEditingController();
+    _confirmPasswordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     // Logo  and PasswordReset text
@@ -38,8 +56,6 @@ class _PasswordResetState extends State<PasswordReset> {
     final _emailController = TextEditingController();
 
     // Password Input text
-
-    final _passwordController = TextEditingController();
     final _password = Column(
       children: [
         const Align(
@@ -65,7 +81,7 @@ class _PasswordResetState extends State<PasswordReset> {
           ),
           child: TextFormField(
             obscuringCharacter: '*',
-            obscureText: widget.isVisible,
+            obscureText: !widget.isVisible,
             style: const TextStyle(fontSize: 20),
             cursorColor: AppColors.primaryDeepColor,
             controller: _passwordController,
@@ -76,11 +92,14 @@ class _PasswordResetState extends State<PasswordReset> {
                     widget.isVisible = !widget.isVisible;
                   });
                 },
-                icon: widget.isVisible == true
-                    ? Icon(
-                        Icons.visibility,
-                      )
-                    : Icon(Icons.visibility_off),
+                icon: Icon(
+                  widget.isVisible == true
+                      ? Icons.visibility
+                      : Icons.visibility_off,
+                  color: AppColors.primaryBlackColor.withOpacity(
+                    .50,
+                  ),
+                ),
               ),
               hintText: "********",
               border: const UnderlineInputBorder(
@@ -93,7 +112,6 @@ class _PasswordResetState extends State<PasswordReset> {
     );
     // Confirm Password Input text
 
-    final _confirmPasswordController = TextEditingController();
     final _confirmPassword = Column(
       children: [
         const Align(
@@ -119,7 +137,7 @@ class _PasswordResetState extends State<PasswordReset> {
           ),
           child: TextFormField(
             obscuringCharacter: '*',
-            obscureText: widget.isVisible,
+            obscureText: !widget.isVisible,
             style: TextStyle(fontSize: 20),
             cursorColor: AppColors.primaryDeepColor,
             controller: _confirmPasswordController,
@@ -130,11 +148,14 @@ class _PasswordResetState extends State<PasswordReset> {
                     widget.isVisible = !widget.isVisible;
                   });
                 },
-                icon: widget.isVisible == true
-                    ? Icon(
-                        Icons.visibility,
-                      )
-                    : Icon(Icons.visibility_off),
+                icon: Icon(
+                  widget.isVisible == true
+                      ? Icons.visibility
+                      : Icons.visibility_off,
+                  color: AppColors.primaryBlackColor.withOpacity(
+                    .50,
+                  ),
+                ),
               ),
               hintText: "********",
               border: const UnderlineInputBorder(
@@ -150,13 +171,16 @@ class _PasswordResetState extends State<PasswordReset> {
     final _signin = GestureDetector(
       onTap: () {
         Get.to(
-          () => const MainScreen(),
+          () => MainScreen(),
           transition: Transition.fadeIn,
           duration: const Duration(seconds: 1),
         );
       },
       child: Button(
-        text: "Register",
+        onTap: () {
+          Get.to(() => EmailSuccess());
+        },
+        text: "Save",
         style: TextStyle(color: AppColors.primaryWhiteColor, fontSize: 20),
       ),
     );

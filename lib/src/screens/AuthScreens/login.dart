@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/agreement.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/registration.dart';
@@ -11,13 +13,31 @@ import '../../Themes/colors.dart';
 import '../UserScreens/main_screen.dart';
 
 class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+  bool isVisible;
+  Login({Key? key, this.isVisible = false}) : super(key: key);
 
   @override
   State<Login> createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
+  late TextEditingController _emailController;
+  late TextEditingController _passwordController;
+
+  @override
+  void initState() {
+    super.initState();
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     // Logo  and Login text
@@ -44,7 +64,7 @@ class _LoginState extends State<Login> {
     );
     // Email Input text
     final _formkey = GlobalKey<FormState>();
-    final _emailController = TextEditingController();
+
     final _email = Column(
       children: [
         const SizedBox(height: 40),
@@ -86,7 +106,6 @@ class _LoginState extends State<Login> {
 
     // Password Input text
 
-    final _passwordController = TextEditingController();
     final _password = Column(
       children: [
         const Align(
@@ -112,11 +131,26 @@ class _LoginState extends State<Login> {
           ),
           child: TextField(
             obscuringCharacter: '*',
-            obscureText: true,
+            obscureText: !widget.isVisible,
             style: const TextStyle(fontSize: 20),
             cursorColor: AppColors.primaryDeepColor,
             controller: _passwordController,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
+              suffixIcon: IconButton(
+                onPressed: () {
+                  setState(() {
+                    widget.isVisible = !widget.isVisible;
+                  });
+                },
+                icon: Icon(
+                  widget.isVisible == true
+                      ? Icons.visibility
+                      : Icons.visibility_off,
+                  color: AppColors.primaryBlackColor.withOpacity(
+                    .50,
+                  ),
+                ),
+              ),
               hintText: "********",
               border: UnderlineInputBorder(
                 borderSide: BorderSide.none,
@@ -207,7 +241,6 @@ class _LoginState extends State<Login> {
                       height: 20,
                     ),
                     Form(
-                      key: _formkey,
                       child: SingleChildScrollView(
                         child: Column(
                           children: [

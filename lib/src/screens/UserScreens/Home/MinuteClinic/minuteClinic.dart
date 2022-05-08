@@ -1,9 +1,15 @@
 // ignore_for_file: file_names, prefer_const_constructors
 
 import 'package:ecentialsclone/src/Themes/colors.dart';
-import 'package:ecentialsclone/src/Widgets/Dashboard.dart';
+import 'package:ecentialsclone/src/Widgets/dashboard.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Chat/chat.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/screen2.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/screen5.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/homeScreen.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Notifications/notifications.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/store.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,24 +23,21 @@ class MinuteClinic extends StatefulWidget {
 class _MinuteClinicState extends State<MinuteClinic> {
   @override
   Widget build(BuildContext context) {
-    // Images
-    final _images = [
-      "assets/images/hospital.png",
-      "assets/images/pharmacy.png",
-      "assets/images/lab.png",
-    ];
-
-    // Button Names
-    final _btnNames = [
-      "Hospital",
-      "Pharmacy",
-      "Lab",
-    ];
-
     final _appBar = AppBar(
       backgroundColor: AppColors.primaryWhiteColor,
       foregroundColor: AppColors.primaryBlackColor,
       elevation: 0,
+      leading: IconButton(
+        icon: Icon(
+          Icons.arrow_back,
+          color: AppColors.primaryDeepColor,
+        ),
+        onPressed: () {
+          Get.to(
+            () => HomeScreen(),
+          );
+        },
+      ),
       title: Row(
         children: [
           Container(
@@ -48,15 +51,38 @@ class _MinuteClinicState extends State<MinuteClinic> {
             "Minute Clinic",
             style: TextStyle(
               fontSize: 20,
+              fontWeight: FontWeight.bold,
             ),
           )
         ],
       ),
     );
 
+    // Images
+    final _images = [
+      "assets/images/hospital.png",
+      "assets/images/pharmacy.png",
+      "assets/images/lab.png",
+    ];
+
+    // Button Names
+    final _btnNames = [
+      "Hospital",
+      "Pharmacy",
+      "Lab",
+    ];
+    // screens
+    final _pages = [
+      NearbyH(),
+      NearbyH(),
+      NearbyH(),
+    ];
+
     return Scaffold(
       backgroundColor: AppColors.primaryWhiteColor,
-      bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(
+        backgroundColor: AppColors.primaryDeepColor,
+      ),
       floatingActionButton: FloatingAmbulance(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       appBar: _appBar,
@@ -64,6 +90,9 @@ class _MinuteClinicState extends State<MinuteClinic> {
         children: List.generate(
           3,
           (index) => DashBoard(
+            onTap: () {
+              Get.to(() => _pages[index]);
+            },
             image: _images[index],
             btnName: _btnNames[index],
           ),

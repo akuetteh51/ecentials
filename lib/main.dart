@@ -1,15 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:ecentialsclone/src/screens/AuthScreens/AmbulanceScreens/ambulance_map.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/main_screen.dart';
-import 'package:ecentialsclone/src/screens/onboarding_screen.dart';
+import 'package:flutter/services.dart';
+import 'package:ecentialsclone/src/screens/onboardingScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'src/screens/test_widgets_screen.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,15 +15,18 @@ Future main() async {
   final showSignup = preference.getBool('showSignup') ?? false;
 
   runApp(
+
     // MyApp(showLogin: true),
     //MaterialApp(
      // home: mapScreen(),
 
-    MyApp(
-      showLogin: true,
+    
+
+    const MyApp(
+      showLogin: false,
       showSignup: false,
-       ),
-   // ),
+    ),
+
   );
 }
 
@@ -39,6 +39,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: AnimatedSplashScreen(
@@ -46,7 +50,7 @@ class MyApp extends StatelessWidget {
         centered: true,
         duration: 2000,
         splashIconSize: 500,
-        nextScreen: showLogin ? const MainScreen() : const OnboardingScreen(),
+        nextScreen: showLogin ? Login() : const OnboardingScreen(),
       ),
       theme: ThemeData(
         fontFamily: "Montserrat",
