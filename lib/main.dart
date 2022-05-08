@@ -26,13 +26,17 @@ Future main() async {
   final showLogin = preference.getBool('showLogin') ?? false;
   final showSignup = preference.getBool('showSignup') ?? false;
 
-  runApp(MaterialApp(
+  runApp(
+      MaterialApp(
     debugShowCheckedModeBanner: false,
     // home: Schedule(),
     // home: labScreen(),
-    // home: chat4(),
-    home: NearbyH(),
-  ));
+    // home: DocotorInfo(),
+    // home: NearbyH(),
+        home: chat4(),
+  )
+      // MyApp(showLogin: true, showSignup: false),
+      );
 }
 
 class MyApp extends StatelessWidget {

@@ -1,10 +1,12 @@
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
+import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/Widgets/labResultsCard.dart';
 import 'package:ecentialsclone/src/Widgets/search.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Sreen3.dart';
 import 'package:flutter/material.dart';
 
 class NearbyH extends StatefulWidget {
@@ -29,10 +31,17 @@ class _NearbyHState extends State<NearbyH> {
               Row(
                 children: [
                   SizedBox(
-                    width: 20,
+                    width: 10,
                   ),
-                  Icon(
-                    EcentialsIcons.menu_icon,
+                  IconButton(
+                    onPressed: () {
+                      print("object");
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => labScreen()));
+                    },
+                    icon: Icon(
+                      EcentialsIcons.menu_icon,
+                    ),
                   ),
                   SizedBox(
                     width: 250,
@@ -74,12 +83,15 @@ class _NearbyHState extends State<NearbyH> {
               ),
               Row(
                 children: [
+                  SizedBox(
+                    width: 20,
+                  ),
                   Text(
                     "Top Doctors",
                     style: TextStyle(fontWeight: FontWeight.w600, fontSize: 17),
                   ),
                   SizedBox(
-                    width: 90,
+                    width: 180,
                   ),
                   Text(
                     "See all",
