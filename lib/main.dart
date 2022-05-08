@@ -11,6 +11,12 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Hospita
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/screen2.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/screen5.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/screen6.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/screen1.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/screen11.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/screen4.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/screen7.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/screen8.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/screen9.dart';
 
 import 'package:ecentialsclone/src/screens/UserScreens/main_screen.dart';
 import 'package:ecentialsclone/src/screens/onboarding_screen.dart';
@@ -33,7 +39,9 @@ Future main() async {
     // home: labScreen(),
     // home: DocotorInfo(),
     // home: NearbyH(),
-        home: chat4(),
+    //     home: chat4(),
+    //     home:storeHome()\,
+        home: Mystore3(),
   )
       // MyApp(showLogin: true, showSignup: false),
       );
