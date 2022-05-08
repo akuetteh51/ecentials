@@ -13,7 +13,9 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Hospita
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/screen6.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/screen1.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/screen11.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/screen2.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/screen4.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/screen6.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/screen7.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/screen8.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/screen9.dart';
@@ -24,6 +26,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'src/screens/UserScreens/Store/screen3.dart';
 import 'src/screens/test_widgets_screen.dart';
 
 Future main() async {
@@ -41,8 +44,12 @@ Future main() async {
     // home: NearbyH(),
     //     home: chat4(),
     //     home:storeHome()\,
-        home: Mystore3(),
+    //     home: RenterPin(),
+    //     home:pinkey1(),
+        home: EnteredPin(),
   )
+
+
       // MyApp(showLogin: true, showSignup: false),
       );
 }

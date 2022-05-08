@@ -2,14 +2,9 @@ import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/pin.dart';
 import 'package:flutter/material.dart';
 
-class RenterPin extends StatefulWidget {
-  const RenterPin({Key? key}) : super(key: key);
+class EnteredPin extends StatelessWidget {
+  const EnteredPin({Key? key}) : super(key: key);
 
-  @override
-  _RenterPinState createState() => _RenterPinState();
-}
-
-class _RenterPinState extends State<RenterPin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,12 +37,12 @@ class _RenterPinState extends State<RenterPin> {
                 style: TextStyle(fontSize: 16),
               ),
               SizedBox(
-                height: 80,
+                height: 30,
               ),
               Row(
                 children: [
                   SizedBox(
-                    height: 69,
+                    height: 40,
                     width: 50,
                   ),
                   TextButton(
@@ -90,7 +85,7 @@ class _RenterPinState extends State<RenterPin> {
               Row(
                 children: [
                   SizedBox(
-                    height: 69,
+                    height: 50,
                     width: 50,
                   ),
                   TextButton(
@@ -132,7 +127,7 @@ class _RenterPinState extends State<RenterPin> {
               ), Row(
                 children: [
                   SizedBox(
-                    height: 69,
+                    height: 50,
                     width: 50,
                   ),
                   TextButton(
@@ -197,8 +192,10 @@ class _RenterPinState extends State<RenterPin> {
                   ),
                   IconButton(onPressed: (){print("Hello world");}, icon:Icon(EcentialsIcons.bin) ),
 
+
                 ],
-              ),
+              ),    SizedBox(height: 20,width: 110,),Image.asset("assets/images/correctPn.png",height: 28,width: 28,),
+
             ],
           ),
         ),
