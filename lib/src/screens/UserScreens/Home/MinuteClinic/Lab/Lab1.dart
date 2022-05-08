@@ -1,36 +1,155 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: unused_import, no_logic_in_create_state, camel_case_types, prefer_const_constructors
 
-import 'package:ecentialsclone/src/Themes/colors.dart';
+import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
+import 'package:ecentialsclone/src/Widgets/button.dart';
+import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
+import 'package:ecentialsclone/src/Widgets/labResultsCard.dart';
+import 'package:ecentialsclone/src/Widgets/search.dart';
+
+import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
+//import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Lab5.dart';
 import 'package:flutter/material.dart';
 
-class Lab1 extends StatefulWidget {
-  const Lab1({Key? key}) : super(key: key);
+class lab1 extends StatefulWidget {
+  const lab1({Key? key}) : super(key: key);
 
   @override
-  State<Lab1> createState() => _Lab1State();
+  State<lab1> createState() => _lab1State();
 }
 
-class _Lab1State extends State<Lab1> {
+class _lab1State extends State<lab1> {
   @override
   Widget build(BuildContext context) {
-    return BottomNavBar(
-        body: SingleChildScrollView(
-            child: Column(children: 
-            [ 
-              Row
-            ( 
-              /*Icon(
-                    Icons.menu_book_outlined,
-                     size: 15,
-                    color: AppColors.primaryBlackColor,
-                          )*/
-              
-            )
-            
-            ]
-            )
-            )
-            );
+    return Scaffold(
+       bottomNavigationBar: BottomNavBar(),
+      floatingActionButton: FloatingAmbulance(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+     
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 30),
+            child: Column(children: [
+              Row(
+                children: [
+                  SizedBox(
+                    width: 10,
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      print("object");
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => labScreen()));
+                    },
+                    icon: Icon(
+                      EcentialsIcons.menu_icon,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 250,
+                  ),
+                  CircleAvatar(
+                    radius: 15,
+                    backgroundImage: AssetImage("assets/images/profilePic.png"),
+                  ),
+                ],
+              ),
+              SizedBox(height: 40, width: 0),
+              Text(
+                "Find a Nearby Hospital",
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Search(),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.toggle_off_outlined),
+                      Icon(Icons.toggle_off_outlined),
+                    ],
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Text(
+                    "Top Doctors",
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 17),
+                  ),
+                  SizedBox(
+                    width: 180,
+                  ),
+                  Text(
+                    "See all",
+                    style: TextStyle(fontSize: 17, color: Colors.red),
+                  ),
+                ],
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    TopDoctor(
+                        image: "assets/images/doctor1.png",
+                        docName: "Dr Esther Agams",
+                        specialization: "Heart Surgery",
+                        experience: 5),
+                    TopDoctor(
+                        image: "assets/images/doctor2.png",
+                        docName: "Sussan Agams",
+                        specialization: "Heart Surgery",
+                        experience: 5)
+                  ],
+                ),
+              ),
+              SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 20,
+                    ),
+                    LabResultsCard(
+                        image: "assets/images/hospitalNational.png",
+                        labName: "ZIky National Hospital",
+                        openingHours: "Weekdays |7:00am -8:pm"),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    LabResultsCard(
+                        image: "assets/images/hospitaln.png",
+                        labName: "ZIky National Hospital",
+                        openingHours: "Weekdays |7:00am -8:pm"),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    LabResultsCard(
+                        image: "assets/images/hospitalna.png",
+                        labName: "ZIky National Hospital",
+                        openingHours: "Weekdays |7:00am -8:pm")
+                  ],
+                ),
+              ),
+            ]),
+          ),
+        ),
+      ),
+    );
   }
 }
