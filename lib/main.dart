@@ -1,6 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
-
+import 'package:flutter/services.dart';
 import 'package:ecentialsclone/src/screens/onboardingScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,6 +29,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: AnimatedSplashScreen(
