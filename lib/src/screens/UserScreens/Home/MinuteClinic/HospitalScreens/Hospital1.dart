@@ -6,7 +6,7 @@ import 'package:ecentialsclone/src/Widgets/labResultsCard.dart';
 import 'package:ecentialsclone/src/Widgets/search.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Sreen3.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Lab5.dart';
 import 'package:flutter/material.dart';
 
 class NearbyH extends StatefulWidget {

@@ -1,24 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:ecentialsclone/src/Widgets/Dashboard.dart';
-import 'package:ecentialsclone/src/Widgets/ambulanceResultsList.dart';
-import 'package:ecentialsclone/src/Widgets/doctorCard.dart';
-import 'package:ecentialsclone/src/Widgets/search.dart';
 
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Screen7.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Sreen3.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/ambulance_map.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/screen2.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/screen5.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/screen6.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Store/screen1.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Store/screen11.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Store/screen2.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Store/screen4.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Store/screen6.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Store/screen7.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Store/screen8.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Store/screen9.dart';
+
 
 import 'package:ecentialsclone/src/screens/UserScreens/main_screen.dart';
 import 'package:ecentialsclone/src/screens/onboarding_screen.dart';
@@ -26,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'src/screens/UserScreens/Store/screen3.dart';
+
 import 'src/screens/test_widgets_screen.dart';
 
 Future main() async {
@@ -36,21 +19,9 @@ Future main() async {
   final showSignup = preference.getBool('showSignup') ?? false;
 
   runApp(
-      MaterialApp(
-    debugShowCheckedModeBanner: false,
-    // home: Schedule(),
-    // home: labScreen(),
-    // home: DocotorInfo(),
-    // home: NearbyH(),
-    //     home: chat4(),
-    //     home:storeHome()\,
-    //     home: RenterPin(),
-    //     home:pinkey1(),
-        home: EnteredPin(),
-  )
 
 
-      // MyApp(showLogin: true, showSignup: false),
+      MyApp(showLogin: true, showSignup: false),
       );
 }
 

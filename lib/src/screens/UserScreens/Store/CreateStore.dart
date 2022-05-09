@@ -19,7 +19,7 @@ class createStore extends StatelessWidget {
 
             },
             icon: Icon(
-              Icons.arrow_back,
+              Icons.arrow_back,color: Colors.black,
             ),
           ),
           SizedBox(
@@ -30,7 +30,7 @@ class createStore extends StatelessWidget {
             backgroundImage: AssetImage("assets/images/profilePic.png"),
           ),
         ],
-      ), backgroundColor: Colors.transparent,),
+      ), backgroundColor: Colors.white,),
 
       floatingActionButton: FloatingAmbulance(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

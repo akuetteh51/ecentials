@@ -54,7 +54,7 @@ class createStore1 extends StatelessWidget {
                 child: Center(
                     child: Text(
                   "This information is used to set up your store",
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),
                 )),
               ),
             ),
