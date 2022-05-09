@@ -118,8 +118,10 @@ class NavDrawer extends StatelessWidget {
             ),
             title: Text(
               "Ambulance",
-              style:
-                  TextStyle(fontSize: 20, color: AppColors.primaryBlackColor),
+              style: TextStyle(
+                fontSize: 20,
+                color: AppColors.primaryBlackColor,
+              ),
             ),
           ),
           ListTile(

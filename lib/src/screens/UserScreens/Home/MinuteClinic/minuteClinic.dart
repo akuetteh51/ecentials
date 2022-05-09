@@ -3,6 +3,8 @@ import 'package:ecentialsclone/src/Widgets/dashboard.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Chat/chat.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/screen2.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/screen5.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/homeScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Notifications/notifications.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/store.dart';
@@ -67,6 +69,12 @@ class _MinuteClinicState extends State<MinuteClinic> {
       "Pharmacy",
       "Lab",
     ];
+    // screens
+    final _pages = [
+      NearbyH(),
+      NearbyH(),
+      NearbyH(),
+    ];
 
     return Scaffold(
       backgroundColor: AppColors.primaryWhiteColor,
@@ -80,6 +88,9 @@ class _MinuteClinicState extends State<MinuteClinic> {
         children: List.generate(
           3,
           (index) => DashBoard(
+            onTap: () {
+              Get.to(() => _pages[index]);
+            },
             image: _images[index],
             btnName: _btnNames[index],
           ),

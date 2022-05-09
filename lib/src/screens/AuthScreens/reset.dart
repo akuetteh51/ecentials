@@ -1,4 +1,5 @@
 import 'package:ecentialsclone/src/Widgets/button.dart';
+import 'package:ecentialsclone/src/screens/AuthScreens/emailSuccess.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -176,6 +177,9 @@ class _PasswordResetState extends State<PasswordReset> {
         );
       },
       child: Button(
+        onTap: () {
+          Get.to(() => EmailSuccess());
+        },
         text: "Save",
         style: TextStyle(color: AppColors.primaryWhiteColor, fontSize: 20),
       ),

@@ -61,10 +61,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 margin: EdgeInsets.symmetric(
                   horizontal: 30,
                 ),
-                child: Text(
-                  _imagestext[index],
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 16),
+                child: Center(
+                  child: Text(
+                    _imagestext[index],
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 16),
+                  ),
                 ),
               ),
             )
@@ -121,10 +123,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       controller: _pageController,
       count: 4,
       axisDirection: Axis.horizontal,
-      effect: WormEffect(
+      effect: JumpingDotEffect(
+          jumpScale: 2.0,
+          verticalOffset: 5.0,
           strokeWidth: 1,
           dotColor: AppColors.primaryDeepColor,
-          type: WormType.thin,
+          // type: WormType.thin,
           dotHeight: 8.0,
           dotWidth: 8.0,
           offset: 10,
