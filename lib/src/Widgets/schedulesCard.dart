@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, avoid_print
 
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
@@ -14,16 +14,16 @@ class SchedulesCard extends StatelessWidget {
   final String hospitalName;
   final String time;
   final String date;
-  const SchedulesCard(
-      {Key? key,
-      this.isConfirmed = false,
-      required this.image,
-      required this.docName,
-      required this.specialization,
-      required this.hospitalName,
-      required this.time,
-      required this.date})
-      : super(key: key);
+  const SchedulesCard({
+    Key? key,
+    this.isConfirmed = false,
+    required this.image,
+    required this.docName,
+    required this.specialization,
+    required this.hospitalName,
+    required this.time,
+    required this.date,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -183,6 +183,7 @@ class SchedulesCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ButtonOutlined(
+                    
                     text: "Cancel",
                     style: TextStyle(color: AppColors.primaryGreenColor),
                     width: 130,
@@ -190,10 +191,12 @@ class SchedulesCard extends StatelessWidget {
                   ),
                   Button(
                     text: "Reschedule",
+                    color: AppColors.primaryGreenColor,
                     style: TextStyle(color: AppColors.primaryWhiteColor),
                     width: 130,
                     height: 40,
                     onTap: () {
+                      
                       print("Reschedule");
                     },
                   ),

@@ -50,9 +50,7 @@ class _lab1State extends State<lab1> {
         ),
 
      body:Container(
-
-       
- margin: const EdgeInsets.symmetric(
+margin: const EdgeInsets.symmetric(
           horizontal: 20,
           vertical: 30,    
                          ),

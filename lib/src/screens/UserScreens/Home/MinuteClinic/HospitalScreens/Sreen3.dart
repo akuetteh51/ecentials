@@ -50,11 +50,14 @@ class _labScreenState extends State<labScreen> {
                       SizedBox(
                         width: 80,
                       ),
-                      Text(
-                        "Ratings: ",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 17),
-                      ),
+                      
+                          Text(
+                            "Ratings: ",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 17),
+                          ),
+                        
+                      
                       Icon(
                         Icons.star,
                         size: 15,

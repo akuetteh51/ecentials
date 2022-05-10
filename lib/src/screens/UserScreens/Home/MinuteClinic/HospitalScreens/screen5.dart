@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/doctorCard.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';

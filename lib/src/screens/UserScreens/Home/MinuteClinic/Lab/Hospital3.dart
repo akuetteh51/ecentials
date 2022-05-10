@@ -7,6 +7,7 @@ import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/Widgets/schedulesCard.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:get/get.dart';
 
 
 class Hospital3 extends StatefulWidget {
@@ -49,7 +50,7 @@ class _Hospital3State extends State<Hospital3> {
           top:0,
           child:
           
-          Icon(EcentialsIcons.circle_add,
+          Icon(Icons.circle,
           size:10,
           color: Color.fromARGB(255, 215, 20, 6),),
          
@@ -66,17 +67,6 @@ class _Hospital3State extends State<Hospital3> {
           ),
          
         ],
-       
-        bottom: 
-           TabBar(
-                  tabs: [
-                    
-                    Tab(text: 'Upcoming',),
-                    Tab(text:'Completed',),
-                    Tab(text: 'Canceled',),
-                  ],
-                ),
-           
            
         ), 
   
@@ -97,8 +87,73 @@ class _Hospital3State extends State<Hospital3> {
                 margin: EdgeInsets.all(20),
                     child: Column(
                    children: [
-                      SchedulesCard(
+                    Container(
+                    margin: EdgeInsets.all(30),
+                   width: 420,
+                   height: 55,
+                   
+                  decoration: BoxDecoration(
+                 color: AppColors.primaryGreyColor,
+                 borderRadius: BorderRadius.circular(5),
+                   ),
+                   // VerticalDivider(width: 1),
+                  // backgroundColor:AppColors.primaryGreyColor,
+             child: TabBar(
+              indicator: BoxDecoration(
+               
+                 borderRadius: BorderRadius.circular(6),
+                          color:Colors.teal,
+               ),
+               indicatorColor: AppColors.primaryGreenColor,
+              // labelColor: AppColors.primaryBlackColor,
+               
+               unselectedLabelColor: AppColors.primaryBlackColor,
+             // labelStyle: ,
+              //  unselectedLabelStyle: ,
+               //overlayColor:AppColors.primaryGreenColor,
+               labelPadding:EdgeInsets.only(left: 10.0, right: 10.0) ,
+              
+                    tabs: [ 
+                        Tab(
+                          text:
+                           'Upcoming',
+                           ),
+                    
+                      Container(
+                       //  padding: const EdgeInsets.only(left: 10.0, right: 4.0),
+                        decoration: BoxDecoration(
+                          border: Border(
+                            
+                            left: BorderSide(width: 1,
+                            
+                            ),
+                            
+                            right: BorderSide(width: 1),
+                          )
+                        ),
+                        child: 
+                        //Padding(
+                         // padding: const EdgeInsets.only(left:10.0, right: 3.0),
+                         // child: 
+                          Tab(
+                            
+                            text:
+                            'Completed',
+                            ),
+                      //  )
+                          ),
+                      Tab(text: 'Canceled',),
+                    ],
+                  
+           ),
+           
+              ), 
+              SizedBox(
+                           height: 56,
+                           ),      
+               SchedulesCard(
                         
+    
                         image: "assets/images/doctor.png",
                         docName: "Dr. John Doe",
                         specialization: "Heart Surgeon ",
