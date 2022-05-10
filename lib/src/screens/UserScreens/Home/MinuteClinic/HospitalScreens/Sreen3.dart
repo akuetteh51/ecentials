@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, duplicate_ignore, prefer_const_literals_to_create_immutables
+
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/outlinedButton.dart';
@@ -28,6 +30,7 @@ class _labScreenState extends State<labScreen> {
                   height: 29,
                   width: 10,
                 ),
+                // ignore: prefer_const_constructors
                 Padding(
                   padding: const EdgeInsets.only(right: 67, bottom: 10),
                   child: Text(

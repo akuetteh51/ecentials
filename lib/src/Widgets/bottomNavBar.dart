@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import, must_be_immutable, unused_element, prefer_const_constructors_in_immutables, prefer_typing_uninitialized_variables, prefer_const_constructors
+// ignore_for_file: unused_import, must_be_immutable, unused_element, prefer_const_constructors_in_immutables, prefer_typing_uninitialized_variables, prefer_const_constructors, prefer_equal_for_default_values
 
 import 'package:ecentialsclone/src/screens/UserScreens/Chat/chat.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/homeScreen.dart';
@@ -16,10 +16,13 @@ class BottomNavBar extends StatefulWidget {
 
   BottomNavBar({
     Key? key,
-    this.backgroundColor = const Color(0xFF033A64),
+      this.backgroundColor=   const Color.fromARGB(0, 9, 9, 231),
+
 
     
-     required SingleChildScrollView body, this.onPressed
+
+     //required SingleChildScrollView body,
+      this.onPressed
     
   
   }

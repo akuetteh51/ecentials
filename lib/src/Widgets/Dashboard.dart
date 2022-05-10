@@ -1,13 +1,17 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/lab3.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/lab3.dart';
 import 'package:flutter/material.dart';
 
 class DashBoard extends StatelessWidget {
   final String image;
   final String btnName;
   final onTap;
+  
+
   const DashBoard(
-      {Key? key, required this.image, required this.btnName, this.onTap})
+      {Key? key, required this.image, required this.btnName,  this.onTap,})
       : super(key: key);
 
   @override

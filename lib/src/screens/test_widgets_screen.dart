@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import, duplicate_import
+// ignore_for_file: unused_import, duplicate_import, non_constant_identifier_names
 
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
@@ -33,6 +33,7 @@ import 'package:ecentialsclone/src/screens/UserScreens/Chat/chat.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/homeScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Notifications/notifications.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/store.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/lab3.dart';
 import 'package:flutter/material.dart';
 
 class TestWidgetsScreen extends StatefulWidget {
@@ -43,8 +44,10 @@ class TestWidgetsScreen extends StatefulWidget {
 }
 
 class _TestWidgetsScreenState extends State<TestWidgetsScreen> {
+  get screen_widget => null;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(body:screen_widget);
   }
 }
