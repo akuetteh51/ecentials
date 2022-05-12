@@ -16,7 +16,7 @@ class BottomNavBar extends StatefulWidget {
 
   BottomNavBar({
     Key? key,
-      this.backgroundColor=   const Color.fromARGB(0, 9, 9, 231),
+      this.backgroundColor=  const Color(0xFF033A64),
 
 
     

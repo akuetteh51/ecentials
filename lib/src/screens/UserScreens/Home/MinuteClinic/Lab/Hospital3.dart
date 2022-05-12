@@ -20,7 +20,7 @@ class Hospital3 extends StatefulWidget {
 }
 
 class _Hospital3State extends State<Hospital3> {
-  // get child => null;
+  
 
   @override
   Widget build(BuildContext context)=>DefaultTabController(length: 3, child: 

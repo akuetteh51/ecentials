@@ -5,12 +5,16 @@ import 'package:ecentialsclone/src/Widgets/dashboard.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Chat/chat.dart';
+import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/screen2.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/Hospital2.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/Hospital3.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/Hospital4Chat.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/lab1.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/lab3.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacy5.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacyDashboard.dart';
+//import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/EmptyCart.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/homeScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Notifications/notifications.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/store.dart';
@@ -77,14 +81,21 @@ class _MinuteClinicState extends State<MinuteClinic> {
     ];
     // screens
     final _pages = [
-     lab1(),
-    // lab3(),
-   // lab3(),
-    
-    Hospital3(),
-    lab3(),
-    lab3(),
-      //Hospital4Chat(),
+      lab1(),
+      // lab3(),
+      // lab3(),
+
+     // Hospital3(),
+
+      pharmacyDashboard(),
+      pharmacyDashboard(),
+     // Hospital2(),
+     // Hospital2(),
+      //EmptyCart(),
+      //EmptyCart(),
+
+      //lab3(),
+      Hospital4Chat(),
       Hospital2(),
     ];
 
@@ -105,7 +116,6 @@ class _MinuteClinicState extends State<MinuteClinic> {
             },
             image: _images[index],
             btnName: _btnNames[index],
-            
           ),
         ),
       ),
