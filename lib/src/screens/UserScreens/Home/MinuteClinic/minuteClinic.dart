@@ -12,6 +12,8 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/Hos
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/Hospital4Chat.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/lab1.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/lab3.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/EmptyCart.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/Order_completed.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacy5.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacyDashboard.dart';
 //import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/EmptyCart.dart';
@@ -86,9 +88,12 @@ class _MinuteClinicState extends State<MinuteClinic> {
       // lab3(),
 
      // Hospital3(),
-
-      pharmacyDashboard(),
-      pharmacyDashboard(),
+     Order_cpmpleted(),
+     Order_cpmpleted(),
+    // EmptyCard(),
+    // EmptyCard(),
+// pharmacy5(),
+     // pharmacy5(),
      // Hospital2(),
      // Hospital2(),
       //EmptyCart(),

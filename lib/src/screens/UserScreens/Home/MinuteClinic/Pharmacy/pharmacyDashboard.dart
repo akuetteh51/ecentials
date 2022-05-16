@@ -99,7 +99,7 @@ class _pharmacyDashboardState extends State<pharmacyDashboard> {
             horizontal: 20,
             vertical: 20,
           ),
-          // margin: const EdgeInsets.all(20),
+        
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

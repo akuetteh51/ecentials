@@ -5,6 +5,7 @@ import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
+import 'package:ecentialsclone/src/Widgets/drugCard.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/Widgets/schedulesCard.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
@@ -53,15 +54,101 @@ class _pharmacy5State extends State<pharmacy5> {
       body: SingleChildScrollView(
         
         child: Container(
-          margin: const EdgeInsets.all(20),  
+         
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
             children:[
                  
-               Search4(width: MediaQuery.of(context).size.width,)
-                
+               Search4(width: MediaQuery.of(context).size.width,),
+
+               Container(
+                  height: 200,
+                width: 360,
+                margin: const EdgeInsets.only( top:16, left: 22.79, right: 25.21),
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 230, 240, 244),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+
+                 child: Row(
+                   children: 
+                   [  
+                     Text("We will deliver your medicines",
+                     style: TextStyle(
+                fontSize: 20,
+                fontFamily: "Montserrat",)
+                ),
+
+                    ],
+                 ),
+
+                 
+               ),
+
+              Row(children: [
+                   
+                   Container
+                   ( height:33.33,
+                   width: 101.62,
+                   margin: const EdgeInsets.only( top:32, left: 22.39, ), 
+                     child: 
+                   Text("Popular",
+                   style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: "Montserrat",
+                      )
+                   )
+                   ),
+
+                    Container(
+                      height: 20,
+                      width: 22.86,
+              margin: const EdgeInsets.only(
+                right: 20.51,
+                left: 242.55,
+              ),
+              child: Icon(
+                EcentialsIcons.filter,
+                color: AppColors.primaryBlackColor,
+                size: 30,
+              ),
+            )
+                 ],
+                 ) ,
+
+                 Container(
+                    margin: const EdgeInsets.only( top:7.78, left: 27.8, ),
+                   child: Row(
+                     children:
+                      [
+                          drugCard(drugName: "Ibuprofen", drugType: "Tablets", quantity: 50, price: 5.00),
+                             
+                             Container(
+                                margin: const EdgeInsets.only( left: 17, ),
+                               child: 
+                               drugCard(drugName: "Biotin", drugType: "Tablets", quantity: 50, price: 5.00))
+                      ],
+                      ),
+                 ) ,
+
+                 Container(
+                    margin: const EdgeInsets.only( top:22.8, left: 27.8, ),
+                   child: Row(
+                     children:
+                      [
+                          drugCard(drugName: "Ibuprofen", drugType: "Tablets", quantity: 50, price: 5.00),
+                             
+                             Container(
+                                margin: const EdgeInsets.only( left: 17.8, ),
+                               child: 
+                               drugCard(drugName: "Biotin", drugType: "Tablets", quantity: 50, price: 5.00))
+                      ],
+                      ),
+                 )  
             ],
+
             
           ),
         ),
