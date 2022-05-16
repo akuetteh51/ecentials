@@ -109,7 +109,11 @@ class _AmbulanceDirectionState extends State<AmbulanceDirection> {
           ],
         ),
       ),
-      body: const mapScreen(),
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 500,
+        color: AppColors.primaryRedColor,
+      ),
     );
   }
 }
