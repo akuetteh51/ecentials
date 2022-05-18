@@ -12,16 +12,16 @@ import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 
-class Order_cpmpleted extends StatefulWidget {
-  const Order_cpmpleted({
+class Order_completed extends StatefulWidget {
+  const Order_completed({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<Order_cpmpleted> createState() => _Order_completedState();
+  State<Order_completed> createState() => _Order_completedState();
 }
 
-class _Order_completedState extends State<Order_cpmpleted> {
+class _Order_completedState extends State<Order_completed> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +42,6 @@ class _Order_completedState extends State<Order_cpmpleted> {
                   child: Image.asset("assets/images/order_complete.png")),
               Container(
                   height: 22,
-                  // width: 155,
                   margin: const EdgeInsets.only(
                     top: 10.25,
                     left: 131,
@@ -205,7 +204,7 @@ class _Order_completedState extends State<Order_cpmpleted> {
                 ),
               ),
               Container(
-                  margin: EdgeInsets.only(left: 50, top: 12, right: 41),
+                  margin: EdgeInsets.only(left: 66, top: 12, right: 41),
                   child: Row(children: [
                     ButtonOutlined(
                       text: "Track Delivery",
