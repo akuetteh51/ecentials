@@ -14,12 +14,14 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/lab
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/lab3.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/EmptyCart.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/Order_completed.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/Order_processed.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/Order_submitted.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/PharmacyDashboard2.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacy5.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacyDashboard.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/EmptyCart.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacyDashboard3.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacyDashboard4.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/homeScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Notifications/notifications.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/store.dart';
@@ -91,6 +93,10 @@ class _MinuteClinicState extends State<MinuteClinic> {
       // lab3(),
 
      // Hospital3(),
+     pharmacyDashboard4(),
+     pharmacyDashboard4(),
+     Order_processed(),
+     Order_processed(),
      Order_submitted(),
      Order_completed(),
      pharmacyDashboard3(),
