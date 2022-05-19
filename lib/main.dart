@@ -1,5 +1,4 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:ecentialsclone/src/Widgets/tab.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 import 'package:flutter/services.dart';
 import 'package:ecentialsclone/src/screens/onboardingScreen.dart';
