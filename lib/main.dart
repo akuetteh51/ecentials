@@ -6,7 +6,6 @@ import 'package:ecentialsclone/src/screens/onboarding_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'src/screens/test_widgets_screen.dart';
