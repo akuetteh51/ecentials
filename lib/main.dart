@@ -19,10 +19,8 @@ Future main() async {
   final showSignup = preference.getBool('showSignup') ?? false;
 
   runApp(
-
-
       MyApp(showLogin: true, showSignup: false),
-      );
+  );
 }
 
 class MyApp extends StatelessWidget {

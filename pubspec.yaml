@@ -24,8 +24,7 @@ dependencies:
   curved_navigation_bar: ^1.0.3
   dotted_border: ^2.0.0+2
   intl: ^0.17.0
-  pinput: ^2.2.7
-
+  # pinput: ^2.2.7
   
 
 dev_dependencies:

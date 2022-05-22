@@ -1,7 +1,6 @@
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/pin.dart';
 import 'package:flutter/material.dart';
-import 'package:pinput/pinput.dart';
 
 class pinkey1 extends StatefulWidget {
   const pinkey1({Key? key}) : super(key: key);
