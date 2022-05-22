@@ -44,7 +44,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     Future confirmPin() => showDialog(
         context: context,
         builder: (context) => AlertDialog(
-              content: Container(
+              content: SizedBox(
                 height: 150,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

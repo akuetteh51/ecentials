@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/agreement.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/registration.dart';

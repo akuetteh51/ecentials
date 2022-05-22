@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class SliverFab extends StatefulWidget {
@@ -12,23 +11,18 @@ class SliverFab extends StatefulWidget {
 
   final FloatingPosition floatingPosition;
 
-  SliverFab({
+  const SliverFab({
+    Key? key,
     required this.slivers,
     required this.floatingWidget,
     this.floatingPosition = const FloatingPosition(right: 16.0),
     this.expandedHeight = 256.0,
     this.topScalingEdge = 96.0,
-  }) {
-    assert(slivers != null);
-    assert(floatingWidget != null);
-    assert(floatingPosition != null);
-    assert(expandedHeight != null);
-    assert(topScalingEdge != null);
-  }
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return new SliverFabState();
+    return SliverFabState();
   }
 }
 
@@ -38,7 +32,7 @@ class SliverFabState extends State<SliverFab> {
   @override
   void initState() {
     super.initState();
-    scrollController = new ScrollController();
+    scrollController = ScrollController();
     scrollController.addListener(() => setState(() {}));
   }
 
@@ -62,7 +56,7 @@ class SliverFabState extends State<SliverFab> {
   }
 
   Widget _buildFab() {
-    final double defaultFabSize = 56.0;
+    const double defaultFabSize = 56.0;
     final double paddingTop = MediaQuery.of(context).padding.top;
     final double defaultTopMargin = widget.expandedHeight +
         paddingTop +
@@ -90,8 +84,8 @@ class SliverFabState extends State<SliverFab> {
       top: top,
       right: widget.floatingPosition.right,
       left: widget.floatingPosition.left,
-      child: new Transform(
-        transform: new Matrix4.identity()..scale(scale, scale),
+      child: Transform(
+        transform: Matrix4.identity()..scale(scale, scale),
         alignment: Alignment.center,
         child: widget.floatingWidget,
       ),

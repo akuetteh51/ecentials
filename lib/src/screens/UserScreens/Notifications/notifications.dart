@@ -15,40 +15,42 @@ class Notifications extends StatefulWidget {
 class _NotificationsState extends State<Notifications> {
   @override
   Widget build(BuildContext context) {
+    // Notification App Bar
+    final _notificationAppBar = AppBar(
+      backgroundColor: AppColors.primaryWhiteColor,
+      foregroundColor: AppColors.primaryBlackColor,
+      elevation: 0,
+      title: const Text("Notification"),
+      centerTitle: true,
+      actions: [
+        Container(
+          margin: const EdgeInsets.only(
+            right: 10,
+          ),
+          child: CircleAvatar(
+            backgroundColor: AppColors.primaryDeepColor,
+            child: IconButton(
+              icon: Icon(
+                EcentialsIcons.settings_2,
+                color: AppColors.primaryWhiteColor,
+              ),
+              onPressed: () {
+                Get.to(
+                  () => const Settings(),
+                  transition: Transition.rightToLeft,
+                  duration: const Duration(milliseconds: 500),
+                );
+              },
+            ),
+          ),
+        ),
+      ],
+    );
     return DefaultTabController(
       length: 2,
       child: Scaffold(
         backgroundColor: AppColors.primaryWhiteColor,
-        appBar: AppBar(
-          backgroundColor: AppColors.primaryWhiteColor,
-          foregroundColor: AppColors.primaryBlackColor,
-          elevation: 0,
-          title: const Text("Notification"),
-          centerTitle: true,
-          actions: [
-            Container(
-              margin: const EdgeInsets.only(
-                right: 10,
-              ),
-              child: CircleAvatar(
-                backgroundColor: AppColors.primaryDeepColor,
-                child: IconButton(
-                  icon: Icon(
-                    EcentialsIcons.settings_2,
-                    color: AppColors.primaryWhiteColor,
-                  ),
-                  onPressed: () {
-                    Get.to(
-                      () => const Settings(),
-                      transition: Transition.rightToLeft,
-                      duration: const Duration(milliseconds: 500),
-                    );
-                  },
-                ),
-              ),
-            ),
-          ],
-        ),
+        appBar: _notificationAppBar,
         body: Column(
           children: [
             Align(

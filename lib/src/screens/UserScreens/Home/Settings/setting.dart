@@ -77,7 +77,7 @@ class _SettingsState extends State<Settings> {
             height: 20,
           ),
           ListTile(
-            leading: Image.asset("assets/images/account.png"),
+            leading: Icon(EcentialsIcons.account),
             title: const Text(
               "Account",
               style: TextStyle(fontSize: 20),
