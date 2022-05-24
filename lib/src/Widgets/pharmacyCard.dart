@@ -11,7 +11,7 @@ class PharmacyCard extends StatelessWidget {
       required this.pharmacyName,
       required this.location,
       required this.address,
-      required this.country})
+      required this.country, })
       : super(key: key);
 
   @override

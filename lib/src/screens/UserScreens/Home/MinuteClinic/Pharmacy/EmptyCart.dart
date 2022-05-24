@@ -8,19 +8,20 @@ import 'package:ecentialsclone/src/Widgets/drugCard.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/Widgets/schedulesCard.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacyDashboard.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 
-class EmptyCard extends StatefulWidget {
-  const EmptyCard({
+class EmptyCart extends StatefulWidget {
+  const EmptyCart({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<EmptyCard> createState() => _EmptyCardState();
+  State<EmptyCart> createState() => _EmptyCartState();
 }
 
-class _EmptyCardState extends State<EmptyCard> {
+class _EmptyCartState extends State<EmptyCart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,6 +104,9 @@ class _EmptyCardState extends State<EmptyCard> {
                   borderRadius: BorderRadius.circular(9),
                 ),
                child: Button(
+                 onTap: () {
+                   Get.to(() => pharmacyDashboard());
+                 },
                        text: "Go Shopping",
                         height: 18,
                         width: 99,

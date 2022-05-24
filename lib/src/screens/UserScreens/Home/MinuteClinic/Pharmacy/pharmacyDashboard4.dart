@@ -11,6 +11,7 @@ import 'package:ecentialsclone/src/Widgets/pharmacyCard.dart';
 import 'package:ecentialsclone/src/Widgets/schedulesCard.dart';
 import 'package:ecentialsclone/src/Widgets/search.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacyDashboard2.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
@@ -73,6 +74,9 @@ class _pharmacyDashboard4State extends State<pharmacyDashboard4> {
                 borderRadius: BorderRadius.circular(9),
               ),
               child: Button(
+                onTap: () {
+              Get.to(() => pharmacyDashboard2());
+             },
                 text: "Scan",
                 height: 20,
                 width: 37,

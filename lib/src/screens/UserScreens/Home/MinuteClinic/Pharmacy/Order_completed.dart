@@ -9,6 +9,7 @@ import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/Widgets/outlinedButton.dart';
 import 'package:ecentialsclone/src/Widgets/schedulesCard.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacy5.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 
@@ -193,6 +194,9 @@ class _Order_completedState extends State<Order_completed> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Button(
+                  onTap: () {
+                  Get.to(() => pharmacy5());
+                 },
                   text: "Continue Shopping",
                   height: 18,
                   width: 99,

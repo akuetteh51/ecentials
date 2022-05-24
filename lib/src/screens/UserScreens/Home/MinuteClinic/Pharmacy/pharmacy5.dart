@@ -9,6 +9,8 @@ import 'package:ecentialsclone/src/Widgets/drugCard.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/Widgets/schedulesCard.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacyDashboard2.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacyDashboard4.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 
@@ -44,7 +46,12 @@ class _pharmacy5State extends State<pharmacy5> {
          
           Container(
              margin: EdgeInsets.only(left:39.78, top: 0  ,right: 24.67),
-            child: Icon(EcentialsIcons.scan_cam),
+            child:  IconButton(
+                onPressed: () {
+                  Get.to(() => pharmacyDashboard4());
+                }, 
+            icon:Icon(EcentialsIcons.scan_cam),
+            ),
             ),
          
           

@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, prefer_const_constructors, unused_import
+// ignore_for_file: file_names, prefer_const_constructors, unused_import, duplicate_import
 
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/dashboard.dart';
@@ -92,30 +92,31 @@ class _MinuteClinicState extends State<MinuteClinic> {
       // lab3(),
       // lab3(),
 
-     // Hospital3(),
-     pharmacyDashboard4(),
-     pharmacyDashboard4(),
-     Order_processed(),
-     Order_processed(),
-     Order_submitted(),
-     Order_completed(),
-     pharmacyDashboard3(),
-     pharmacyDashboard3(),
-     pharmacyDashboard2(),
-     pharmacyDashboard2(),
+      // Hospital3(),
+      // pharmacyDashboard(),
+      // pharmacyDashboard(),
+      // pharmacyDashboard4(),
+      // pharmacyDashboard4(),
+      // Order_processed(),
+      //   Order_processed(),
+      //  Order_submitted(),
+      //   Order_completed(),
+      //   pharmacyDashboard3(),
+      //   pharmacyDashboard3(),
+      //   pharmacyDashboard2(),
+      //   pharmacyDashboard2(),
 
-     Order_completed(),
-     Order_completed(),
-    // EmptyCard(),
-    // EmptyCard(),
-// pharmacy5(),
-     // pharmacy5(),
-     // Hospital2(),
-     // Hospital2(),
-      //EmptyCart(),
-      //EmptyCart(),
+      //  Order_completed(),
+      // Order_completed(),
 
-      //lab3(),
+      pharmacy5(),
+      pharmacy5(),
+      Hospital2(),
+      Hospital2(),
+      EmptyCart(),
+      EmptyCart(),
+
+      lab3(),
       Hospital4Chat(),
       Hospital2(),
     ];

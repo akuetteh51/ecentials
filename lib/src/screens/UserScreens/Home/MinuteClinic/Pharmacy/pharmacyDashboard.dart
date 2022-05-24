@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import, camel_case_types, prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: unused_import, camel_case_types, prefer_const_constructors, prefer_const_literals_to_create_immutables, duplicate_import, unused_label
 
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
@@ -11,9 +11,14 @@ import 'package:ecentialsclone/src/Widgets/pharmacyCard.dart';
 import 'package:ecentialsclone/src/Widgets/schedulesCard.dart';
 import 'package:ecentialsclone/src/Widgets/search.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/EmptyCart.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/EmptyCart.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacy5.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
+
+import 'EmptyCart.dart';
 
 class pharmacyDashboard extends StatefulWidget {
   const pharmacyDashboard({
@@ -83,10 +88,15 @@ class _pharmacyDashboardState extends State<pharmacyDashboard> {
                 right: 20,
                 left: 10,
               ),
-              child: Icon(
-                EcentialsIcons.cart,
-                color: AppColors.primaryDeepColor,
-                size: 30,
+              child: IconButton(
+                onPressed: () {
+                  Get.to(() => EmptyCart());
+                },
+                icon: Icon(
+                  EcentialsIcons.cart,
+                  color: AppColors.primaryDeepColor,
+                  size: 30,
+                ),
               ),
             )
           ],
@@ -99,7 +109,6 @@ class _pharmacyDashboardState extends State<pharmacyDashboard> {
             horizontal: 20,
             vertical: 20,
           ),
-        
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -191,24 +200,43 @@ class _pharmacyDashboardState extends State<pharmacyDashboard> {
                   ),
                 ),
               ),
-              Row(
-                children: [
-                  PharmacyCard(
-                      pharmacyName: "Top up pharmacy ",
-                      location: "Spintex",
+              
+      
+                 Row(
+                  children: [
+                    InkWell(
+                      onTap:(){
+                         Get.to(() => pharmacy5());
+                
+                      },
+                  child:  PharmacyCard(
+                      
+                        pharmacyName: "Top up pharmacy ",
+                        location: "Spintex",
+                        address: "Accra",
+                        country: "Ghana"),
+                    ),
+                    SizedBox(
+                      width: 16,
+                    ),
+                    InkWell(
+                       onTap:(){
+                         Get.to(() => pharmacy5());
+                
+                      },
+                    child: PharmacyCard(
+                      pharmacyName: "The Medishop ",
+                      location: "Pharmacy",
                       address: "Accra",
-                      country: "Ghana"),
-                  SizedBox(
-                    width: 16,
-                  ),
-                  PharmacyCard(
-                    pharmacyName: "The Medishop ",
-                    location: "Pharmacy",
-                    address: "Accra",
-                    country: "Ghana",
-                  ),
-                ],
-              ),
+                      country: "Ghana",
+                    ),
+                    ),
+                  
+                  ]
+                 ),
+          
+                
+            
               Container(
                 margin: const EdgeInsets.only(
                   top: 27.9, // left: 24.78
