@@ -108,7 +108,8 @@ class _MinuteClinicState extends State<MinuteClinic> {
 
       //  Order_completed(),
       // Order_completed(),
-
+      lab1(),
+      lab1(),
       pharmacy5(),
       pharmacy5(),
       Hospital2(),
@@ -116,7 +117,7 @@ class _MinuteClinicState extends State<MinuteClinic> {
       EmptyCart(),
       EmptyCart(),
 
-      lab3(),
+      //lab3(),
       Hospital4Chat(),
       Hospital2(),
     ];

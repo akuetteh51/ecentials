@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import, camel_case_types, prefer_const_constructors, prefer_const_literals_to_create_immutables, duplicate_ignore, avoid_print
+// ignore_for_file: unused_import, camel_case_types, prefer_const_constructors, prefer_const_literals_to_create_immutables, duplicate_ignore, avoid_print, unnecessary_import, unused_label
 
 import 'dart:ui';
 
@@ -13,8 +13,13 @@ import 'package:ecentialsclone/src/Widgets/prominentDoctors.dart';
 import 'package:ecentialsclone/src/Widgets/search.dart';
 
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/Hospital2.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/Hospital3.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/Hospital4Chat.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/lab3.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 
 class lab3 extends StatefulWidget {
   const lab3({Key? key}) : super(key: key);
@@ -28,6 +33,25 @@ class _lab3State extends State<lab3> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryWhiteColor,
+      bottomSheet: Container(
+        width: MediaQuery.of(context).size.width,
+        margin: const EdgeInsets.symmetric(
+          horizontal: 40,
+          vertical: 10,
+        ),
+         child: GestureDetector(onTap: () {
+            Get.to(() => Hospital3());
+         },
+       child: Button(
+            text: "Book session",
+            color: Colors.teal,
+            style: TextStyle(
+              color: AppColors.primaryWhiteColor,
+            ),
+          ),
+         ),
+        
+      ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -181,7 +205,7 @@ class _lab3State extends State<lab3> {
                           ),
                         ),
                         onPressed: () {
-                          print("booked");
+                          Get.to(() => Hospital4Chat());
                         },
                         child: Row(children: [Text(" Chat")]),
                       ),
@@ -205,7 +229,7 @@ class _lab3State extends State<lab3> {
                             ),
                           ),
                           onPressed: () {
-                            print("booked");
+                            Get.to(() => Hospital4Chat());
                           },
                           child: Row(children: [
                             Icon(Icons.phone_in_talk),
@@ -233,7 +257,7 @@ class _lab3State extends State<lab3> {
                             ),
                           ),
                           onPressed: () {
-                            print("booked");
+                            Get.to(() => Hospital4Chat());
                           },
                           child: Row(children: [
                             Text("Direction"),
@@ -260,23 +284,38 @@ class _lab3State extends State<lab3> {
               margin: EdgeInsets.only(left: 24.09, top: 25.38),
               child: Row(
                 children: [
-                  ProminentDoctors(
-                      image: "assets/images/doctor1.png",
-                      docName: "Clara",
-                      specialization: "Neuro Surgeon"),
+                  InkWell(
+                    onTap: () {
+                      Get.to(() => Hospital2());
+                    },
+                    child: ProminentDoctors(
+                        image: "assets/images/doctor1.png",
+                        docName: "Clara",
+                        specialization: "Neuro Surgeon"),
+                  ),
                   Container(
                     margin: EdgeInsets.only(left: 25.97, top: 0),
-                    child: ProminentDoctors(
-                        image: "assets/images/doctor2.png",
-                        docName: "Clara",
-                        specialization: "Cardio Surgeon"),
+                    child: InkWell(
+                      onTap: () {
+                        Get.to(() => Hospital2());
+                      },
+                      child: ProminentDoctors(
+                          image: "assets/images/doctor2.png",
+                          docName: "Clara",
+                          specialization: "Cardio Surgeon"),
+                    ),
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 25.05, top: 0),
-                    child: ProminentDoctors(
-                        image: "assets/images/doctor.png",
-                        docName: "Clara",
-                        specialization: "Neuro Surgeon"),
+                    child: InkWell(
+                      onTap: () {
+                        Get.to(() => Hospital2());
+                      },
+                      child: ProminentDoctors(
+                          image: "assets/images/doctor.png",
+                          docName: "Clara",
+                          specialization: "Neuro Surgeon"),
+                    ),
                   ),
                 ],
               ),
@@ -297,7 +336,7 @@ class _lab3State extends State<lab3> {
                   print("clicked");
                 },
                 icon: Container(
-                 margin: EdgeInsets.only(left: 189.24, top: 0),
+                  margin: EdgeInsets.only(left: 189.24, top: 0),
                   child: Icon(
                     Icons.compare_arrows_sharp,
                     color: Colors.teal,
@@ -305,75 +344,44 @@ class _lab3State extends State<lab3> {
                 ),
               )
             ],
-          )
-          ),
+          )),
           SliverToBoxAdapter(
-                     child: Container(
-                        margin: EdgeInsets.only(left: 24.2, top: 24.63),
-                       child: Row(
-                         children: [
-                             ButtonOutlined(
-                        text: "Blood Test",
-                        style: TextStyle(color: Colors.teal),
-                        color:Colors.teal,
-                        width: 100,
-                        height: 40,
-                        radius: 8,
-                    ),
-                    Container(
-                       margin: EdgeInsets.only(left: 8.8, top: 0),
-                      child: ButtonOutlined(
-                          text: "Urine Test",
-                          style: TextStyle(color:Colors.teal),
-                          color:Colors.teal,
-                          width: 100,
-                          height: 40,
-                          radius: 8,
-                      ),
-                    ),
-                    Container(
-                       margin: EdgeInsets.only(left: 8.8, top: 0),
-                      child: ButtonOutlined(
-                          text: "DNA test",
-                          style: TextStyle(color: Colors.teal),
-                          color: Colors.teal,
-                          width: 100,
-                          height: 40,
-                          radius: 8,
-                      ),
-                    ),
-              
-                       ]
-                       ),
-                     ),
-          ),
-
-         SliverToBoxAdapter(
             child: Container(
-               margin: EdgeInsets.only(left: 8.8, top: 0),
-              child: Card(
-                      child: TextButton(
-                        style: TextButton.styleFrom(
-                          padding: const EdgeInsets.only(
-                              left: 80, right: 80, top: 15, bottom: 15),
-                          backgroundColor: Colors.teal,
-                          primary: Colors.white,
-                          textStyle: const TextStyle(fontSize: 15),
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(5),
-                            ),
-                          ),
-                        ),
-                        onPressed: () {
-                          print("booked");
-                        },
-                        child: Text("Book Session"),
-                      ),
-                    ),
+              margin: EdgeInsets.only(left: 24.2, top: 24.63),
+              child: Row(children: [
+                ButtonOutlined(
+                  text: "Blood Test",
+                  style: TextStyle(color: Colors.teal),
+                  color: Colors.teal,
+                  width: 100,
+                  height: 40,
+                  radius: 8,
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 8.8, top: 0),
+                  child: ButtonOutlined(
+                    text: "Urine Test",
+                    style: TextStyle(color: Colors.teal),
+                    color: Colors.teal,
+                    width: 100,
+                    height: 40,
+                    radius: 8,
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 8.8, top: 0),
+                  child: ButtonOutlined(
+                    text: "DNA test",
+                    style: TextStyle(color: Colors.teal),
+                    color: Colors.teal,
+                    width: 100,
+                    height: 40,
+                    radius: 8,
+                  ),
+                ),
+              ]),
             ),
-         )
-
+          ),
         ],
       ),
     );

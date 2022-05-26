@@ -6,6 +6,9 @@ import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/Widgets/schedulesCard.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/Hospital2.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/lab3.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/homeScreen.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 
@@ -36,7 +39,17 @@ class _Hospital3State extends State<Hospital3> {
           style: TextStyle(fontSize: 18),
           ),
         centerTitle: true,
-        leading:Icon(Icons.arrow_back),
+        leading:IconButton(
+        icon: Icon(
+          Icons.arrow_back,
+          color: AppColors.primaryDeepColor,
+        ),
+        onPressed: () {
+          Get.to(
+            () => lab3(),
+          );
+        },
+      ),
      actions: [
       Container(
         margin: EdgeInsets.all(20),               
@@ -150,8 +163,13 @@ class _Hospital3State extends State<Hospital3> {
               ), 
               SizedBox(
                            height: 56,
-                           ),      
-               SchedulesCard(
+                           ),
+                            InkWell(
+                     onTap:(){
+                         Get.to(() => Hospital2());
+                
+                      },      
+                child:   SchedulesCard(
                         
     
                         image: "assets/images/doctor.png",
@@ -160,11 +178,17 @@ class _Hospital3State extends State<Hospital3> {
                         hospitalName: "National Hospital",
                         time: "10:00 AM",
                         date: "12/09/22"),
+                            ),
 
                         SizedBox(
                            height: 18,
                            ),
-
+      InkWell(
+                     onTap:(){
+                         Get.to(() => Hospital2());
+                
+                      },      
+                child: 
                     SchedulesCard(
                         image: "assets/images/doctor.png",
                         docName: "Dr. John Doe",
@@ -172,18 +196,26 @@ class _Hospital3State extends State<Hospital3> {
                         hospitalName: "National Hospital",
                         time: "10:00 AM",
                         date: "12/09/22"),
+      ),
+
 
                         SizedBox(
                           height: 18,
                         ),
-
+              InkWell(
+                     onTap:(){
+                         Get.to(() => Hospital2());
+                
+                      },      
+                child: 
                     SchedulesCard(
                         image: "assets/images/doctor.png",
                         docName: "Dr. John Doe",
                         specialization: "Heart Surgeon ",
                         hospitalName: "National Hospital",
                         time: "10:00 AM",
-                        date: "12/09/22"),
+                        date: "12/09/22"),),
+
 
                     
                    ],
