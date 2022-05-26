@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unused_import, unused_local_variable
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
@@ -20,12 +20,20 @@ Future main() async {
     //MaterialApp(
      // home: mapScreen(),
 
+
     
+
+   // MyApp(
+     // showLogin: true,
+
 
     const MyApp(
       showLogin: false,
       showSignup: false,
     ),
+
+
+
 
   );
 }

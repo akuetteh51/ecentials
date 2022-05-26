@@ -1,4 +1,7 @@
-// ignore_for_file: file_names, prefer_const_constructors, unused_import, duplicate_import
+
+// ignore_for_file: file_names, prefer_const_constructors, unused_import, duplicate_impor
+// ignore_for_file: file_names, prefer_const_constructors, unused_import
+
 
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/dashboard.dart';
