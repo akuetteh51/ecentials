@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, avoid_print
+
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
@@ -12,21 +14,21 @@ class SchedulesCard extends StatelessWidget {
   final String hospitalName;
   final String time;
   final String date;
-  const SchedulesCard(
-      {Key? key,
-      this.isConfirmed = false,
-      required this.image,
-      required this.docName,
-      required this.specialization,
-      required this.hospitalName,
-      required this.time,
-      required this.date})
-      : super(key: key);
+  const SchedulesCard({
+    Key? key,
+    this.isConfirmed = false,
+    required this.image,
+    required this.docName,
+    required this.specialization,
+    required this.hospitalName,
+    required this.time,
+    required this.date,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = 190;
+    double height = 170;
     return SizedBox(
       width: width - 40,
       height: height,
@@ -46,7 +48,7 @@ class SchedulesCard extends StatelessWidget {
                         docName,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 20,
+                          fontSize: 18,
                         ),
                       ),
                       SizedBox(
@@ -57,6 +59,7 @@ class SchedulesCard extends StatelessWidget {
                           text: specialization,
                           style: const TextStyle(
                             color: Colors.grey,
+                            fontSize: 12,
                           ),
                           children: [
                             const TextSpan(
@@ -79,13 +82,14 @@ class SchedulesCard extends StatelessWidget {
                             children: [
                               const Icon(
                                 EcentialsIcons.clock,
-                                size: 15,
+                                size: 13,
                                 color: Colors.grey,
                               ),
                               Text(
                                 time,
                                 style: const TextStyle(
                                   color: Colors.black,
+                                  fontSize: 12,
                                 ),
                               ),
                             ],
@@ -98,13 +102,14 @@ class SchedulesCard extends StatelessWidget {
                             children: [
                               const Icon(
                                 EcentialsIcons.calender,
-                                size: 15,
+                                size: 13,
                                 color: Colors.grey,
                               ),
                               Text(
                                 date,
                                 style: const TextStyle(
                                   color: Colors.black,
+                                  fontSize: 12,
                                 ),
                               ),
                             ],
@@ -126,6 +131,7 @@ class SchedulesCard extends StatelessWidget {
                                       "Unconfirmed",
                                       style: TextStyle(
                                         color: AppColors.primaryRedColor,
+                                        fontSize: 12,
                                       ),
                                     ),
                                   ],
@@ -164,8 +170,8 @@ class SchedulesCard extends StatelessWidget {
                     child: Image.asset(
                       image,
                       fit: BoxFit.contain,
-                      height: 100.0,
-                      width: 80.0,
+                      height: 80.0,
+                      width: 50.0,
                     ),
                   )
                 ],
@@ -177,20 +183,20 @@ class SchedulesCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ButtonOutlined(
+                    
                     text: "Cancel",
                     style: TextStyle(color: AppColors.primaryGreenColor),
-                    width: 150,
+                    width: 130,
                     height: 40,
-                    OnTap: () {
-                      print("Cancel");
-                    },
                   ),
                   Button(
                     text: "Reschedule",
+                    color: AppColors.primaryGreenColor,
                     style: TextStyle(color: AppColors.primaryWhiteColor),
-                    width: 150,
+                    width: 130,
                     height: 40,
                     onTap: () {
+                      
                       print("Reschedule");
                     },
                   ),

@@ -1,29 +1,56 @@
+// ignore_for_file: prefer_const_constructors, unused_import, unused_local_variable
+
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
-import 'package:ecentialsclone/src/screens/onboarding_screen.dart';
+import 'package:flutter/services.dart';
+import 'package:ecentialsclone/src/screens/onboardingScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'src/screens/test_widgets_screen.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final preference = await SharedPreferences.getInstance();
   final showLogin = preference.getBool('showLogin') ?? false;
+  final showSignup = preference.getBool('showSignup') ?? false;
 
   runApp(
-    MyApp(showLogin: showLogin),
+
+    // MyApp(showLogin: true),
+    //MaterialApp(
+     // home: mapScreen(),
+
+
+    
+
+   // MyApp(
+     // showLogin: true,
+
+
+    const MyApp(
+      showLogin: false,
+      showSignup: false,
+    ),
+
+
+
+
   );
 }
 
 class MyApp extends StatelessWidget {
   final bool showLogin;
-  const MyApp({Key? key, required this.showLogin}) : super(key: key);
+  final bool showSignup;
+  const MyApp({Key? key, required this.showLogin, required this.showSignup})
+      : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: AnimatedSplashScreen(
@@ -31,8 +58,7 @@ class MyApp extends StatelessWidget {
         centered: true,
         duration: 2000,
         splashIconSize: 500,
-        nextScreen:
-            showLogin ? const TestWidgetsScreen() : const OnboardingScreen(),
+        nextScreen: showLogin ? Login() : const OnboardingScreen(),
       ),
       theme: ThemeData(
         fontFamily: "Montserrat",

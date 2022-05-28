@@ -1,4 +1,5 @@
 import 'package:ecentialsclone/src/Widgets/button.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -33,6 +34,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   final _pageController = PageController();
   @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  int currentIndex = 0;
+  onScroll(int index) {
+    setState(() {
+      currentIndex = index;
+    });
+  }
+
   Widget build(BuildContext context) {
     final w = MediaQuery.of(context).size.width;
     // Onboarding column
@@ -44,10 +57,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             Container(
               width: w,
               margin: const EdgeInsets.symmetric(vertical: 30),
-              child: Text(
-                _imagestext[index],
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 16),
+              child: Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: 30,
+                ),
+                child: Center(
+                  child: Text(
+                    _imagestext[index],
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                ),
               ),
             )
           ],
@@ -61,8 +81,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           final preference = await SharedPreferences.getInstance();
           preference.setBool("showLogin", true);
           Get.to(
-            () => const Login(),
-            transition: Transition.fadeIn,
+            () => Login(),
+            transition: Transition.rightToLeft,
             duration: const Duration(seconds: 1),
           );
         },
@@ -79,19 +99,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
     // Next Button
     final _nextButton = Button(
+      width: MediaQuery.of(context).size.width - 80,
       onTap: () async {
         final preference = await SharedPreferences.getInstance();
         preference.setBool("showLogin", true);
         Get.to(
-          () => const Login(),
-          transition: Transition.fadeIn,
-          duration: const Duration(seconds: 1),
+          () => Login(),
+          transition: Transition.rightToLeft,
+          duration: const Duration(milliseconds: 500),
         );
       },
       text: "Next",
       style: TextStyle(
         color: AppColors.primaryWhiteColor,
-        fontWeight: FontWeight.bold,
+        fontSize: 20,
       ),
     );
 
@@ -102,10 +123,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       controller: _pageController,
       count: 4,
       axisDirection: Axis.horizontal,
-      effect: WormEffect(
+      effect: JumpingDotEffect(
+          jumpScale: 2.0,
+          verticalOffset: 5.0,
           strokeWidth: 1,
           dotColor: AppColors.primaryDeepColor,
-          type: WormType.thin,
+          // type: WormType.thin,
           dotHeight: 8.0,
           dotWidth: 8.0,
           offset: 10,
@@ -115,24 +138,40 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 40),
-        child: PageView.builder(
+      body: PageView.builder(
+          dragStartBehavior: DragStartBehavior.start,
+          scrollBehavior: const ScrollBehavior(
+            androidOverscrollIndicator: AndroidOverscrollIndicator.stretch,
+          ),
           controller: _pageController,
           itemCount: 4,
-          itemBuilder: (context, index) => Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _onboard(index),
-                _pageIndicator,
-                const SizedBox(
-                  height: 30,
-                ),
-                index != 3 ? skip : _nextButton,
-              ],
+          onPageChanged: onScroll,
+          itemBuilder: (context, index) {
+            currentIndex = index;
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _onboard(index),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                ],
+              ),
+            );
+          }),
+      bottomSheet: Container(
+        color: AppColors.primaryWhiteColor,
+        height: 180,
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          children: [
+            _pageIndicator,
+            const SizedBox(
+              height: 40,
             ),
-          ),
+            currentIndex != 3 ? skip : _nextButton,
+          ],
         ),
       ),
     );

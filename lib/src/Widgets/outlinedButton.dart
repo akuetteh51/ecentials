@@ -9,7 +9,12 @@ class ButtonOutlined extends StatelessWidget {
   final String text;
   final TextStyle? style;
   final double radius;
-  final OnTap;
+  final bool? hasIcon;
+  final IconData? icon;
+  final Color? iconColor;
+  final double? iconSize;
+  final onTap;
+
   const ButtonOutlined(
       {Key? key,
       this.width,
@@ -18,13 +23,17 @@ class ButtonOutlined extends StatelessWidget {
       required this.text,
       this.style,
       this.radius = 5,
-      this.OnTap})
+      this.hasIcon,
+      this.icon,
+      this.iconColor,
+      this.iconSize,
+      this.onTap})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: OnTap,
+      onTap: onTap,
       child: Container(
         width: width,
         height: height,
@@ -37,10 +46,26 @@ class ButtonOutlined extends StatelessWidget {
           borderRadius: BorderRadius.circular(radius),
         ),
         child: Center(
-          child: Text(
-            text,
-            style: style,
-          ),
+          child: hasIcon == true
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      icon,
+                      color: iconColor,
+                      size: iconSize,
+                    ),
+                    const SizedBox(width: 10),
+                    Text(
+                      text,
+                      style: style,
+                    )
+                  ],
+                )
+              : Text(
+                  text,
+                  style: style,
+                ),
         ),
       ),
     );

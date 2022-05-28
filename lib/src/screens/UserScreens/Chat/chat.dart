@@ -1,0 +1,14 @@
+import 'package:ecentialsclone/src/Themes/colors.dart';
+import 'package:flutter/material.dart';
+
+class Chat extends StatelessWidget {
+  const Chat({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.primaryWhiteColor,
+      body: Center(child: Text("Chat")),
+    );
+  }
+}

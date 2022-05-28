@@ -15,7 +15,7 @@ class ProminentDoctors extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = 150;
-    double height = 210;
+    double height = 200;
     return SizedBox(
       width: width,
       height: height,
@@ -42,7 +42,7 @@ class ProminentDoctors extends StatelessWidget {
               child: Text(
                 docName,
                 style: const TextStyle(
-                  fontSize: 18,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -52,7 +52,10 @@ class ProminentDoctors extends StatelessWidget {
             ),
             Container(
               margin: const EdgeInsets.only(left: 10),
-              child: Text(specialization),
+              child: Text(
+                specialization,
+                style: TextStyle(fontSize: 13),
+              ),
             ),
           ],
         ),
