@@ -1,3 +1,4 @@
+import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
@@ -69,13 +70,15 @@ class _NearbyHState extends State<NearbyH> {
                   SizedBox(
                     width: 10,
                   ),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(Icons.toggle_off_outlined),
-                      Icon(Icons.toggle_off_outlined),
-                    ],
-                  )
+                  Container(
+                    padding: const EdgeInsets.all(5.0),
+                    height: 35,
+                    width: 35,
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),
+                    color: Colors.teal,),
+                    child: Icon(EcentialsIcons.filter,size: 20,color: AppColors.primaryWhiteColor,),
+                  ),
+
                 ],
               ),
               SizedBox(
