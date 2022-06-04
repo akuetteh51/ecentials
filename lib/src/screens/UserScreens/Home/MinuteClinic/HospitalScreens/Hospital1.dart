@@ -9,6 +9,7 @@ import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Lab5.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class NearbyH extends StatefulWidget {
   const NearbyH({Key? key}) : super(key: key);
@@ -74,11 +75,17 @@ class _NearbyHState extends State<NearbyH> {
                     padding: const EdgeInsets.all(5.0),
                     height: 35,
                     width: 35,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(5),
-                    color: Colors.teal,),
-                    child: Icon(EcentialsIcons.filter,size: 20,color: AppColors.primaryWhiteColor,),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: Colors.teal,
+                    ),
+                    child: Icon(
+                      // EcentialsIcons.filter
+                      // Icons.filter_vintage,
+                      MdiIcons.tune,
+                      size: 20, color: AppColors.primaryWhiteColor,
+                    ),
                   ),
-
                 ],
               ),
               SizedBox(

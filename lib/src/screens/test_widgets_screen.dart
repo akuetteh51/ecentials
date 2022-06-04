@@ -35,6 +35,8 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Hospita
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital3Schedule.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital4Chat.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Lab5.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/ambulanceScreens/mapScreens/ambulance12.dart';
+
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/screen8.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/homeScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Notifications/notifications.dart';
@@ -58,6 +60,7 @@ class _TestWidgetsScreenState extends State<TestWidgetsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: NearbyH(),);
+      body: mapScreen(),
+    );
   }
 }

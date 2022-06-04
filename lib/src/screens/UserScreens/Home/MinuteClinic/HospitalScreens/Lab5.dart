@@ -1,9 +1,12 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
+import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/Widgets/outlinedButton.dart';
 import 'package:ecentialsclone/src/Widgets/prominentDoctors.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/ambulance_map.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital4Chat.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/ambulanceScreens/mapScreens/ambulance4%20copy.dart';
+
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital2DocProfile.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital3Schedule.dart';
 import 'package:flutter/material.dart';
@@ -186,10 +189,8 @@ class _labScreenState extends State<labScreen> {
                         ),
                       ),
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => DocotorInfo()));
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => chat4()));
                       },
                       child: Row(children: [
                         Icon(Icons.phone_in_talk),

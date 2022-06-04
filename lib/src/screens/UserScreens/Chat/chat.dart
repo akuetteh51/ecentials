@@ -6,6 +6,14 @@ class Chat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: Image(
+          image: AssetImage("assets/images/img_3.png"),
+          width: 52,
+          height: 52,
+        ),
+        title: Text("Anumba"),
+      ),
       body: Center(child: Text("Chat")),
     );
   }
