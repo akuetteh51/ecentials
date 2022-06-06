@@ -1,6 +1,7 @@
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/MyStoreHome.dart';
 import 'package:flutter/material.dart';
 
 class createStore1 extends StatelessWidget {
@@ -10,16 +11,15 @@ class createStore1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading:
-            IconButton(
-              onPressed: () {
-                print("object");
-              },
-              icon: Icon(
-                Icons.arrow_back,color: Colors.black,
-              ),
-            ),
-
+        leading: IconButton(
+          onPressed: () {
+            print("object");
+          },
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+        ),
         backgroundColor: Colors.white,
       ),
       bottomNavigationBar: Container(
@@ -32,6 +32,10 @@ class createStore1 extends StatelessWidget {
               width: 302,
               radius: 20,
               style: TextStyle(color: Colors.white, fontSize: 15),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => storeHome()));
+              },
             ),
           )),
       body: SingleChildScrollView(
@@ -54,7 +58,7 @@ class createStore1 extends StatelessWidget {
                 child: Center(
                     child: Text(
                   "This information is used to set up your store",
-                  style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                 )),
               ),
             ),

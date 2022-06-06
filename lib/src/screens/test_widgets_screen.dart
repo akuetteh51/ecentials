@@ -45,6 +45,8 @@ import 'package:ecentialsclone/src/screens/UserScreens/Store/CreateStore.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/CreateStore1.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/MyStoreHome.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/MyStoreHome2.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/PinCreated.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/PinVerfication.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/SetUpEcentialsWallet.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/store.dart';
 import 'package:flutter/material.dart';
@@ -60,7 +62,7 @@ class _TestWidgetsScreenState extends State<TestWidgetsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: mapScreen(),
+      body: createStore(),
     );
   }
 }

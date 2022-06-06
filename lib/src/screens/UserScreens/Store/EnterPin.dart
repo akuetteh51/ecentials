@@ -56,7 +56,7 @@ class _pinKey2State extends State<pinKey2> {
                     },
                     child: Text(
                       "1",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                   SizedBox(
@@ -69,7 +69,7 @@ class _pinKey2State extends State<pinKey2> {
                     },
                     child: Text(
                       "2",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                   SizedBox(
@@ -82,7 +82,7 @@ class _pinKey2State extends State<pinKey2> {
                     },
                     child: Text(
                       "3",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                 ],
@@ -99,7 +99,7 @@ class _pinKey2State extends State<pinKey2> {
                     },
                     child: Text(
                       "4",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                   SizedBox(
@@ -112,7 +112,7 @@ class _pinKey2State extends State<pinKey2> {
                     },
                     child: Text(
                       "5",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                   SizedBox(
@@ -125,11 +125,12 @@ class _pinKey2State extends State<pinKey2> {
                     },
                     child: Text(
                       "6",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                 ],
-              ), Row(
+              ),
+              Row(
                 children: [
                   SizedBox(
                     height: 69,
@@ -141,7 +142,7 @@ class _pinKey2State extends State<pinKey2> {
                     },
                     child: Text(
                       "7",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                   SizedBox(
@@ -154,7 +155,7 @@ class _pinKey2State extends State<pinKey2> {
                     },
                     child: Text(
                       "8",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                   SizedBox(
@@ -167,17 +168,17 @@ class _pinKey2State extends State<pinKey2> {
                     },
                     child: Text(
                       "9",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                 ],
-              ), Row(
+              ),
+              Row(
                 children: [
                   SizedBox(
                     height: 69,
                     width: 120,
                   ),
-
                   SizedBox(
                     height: 69,
                     width: 50,
@@ -188,15 +189,19 @@ class _pinKey2State extends State<pinKey2> {
                     },
                     child: Text(
                       "0",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                   SizedBox(
                     height: 69,
                     width: 50,
                   ),
-                  IconButton(onPressed: (){print("Hello world");}, icon:Icon(EcentialsIcons.bin) ),
-
+                  IconButton(
+                    onPressed: () {
+                      print("Hello world");
+                    },
+                    icon: Icon(Icons.disabled_by_default_outlined),
+                  ),
                 ],
               ),
             ],
