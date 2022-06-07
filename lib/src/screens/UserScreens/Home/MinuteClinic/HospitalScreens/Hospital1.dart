@@ -53,13 +53,13 @@ class _NearbyHState extends State<NearbyH> {
                   ),
                 ],
               ),
-              SizedBox(height: 40, width: 0),
+              SizedBox(height: 15, width: 0),
               Text(
                 "Find a Nearby Hospital",
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
               ),
               SizedBox(
-                height: 10,
+                height: 30,
               ),
               Row(
                 children: [
@@ -82,10 +82,10 @@ class _NearbyHState extends State<NearbyH> {
                 ],
               ),
               SizedBox(
-                height: 40,
+                height: 30,
               ),
               Row(
-                children: [
+                children: const[
                   SizedBox(
                     width: 20,
                   ),
@@ -102,10 +102,13 @@ class _NearbyHState extends State<NearbyH> {
                   ),
                 ],
               ),
+             const SizedBox(
+                height: 10,
+              ),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
-                  children: [
+                  children:const [
                     TopDoctor(
                         image: "assets/images/doctor1.png",
                         docName: "Dr Esther Agams",
@@ -121,7 +124,7 @@ class _NearbyHState extends State<NearbyH> {
               ),
               SingleChildScrollView(
                 child: Column(
-                  children: [
+                  children: const[
                     SizedBox(
                       height: 20,
                     ),
