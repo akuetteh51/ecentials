@@ -7,10 +7,12 @@ class FloatingAmbulance extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        debugPrint("Ambulance Tapped");
+      },
       child: Container(
-        height: 60,
-        width: 60,
+        height: 50,
+        width: 50,
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/images/nav_ambulance.png"),
