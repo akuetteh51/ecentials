@@ -14,7 +14,7 @@ Future main() async {
 
   runApp(
     const MyApp(
-      showLogin: true,
+      showLogin: false,
       showSignup: false,
     ),
   );

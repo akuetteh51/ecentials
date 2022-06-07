@@ -33,7 +33,6 @@ class DashBoard extends StatelessWidget {
             color: AppColors.primaryOrangeColor,
             style: TextStyle(
               color: AppColors.primaryWhiteColor,
-              fontWeight: FontWeight.bold,
             ),
           )
         ],

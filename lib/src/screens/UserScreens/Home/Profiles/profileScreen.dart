@@ -1,6 +1,6 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/EducationalInfo.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/HealthInformation.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/educationalInfo.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/healthInformation.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/editProfile.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/personalInfo.dart';
 import 'package:get/get.dart';

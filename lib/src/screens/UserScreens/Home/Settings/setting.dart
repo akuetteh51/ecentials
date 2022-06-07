@@ -1,6 +1,9 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/editProfile.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
@@ -29,10 +32,15 @@ class _SettingsState extends State<Settings> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const CircleAvatar(
-                  radius: 40,
-                  backgroundImage: const AssetImage(
-                    "assets/images/profile.png",
+                GestureDetector(
+                  onTap: () {
+                    Get.to(() => const ProfileScreen());
+                  },
+                  child: const CircleAvatar(
+                    radius: 40,
+                    backgroundImage: AssetImage(
+                      "assets/images/profile.png",
+                    ),
                   ),
                 ),
                 Column(
@@ -52,7 +60,9 @@ class _SettingsState extends State<Settings> {
                           width: 5,
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(() => EditProfile());
+                          },
                           icon: Icon(
                             EcentialsIcons.pen_underlined,
                             color: AppColors.primaryBlueColor,

@@ -45,7 +45,7 @@ class _FindAmulanceState extends State<FindAmulance> {
       body: ListView(
         children: [
           Container(
-            height: 350,
+            height: MediaQuery.of(context).size.width * 0.8,
             width: MediaQuery.of(context).size.width,
             child: const mapScreen(),
           ),

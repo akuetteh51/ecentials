@@ -70,7 +70,7 @@ class _LoginState extends State<Login> {
           alignment: Alignment.centerLeft,
           child: Text(
             "Email",
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 16),
           ),
         ),
         const SizedBox(
@@ -110,7 +110,7 @@ class _LoginState extends State<Login> {
           alignment: Alignment.centerLeft,
           child: Text(
             "Password",
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 16),
           ),
         ),
         const SizedBox(
@@ -200,13 +200,11 @@ class _LoginState extends State<Login> {
           color: Colors.grey.withOpacity(.90),
           fontSize: 16,
           fontFamily: "Montserrat",
-          fontWeight: FontWeight.bold,
         ),
         children: [
           TextSpan(
               text: " Register",
               style: TextStyle(
-                fontWeight: FontWeight.bold,
                 color: AppColors.primaryDeepColor,
                 fontFamily: "Montserrat",
               ),
