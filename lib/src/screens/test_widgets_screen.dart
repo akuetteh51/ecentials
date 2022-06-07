@@ -27,9 +27,23 @@ import 'package:ecentialsclone/src/Widgets/outlinedButton.dart';
 
 import 'package:ecentialsclone/src/Widgets/schoolsAttendedCard.dart';
 import 'package:ecentialsclone/src/Widgets/storeList.dart';
+import 'package:ecentialsclone/src/screens/AuthScreens/agreement.dart';
+import 'package:ecentialsclone/src/screens/AuthScreens/registration.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Chat/chat.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital1.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital2DocProfile.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital3Schedule.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital4Chat.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Lab5.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/screen8.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/homeScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Notifications/notifications.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/CreatePin1.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/CreateStore.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/CreateStore1.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/MyStoreHome.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/MyStoreHome2.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/SetUpEcentialsWallet.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/store.dart';
 import 'package:flutter/material.dart';
 
@@ -43,6 +57,7 @@ class TestWidgetsScreen extends StatefulWidget {
 class _TestWidgetsScreenState extends State<TestWidgetsScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+        body: NearbyH(),);
   }
 }
