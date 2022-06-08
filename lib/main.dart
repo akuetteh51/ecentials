@@ -1,5 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-
+import 'package:ecentialsclone/src/app_state/MainState.dart';
+import 'package:provider/provider.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 
 import 'package:ecentialsclone/src/screens/UserScreens/main_screen.dart';
@@ -22,8 +23,14 @@ Future main() async {
     //   // showSignup: false,
     //
     // ),
-    MaterialApp(
-      home: TestWidgetsScreen(),
+    MultiProvider(
+      providers: [
+      ChangeNotifierProvider<MainState>(create: (_) => MainState()),
+
+      ],      
+      child:const MaterialApp(
+        home: TestWidgetsScreen(),
+      ),
     ),
   );
 }
