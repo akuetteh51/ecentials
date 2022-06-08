@@ -9,6 +9,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'src/app_state/ambulance_state.dart';
+import 'src/app_state/hospital_state.dart';
+import 'src/app_state/lab_state.dart';
+import 'src/app_state/pharmacy_state.dart';
+import 'src/app_state/shop_state.dart';
 import 'src/screens/test_widgets_screen.dart';
 
 Future main() async {
@@ -26,7 +31,11 @@ Future main() async {
     MultiProvider(
       providers: [
       ChangeNotifierProvider<MainState>(create: (_) => MainState()),
-
+      ChangeNotifierProvider<LabState>(create: (_) => LabState()),
+      ChangeNotifierProvider<AmbulanceState>(create: (_) => AmbulanceState()),
+      ChangeNotifierProvider<HospitalState>(create: (_) => HospitalState()),
+      ChangeNotifierProvider<PharmacyState>(create: (_) => PharmacyState()),
+      ChangeNotifierProvider<ShopState>(create: (_) => ShopState()),
       ],      
       child:const MaterialApp(
         home: TestWidgetsScreen(),
