@@ -20,7 +20,7 @@ class PharmacyCard extends StatelessWidget {
       height: 191.0,
       width: 174.0,
       child: Card(
-        elevation: 10,
+        elevation: 6,
         child: Column(
           children: [
             Padding(

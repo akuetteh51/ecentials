@@ -34,7 +34,14 @@ class _DrugDashboardState extends State<DrugDashboard> {
           backgroundColor: AppColors.primaryWhiteColor,
           foregroundColor: AppColors.primaryBlackColor,
           elevation: 0,
-          leading: Icon(Icons.arrow_back),
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back,
+              color: Theme.of(context).disabledColor.withOpacity(.75),
+            )),
           title: const Text(
             "The MediShop Pharmacy",
             style: TextStyle(fontSize: 18),
@@ -56,8 +63,12 @@ class _DrugDashboardState extends State<DrugDashboard> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Search4(
-                width: MediaQuery.of(context).size.width,
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                child: Search4(
+                  width: MediaQuery.of(context).size.width,
+                ),
               ),
               Container(
                 height: 200,
@@ -68,94 +79,77 @@ class _DrugDashboardState extends State<DrugDashboard> {
                   color: Color.fromARGB(255, 230, 240, 244),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Row(
-                  children: [
-                    Text("We will deliver your medicines",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontFamily: "Montserrat",
-                        )),
-                  ],
-                ),
-              ),
-              Row(
-                children: [
-                  Container(
-                      height: 33.33,
-                      width: 101.62,
-                      margin: const EdgeInsets.only(
-                        top: 32,
-                        left: 22.39,
+                child: Center(
+                  child: Wrap(
+                    alignment: WrapAlignment.center,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text("We will deliver your medicines",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontFamily: "Montserrat",
+                            )),
                       ),
-                      child: Text("Popular",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: "Montserrat",
-                          ))),
-                  Container(
-                    height: 20,
-                    width: 22.86,
-                    margin: const EdgeInsets.only(
-                      right: 20.51,
-                      left: 242.55,
-                    ),
-                    child: Icon(
-                      EcentialsIcons.filter,
-                      color: AppColors.primaryBlackColor,
-                      size: 30,
-                    ),
-                  )
-                ],
-              ),
-              Container(
-                margin: const EdgeInsets.only(
-                  top: 7.78,
-                  left: 27.8,
-                ),
-                child: Row(
-                  children: [
-                    drugCard(
-                        drugName: "Ibuprofen",
-                        drugType: "Tablets",
-                        quantity: 50,
-                        price: 5.00),
-                    Container(
-                        margin: const EdgeInsets.only(
-                          left: 17,
-                        ),
-                        child: drugCard(
-                            drugName: "Biotin",
-                            drugType: "Tablets",
-                            quantity: 50,
-                            price: 5.00))
-                  ],
+                    ],
+                  ),
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.only(
-                  top: 22.8,
-                  left: 27.8,
-                ),
-                child: Row(
-                  children: [
-                    drugCard(
-                        drugName: "Ibuprofen",
-                        drugType: "Tablets",
-                        quantity: 50,
-                        price: 5.00),
-                    Container(
-                        margin: const EdgeInsets.only(
-                          left: 17.8,
+              SizedBox(height: 30.0,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal:8.0),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Wrap(
+                    alignment: WrapAlignment.spaceBetween,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      SizedBox(                     
+                          child: Text("Popular",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                fontFamily: "Montserrat",
+                              ),),),
+                      SizedBox(
+                        // color: Colors.amber,
+                        height: 30,                     
+                        child: Icon(
+                          EcentialsIcons.filter,
+                          color: AppColors.primaryBlackColor,
+                          size: 30,
                         ),
-                        child: drugCard(
-                            drugName: "Biotin",
-                            drugType: "Tablets",
-                            quantity: 50,
-                            price: 5.00))
-                  ],
+                      )
+                    ],
+                  ),
                 ),
-              )
+              ),
+              
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: 210,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      Wrap(children: [
+                        for (int j = 0; j < 5; j++)
+                          Padding(
+                            padding: const EdgeInsets.only(right: 12.0),
+                            child: drugCard(
+                                drugName: "Ibuprofen",
+                                drugType: "Tablets",
+                                quantity: 50,
+                                price: 5.00),
+                          ),
+                      ]),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),

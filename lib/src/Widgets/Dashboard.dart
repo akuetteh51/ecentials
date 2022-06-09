@@ -18,14 +18,14 @@ class DashBoard extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
+      margin: const EdgeInsets.only(bottom: 10),
       width: width,
       child: Column(
         children: [
           Image.asset(
             image,
           ),
-          SizedBox(
+         const SizedBox(
             height: 10,
           ),
           Button(

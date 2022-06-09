@@ -33,20 +33,22 @@ class _ScanResultsState extends State<ScanResults> {
         backgroundColor: AppColors.primaryWhiteColor,
         foregroundColor: AppColors.primaryBlackColor,
         elevation: 0,
-        leading: Icon(Icons.arrow_back),
-        title: Container(
-          height: 34,
-          width: 141.53,
-          margin: const EdgeInsets.only(
-            left: 84.24,
-          ),
-          child: const Text(
-            "Scan Result",
-            style: TextStyle(
-                fontSize: 18,
-                fontFamily: " Montserrat",
-                fontWeight: FontWeight.w500),
-          ),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back,
+              color: Theme.of(context).disabledColor.withOpacity(.75),
+            )),
+            centerTitle: true,
+        title: Text(
+          "Scan Result",
+          style: TextStyle(
+              fontSize: 18,
+              fontFamily: " Montserrat",
+              color: Theme.of(context).disabledColor.withOpacity(.75),
+              fontWeight: FontWeight.w500),
         ),
       ),
       body: SingleChildScrollView(
@@ -68,229 +70,74 @@ class _ScanResultsState extends State<ScanResults> {
                         fontFamily: "Montserrat"),
                   ),
                 ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                        margin: EdgeInsets.only(
-                          top: 15.34,
-                        ),
-                        child: Column(
-                          children: [
-                            Text(
-                              "Ibuprofen",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: "Montserrat",
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            Container(
-                              height: 25,
-                              width: 106,
-                              margin: EdgeInsets.only(
-                                left: 18.42,
-                              ),
-                              child: Text(
-                                "Tablets *5 pieces",
-                                style: TextStyle(
-                                    color: const Color(0xFF979797),
-                                    fontSize: 12,
-                                    fontFamily: "Montserrat",
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            )
-                          ],
-                        )),
-                    Container(
-                        height: 32.48,
-                        width: 105.87,
-                        margin: EdgeInsets.only(top: 15.34, left: 217.39),
-                        child: Text(
-                          "\$5.00",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontFamily: "Montserrat",
-                            fontWeight: FontWeight.w700,
-                            color: const Color(0xFF033A64),
+                
+                
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Wrap(                
+                    crossAxisAlignment: WrapCrossAlignment.start,
+                    children: [
+                      for (int j = 0; j < 5; j++)
+                      Container(
+                          margin: EdgeInsets.only(
+                            top: 15.34,
                           ),
-                        )),
-                  ],
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                        margin: EdgeInsets.only(
-                          top: 15.34,
-                        ),
-                        child: Column(
-                          children: [
-                            Text(
-                              "Ibuprofen",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: "Montserrat",
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            Container(
-                              height: 25,
-                              width: 106,
-                              margin: EdgeInsets.only(
-                                left: 18.42,
-                              ),
-                              child: Text(
-                                "Tablets *5 pieces",
+                          child: Column(
+                            children: [
+                              Text(
+                                "Ibuprofen",
                                 style: TextStyle(
-                                    color: const Color(0xFF979797),
-                                    fontSize: 12,
-                                    fontFamily: "Montserrat",
-                                    fontWeight: FontWeight.w400),
+                                  fontSize: 16,
+                                  fontFamily: "Montserrat",
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
-                            )
-                          ],
-                        )),
-                    Container(
-                        height: 32.48,
-                        width: 105.87,
-                        margin: EdgeInsets.only(top: 15.34, left: 217.39),
-                        child: Text(
-                          "\$5.00",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontFamily: "Montserrat",
-                            fontWeight: FontWeight.w700,
-                            color: const Color(0xFF033A64),
-                          ),
-                        )),
-                  ],
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                        margin: EdgeInsets.only(
-                          top: 15.34,
-                        ),
-                        child: Column(
-                          children: [
-                            Text(
-                              "Ibuprofen",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: "Montserrat",
-                                fontWeight: FontWeight.w400,
-                              ),
+                              Container(
+                                height: 25,
+                                width: 106,
+                                margin: EdgeInsets.only(
+                                  left: 18.42,
+                                ),
+                                child: Text(
+                                  "Tablets *5 pieces",
+                                  style: TextStyle(
+                                      color: const Color(0xFF979797),
+                                      fontSize: 12,
+                                      fontFamily: "Montserrat",
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              )
+                            ],
+                          )),
+                      Container(
+                          height: 32.48,
+                          width: 105.87,
+                          margin: EdgeInsets.only(top: 15.34, left: 217.39),
+                          child: Text(
+                            "\$5.00",
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontFamily: "Montserrat",
+                              fontWeight: FontWeight.w700,
+                              color: const Color(0xFF033A64),
                             ),
-                            Container(
-                              height: 25,
-                              width: 106,
-                              margin: EdgeInsets.only(
-                                left: 18.42,
-                              ),
-                              child: Text(
-                                "Tablets *5 pieces",
-                                style: TextStyle(
-                                    color: const Color(0xFF979797),
-                                    fontSize: 12,
-                                    fontFamily: "Montserrat",
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            )
-                          ],
-                        )),
-                    Container(
-                        height: 32.48,
-                        width: 105.87,
-                        margin: EdgeInsets.only(top: 15.34, left: 217.39),
-                        child: Text(
-                          "\$5.00",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontFamily: "Montserrat",
-                            fontWeight: FontWeight.w700,
-                            color: const Color(0xFF033A64),
-                          ),
-                        )),
-                  ],
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                        margin: EdgeInsets.only(
-                          top: 15.34,
-                        ),
-                        child: Column(
-                          children: [
-                            Text(
-                              "Ibuprofen",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: "Montserrat",
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            Container(
-                              height: 25,
-                              width: 106,
-                              margin: EdgeInsets.only(
-                                left: 18.42,
-                              ),
-                              child: Text(
-                                "Tablets *5 pieces",
-                                style: TextStyle(
-                                    color: const Color(0xFF979797),
-                                    fontSize: 12,
-                                    fontFamily: "Montserrat",
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            )
-                          ],
-                        )),
-                    Container(
-                        height: 32.48,
-                        width: 105.87,
-                        margin: EdgeInsets.only(top: 15.34, left: 217.39),
-                        child: Text(
-                          "\$5.00",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontFamily: "Montserrat",
-                            fontWeight: FontWeight.w700,
-                            color: const Color(0xFF033A64),
-                          ),
-                        )),
-                  ],
-                ),
-                Container(
-                  height: 33.33,
-                  width: 198.28,
-                  margin: EdgeInsets.only(
-                    top: 32,
-                    left: 18.67,
-                  ),
-                  child: Text(
-                    "UnAvailable Drugs",
-                    style: TextStyle(
-                        color: const Color(0xFF033A64),
-                        fontSize: 18,
-                        fontFamily: "Montserrat",
-                        fontWeight: FontWeight.w700),
+                          )),
+                    ],
                   ),
                 ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Wrap(                
+                    crossAxisAlignment: WrapCrossAlignment.start,
                   children: [
                     Container(
                         margin: EdgeInsets.only(
-                          top: 19.67,
+                          top: 15.34,
                         ),
                         child: Column(
                           children: [
                             Text(
-                              "Biotin",
+                              "Ibuprofen",
                               style: TextStyle(
                                 fontSize: 16,
                                 fontFamily: "Montserrat",
@@ -301,7 +148,7 @@ class _ScanResultsState extends State<ScanResults> {
                               height: 25,
                               width: 106,
                               margin: EdgeInsets.only(
-                                left: 17.42,
+                                left: 18.42,
                               ),
                               child: Text(
                                 "Tablets *5 pieces",
@@ -329,11 +176,13 @@ class _ScanResultsState extends State<ScanResults> {
                         )),
                   ],
                 ),
+                ),
+
+                SizedBox(height: 60,),
+    
                 Container(
                   height: 53,
                   width: 301.94,
-                  margin: const EdgeInsets.only(
-                      top: 117.49, left: 56.03, right: 56.03),
                   decoration: BoxDecoration(
                     color: Color.fromARGB(255, 230, 240, 244),
                     borderRadius: BorderRadius.circular(9),

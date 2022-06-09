@@ -26,7 +26,7 @@ class drugCard extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(9.0),
         ),
-        elevation: 10,
+        elevation: 6,
         child: Padding(
           padding: EdgeInsets.all(8),
           child: Column(

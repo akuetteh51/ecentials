@@ -34,41 +34,65 @@ class _ScanDocumentState extends State<ScanDocument> {
         backgroundColor: AppColors.primaryWhiteColor,
         foregroundColor: AppColors.primaryBlackColor,
         elevation: 0,
-        leading: Icon(Icons.arrow_back),
+        centerTitle: true,
+        title: Text(
+          "Scan document",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).disabledColor.withOpacity(.75),
+          ),
+        ),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back,
+              color: Theme.of(context).disabledColor.withOpacity(.75),
+            )),
       ),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.all(20),
           child: Column(children: [
             Container(
+                decoration: BoxDecoration(
+                    color: AppColors.primaryDeepColor.withOpacity(.035),
+                    borderRadius: BorderRadius.circular(8.0)),
                 height: 163.64,
                 width: 200,
                 margin: const EdgeInsets.only(
-                  top: 140.39,
-                  left: 107,
-                  right: 107,
+                  top: 60.39,
+                  left: 80,
+                  right: 80,
                 ),
                 child: Image.asset("assets/images/Vector3.png")),
             Container(
-                height: 25.33,
-                width: 223.37,
+                // color: Colors.amber,
+                // height: 25.33,
+                // width: 223.37,
                 margin: const EdgeInsets.only(
                   top: 48.57,
-                  left: 95.32,
-                  right: 95.32,
+                  // left: 95.32,
+                  // right: 95.32,
                 ),
-                child: Text("Scan your document and  submit ",
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                      color: const Color(0xFF033A64),
-                      fontFamily: "Montserrat",
-                    ))),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Text("Scan your document and  submit ",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        color: const Color(0xFF033A64),
+                        fontFamily: "Montserrat",
+                      )),
+                )),
+            const SizedBox(
+              height: 80.0,
+            ),
             Container(
               height: 53,
               width: 301.94,
-              margin:
-                  const EdgeInsets.only(top: 171.79, left: 56.03, right: 56.03),
               decoration: BoxDecoration(
                 color: Color.fromARGB(255, 230, 240, 244),
                 borderRadius: BorderRadius.circular(9),

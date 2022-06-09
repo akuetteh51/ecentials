@@ -54,7 +54,8 @@ class _MinuteClinicState extends State<MinuteClinic> {
           );
         },
       ),
-      title: Row(
+      title: Wrap(
+        crossAxisAlignment: WrapCrossAlignment.center,
         children: [
           Container(
             margin: EdgeInsets.only(bottom: 12, right: 10),
@@ -69,7 +70,7 @@ class _MinuteClinicState extends State<MinuteClinic> {
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
-          )
+          ),
         ],
       ),
     );

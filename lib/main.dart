@@ -23,6 +23,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'src/screens/UserScreens/Home/MinuteClinic/minuteClinic.dart';
+
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final preference = await SharedPreferences.getInstance();
@@ -64,7 +66,8 @@ class MyApp extends StatelessWidget {
         centered: true,
         duration: 2000,
         splashIconSize: 500,
-        nextScreen: Alllabs(),
+        // nextScreen: Alllabs(),
+        nextScreen: Cart(),
         // nextScreen: showLogin ? Login() : const OnboardingScreen(),
       ),
       theme: ThemeData(
