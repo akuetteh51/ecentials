@@ -10,21 +10,21 @@ import 'package:ecentialsclone/src/Widgets/navDrawer.dart';
 import 'package:ecentialsclone/src/Widgets/search.dart';
 
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/lab3.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labDetails.dart';
 //import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Sreen3.dart';
 //import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Lab5.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 
-class lab1 extends StatefulWidget {
-  const lab1({Key? key}) : super(key: key);
+class Alllabs extends StatefulWidget {
+  const Alllabs({Key? key}) : super(key: key);
 
   @override
-  State<lab1> createState() => _lab1State();
+  State<Alllabs> createState() => _AlllabsState();
 }
 
-class _lab1State extends State<lab1> {
+class _AlllabsState extends State<Alllabs> {
   get size => null;
 
   @override
@@ -100,7 +100,7 @@ class _lab1State extends State<lab1> {
               ),
               InkWell(
                 onTap: () {
-                  Get.to(() => lab3());
+                  Get.to(() => LabDetails());
                 },
                 child: LabResultsCard(
                     image: "assets/images/card.png",
@@ -112,7 +112,7 @@ class _lab1State extends State<lab1> {
               ),
               InkWell(
                 onTap: () {
-                  Get.to(() => lab3());
+                  Get.to(() => LabDetails());
                 },
                 child: LabResultsCard(
                     image: "assets/images/card-1.png",
@@ -124,7 +124,7 @@ class _lab1State extends State<lab1> {
               ),
               InkWell(
                 onTap: () {
-                  Get.to(() => lab3());
+                  Get.to(() => LabDetails());
                 },
                 child: LabResultsCard(
                     image: "assets/images/card-2.png",

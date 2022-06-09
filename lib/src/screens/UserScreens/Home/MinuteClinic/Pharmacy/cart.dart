@@ -12,16 +12,16 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmac
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 
-class EmptyCart extends StatefulWidget {
-  const EmptyCart({
+class Cart extends StatefulWidget {
+  const Cart({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<EmptyCart> createState() => _EmptyCartState();
+  State<Cart> createState() => _CartState();
 }
 
-class _EmptyCartState extends State<EmptyCart> {
+class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

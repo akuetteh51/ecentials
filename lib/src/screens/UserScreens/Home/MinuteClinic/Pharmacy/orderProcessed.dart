@@ -12,16 +12,16 @@ import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 
-class Order_submitted extends StatefulWidget {
-  const Order_submitted({
+class OrderProcessed extends StatefulWidget {
+  const OrderProcessed({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<Order_submitted> createState() => _Order_submittedState();
+  State<OrderProcessed> createState() => _OrderProcessedState();
 }
 
-class _Order_submittedState extends State<Order_submitted> {
+class _OrderProcessedState extends State<OrderProcessed> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,50 +35,56 @@ class _Order_submittedState extends State<Order_submitted> {
                 height: 300,
                 width: 300,
                 margin: const EdgeInsets.only(
-                  top: 167.9,
+                  top: 196.9,
                   left: 57,
                   right: 57,
                 ),
-                child: Image.asset("assets/images/order_submitted.png"),
+                child: Image.asset("assets/images/order_processed.png"),
               ),
               Container(
                   height: 22,
                   margin: const EdgeInsets.only(
-                    top: 15.1,
-                    left: 131.1,
-                    right: 130.5,
+                    left: 131.5,
+                    right: 133.5,
                   ),
-                  child: Text("Order submitted!",
+                  child: Text("Order processed!",
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         fontFamily: "Montserrat",
                       ))),
-
-                       Container(
+              Container(
                   height: 16,
                   margin: const EdgeInsets.only(
                     top: 10,
-                    left: 86.5,
-                    right: 76.5,
+                    left: 104.5,
+                    right: 104.5,
                   ),
-                  child: Text("Hold on! Your order is being processed.",
+                  child: Text("Proceed to complete your order",
                       style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w300,
                         fontFamily: "Montserrat",
                       ))),
-
-                      Container(
-                         height: 50,
-                         width: 50,
-                        margin: const EdgeInsets.only(
-                    top: 59.43,
-                    left: 182,
-                    right: 182,
-                  ),
-                        child: 
-                        Image.asset("assets/images/Vector1.png")),
+              Container(
+                height: 60,
+                width: 338,
+                margin: const EdgeInsets.only(top: 68.99, left: 43, right: 33),
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 230, 240, 244),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Button(
+                  text: "Continue ",
+                  height: 17,
+                  width: 65,
+                  style: TextStyle(
+                      color: AppColors.primaryWhiteColor,
+                      fontSize: 14,
+                      fontFamily: "Montserrat",
+                      fontWeight: FontWeight.w400),
+                ),
+              ),
             ],
           ),
         ),

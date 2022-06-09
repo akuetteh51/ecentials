@@ -9,20 +9,20 @@ import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/Widgets/outlinedButton.dart';
 import 'package:ecentialsclone/src/Widgets/schedulesCard.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacy5.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/drugDashboard.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 
-class Order_completed extends StatefulWidget {
-  const Order_completed({
+class OrderCompleted extends StatefulWidget {
+  const OrderCompleted({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<Order_completed> createState() => _Order_completedState();
+  State<OrderCompleted> createState() => _OrderCompletedState();
 }
 
-class _Order_completedState extends State<Order_completed> {
+class _OrderCompletedState extends State<OrderCompleted> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -195,8 +195,8 @@ class _Order_completedState extends State<Order_completed> {
                 ),
                 child: Button(
                   onTap: () {
-                  Get.to(() => pharmacy5());
-                 },
+                    Get.to(() => DrugDashboard());
+                  },
                   text: "Continue Shopping",
                   height: 18,
                   width: 99,

@@ -11,21 +11,21 @@ import 'package:ecentialsclone/src/Widgets/pharmacyCard.dart';
 import 'package:ecentialsclone/src/Widgets/schedulesCard.dart';
 import 'package:ecentialsclone/src/Widgets/search.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacyDashboard2.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/scanResults.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 
-class pharmacyDashboard4 extends StatefulWidget {
-  const pharmacyDashboard4({
+class ScanDocument extends StatefulWidget {
+  const ScanDocument({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<pharmacyDashboard4> createState() => _pharmacyDashboard4State();
+  State<ScanDocument> createState() => _ScanDocumentState();
 }
 
-class _pharmacyDashboard4State extends State<pharmacyDashboard4> {
+class _ScanDocumentState extends State<ScanDocument> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,8 +75,8 @@ class _pharmacyDashboard4State extends State<pharmacyDashboard4> {
               ),
               child: Button(
                 onTap: () {
-              Get.to(() => pharmacyDashboard2());
-             },
+                  Get.to(() => ScanResults());
+                },
                 text: "Scan",
                 height: 20,
                 width: 37,

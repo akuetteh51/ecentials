@@ -13,22 +13,22 @@ import 'package:ecentialsclone/src/Widgets/prominentDoctors.dart';
 import 'package:ecentialsclone/src/Widgets/search.dart';
 
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/Hospital2.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/Hospital3.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/Hospital4Chat.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/lab3.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/doctorInformation.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labSchedules.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labChat.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 
-class lab3 extends StatefulWidget {
-  const lab3({Key? key}) : super(key: key);
+class LabDetails extends StatefulWidget {
+  const LabDetails({Key? key}) : super(key: key);
 
   @override
-  State<lab3> createState() => _lab3State();
+  State<LabDetails> createState() => _LabDetailsState();
 }
 
-class _lab3State extends State<lab3> {
+class _LabDetailsState extends State<LabDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,18 +39,18 @@ class _lab3State extends State<lab3> {
           horizontal: 40,
           vertical: 10,
         ),
-         child: GestureDetector(onTap: () {
-            Get.to(() => Hospital3());
-         },
-       child: Button(
+        child: GestureDetector(
+          onTap: () {
+            Get.to(() => LabSchedules());
+          },
+          child: Button(
             text: "Book session",
             color: Colors.teal,
             style: TextStyle(
               color: AppColors.primaryWhiteColor,
             ),
           ),
-         ),
-        
+        ),
       ),
       body: CustomScrollView(
         slivers: [
@@ -205,7 +205,7 @@ class _lab3State extends State<lab3> {
                           ),
                         ),
                         onPressed: () {
-                          Get.to(() => Hospital4Chat());
+                          Get.to(() => LabChat());
                         },
                         child: Row(children: [Text(" Chat")]),
                       ),
@@ -229,7 +229,7 @@ class _lab3State extends State<lab3> {
                             ),
                           ),
                           onPressed: () {
-                            Get.to(() => Hospital4Chat());
+                            Get.to(() => LabChat());
                           },
                           child: Row(children: [
                             Icon(Icons.phone_in_talk),
@@ -257,7 +257,7 @@ class _lab3State extends State<lab3> {
                             ),
                           ),
                           onPressed: () {
-                            Get.to(() => Hospital4Chat());
+                            Get.to(() => LabChat());
                           },
                           child: Row(children: [
                             Text("Direction"),
@@ -286,7 +286,7 @@ class _lab3State extends State<lab3> {
                 children: [
                   InkWell(
                     onTap: () {
-                      Get.to(() => Hospital2());
+                      Get.to(() => DoctorInformation());
                     },
                     child: ProminentDoctors(
                         image: "assets/images/doctor1.png",
@@ -297,7 +297,7 @@ class _lab3State extends State<lab3> {
                     margin: EdgeInsets.only(left: 25.97, top: 0),
                     child: InkWell(
                       onTap: () {
-                        Get.to(() => Hospital2());
+                        Get.to(() => DoctorInformation());
                       },
                       child: ProminentDoctors(
                           image: "assets/images/doctor2.png",
@@ -309,7 +309,7 @@ class _lab3State extends State<lab3> {
                     margin: EdgeInsets.only(left: 25.05, top: 0),
                     child: InkWell(
                       onTap: () {
-                        Get.to(() => Hospital2());
+                        Get.to(() => DoctorInformation());
                       },
                       child: ProminentDoctors(
                           image: "assets/images/doctor.png",

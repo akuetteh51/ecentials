@@ -11,14 +11,14 @@ import 'package:ecentialsclone/src/Widgets/pharmacyCard.dart';
 import 'package:ecentialsclone/src/Widgets/schedulesCard.dart';
 import 'package:ecentialsclone/src/Widgets/search.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/EmptyCart.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/EmptyCart.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacy5.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/cart.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/cart.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/drugDashboard.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 
-import 'EmptyCart.dart';
+import 'cart.dart';
 
 class pharmacyDashboard extends StatefulWidget {
   const pharmacyDashboard({
@@ -90,7 +90,7 @@ class _pharmacyDashboardState extends State<pharmacyDashboard> {
               ),
               child: IconButton(
                 onPressed: () {
-                  Get.to(() => EmptyCart());
+                  Get.to(() => Cart());
                 },
                 icon: Icon(
                   EcentialsIcons.cart,
@@ -206,7 +206,7 @@ class _pharmacyDashboardState extends State<pharmacyDashboard> {
                   children: [
                     InkWell(
                       onTap:(){
-                         Get.to(() => pharmacy5());
+                         Get.to(() => DrugDashboard());
                 
                       },
                   child:  PharmacyCard(
@@ -221,7 +221,7 @@ class _pharmacyDashboardState extends State<pharmacyDashboard> {
                     ),
                     InkWell(
                        onTap:(){
-                         Get.to(() => pharmacy5());
+                         Get.to(() => DrugDashboard());
                 
                       },
                     child: PharmacyCard(

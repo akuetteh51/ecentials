@@ -1,4 +1,3 @@
-
 // ignore_for_file: unused_import, prefer_const_constructors, camel_case_types
 
 import 'package:ecentialsclone/src/Themes/colors.dart';
@@ -13,16 +12,16 @@ import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 
-class Order_processed extends StatefulWidget {
-  const Order_processed({
+class OrderSubmitted extends StatefulWidget {
+  const OrderSubmitted({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<Order_processed> createState() => _Order_processedState();
+  State<OrderSubmitted> createState() => OrderSubmittedState();
 }
 
-class _Order_processedState extends State<Order_processed> {
+class OrderSubmittedState extends State<OrderSubmitted> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,61 +35,47 @@ class _Order_processedState extends State<Order_processed> {
                 height: 300,
                 width: 300,
                 margin: const EdgeInsets.only(
-                  top: 196.9,
+                  top: 167.9,
                   left: 57,
                   right: 57,
                 ),
-                child: Image.asset("assets/images/order_processed.png"),
+                child: Image.asset("assets/images/order_submitted.png"),
               ),
               Container(
                   height: 22,
                   margin: const EdgeInsets.only(
-                    left: 131.5,
-                    right: 133.5,
+                    top: 15.1,
+                    left: 131.1,
+                    right: 130.5,
                   ),
-                  child: Text("Order processed!",
+                  child: Text("Order submitted!",
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         fontFamily: "Montserrat",
                       ))),
-
-                       Container(
+              Container(
                   height: 16,
                   margin: const EdgeInsets.only(
                     top: 10,
-                    left: 104.5,
-                    right: 104.5,
+                    left: 86.5,
+                    right: 76.5,
                   ),
-                  child: Text("Proceed to complete your order",
+                  child: Text("Hold on! Your order is being processed.",
                       style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w300,
                         fontFamily: "Montserrat",
                       ))),
-
-
-                      Container(
-                    height: 60,
-                    width: 338,
-                   margin: const EdgeInsets.only(top: 68.99, left: 43, right: 33),
-                  decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 230, 240, 244),
-                  borderRadius: BorderRadius.circular(10),
-                    ),
-                child: Button(
-                  text: "Continue ",
-                  height: 17,
-                  width: 65,
-                  style: TextStyle(
-                      color: AppColors.primaryWhiteColor,
-                      fontSize: 14,
-                      fontFamily: "Montserrat",
-                      fontWeight: FontWeight.w400),
-                ),
-              ),
-
-                     
+              Container(
+                  height: 50,
+                  width: 50,
+                  margin: const EdgeInsets.only(
+                    top: 59.43,
+                    left: 182,
+                    right: 182,
+                  ),
+                  child: Image.asset("assets/images/Vector1.png")),
             ],
           ),
         ),
