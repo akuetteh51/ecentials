@@ -4,12 +4,14 @@ import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/Widgets/outlinedButton.dart';
 import 'package:ecentialsclone/src/Widgets/prominentDoctors.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Chat/chat.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital4Chat.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/ambulanceScreens/mapScreens/ambulance12.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/ambulanceScreens/mapScreens/ambulance4%20copy.dart';
 
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital2DocProfile.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital3Schedule.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/screen8.dart';
 import 'package:flutter/material.dart';
 
 class labScreen extends StatefulWidget {
@@ -163,9 +165,11 @@ class _labScreenState extends State<labScreen> {
                       ),
                       onPressed: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Schedule()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Chat(),
+                          ),
+                        );
                       },
                       child: Row(children: [
                         Icon(Icons.message_outlined),
@@ -335,7 +339,10 @@ class _labScreenState extends State<labScreen> {
                         ),
                       ),
                       onPressed: () {
-                        print("booked");
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Schedule()));
                       },
                       child: Text("Book Session"),
                     ),

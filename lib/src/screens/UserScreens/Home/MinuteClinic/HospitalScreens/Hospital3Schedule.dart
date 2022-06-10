@@ -26,9 +26,7 @@ class _ScheduleState extends State<Schedule> {
               children: [
                 Row(
                   children: [
-                    Icon(
-                      Icons.arrow_back,
-                    ),
+                    BackButton(color: Colors.black),
                     SizedBox(
                       width: 40,
                     ),

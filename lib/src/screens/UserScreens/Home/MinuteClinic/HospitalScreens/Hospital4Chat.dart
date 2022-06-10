@@ -24,12 +24,11 @@ class _chat4State extends State<chat4> {
             child: Column(children: [
               Row(
                 children: [
-                  Icon(
-                    Icons.arrow_back,
+                  BackButton(
+                    color: Colors.black,
                   ),
-
                   SizedBox(
-                    width: 250,
+                    width: 230,
                   ),
                   Icon(Icons.alarm),
                   SizedBox(
@@ -41,12 +40,34 @@ class _chat4State extends State<chat4> {
                   ),
                 ],
               ),
-             SizedBox(height: 10,),RecentChatsCard(image: "assets/images/doctor-1.png", docName: "Dr. John Doe", message: "having pains all over", time:"12:00 PM"),
-
-          RecentChatsCard(image: "assets/images/img.png", docName: "Dr. John Doe", message: "having pains all over", time:"12:00 PM")
-          ,RecentChatsCard(image: "assets/images/doctor-1.png", docName: "Dr. John Doe", message: "having pains all over", time:"12:00 PM"),
-              RecentChatsCard(image: "assets/images/doctor-1.png", docName: "Dr. John Doe", message: "having pains all over", time:"12:00 PM"),
-              RecentChatsCard(image: "assets/images/doctor-1.png", docName: "Dr. John Doe", message: "having pains all over", time:"12:00 PM")
+              SizedBox(
+                height: 10,
+              ),
+              RecentChatsCard(
+                  image: "assets/images/doctor-1.png",
+                  docName: "Dr. John Doe",
+                  message: "having pains all over",
+                  time: "12:00 PM"),
+              RecentChatsCard(
+                  image: "assets/images/img.png",
+                  docName: "Dr. John Doe",
+                  message: "having pains all over",
+                  time: "12:00 PM"),
+              RecentChatsCard(
+                  image: "assets/images/doctor-1.png",
+                  docName: "Dr. John Doe",
+                  message: "having pains all over",
+                  time: "12:00 PM"),
+              RecentChatsCard(
+                  image: "assets/images/doctor-1.png",
+                  docName: "Dr. John Doe",
+                  message: "having pains all over",
+                  time: "12:00 PM"),
+              RecentChatsCard(
+                  image: "assets/images/doctor-1.png",
+                  docName: "Dr. John Doe",
+                  message: "having pains all over",
+                  time: "12:00 PM")
             ]),
           ),
         ),

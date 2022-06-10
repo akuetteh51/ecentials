@@ -4,20 +4,20 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 import '../Themes/colors.dart';
 
-class Search4 extends StatelessWidget {
+class search_bar extends StatelessWidget {
   final double width;
   final String text;
-  final searchPressed;
   final micPressed;
+  final downPressed;
   final TextEditingController? controller;
 
-  const Search4(
+  const search_bar(
       {Key? key,
-      this.width = 280,
-      this.text = "Search...",
+      this.width = 300,
+      this.text = "Ridge Avenue,Accra",
       this.controller,
-      this.searchPressed,
-      this.micPressed})
+      this.micPressed,
+      this.downPressed})
       : super(key: key);
 
   @override
@@ -26,12 +26,11 @@ class Search4 extends StatelessWidget {
       width: width,
       child: Neumorphic(
         padding: const EdgeInsets.only(
-          left: 10,
-          right: 5,
+          left: 5,
         ),
         style: NeumorphicStyle(
           shape: NeumorphicShape.concave,
-          boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(50)),
+          boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(10)),
           depth: -5,
           lightSource: LightSource.top,
           color: Colors.grey.withOpacity(.10),
@@ -43,17 +42,17 @@ class Search4 extends StatelessWidget {
           decoration: InputDecoration(
             icon: IconButton(
               icon: Icon(
-                EcentialsIcons.search,
-                color: AppColors.primaryBlackColor,
-              ),
-              onPressed: searchPressed,
-            ),
-            suffixIcon: IconButton(
-              icon: Icon(
                 EcentialsIcons.mic,
                 color: AppColors.primaryBlackColor,
               ),
               onPressed: micPressed,
+            ),
+            suffixIcon: IconButton(
+              icon: Icon(
+                Icons.arrow_drop_down,
+                color: AppColors.primaryBlackColor,
+              ),
+              onPressed: downPressed,
             ),
             hintText: text,
             iconColor: AppColors.primaryDeepColor,

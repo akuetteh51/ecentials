@@ -28,8 +28,7 @@ class _mapScreen12State extends State<mapScreen12> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(
-          Icons.arrow_back,
+        leading: BackButton(
           color: Colors.black,
         ),
         title: Center(

@@ -1,3 +1,6 @@
+import 'dart:developer';
+import 'dart:ui';
+
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
@@ -7,7 +10,9 @@ import 'package:ecentialsclone/src/Widgets/labResultsCard.dart';
 import 'package:ecentialsclone/src/Widgets/navDrawer.dart';
 import 'package:ecentialsclone/src/Widgets/search.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
+import 'package:ecentialsclone/src/Widgets/searchLocation.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital2DocProfile.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Lab5.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -72,20 +77,18 @@ class _NearbyHState extends State<NearbyH> {
                   SizedBox(
                     width: 10,
                   ),
-                  Container(
-                    padding: const EdgeInsets.all(5.0),
-                    height: 35,
-                    width: 35,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Colors.teal,
+                  GestureDetector(
+                    child: Container(
+                      padding: const EdgeInsets.all(5.0),
+                      height: 35,
+                      width: 35,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: const Color(0xFF033A64),
+                      ),
+                      child: Image.asset("assets/images/filter.png"),
                     ),
-                    child: Icon(
-                      // EcentialsIcons.filter
-                      // Icons.filter_vintage,
-                      MdiIcons.tune,
-                      size: 20, color: AppColors.primaryWhiteColor,
-                    ),
+                    onTap: () => filterDrop(),
                   ),
                 ],
               ),
@@ -124,7 +127,7 @@ class _NearbyHState extends State<NearbyH> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => NavDrawer()));
+                                builder: (context) => DocotorInfo()));
                       },
                     ),
                     TopDoctor(
@@ -191,5 +194,238 @@ class _NearbyHState extends State<NearbyH> {
         ),
       ),
     );
+  }
+
+  void filterDrop() {
+    // showModelBottomSheet(context: context, builder: (context) {});
+    showModalBottomSheet(
+        context: this.context,
+        builder: (context) {
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 80,
+                ),
+                Text("Location"),
+                search_bar(),
+                SizedBox(
+                  height: 50,
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 30,
+                    ),
+                    Text(
+                      "Service Type",
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 190,
+                    ),
+                    Icon(
+                      Icons.compare_arrows_sharp,
+                      color: const Color(0xFF033A64),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 30,
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                        backgroundColor: const Color(0xFF033A64),
+                        primary: Colors.white,
+                        textStyle: const TextStyle(fontSize: 13),
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(5))),
+                      ),
+                      onPressed: () {
+                        print("hello");
+                      },
+                      child: Text("Biological"),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                        backgroundColor: const Color(0xFF033A64),
+                        primary: Colors.white,
+                        textStyle: const TextStyle(fontSize: 13),
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(5))),
+                      ),
+                      onPressed: () {
+                        print("hello");
+                      },
+                      child: Text("Chemical"),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                        backgroundColor: const Color(0xFF033A64),
+                        primary: Colors.white,
+                        textStyle: const TextStyle(fontSize: 13),
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(5))),
+                      ),
+                      onPressed: () {
+                        print("hello");
+                      },
+                      child: Text("DNA test"),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 30,
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                        backgroundColor: const Color(0xFF033A64),
+                        primary: Colors.white,
+                        textStyle: const TextStyle(fontSize: 13),
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(5))),
+                      ),
+                      onPressed: () {
+                        print("hello");
+                      },
+                      child: Text("Biological"),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                        backgroundColor: const Color(0xFF033A64),
+                        primary: Colors.white,
+                        textStyle: const TextStyle(fontSize: 13),
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(5))),
+                      ),
+                      onPressed: () {
+                        print("hello");
+                      },
+                      child: Text("Chemical"),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                        backgroundColor: const Color(0xFF033A64),
+                        primary: Colors.white,
+                        textStyle: const TextStyle(fontSize: 13),
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(5))),
+                      ),
+                      onPressed: () {
+                        print("hello");
+                      },
+                      child: Text("DNA test"),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 30,
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                        backgroundColor: const Color(0xFF033A64),
+                        primary: Colors.white,
+                        textStyle: const TextStyle(fontSize: 13),
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(5))),
+                      ),
+                      onPressed: () {
+                        print("hello");
+                      },
+                      child: Text("Biological"),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                        backgroundColor: const Color(0xFF033A64),
+                        primary: Colors.white,
+                        textStyle: const TextStyle(fontSize: 13),
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(5))),
+                      ),
+                      onPressed: () {
+                        print("hello");
+                      },
+                      child: Text("Chemical"),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                        backgroundColor: const Color(0xFF033A64),
+                        primary: Colors.white,
+                        textStyle: const TextStyle(fontSize: 13),
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(5))),
+                      ),
+                      onPressed: () {
+                        print("hello");
+                      },
+                      child: Text("DNA test"),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Text("Distance"),
+                search_bar(),
+                SizedBox(
+                  height: 30,
+                ),
+                Row(
+                  children: [
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.only(left: 45.0, right: 70.0),
+                        backgroundColor: const Color(0xFF033A64),
+                        primary: Colors.white,
+                        textStyle: const TextStyle(fontSize: 13),
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(5))),
+                      ),
+                      onPressed: () {
+                        print("hello");
+                      },
+                      child: Text("Show results"),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          );
+        });
   }
 }
