@@ -43,6 +43,7 @@ import 'package:ecentialsclone/src/screens/UserScreens/Notifications/notificatio
 import 'package:ecentialsclone/src/screens/UserScreens/Store/CreatePin1.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/CreateStore.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/CreateStore1.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/EnterPin.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/MyStoreHome.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/MyStoreHome2.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/PinCreated.dart';
@@ -62,11 +63,7 @@ class _TestWidgetsScreenState extends State<TestWidgetsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-<<<<<<< HEAD
-      body: createStore(),
-=======
-      body: labScreen(),
->>>>>>> 20730b0bef27f66f56efbab817136cb218d8bf48
+      body: pinCreated(),
     );
   }
 }

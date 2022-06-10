@@ -81,16 +81,10 @@ class _NearbyHState extends State<NearbyH> {
                       color: Colors.teal,
                     ),
                     child: Icon(
-<<<<<<< HEAD
                       // EcentialsIcons.filter
                       // Icons.filter_vintage,
                       MdiIcons.tune,
                       size: 20, color: AppColors.primaryWhiteColor,
-=======
-                      EcentialsIcons.filter,
-                      size: 20,
-                      color: AppColors.primaryWhiteColor,
->>>>>>> 20730b0bef27f66f56efbab817136cb218d8bf48
                     ),
                   ),
                 ],

@@ -202,11 +202,8 @@ class _DocotorInfoState extends State<DocotorInfo> {
                     ),
                     onPressed: () {
                       print("booked");
-<<<<<<< HEAD
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => Schedule()));
-=======
->>>>>>> 20730b0bef27f66f56efbab817136cb218d8bf48
                     },
                     child: Text("Book Appointment"),
                   )
