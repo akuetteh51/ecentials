@@ -4,6 +4,7 @@ import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/Widgets/labResultsCard.dart';
+import 'package:ecentialsclone/src/Widgets/navDrawer.dart';
 import 'package:ecentialsclone/src/Widgets/search.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
@@ -39,7 +40,7 @@ class _NearbyHState extends State<NearbyH> {
                     onPressed: () {
                       print("object");
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => labScreen()));
+                          MaterialPageRoute(builder: (context) => NavDrawer()));
                     },
                     icon: Icon(
                       EcentialsIcons.menu_icon,
@@ -80,10 +81,16 @@ class _NearbyHState extends State<NearbyH> {
                       color: Colors.teal,
                     ),
                     child: Icon(
+<<<<<<< HEAD
                       // EcentialsIcons.filter
                       // Icons.filter_vintage,
                       MdiIcons.tune,
                       size: 20, color: AppColors.primaryWhiteColor,
+=======
+                      EcentialsIcons.filter,
+                      size: 20,
+                      color: AppColors.primaryWhiteColor,
+>>>>>>> 20730b0bef27f66f56efbab817136cb218d8bf48
                     ),
                   ),
                 ],

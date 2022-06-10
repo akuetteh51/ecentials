@@ -62,7 +62,11 @@ class _TestWidgetsScreenState extends State<TestWidgetsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+<<<<<<< HEAD
       body: createStore(),
+=======
+      body: labScreen(),
+>>>>>>> 20730b0bef27f66f56efbab817136cb218d8bf48
     );
   }
 }
