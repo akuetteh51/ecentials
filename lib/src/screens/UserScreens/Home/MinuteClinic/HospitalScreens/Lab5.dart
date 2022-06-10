@@ -5,6 +5,7 @@ import 'package:ecentialsclone/src/Widgets/outlinedButton.dart';
 import 'package:ecentialsclone/src/Widgets/prominentDoctors.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital4Chat.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/ambulanceScreens/mapScreens/ambulance12.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/ambulanceScreens/mapScreens/ambulance4%20copy.dart';
 
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital2DocProfile.dart';
@@ -218,7 +219,7 @@ class _labScreenState extends State<labScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => mapScreen()));
+                                builder: (context) => mapScreen12()));
                       },
                       child: Row(children: [
                         Icon(Icons.directions),
@@ -239,10 +240,18 @@ class _labScreenState extends State<labScreen> {
                   padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
                   child: Row(
                     children: [
-                      ProminentDoctors(
-                          image: "assets/images/doctor1.png",
-                          docName: "Clara",
-                          specialization: "Neuro Surgeon"),
+                      GestureDetector(
+                        child: ProminentDoctors(
+                            image: "assets/images/doctor1.png",
+                            docName: "Clara",
+                            specialization: "Neuro Surgeon"),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DocotorInfo()));
+                        },
+                      ),
                       ProminentDoctors(
                           image: "assets/images/doctor2.png",
                           docName: "Clara",

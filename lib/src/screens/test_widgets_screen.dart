@@ -63,7 +63,7 @@ class _TestWidgetsScreenState extends State<TestWidgetsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pinCreated(),
+      body: NearbyH(),
     );
   }
 }

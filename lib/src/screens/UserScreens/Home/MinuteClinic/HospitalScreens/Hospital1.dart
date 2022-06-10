@@ -38,7 +38,7 @@ class _NearbyHState extends State<NearbyH> {
                   ),
                   IconButton(
                     onPressed: () {
-                      print("object");
+                      print(" NavDrawer");
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => NavDrawer()));
                     },
@@ -114,11 +114,19 @@ class _NearbyHState extends State<NearbyH> {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    TopDoctor(
-                        image: "assets/images/doctor1.png",
-                        docName: "Dr Esther Agams",
-                        specialization: "Heart Surgery",
-                        experience: 5),
+                    GestureDetector(
+                      child: TopDoctor(
+                          image: "assets/images/doctor1.png",
+                          docName: "Dr Esther Agams",
+                          specialization: "Heart Surgery",
+                          experience: 5),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => NavDrawer()));
+                      },
+                    ),
                     TopDoctor(
                         image: "assets/images/doctor2.png",
                         docName: "Sussan Agams",
@@ -133,24 +141,48 @@ class _NearbyHState extends State<NearbyH> {
                     SizedBox(
                       height: 20,
                     ),
-                    LabResultsCard(
-                        image: "assets/images/hospitalNational.png",
-                        labName: "ZIky National Hospital",
-                        openingHours: "Weekdays |7:00am -8:pm"),
+                    GestureDetector(
+                      child: LabResultsCard(
+                          image: "assets/images/hospitalNational.png",
+                          labName: "ZIky National Hospital",
+                          openingHours: "Weekdays |7:00am -8:pm"),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => labScreen()));
+                      },
+                    ),
                     SizedBox(
                       height: 20,
                     ),
-                    LabResultsCard(
-                        image: "assets/images/hospitaln.png",
-                        labName: "ZIky National Hospital",
-                        openingHours: "Weekdays |7:00am -8:pm"),
+                    GestureDetector(
+                      child: LabResultsCard(
+                          image: "assets/images/hospitaln.png",
+                          labName: "ZIky National Hospital",
+                          openingHours: "Weekdays |7:00am -8:pm"),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => labScreen()));
+                      },
+                    ),
                     SizedBox(
                       height: 20,
                     ),
-                    LabResultsCard(
-                        image: "assets/images/hospitalna.png",
-                        labName: "ZIky National Hospital",
-                        openingHours: "Weekdays |7:00am -8:pm")
+                    GestureDetector(
+                      child: LabResultsCard(
+                          image: "assets/images/hospitalna.png",
+                          labName: "ZIky National Hospital",
+                          openingHours: "Weekdays |7:00am -8:pm"),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => labScreen()));
+                      },
+                    )
                   ],
                 ),
               ),

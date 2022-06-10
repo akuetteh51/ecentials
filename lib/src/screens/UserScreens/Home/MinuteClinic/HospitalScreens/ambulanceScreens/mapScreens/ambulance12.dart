@@ -2,14 +2,14 @@ import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class mapScreen extends StatefulWidget {
-  const mapScreen({Key? key}) : super(key: key);
+class mapScreen12 extends StatefulWidget {
+  const mapScreen12({Key? key}) : super(key: key);
 
   @override
-  State<mapScreen> createState() => _mapScreenState();
+  State<mapScreen12> createState() => _mapScreen12State();
 }
 
-class _mapScreenState extends State<mapScreen> {
+class _mapScreen12State extends State<mapScreen12> {
   static const _initialCameraPosition = CameraPosition(
     target: LatLng(5.116833, -1.293324),
     zoom: 11.5,
