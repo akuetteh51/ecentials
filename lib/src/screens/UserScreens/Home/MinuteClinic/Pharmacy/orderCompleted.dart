@@ -32,21 +32,17 @@ class _OrderCompletedState extends State<OrderCompleted> {
           margin: const EdgeInsets.all(20),
           child: Column(
             children: [
-              Container(
-                  height: 300.07,
+              SizedBox(
+                height: 30,
+              ),
+              SizedBox(
+                  height: 250.07,
                   width: 300,
-                  margin: const EdgeInsets.only(
-                    top: 86.2,
-                    left: 56.5,
-                    right: 57.5,
-                  ),
                   child: Image.asset("assets/images/order_complete.png")),
               Container(
                   height: 22,
                   margin: const EdgeInsets.only(
-                    top: 10.25,
-                    left: 131,
-                    right: 129,
+                    top: 20.25,
                   ),
                   child: Text("Order completed!",
                       style: TextStyle(
@@ -58,9 +54,7 @@ class _OrderCompletedState extends State<OrderCompleted> {
                   height: 16,
                   width: 133,
                   margin: const EdgeInsets.only(
-                    top: 10,
-                    left: 140.5,
-                    right: 140.5,
+                    top: 16,
                   ),
                   child: Text("Order number:#987",
                       style: TextStyle(
@@ -68,16 +62,16 @@ class _OrderCompletedState extends State<OrderCompleted> {
                         fontWeight: FontWeight.w300,
                         fontFamily: "Montserrat",
                       ))),
-              Row(
+              Wrap(
                 children: [
                   Container(
                     height: 20,
                     // width: 116,
                     margin: const EdgeInsets.only(
                       top: 42.28,
-                      left: 42,
                     ),
                     child: Text("Ordered Items",
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
@@ -87,108 +81,115 @@ class _OrderCompletedState extends State<OrderCompleted> {
                   )
                 ],
               ),
-              Row(
-                children: [
-                  Container(
-                    height: 16,
-                    //  width: 116,
-                    margin: const EdgeInsets.only(
-                      top: 43.28,
-                      left: 43,
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Wrap(
+                  alignment: WrapAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      height: 16,
+                      //  width: 116,
+                      margin: const EdgeInsets.only(
+                        top: 43.28,
+                      ),
+                      child: Text("Order",
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: "Montserrat",
+                            color: const Color(0xFF3E3E3E),
+                          )),
                     ),
-                    child: Text("Order",
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "Montserrat",
-                          color: const Color(0xFF3E3E3E),
-                        )),
-                  ),
-                  Container(
-                    height: 16,
-                    margin: const EdgeInsets.only(
-                      top: 43.28,
-                      left: 245,
-                    ),
-                    child: Text("\$28.00",
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "Montserrat",
-                          color: const Color(0xFF3E3E3E),
-                        )),
-                  )
-                ],
+                    Container(
+                      height: 16,
+                      margin: const EdgeInsets.only(
+                        top: 43.28,
+                        // left: 245,
+                      ),
+                      child: Text("\$28.00",
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: "Montserrat",
+                            color: const Color(0xFF3E3E3E),
+                          )),
+                    )
+                  ],
+                ),
               ),
-              Row(
-                children: [
-                  Container(
-                    height: 16,
-                    //  width: 116,
-                    margin: const EdgeInsets.only(
-                      top: 7,
-                      left: 43,
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Wrap(
+                  alignment: WrapAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      height: 16,
+                      //  width: 116,
+                      margin: const EdgeInsets.only(
+                        top: 7,
+                      ),
+                      child: Text("Delivery",
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: "Montserrat",
+                            color: const Color(0xFF3E3E3E),
+                          )),
                     ),
-                    child: Text("Delivery",
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "Montserrat",
-                          color: const Color(0xFF3E3E3E),
-                        )),
-                  ),
-                  Container(
-                    height: 16,
-                    margin: const EdgeInsets.only(
-                      top: 7,
-                      left: 240,
-                    ),
-                    child: Text("\$7.20",
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "Montserrat",
-                          color: const Color(0xFF3E3E3E),
-                        )),
-                  )
-                ],
+                    Container(
+                      height: 16,
+                      margin: const EdgeInsets.only(
+                        top: 7,
+                      ),
+                      child: Text("\$7.20",
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: "Montserrat",
+                            color: const Color(0xFF3E3E3E),
+                          )),
+                    )
+                  ],
+                ),
               ),
-              Row(
-                children: [
-                  Container(
-                    height: 16,
-                    margin: const EdgeInsets.only(
-                      top: 7,
-                      left: 43,
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Wrap(
+                  alignment: WrapAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      height: 16,
+                      margin: const EdgeInsets.only(
+                        top: 7,
+                      ),
+                      child: Text("Summary",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: "Montserrat",
+                            color: const Color(0xFF424347),
+                          )),
                     ),
-                    child: Text("Summary",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: "Montserrat",
-                          color: const Color(0xFF424347),
-                        )),
-                  ),
-                  Container(
-                    height: 16,
-                    margin: const EdgeInsets.only(
-                      top: 7,
-                      left: 197,
-                    ),
-                    child: Text("\$35.20",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: "Montserrat",
-                          color: const Color(0xFF424347),
-                        )),
-                  )
-                ],
+                    Container(
+                      height: 16,
+                      margin: const EdgeInsets.only(
+                        top: 7,
+                      ),
+                      child: Text("\$35.20",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: "Montserrat",
+                            color: const Color(0xFF424347),
+                          )),
+                    )
+                  ],
+                ),
               ),
               Container(
                 height: 60,
                 width: 338,
-                margin: const EdgeInsets.only(top: 61.72, left: 35, right: 41),
+                margin: const EdgeInsets.only(top: 61.72, left: 35, right: 35),
                 decoration: BoxDecoration(
                   color: Color.fromARGB(255, 230, 240, 244),
                   borderRadius: BorderRadius.circular(10),
@@ -207,18 +208,20 @@ class _OrderCompletedState extends State<OrderCompleted> {
                       fontWeight: FontWeight.w400),
                 ),
               ),
+              SizedBox(height: 10,),
               Container(
-                  margin: EdgeInsets.only(left: 66, top: 12, right: 41),
-                  child: Row(children: [
+                  margin: EdgeInsets.only(top: 10,left: 35, right: 35),
+                  child: Wrap(
+                    children: [
                     ButtonOutlined(
                       text: "Track Delivery",
                       style: TextStyle(color: const Color(0xFF033A64)),
                       color: const Color(0xFF033A64),
                       width: 338,
-                      height: 60,
+                      height: 55,
                       radius: 10,
                     ),
-                  ])),
+                  ]),),
             ],
           ),
         ),

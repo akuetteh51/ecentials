@@ -42,6 +42,7 @@ class _CartState extends State<Cart> {
           margin: const EdgeInsets.only(
             // left: 132.59,
           ),
+          
           child: const Text(
             "Cart",
             style: TextStyle(

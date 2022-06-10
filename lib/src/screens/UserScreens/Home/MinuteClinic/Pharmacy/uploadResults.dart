@@ -272,7 +272,7 @@ class _UploadResultsState extends State<UploadResults> {
                     left: 18.67,
                   ),
                   child: Text(
-                    "UnAvailable Drugs",
+                    "Unavailable Drugs",
                     style: TextStyle(
                         color: const Color(0xFF033A64),
                         fontSize: 18,

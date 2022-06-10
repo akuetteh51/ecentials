@@ -97,6 +97,7 @@ class _DrugDashboardState extends State<DrugDashboard> {
                   ),
                 ),
               ),
+              
               SizedBox(height: 30.0,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal:8.0),
@@ -126,7 +127,7 @@ class _DrugDashboardState extends State<DrugDashboard> {
                   ),
                 ),
               ),
-              
+                          
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SizedBox(

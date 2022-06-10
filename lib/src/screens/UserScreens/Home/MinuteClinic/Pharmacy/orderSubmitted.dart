@@ -29,24 +29,20 @@ class OrderSubmittedState extends State<OrderSubmitted> {
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.all(20),
-          child: Column(
-            children: [
+          child: Column(            
+            children: [              
               Container(
-                height: 300,
+                height: 250,
                 width: 300,
                 margin: const EdgeInsets.only(
-                  top: 167.9,
-                  left: 57,
-                  right: 57,
+                  top: 45.9,
                 ),
                 child: Image.asset("assets/images/order_submitted.png"),
               ),
               Container(
                   height: 22,
                   margin: const EdgeInsets.only(
-                    top: 15.1,
-                    left: 131.1,
-                    right: 130.5,
+                    top: 30.1,
                   ),
                   child: Text("Order submitted!",
                       style: TextStyle(
@@ -58,8 +54,6 @@ class OrderSubmittedState extends State<OrderSubmitted> {
                   height: 16,
                   margin: const EdgeInsets.only(
                     top: 10,
-                    left: 86.5,
-                    right: 76.5,
                   ),
                   child: Text("Hold on! Your order is being processed.",
                       style: TextStyle(
@@ -68,12 +62,10 @@ class OrderSubmittedState extends State<OrderSubmitted> {
                         fontFamily: "Montserrat",
                       ))),
               Container(
-                  height: 50,
-                  width: 50,
+                  height: 35,
+                  width: 35,
                   margin: const EdgeInsets.only(
-                    top: 59.43,
-                    left: 182,
-                    right: 182,
+                    top: 30.43,
                   ),
                   child: Image.asset("assets/images/Vector1.png")),
             ],

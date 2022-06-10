@@ -32,20 +32,17 @@ class _OrderProcessedState extends State<OrderProcessed> {
           child: Column(
             children: [
               Container(
-                height: 300,
+                height: 250,
                 width: 300,
                 margin: const EdgeInsets.only(
-                  top: 196.9,
-                  left: 57,
-                  right: 57,
+                  top: 50.9,
                 ),
                 child: Image.asset("assets/images/order_processed.png"),
               ),
+              SizedBox(height: 35,),
               Container(
                   height: 22,
                   margin: const EdgeInsets.only(
-                    left: 131.5,
-                    right: 133.5,
                   ),
                   child: Text("Order processed!",
                       style: TextStyle(
@@ -57,8 +54,6 @@ class _OrderProcessedState extends State<OrderProcessed> {
                   height: 16,
                   margin: const EdgeInsets.only(
                     top: 10,
-                    left: 104.5,
-                    right: 104.5,
                   ),
                   child: Text("Proceed to complete your order",
                       style: TextStyle(
