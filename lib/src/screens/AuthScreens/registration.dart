@@ -16,6 +16,26 @@ class Registration extends StatefulWidget {
 }
 
 class _RegistrationState extends State<Registration> {
+  late TextEditingController _emailController;
+  late TextEditingController _passwordController;
+  late TextEditingController _confirmPasswordController;
+
+  @override
+  void initState() {
+    super.initState();
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
+    _confirmPasswordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     // Logo  and Registration text
@@ -35,14 +55,14 @@ class _RegistrationState extends State<Registration> {
           margin: const EdgeInsets.only(top: 7),
           child: const Text(
             "signup",
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 30),
           ),
         ),
       ],
     );
     // Email Input text
     final _formkey = GlobalKey<FormState>();
-    final _emailController = TextEditingController();
+
     final _email = Column(
       children: [
         const SizedBox(height: 40),
@@ -50,7 +70,7 @@ class _RegistrationState extends State<Registration> {
           alignment: Alignment.centerLeft,
           child: Text(
             "Email",
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 16),
           ),
         ),
         const SizedBox(
@@ -84,14 +104,13 @@ class _RegistrationState extends State<Registration> {
 
     // Password Input text
 
-    final _passwordController = TextEditingController();
     final _password = Column(
       children: [
         const Align(
           alignment: Alignment.centerLeft,
           child: Text(
             "Password",
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 16),
           ),
         ),
         const SizedBox(
@@ -110,7 +129,7 @@ class _RegistrationState extends State<Registration> {
           ),
           child: TextFormField(
             obscuringCharacter: '*',
-            obscureText: widget.isVisible,
+            obscureText: !widget.isVisible,
             style: const TextStyle(fontSize: 20),
             cursorColor: AppColors.primaryDeepColor,
             controller: _passwordController,
@@ -121,11 +140,14 @@ class _RegistrationState extends State<Registration> {
                     widget.isVisible = !widget.isVisible;
                   });
                 },
-                icon: widget.isVisible == true
-                    ? Icon(
-                        Icons.visibility,
-                      )
-                    : Icon(Icons.visibility_off),
+                icon: Icon(
+                  widget.isVisible == true
+                      ? Icons.visibility
+                      : Icons.visibility_off,
+                  color: AppColors.primaryBlackColor.withOpacity(
+                    .50,
+                  ),
+                ),
               ),
               hintText: "********",
               border: const UnderlineInputBorder(
@@ -138,14 +160,13 @@ class _RegistrationState extends State<Registration> {
     );
     // Confirm Password Input text
 
-    final _confirmPasswordController = TextEditingController();
     final _confirmPassword = Column(
       children: [
         const Align(
           alignment: Alignment.centerLeft,
           child: Text(
             "Confirm Password",
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 16),
           ),
         ),
         const SizedBox(
@@ -164,7 +185,7 @@ class _RegistrationState extends State<Registration> {
           ),
           child: TextFormField(
             obscuringCharacter: '*',
-            obscureText: widget.isVisible,
+            obscureText: !widget.isVisible,
             style: TextStyle(fontSize: 20),
             cursorColor: AppColors.primaryDeepColor,
             controller: _confirmPasswordController,
@@ -175,11 +196,14 @@ class _RegistrationState extends State<Registration> {
                     widget.isVisible = !widget.isVisible;
                   });
                 },
-                icon: widget.isVisible == true
-                    ? Icon(
-                        Icons.visibility,
-                      )
-                    : Icon(Icons.visibility_off),
+                icon: Icon(
+                  widget.isVisible == true
+                      ? Icons.visibility
+                      : Icons.visibility_off,
+                  color: AppColors.primaryBlackColor.withOpacity(
+                    .50,
+                  ),
+                ),
               ),
               hintText: "********",
               border: const UnderlineInputBorder(
@@ -195,7 +219,7 @@ class _RegistrationState extends State<Registration> {
     final _signin = Button(
       onTap: () {
         Get.to(
-          () => const MainScreen(),
+          () => Login(),
           transition: Transition.fadeIn,
           duration: const Duration(seconds: 1),
         );
@@ -212,19 +236,17 @@ class _RegistrationState extends State<Registration> {
           color: Colors.grey.withOpacity(.90),
           fontSize: 16,
           fontFamily: "Montserrat",
-          fontWeight: FontWeight.bold,
         ),
         children: [
           TextSpan(
               text: " Login",
               style: TextStyle(
-                fontWeight: FontWeight.bold,
                 color: AppColors.primaryDeepColor,
                 fontFamily: "Montserrat",
               ),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  Get.to(() => const Login(),
+                  Get.to(() => Login(),
                       transition: Transition.leftToRight,
                       duration: const Duration(seconds: 1));
                 }),
