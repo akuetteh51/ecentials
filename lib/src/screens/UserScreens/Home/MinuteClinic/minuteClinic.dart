@@ -10,6 +10,9 @@ import 'package:ecentialsclone/src/screens/UserScreens/Notifications/notificatio
 import 'package:ecentialsclone/src/screens/UserScreens/Store/store.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital1.dart';
+import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
 class MinuteClinic extends StatefulWidget {
   const MinuteClinic({Key? key}) : super(key: key);
@@ -88,12 +91,17 @@ class _MinuteClinicState extends State<MinuteClinic> {
         children: List.generate(
           3,
           (index) => DashBoard(
-            onTap: () {
-              Get.to(() => _pages[index]);
-            },
-            image: _images[index],
-            btnName: _btnNames[index],
-          ),
+              image: _images[index],
+              btnName: _btnNames[index],
+              //  if(index == 0){
+              onTap: () {
+                Get.to(
+                  () => const NearbyH(),
+                  transition: Transition.fadeIn,
+                  duration: Duration(seconds: 1),
+                );
+                // }
+              }),
         ),
       ),
     );

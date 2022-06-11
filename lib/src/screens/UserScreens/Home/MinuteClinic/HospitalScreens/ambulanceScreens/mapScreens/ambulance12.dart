@@ -2,14 +2,14 @@ import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class mapScreen extends StatefulWidget {
-  const mapScreen({Key? key}) : super(key: key);
+class mapScreen12 extends StatefulWidget {
+  const mapScreen12({Key? key}) : super(key: key);
 
   @override
-  State<mapScreen> createState() => _mapScreenState();
+  State<mapScreen12> createState() => _mapScreen12State();
 }
 
-class _mapScreenState extends State<mapScreen> {
+class _mapScreen12State extends State<mapScreen12> {
   static const _initialCameraPosition = CameraPosition(
     target: LatLng(5.116833, -1.293324),
     zoom: 11.5,
@@ -28,13 +28,10 @@ class _mapScreenState extends State<mapScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(
-          Icons.arrow_back,
-          color: Colors.black,
-        ),
+        leading: BackButton(),
         title: Center(
             child: Text(
-          "Map View",
+          "AnuTech National Hospital",
           style: TextStyle(color: Colors.black),
         )),
         backgroundColor: Colors.white,
@@ -67,32 +64,33 @@ class _mapScreenState extends State<mapScreen> {
                   Stack(
                     children: [
                       Row(
-                       children: <Widget>[
-                         SizedBox(height: 40,),Padding(
-                           padding: const EdgeInsets.all(8.0),
-                           child: Text(
-                           "Courier",
-                           style: TextStyle(
-                             color: const Color(0xFF033A64),
-                           ),
-                       ),
-                         ),   SizedBox(width: 120,),
+                        children: <Widget>[
+                          SizedBox(
+                            height: 40,
+                            width: 50,
+                          ),
+                          SizedBox(
+                            width: 120,
+                          ),
                           Image.asset(
-                             "assets/images/path2.png",
-                             height: 15.16,
-                             width: 13.33,
-
-                         ),],
+                            "assets/images/path2.png",
+                            height: 15.16,
+                            width: 13.33,
+                          ),
+                        ],
                       ),
-
                       Padding(
                         padding: const EdgeInsets.only(right: 50.0),
                         child: Center(
                           child: Column(
                             children: [
-                              SizedBox(height: 45,),
+                              SizedBox(
+                                height: 45,
+                              ),
                               Text("Elvis Wells"),
-                              SizedBox(height: 25,),
+                              SizedBox(
+                                height: 30,
+                              ),
                               Row(
                                 children: [
                                   SizedBox(
@@ -124,7 +122,7 @@ class _mapScreenState extends State<mapScreen> {
                     child: Button(
                       text: "Start Trip",
                       width: 150,
-                      color: Colors.blueAccent,
+                      color: Colors.green,
                       style: TextStyle(color: Colors.white),
                       radius: 15,
                     ),

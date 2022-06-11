@@ -9,6 +9,11 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScre
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/setting.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Notifications/notifications.dart';
 import 'package:flutter/services.dart';
+
+import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
+
+import 'package:ecentialsclone/src/screens/UserScreens/main_screen.dart';
+import 'package:ecentialsclone/src/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';

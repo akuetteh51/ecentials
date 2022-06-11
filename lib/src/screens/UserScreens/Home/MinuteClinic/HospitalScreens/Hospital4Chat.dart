@@ -1,5 +1,6 @@
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
+import 'package:ecentialsclone/src/Widgets/recentChatsCard.dart';
 import 'package:flutter/material.dart';
 
 class chat4 extends StatefulWidget {
@@ -26,19 +27,13 @@ class _chat4State extends State<chat4> {
                   Icon(
                     Icons.arrow_back,
                   ),
+
                   SizedBox(
-                    width: 40,
-                  ),
-                  Text(
-                    "Schedule",
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  SizedBox(
-                    width: 100,
+                    width: 250,
                   ),
                   Icon(Icons.alarm),
                   SizedBox(
-                    width: 40,
+                    width: 20,
                   ),
                   CircleAvatar(
                     radius: 15,
@@ -46,6 +41,12 @@ class _chat4State extends State<chat4> {
                   ),
                 ],
               ),
+             SizedBox(height: 10,),RecentChatsCard(image: "assets/images/doctor-1.png", docName: "Dr. John Doe", message: "having pains all over", time:"12:00 PM"),
+
+          RecentChatsCard(image: "assets/images/img.png", docName: "Dr. John Doe", message: "having pains all over", time:"12:00 PM")
+          ,RecentChatsCard(image: "assets/images/doctor-1.png", docName: "Dr. John Doe", message: "having pains all over", time:"12:00 PM"),
+              RecentChatsCard(image: "assets/images/doctor-1.png", docName: "Dr. John Doe", message: "having pains all over", time:"12:00 PM"),
+              RecentChatsCard(image: "assets/images/doctor-1.png", docName: "Dr. John Doe", message: "having pains all over", time:"12:00 PM")
             ]),
           ),
         ),

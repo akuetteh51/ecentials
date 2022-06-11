@@ -3,6 +3,9 @@ import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/outlinedButton.dart';
 import 'package:ecentialsclone/src/Widgets/prominentDoctors.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/ambulance_map.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital2DocProfile.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital3Schedule.dart';
 import 'package:flutter/material.dart';
 
 class labScreen extends StatefulWidget {
@@ -155,7 +158,10 @@ class _labScreenState extends State<labScreen> {
                         ),
                       ),
                       onPressed: () {
-                        print("booked");
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Schedule()));
                       },
                       child: Row(children: [
                         Icon(Icons.message_outlined),
@@ -180,7 +186,10 @@ class _labScreenState extends State<labScreen> {
                         ),
                       ),
                       onPressed: () {
-                        print("booked");
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DocotorInfo()));
                       },
                       child: Row(children: [
                         Icon(Icons.phone_in_talk),
@@ -205,7 +214,10 @@ class _labScreenState extends State<labScreen> {
                         ),
                       ),
                       onPressed: () {
-                        print("booked");
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => mapScreen()));
                       },
                       child: Row(children: [
                         Icon(Icons.directions),
@@ -254,7 +266,7 @@ class _labScreenState extends State<labScreen> {
                     ),
                     SizedBox(
                       height: 29,
-                      width: 150,
+                      width: 140,
                     ),
                     IconButton(
                       onPressed: () {
