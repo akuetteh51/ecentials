@@ -9,11 +9,15 @@ class FloatingAmbulance extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+<<<<<<< HEAD
+        debugPrint("Ambulance Tapped");
+=======
         Get.to(() => AmbulanceNear());
+>>>>>>> 3c5899f4628a7793782dcf8f4d0e9936e279d8d3
       },
       child: Container(
-        height: 60,
-        width: 60,
+        height: 50,
+        width: 50,
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/images/nav_ambulance.png"),

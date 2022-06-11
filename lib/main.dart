@@ -1,4 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:ecentialsclone/src/app_state/MainState.dart';
+import 'package:provider/provider.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulanceDirection.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulanceNear.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/EducationalInfo.dart';
@@ -13,10 +15,16 @@ import 'package:flutter/services.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 
 import 'package:ecentialsclone/src/screens/UserScreens/main_screen.dart';
-import 'package:ecentialsclone/src/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'src/app_state/ambulance_state.dart';
+import 'src/app_state/hospital_state.dart';
+import 'src/app_state/lab_state.dart';
+import 'src/app_state/pharmacy_state.dart';
+import 'src/app_state/shop_state.dart';
+import 'src/screens/test_widgets_screen.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,9 +33,23 @@ Future main() async {
   final showSignup = preference.getBool('showSignup') ?? false;
 
   runApp(
-    const MyApp(
-      showLogin: false,
-      showSignup: false,
+    // MyApp(
+    //   // showLogin: true,
+    //   // showSignup: false,
+    //
+    // ),
+    MultiProvider(
+      providers: [
+      ChangeNotifierProvider<MainState>(create: (_) => MainState()),
+      ChangeNotifierProvider<LabState>(create: (_) => LabState()),
+      ChangeNotifierProvider<AmbulanceState>(create: (_) => AmbulanceState()),
+      ChangeNotifierProvider<HospitalState>(create: (_) => HospitalState()),
+      ChangeNotifierProvider<PharmacyState>(create: (_) => PharmacyState()),
+      ChangeNotifierProvider<ShopState>(create: (_) => ShopState()),
+      ],      
+      child:const MaterialApp(
+        home: TestWidgetsScreen(),
+      ),
     ),
   );
 }
