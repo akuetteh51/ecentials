@@ -79,7 +79,11 @@ class _AlllabsState extends State<Alllabs> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(width: 314.02, child: Search()),
+                    // SizedBox(width: 314.02, child:
+                    Flexible(child: Search()),
+                    SizedBox(
+                      width: 16.0,
+                    ),
                     Container(
                       padding: const EdgeInsets.all(5.0),
                       width: 35,
@@ -98,39 +102,24 @@ class _AlllabsState extends State<Alllabs> {
               SizedBox(
                 height: 60,
               ),
-              InkWell(
-                onTap: () {
-                  Get.to(() => LabDetails());
-                },
-                child: LabResultsCard(
-                    image: "assets/images/card.png",
-                    labName: "Ziky Clinical Laboratory",
-                    openingHours: "Weekdays | 7:00am - 5:00pm"),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              InkWell(
-                onTap: () {
-                  Get.to(() => LabDetails());
-                },
-                child: LabResultsCard(
-                    image: "assets/images/card-1.png",
-                    labName: "AnuTech Medical Laboratory",
-                    openingHours: "Weekdays | 7:00am - 5:00pm"),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              InkWell(
-                onTap: () {
-                  Get.to(() => LabDetails());
-                },
-                child: LabResultsCard(
-                    image: "assets/images/card-2.png",
-                    labName: "AnuTech Medical Laboratory",
-                    openingHours: "Weekdays | 7:00am - 5:00pm"),
-              ),
+              for (int y = 0; y <= 4;y++)
+                Wrap(
+                  direction: Axis.vertical,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Get.to(() => LabDetails());
+                      },
+                      child: LabResultsCard(
+                          image: "assets/images/card.png",
+                          labName: "Ziky Clinical Laboratory",
+                          openingHours: "Weekdays | 7:00am - 5:00pm"),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                  ],
+                ),
             ])));
   }
 }

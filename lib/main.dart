@@ -8,6 +8,7 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/lab
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/alllabs.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/doctorInformation.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labDetails.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/mapScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/orderCompleted.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/cart.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/orderProcessed.dart';
@@ -67,7 +68,7 @@ class MyApp extends StatelessWidget {
         duration: 2000,
         splashIconSize: 500,
         // nextScreen: Alllabs(),
-        nextScreen: Cart(),
+        nextScreen: MapScreen(),
         // nextScreen: showLogin ? Login() : const OnboardingScreen(),
       ),
       theme: ThemeData(

@@ -28,12 +28,11 @@ class SchedulesCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = 170;
     return SizedBox(
       width: width - 40,
-      height: height,
+      // height: height,
       child: Card(
-        elevation: 15,
+        elevation: 20,
         child: Container(
           margin: const EdgeInsets.all(10),
           child: Column(
@@ -41,139 +40,155 @@ class SchedulesCard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        docName,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      RichText(
-                        text: TextSpan(
-                          text: specialization,
+                  Flexible(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          docName,
                           style: const TextStyle(
-                            color: Colors.grey,
-                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
                           ),
+                        ),
+                        SizedBox(
+                          height: 8,
+                        ),
+                        RichText(
+                          text: TextSpan(
+                            text: specialization,
+                            style: const TextStyle(
+                              color: Colors.grey,
+                              fontSize: 12,
+                            ),
+                            children: [
+                              const TextSpan(
+                                text: " - ",
+                              ),
+                              TextSpan(
+                                text: hospitalName,
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Wrap(
+                          alignment: WrapAlignment.spaceBetween,
                           children: [
-                            const TextSpan(
-                              text: " - ",
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Icon(
+                                  EcentialsIcons.clock,
+                                  size: 13,
+                                  color: Colors.grey,
+                                ),
+                                Text(
+                                  time,
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
                             ),
-                            TextSpan(
-                              text: hospitalName,
+                            const SizedBox(
+                              width: 5,
                             ),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Icon(
+                                  EcentialsIcons.calender,
+                                  size: 13,
+                                  color: Colors.grey,
+                                ),
+                                Text(
+                                  date,
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            
                           ],
                         ),
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const Icon(
-                                EcentialsIcons.clock,
-                                size: 13,
-                                color: Colors.grey,
-                              ),
-                              Text(
-                                time,
-                                style: const TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const Icon(
-                                EcentialsIcons.calender,
-                                size: 13,
-                                color: Colors.grey,
-                              ),
-                              Text(
-                                date,
-                                style: const TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          isConfirmed == false
-                              ? Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Icon(
-                                      EcentialsIcons.times,
-                                      color: AppColors.primaryRedColor,
-                                      size: 12,
-                                    ),
-                                    const SizedBox(width: 5),
-                                    Text(
-                                      "Unconfirmed",
-                                      style: TextStyle(
+                        SizedBox(height: 10,),
+                        isConfirmed == false
+                                ? Wrap(
+                                    // mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment: WrapCrossAlignment.center,
+                                    children: [
+                                      Icon(
+                                        EcentialsIcons.times,
                                         color: AppColors.primaryRedColor,
-                                        fontSize: 12,
+                                        size: 12,
                                       ),
-                                    ),
-                                  ],
-                                )
-                              : Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: const [
-                                    Icon(
-                                      EcentialsIcons.correct,
-                                      size: 12,
-                                      color: Colors.blue,
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(
-                                      "Confirmed",
-                                      style: TextStyle(
+                                      const SizedBox(width: 5),
+                                      Text(
+                                        "Unconfirmed",
+                                        style: TextStyle(
+                                          color: AppColors.primaryRedColor,
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                : Wrap(
+                                    // mainAxisSize: MainAxisSize.min,
+                                    children: const [
+                                      Icon(
+                                        EcentialsIcons.correct,
+                                        size: 12,
                                         color: Colors.blue,
                                       ),
-                                    ),
-                                  ],
-                                ),
-                        ],
-                      ),
-                    ],
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        "Confirmed",
+                                        style: TextStyle(
+                                          color: Colors.blue,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                      ],
+                    ),
                   ),
+                  SizedBox(width: 8,),
+                  Container(
+                    height: 50.0,
+                      width: 50.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      image: DecorationImage(image: AssetImage(image),fit: BoxFit.cover
+                      ),
+                    ),
+                  ),
+                  // ClipRRect(
+                  //   borderRadius: BorderRadius.circular(8.0),
+                  //   child: Image.asset(
+                  //     image,
+                  //     fit: BoxFit.contain,
+                  //     height: 80.0,
+                  //     width: 50.0,
+                  //   ),
+                  // )
                   // CircleAvatar(
                   //   backgroundColor: AppColors.primaryWhiteColor,
                   //   backgroundImage: AssetImage(
                   //     image,
                   //   ),
                   // ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.asset(
-                      image,
-                      fit: BoxFit.contain,
-                      height: 80.0,
-                      width: 50.0,
-                    ),
-                  )
+                  
                 ],
               ),
               const SizedBox(

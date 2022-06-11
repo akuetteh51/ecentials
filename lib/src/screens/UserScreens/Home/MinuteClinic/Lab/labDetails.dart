@@ -77,52 +77,18 @@ class _LabDetailsState extends State<LabDetails> {
             ),
           ),
           SliverToBoxAdapter(
-            child: Row(children: [
-              Container(
-                margin: EdgeInsets.only(left: 22.97, top: 9.5),
-                child: Text(
-                  "3.5km away",
-                  style: TextStyle(fontSize: 17),
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Wrap(children: [
+                Container(
+                  margin: EdgeInsets.only(left: 22.97, top: 9.5),
+                  child: Text(
+                    "3.5km away",
+                    style: TextStyle(fontSize: 17),
+                  ),
                 ),
-              ),
-              Container(
-                margin: EdgeInsets.only(left: 229.53, top: 9.5),
-                child: Row(
-                  children: [
-                    Text(
-                      "Ratings: ",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
-                    ),
-                    Icon(
-                      Icons.star,
-                      size: 15,
-                      color: AppColors.primaryOrangeColor,
-                    ),
-                    Icon(
-                      Icons.star,
-                      size: 15,
-                      color: AppColors.primaryOrangeColor,
-                    ),
-                    Icon(
-                      Icons.star,
-                      size: 15,
-                      color: AppColors.primaryOrangeColor,
-                    ),
-                    Icon(
-                      Icons.star,
-                      size: 15,
-                      color: AppColors.primaryOrangeColor,
-                    ),
-                    Icon(
-                      Icons.star,
-                      size: 15,
-                      color: AppColors.primaryOrangeColor,
-                    ),
-                  ],
-                ),
-              ),
-            ]),
+              ]),
+            ),
           ),
           SliverToBoxAdapter(
             child: Column(
@@ -136,9 +102,11 @@ class _LabDetailsState extends State<LabDetails> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 17),
                       ),
-                      Text(
-                        "  Accra,Ghana",
-                        style: TextStyle(fontSize: 17),
+                      Flexible(
+                        child: Text(
+                          "  Accra,Ghana",
+                          style: TextStyle(fontSize: 17),
+                        ),
                       ),
                     ],
                   ),
@@ -152,11 +120,13 @@ class _LabDetailsState extends State<LabDetails> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 17),
                       ),
-                      Container(
-                        margin: EdgeInsets.only(left: 5.5),
-                        child: Text(
-                          "24H",
-                          style: TextStyle(fontSize: 17),
+                      Flexible(
+                        child: Container(
+                          margin: EdgeInsets.only(left: 5.5),
+                          child: Text(
+                            "24H",
+                            style: TextStyle(fontSize: 17),
+                          ),
                         ),
                       ),
                     ],
@@ -171,11 +141,58 @@ class _LabDetailsState extends State<LabDetails> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 17),
                       ),
-                      Container(
-                        margin: EdgeInsets.only(left: 19.5),
-                        child: Text(
-                          "+233 xxxxxxxxxxxxx",
-                          style: TextStyle(fontSize: 17),
+                      Flexible(
+                        child: Container(
+                          margin: EdgeInsets.only(left: 19.5),
+                          child: Text(
+                            "+233 xxxxxxxxxxxxx",
+                            style: TextStyle(fontSize: 17),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 25.39, top: 9.46),
+                  child: Row(
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Ratings: ",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 17),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 16, left: 12),
+                        child: Wrap(
+                          children: [
+                            Icon(
+                              Icons.star,
+                              size: 15,
+                              color: AppColors.primaryOrangeColor,
+                            ),
+                            Icon(
+                              Icons.star,
+                              size: 15,
+                              color: AppColors.primaryOrangeColor,
+                            ),
+                            Icon(
+                              Icons.star,
+                              size: 15,
+                              color: AppColors.primaryOrangeColor,
+                            ),
+                            Icon(
+                              Icons.star,
+                              size: 15,
+                              color: AppColors.primaryOrangeColor,
+                            ),
+                            Icon(
+                              Icons.star,
+                              size: 15,
+                              color: AppColors.primaryOrangeColor,
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -281,72 +298,56 @@ class _LabDetailsState extends State<LabDetails> {
           ),
           SliverToBoxAdapter(
             child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: 210,
               margin: EdgeInsets.only(left: 24.09, top: 25.38),
-              child: Row(
+              child: ListView(
+                scrollDirection: Axis.horizontal,
                 children: [
-                  InkWell(
-                    onTap: () {
-                      Get.to(() => DoctorInformation());
-                    },
-                    child: ProminentDoctors(
-                        image: "assets/images/doctor1.png",
-                        docName: "Clara",
-                        specialization: "Neuro Surgeon"),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(left: 25.97, top: 0),
-                    child: InkWell(
-                      onTap: () {
-                        Get.to(() => DoctorInformation());
-                      },
-                      child: ProminentDoctors(
-                          image: "assets/images/doctor2.png",
-                          docName: "Clara",
-                          specialization: "Cardio Surgeon"),
+                  for (int j = 0; j < 5; j++)
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: InkWell(
+                        onTap: () {
+                          Get.to(() => DoctorInformation());
+                        },
+                        child: ProminentDoctors(
+                            image: "assets/images/doctor1.png",
+                            docName: "Clara",
+                            specialization: "Neuro Surgeon"),
+                      ),
                     ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(left: 25.05, top: 0),
-                    child: InkWell(
-                      onTap: () {
-                        Get.to(() => DoctorInformation());
-                      },
-                      child: ProminentDoctors(
-                          image: "assets/images/doctor.png",
-                          docName: "Clara",
-                          specialization: "Neuro Surgeon"),
-                    ),
-                  ),
                 ],
               ),
             ),
           ),
           SliverToBoxAdapter(
-              child: Row(
+              child: Column(
+                children: [
+                  Row(
             children: [
-              Container(
-                margin: EdgeInsets.only(left: 22.82, top: 29),
-                child: Text(
-                  "Lab Coverage",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
-                ),
-              ),
-              IconButton(
-                onPressed: () {
-                  print("clicked");
-                },
-                icon: Container(
-                  margin: EdgeInsets.only(left: 189.24, top: 0),
-                  child: Icon(
-                    Icons.compare_arrows_sharp,
-                    color: Colors.teal,
+                  Container(
+                    margin: EdgeInsets.only(left: 22.82, top: 29),
+                    child: Text(
+                      "Lab Coverage",
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                    ),
                   ),
-                ),
-              )
+                  IconButton(
+                    onPressed: () {
+                      print("clicked");
+                    },
+                    icon: Container(
+                      margin: EdgeInsets.only(left: 189.24, top: 0),
+                      child: Icon(
+                        Icons.compare_arrows_sharp,
+                        color: Colors.teal,
+                      ),
+                    ),
+                  )
             ],
-          )),
-          SliverToBoxAdapter(
-            child: Container(
+          ),
+          Container(
               margin: EdgeInsets.only(left: 24.2, top: 24.63),
               child: Row(children: [
                 ButtonOutlined(
@@ -381,7 +382,12 @@ class _LabDetailsState extends State<LabDetails> {
                 ),
               ]),
             ),
-          ),
+          SizedBox(height: 100,),
+                ],
+              )),
+          // SliverToBoxAdapter(
+          //   child: ,
+          // ),
         ],
       ),
     );

@@ -9,13 +9,15 @@ import 'package:ecentialsclone/src/Widgets/schedulesCard.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/doctorInformation.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labDetails.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/homeScreen.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 
 class LabSchedules extends StatefulWidget {
   final bool hasNotification;
 
-  const LabSchedules({Key? key, this.hasNotification = false}) : super(key: key);
+  const LabSchedules({Key? key, this.hasNotification = false})
+      : super(key: key);
 
   @override
   State<LabSchedules> createState() => _LabSchedulesState();
@@ -82,18 +84,20 @@ class _LabSchedulesState extends State<LabSchedules> {
             body: SingleChildScrollView(
                 child: SafeArea(
                     child: Padding(
-              padding: const EdgeInsets.only(top: 30),
+              padding: const EdgeInsets.only(top: 0),
               child: Container(
                 margin: EdgeInsets.all(20),
                 child: Column(
                   children: [
                     Container(
-                      margin: EdgeInsets.all(30),
+                      margin: EdgeInsets.all(6),
                       width: 420,
                       height: 55,
 
                       decoration: BoxDecoration(
                         color: AppColors.primaryGreyColor,
+                      // color: Colors.redAccent,
+
                         borderRadius: BorderRadius.circular(5),
                       ),
                       // VerticalDivider(width: 1),
@@ -120,11 +124,11 @@ class _LabSchedulesState extends State<LabSchedules> {
                             //  padding: const EdgeInsets.only(left: 10.0, right: 4.0),
                             decoration: BoxDecoration(
                                 border: Border(
-                              left: BorderSide(
-                                width: 1,
-                              ),
-                              right: BorderSide(width: 1),
-                            )),
+                                    // left: BorderSide(
+                                    //   width: 1,
+                                    // ),
+                                    // right: BorderSide(width: 1),
+                                    )),
                             child:
                                 //Padding(
                                 // padding: const EdgeInsets.only(left:10.0, right: 3.0),
@@ -141,19 +145,22 @@ class _LabSchedulesState extends State<LabSchedules> {
                       ),
                     ),
                     SizedBox(
-                      height: 56,
+                      height: 40,
                     ),
                     InkWell(
                       onTap: () {
                         Get.to(() => DoctorInformation());
                       },
-                      child: SchedulesCard(
-                          image: "assets/images/doctor.png",
-                          docName: "Dr. John Doe",
-                          specialization: "Heart Surgeon ",
-                          hospitalName: "National Hospital",
-                          time: "10:00 AM",
-                          date: "12/09/22"),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        child: SchedulesCard(
+                            image: "assets/images/doctor.png",
+                            docName: "Dr. John Doe",
+                            specialization: "Heart Surgeon ",
+                            hospitalName: "National Hospital",
+                            time: "10:00 AM",
+                            date: "12/09/22"),
+                      ),
                     ),
                     SizedBox(
                       height: 18,
