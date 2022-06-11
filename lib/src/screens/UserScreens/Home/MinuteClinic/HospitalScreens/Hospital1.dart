@@ -4,6 +4,7 @@ import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/Widgets/labResultsCard.dart';
+import 'package:ecentialsclone/src/Widgets/navDrawer.dart';
 import 'package:ecentialsclone/src/Widgets/search.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
@@ -86,10 +87,22 @@ class _NearbyHState extends State<NearbyH> {
                       ),
                     ],
                   ),
+<<<<<<< HEAD
                   SizedBox(height: 15, width: 0),
                   Text(
                     "Find a Nearby Hospital",
                     style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+=======
+                  IconButton(
+                    onPressed: () {
+                      print("object");
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => NavDrawer()));
+                    },
+                    icon: Icon(
+                      EcentialsIcons.menu_icon,
+                    ),
+>>>>>>> 3c5899f4628a7793782dcf8f4d0e9936e279d8d3
                   ),
                   SizedBox(
                     height: 30,
@@ -122,6 +135,7 @@ class _NearbyHState extends State<NearbyH> {
                   SizedBox(
                     height: 30,
                   ),
+<<<<<<< HEAD
                   Row(
                     children: const [
                       SizedBox(
@@ -143,6 +157,35 @@ class _NearbyHState extends State<NearbyH> {
                   ),
                   const SizedBox(
                     height: 10,
+=======
+                  Search4(),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(5.0),
+                    height: 35,
+                    width: 35,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: Colors.teal,
+                    ),
+                    child: Icon(
+                      EcentialsIcons.filter,
+                      size: 20,
+                      color: AppColors.primaryWhiteColor,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 20,
+>>>>>>> 3c5899f4628a7793782dcf8f4d0e9936e279d8d3
                   ),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,

@@ -68,7 +68,7 @@ class doctorCard extends StatelessWidget {
                       height: 40,
                       radius: 50,
                       hasIcon: true,
-                      icon: Icons.message_rounded,
+                      icon: EcentialsIcons.message,
                       iconColor: AppColors.primaryWhiteColor,
                     ),
                     ButtonOutlined(
@@ -79,7 +79,7 @@ class doctorCard extends StatelessWidget {
                       height: 40,
                       radius: 50,
                       hasIcon: true,
-                      icon: EcentialsIcons.phone,
+                      icon: EcentialsIcons.phonecall,
                       iconSize: 20,
                       iconColor: AppColors.primaryWhiteColor,
                     ),

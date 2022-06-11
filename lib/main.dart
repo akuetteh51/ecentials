@@ -1,10 +1,20 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:ecentialsclone/src/app_state/MainState.dart';
 import 'package:provider/provider.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulanceDirection.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulanceNear.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/EducationalInfo.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/HealthInformation.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/editProfile.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/personalInfo.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/setting.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Notifications/notifications.dart';
+import 'package:flutter/services.dart';
+
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 
 import 'package:ecentialsclone/src/screens/UserScreens/main_screen.dart';
-import 'package:ecentialsclone/src/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -53,6 +63,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: AnimatedSplashScreen(
@@ -60,7 +74,8 @@ class MyApp extends StatelessWidget {
         centered: true,
         duration: 2000,
         splashIconSize: 500,
-        nextScreen: showLogin ? const MainScreen() : const OnboardingScreen(),
+        nextScreen: AmbulanceNear(),
+        // nextScreen: showLogin ? Login() : const OnboardingScreen(),
       ),
       theme: ThemeData(
         fontFamily: "Montserrat",

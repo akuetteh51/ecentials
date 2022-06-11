@@ -1,6 +1,11 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulanceNear.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/minuteClinic.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/setting.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class NavDrawer extends StatelessWidget {
   final bool hasShop;
@@ -9,6 +14,7 @@ class NavDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      elevation: 100,
       backgroundColor: AppColors.primaryWhiteColor,
       child: ListView(
         children: [
@@ -32,10 +38,18 @@ class NavDrawer extends StatelessWidget {
             height: 2,
           ),
           ListTile(
-            leading: Icon(
-              EcentialsIcons.profile,
-              size: 30,
-              color: AppColors.primaryBlackColor,
+            onTap: () {
+              Get.to(
+                () => ProfileScreen(),
+                transition: Transition.rightToLeft,
+                duration: Duration(
+                  seconds: 1,
+                ),
+              );
+              Scaffold.of(context).openEndDrawer();
+            },
+            leading: Image.asset(
+              "assets/images/profileicon.png",
             ),
             title: Text(
               "Profile",
@@ -44,10 +58,9 @@ class NavDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(
-              EcentialsIcons.cart,
-              size: 30,
-              color: AppColors.primaryBlackColor,
+            onTap: () {},
+            leading: Image.asset(
+              "assets/images/cart.png",
             ),
             title: Text(
               "Cart",
@@ -70,10 +83,18 @@ class NavDrawer extends StatelessWidget {
                 )
               : Container(),
           ListTile(
-            leading: Icon(
-              EcentialsIcons.hospital,
-              size: 25,
-              color: AppColors.primaryBlackColor,
+            onTap: () {
+              Get.to(
+                () => MinuteClinic(),
+                transition: Transition.rightToLeft,
+                duration: Duration(
+                  seconds: 1,
+                ),
+              );
+              Scaffold.of(context).openEndDrawer();
+            },
+            leading: Image.asset(
+              "assets/images/hospitalicon.png",
             ),
             title: Text(
               "Minute Clinic",
@@ -82,22 +103,34 @@ class NavDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(
-              EcentialsIcons.ambulance,
-              size: 25,
-              color: AppColors.primaryBlackColor,
+            onTap: () {
+              Get.to(
+                () => AmbulanceNear(),
+                transition: Transition.rightToLeft,
+                duration: Duration(
+                  seconds: 1,
+                ),
+              );
+              Scaffold.of(context).openEndDrawer();
+            },
+            leading: Image.asset(
+              "assets/images/ambulanceicon.png",
             ),
             title: Text(
               "Ambulance",
-              style:
-                  TextStyle(fontSize: 20, color: AppColors.primaryBlackColor),
+              style: TextStyle(
+                fontSize: 20,
+                color: AppColors.primaryBlackColor,
+              ),
             ),
           ),
           ListTile(
-            leading: Icon(
-              EcentialsIcons.settings,
-              size: 30,
-              color: AppColors.primaryBlackColor,
+            onTap: () {
+              Get.to(() => Settings());
+              Scaffold.of(context).openEndDrawer();
+            },
+            leading: Image.asset(
+              "assets/images/settings.png",
             ),
             title: Text(
               "Settings",
@@ -106,10 +139,9 @@ class NavDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(
-              EcentialsIcons.wallet,
-              size: 25,
-              color: AppColors.primaryDeepColor,
+            onTap: () {},
+            leading: Image.asset(
+              "assets/images/ecentialcard.png",
             ),
             title: Text(
               "Ecentials Wallet",
@@ -118,10 +150,9 @@ class NavDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(
-              EcentialsIcons.circle_arrow_right,
-              size: 25,
-              color: AppColors.primaryRedColor,
+            onTap: () {},
+            leading: Image.asset(
+              "assets/images/circlearrow.png",
             ),
             title: Text(
               "Logout",
