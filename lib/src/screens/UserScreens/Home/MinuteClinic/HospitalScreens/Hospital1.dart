@@ -1,21 +1,15 @@
-import 'dart:developer';
-import 'dart:ui';
-
-import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
-import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/Widgets/labResultsCard.dart';
 import 'package:ecentialsclone/src/Widgets/navDrawer.dart';
-import 'package:ecentialsclone/src/Widgets/search.dart';
+
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 import 'package:ecentialsclone/src/Widgets/searchLocation.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital2DocProfile.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Lab5.dart';
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class NearbyH extends StatefulWidget {
   const NearbyH({Key? key}) : super(key: key);
@@ -207,7 +201,23 @@ class _NearbyHState extends State<NearbyH> {
                 SizedBox(
                   height: 80,
                 ),
-                Text("Location"),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0, left: 30),
+                      child: Text(
+                        "Location",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 230,
+                    ),
+                  ],
+                ),
                 search_bar(),
                 SizedBox(
                   height: 50,
@@ -221,14 +231,18 @@ class _NearbyHState extends State<NearbyH> {
                       "Service Type",
                       style: TextStyle(
                         fontSize: 18,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                     SizedBox(
                       width: 190,
                     ),
-                    Icon(
-                      Icons.compare_arrows_sharp,
-                      color: const Color(0xFF033A64),
+                    // Icon(
+                    //   Icons.compare_arrows_sharp,
+                    //   color: const Color(0xFF033A64),
+                    // ),
+                    GestureDetector(
+                      child: Image.asset("assets/images/Control.png"),
                     ),
                   ],
                 ),
@@ -257,7 +271,7 @@ class _NearbyHState extends State<NearbyH> {
                     TextButton(
                       style: TextButton.styleFrom(
                         padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                        backgroundColor: const Color(0xFF033A64),
+                        backgroundColor: Colors.grey,
                         primary: Colors.white,
                         textStyle: const TextStyle(fontSize: 13),
                         shape: const RoundedRectangleBorder(
@@ -274,7 +288,7 @@ class _NearbyHState extends State<NearbyH> {
                     TextButton(
                       style: TextButton.styleFrom(
                         padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                        backgroundColor: const Color(0xFF033A64),
+                        backgroundColor: Colors.grey,
                         primary: Colors.white,
                         textStyle: const TextStyle(fontSize: 13),
                         shape: const RoundedRectangleBorder(
@@ -295,7 +309,7 @@ class _NearbyHState extends State<NearbyH> {
                     TextButton(
                       style: TextButton.styleFrom(
                         padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                        backgroundColor: const Color(0xFF033A64),
+                        backgroundColor: Colors.grey,
                         primary: Colors.white,
                         textStyle: const TextStyle(fontSize: 13),
                         shape: const RoundedRectangleBorder(
@@ -312,7 +326,7 @@ class _NearbyHState extends State<NearbyH> {
                     TextButton(
                       style: TextButton.styleFrom(
                         padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                        backgroundColor: const Color(0xFF033A64),
+                        backgroundColor: Colors.grey,
                         primary: Colors.white,
                         textStyle: const TextStyle(fontSize: 13),
                         shape: const RoundedRectangleBorder(
@@ -329,7 +343,7 @@ class _NearbyHState extends State<NearbyH> {
                     TextButton(
                       style: TextButton.styleFrom(
                         padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                        backgroundColor: const Color(0xFF033A64),
+                        backgroundColor: Colors.grey,
                         primary: Colors.white,
                         textStyle: const TextStyle(fontSize: 13),
                         shape: const RoundedRectangleBorder(
@@ -338,7 +352,7 @@ class _NearbyHState extends State<NearbyH> {
                       onPressed: () {
                         print("hello");
                       },
-                      child: Text("DNA test"),
+                      child: Text("Pathology"),
                     ),
                   ],
                 ),
@@ -350,7 +364,7 @@ class _NearbyHState extends State<NearbyH> {
                     TextButton(
                       style: TextButton.styleFrom(
                         padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                        backgroundColor: const Color(0xFF033A64),
+                        backgroundColor: Colors.grey,
                         primary: Colors.white,
                         textStyle: const TextStyle(fontSize: 13),
                         shape: const RoundedRectangleBorder(
@@ -359,7 +373,7 @@ class _NearbyHState extends State<NearbyH> {
                       onPressed: () {
                         print("hello");
                       },
-                      child: Text("Biological"),
+                      child: Text("Hematology"),
                     ),
                     SizedBox(
                       width: 10,
@@ -367,7 +381,7 @@ class _NearbyHState extends State<NearbyH> {
                     TextButton(
                       style: TextButton.styleFrom(
                         padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                        backgroundColor: const Color(0xFF033A64),
+                        backgroundColor: Colors.grey,
                         primary: Colors.white,
                         textStyle: const TextStyle(fontSize: 13),
                         shape: const RoundedRectangleBorder(
@@ -376,7 +390,7 @@ class _NearbyHState extends State<NearbyH> {
                       onPressed: () {
                         print("hello");
                       },
-                      child: Text("Chemical"),
+                      child: Text("Microbiology"),
                     ),
                     SizedBox(
                       width: 10,
@@ -384,7 +398,7 @@ class _NearbyHState extends State<NearbyH> {
                     TextButton(
                       style: TextButton.styleFrom(
                         padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                        backgroundColor: const Color(0xFF033A64),
+                        backgroundColor: Colors.grey,
                         primary: Colors.white,
                         textStyle: const TextStyle(fontSize: 13),
                         shape: const RoundedRectangleBorder(
@@ -393,26 +407,46 @@ class _NearbyHState extends State<NearbyH> {
                       onPressed: () {
                         print("hello");
                       },
-                      child: Text("DNA test"),
+                      child: Text("Blood test"),
                     ),
                   ],
                 ),
                 SizedBox(
                   height: 30,
                 ),
-                Text("Distance"),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0, left: 30),
+                      child: Text(
+                        "Distance",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 230,
+                    ),
+                  ],
+                ),
                 search_bar(),
                 SizedBox(
                   height: 30,
                 ),
                 Row(
                   children: [
+                    SizedBox(
+                      width: 30,
+                    ),
                     TextButton(
                       style: TextButton.styleFrom(
-                        padding: const EdgeInsets.only(left: 45.0, right: 70.0),
+                        padding: const EdgeInsets.only(
+                            left: 85.0, right: 85.0, top: 10.0, bottom: 10),
                         backgroundColor: const Color(0xFF033A64),
                         primary: Colors.white,
-                        textStyle: const TextStyle(fontSize: 13),
+                        textStyle: const TextStyle(fontSize: 15),
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(5))),
                       ),
@@ -420,6 +454,19 @@ class _NearbyHState extends State<NearbyH> {
                         print("hello");
                       },
                       child: Text("Show results"),
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.all(8),
+                        primary: Colors.black,
+                        textStyle: const TextStyle(fontSize: 15),
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(5))),
+                      ),
+                      onPressed: () {
+                        print("hello");
+                      },
+                      child: Text("Clear"),
                     ),
                   ],
                 )
