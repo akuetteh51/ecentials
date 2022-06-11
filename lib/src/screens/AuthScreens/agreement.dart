@@ -30,7 +30,7 @@ class Agreement extends StatelessWidget {
       elevation: 0,
       title: const Text(
         "Summary Terms and Conditions",
-        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        style: TextStyle(fontSize: 16),
       ),
     );
 

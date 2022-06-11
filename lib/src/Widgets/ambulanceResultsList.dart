@@ -17,28 +17,39 @@ class ambulanceResultsList extends StatelessWidget {
         padding: EdgeInsets.all(12),
         child: SizedBox(
           width: 414.0,
-          child: Column(children: [
-            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-              Text(
-                type!,
-                style: const TextStyle(
-                    fontWeight: FontWeight.bold, fontSize: 14.0),
-              ),
-              Text(
-                "$discount% discount",
-                style: const TextStyle(fontSize: 14.0),
-              ),
-              Text(
-                "\$ $prize",
-                style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14.0,
-                    color: Colors.orange),
-              ),
-            ]),
-            SizedBox(height: 10),
-            Text(description!),
-          ]),
+          child: Container(
+            margin: EdgeInsets.symmetric(
+              horizontal: 10,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      type!,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 14.0),
+                    ),
+                    Text(
+                      "$discount% discount",
+                      style: const TextStyle(fontSize: 14.0),
+                    ),
+                    Text(
+                      "\$ $prize",
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14.0,
+                          color: Colors.orange),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10),
+                Text(description!),
+              ],
+            ),
+          ),
         ),
       ),
     );
