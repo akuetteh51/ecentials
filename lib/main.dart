@@ -40,14 +40,14 @@ Future main() async {
     // ),
     MultiProvider(
       providers: [
-      ChangeNotifierProvider<MainState>(create: (_) => MainState()),
-      ChangeNotifierProvider<LabState>(create: (_) => LabState()),
-      ChangeNotifierProvider<AmbulanceState>(create: (_) => AmbulanceState()),
-      ChangeNotifierProvider<HospitalState>(create: (_) => HospitalState()),
-      ChangeNotifierProvider<PharmacyState>(create: (_) => PharmacyState()),
-      ChangeNotifierProvider<ShopState>(create: (_) => ShopState()),
-      ],      
-      child:const MaterialApp(
+        ChangeNotifierProvider<MainState>(create: (_) => MainState()),
+        ChangeNotifierProvider<LabState>(create: (_) => LabState()),
+        ChangeNotifierProvider<AmbulanceState>(create: (_) => AmbulanceState()),
+        ChangeNotifierProvider<HospitalState>(create: (_) => HospitalState()),
+        ChangeNotifierProvider<PharmacyState>(create: (_) => PharmacyState()),
+        ChangeNotifierProvider<ShopState>(create: (_) => ShopState()),
+      ],
+      child: const MaterialApp(
         home: TestWidgetsScreen(),
       ),
     ),
