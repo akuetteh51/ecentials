@@ -3,7 +3,7 @@ import 'package:ecentialsclone/src/Widgets/Dashboard.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Chat/chat.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/screen2.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/nearbyHospital.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/screen5.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/homeScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Notifications/notifications.dart';
@@ -71,9 +71,9 @@ class _MinuteClinicState extends State<MinuteClinic> {
     ];
     // screens
     final _pages = [
-      NearbyH(),
-      NearbyH(),
-      NearbyH(),
+      NearbyHospital(),
+      NearbyHospital(),
+      NearbyHospital(),
     ];
 
     return Scaffold(
