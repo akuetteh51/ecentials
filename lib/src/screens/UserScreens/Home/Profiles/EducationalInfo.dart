@@ -49,7 +49,7 @@ class _EducationalInfoState extends State<EducationalInfo> {
             Navigator.pop(context);
           },
           child: Icon(
-            Icons.arrow_back_ios,
+            Icons.arrow_back_sharp,
             color: Colors.black54,
           ),
         ),

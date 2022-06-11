@@ -55,7 +55,7 @@ class _RegistrationState extends State<Registration> {
           margin: const EdgeInsets.only(top: 7),
           child: const Text(
             "signup",
-            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 30),
           ),
         ),
       ],
@@ -70,7 +70,7 @@ class _RegistrationState extends State<Registration> {
           alignment: Alignment.centerLeft,
           child: Text(
             "Email",
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 16),
           ),
         ),
         const SizedBox(
@@ -110,7 +110,7 @@ class _RegistrationState extends State<Registration> {
           alignment: Alignment.centerLeft,
           child: Text(
             "Password",
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 16),
           ),
         ),
         const SizedBox(
@@ -166,7 +166,7 @@ class _RegistrationState extends State<Registration> {
           alignment: Alignment.centerLeft,
           child: Text(
             "Confirm Password",
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 16),
           ),
         ),
         const SizedBox(
@@ -236,13 +236,11 @@ class _RegistrationState extends State<Registration> {
           color: Colors.grey.withOpacity(.90),
           fontSize: 16,
           fontFamily: "Montserrat",
-          fontWeight: FontWeight.bold,
         ),
         children: [
           TextSpan(
               text: " Login",
               style: TextStyle(
-                fontWeight: FontWeight.bold,
                 color: AppColors.primaryDeepColor,
                 fontFamily: "Montserrat",
               ),
