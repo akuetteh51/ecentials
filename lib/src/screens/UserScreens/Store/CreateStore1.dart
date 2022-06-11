@@ -9,14 +9,8 @@ class createStore1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            print("object");
-          },
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.black,
-          ),
+        leading: BackButton(
+          color: Colors.black,
         ),
         backgroundColor: Colors.white,
       ),

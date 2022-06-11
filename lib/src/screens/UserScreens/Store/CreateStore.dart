@@ -24,11 +24,13 @@ class createStore extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: 250,
+              width: 200,
             ),
-            CircleAvatar(
-              radius: 15,
-              backgroundImage: AssetImage("assets/images/profilePic.png"),
+            Expanded(
+              child: CircleAvatar(
+                radius: 15,
+                backgroundImage: AssetImage("assets/images/profilePic.png"),
+              ),
             ),
           ],
         ),

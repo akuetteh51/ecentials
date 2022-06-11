@@ -1,5 +1,6 @@
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/pin.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/EnterPin.dart';
 import 'package:flutter/material.dart';
 
 class EnteredPin extends StatelessWidget {
@@ -20,7 +21,7 @@ class EnteredPin extends StatelessWidget {
                 height: 20,
               ),
               Text(
-                "Re-enter your 4-digit Pincode",
+                "Enter your 4-digit Pincode",
                 style: TextStyle(fontSize: 18),
               ),
               SizedBox(
@@ -193,7 +194,12 @@ class EnteredPin extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () {
-                      print("Hello world");
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => pinKey2(),
+                        ),
+                      );
                     },
                     icon: Image.asset("assets/images/delete_key.png"),
                   ),

@@ -14,8 +14,7 @@ class Mystore3 extends StatelessWidget {
             onPressed: () {
               Scaffold.of(context).openDrawer();
             },
-            icon: const Icon(
-              EcentialsIcons.menu_icon,
+            icon: BackButton(
               color: Colors.black,
             ),
           ),

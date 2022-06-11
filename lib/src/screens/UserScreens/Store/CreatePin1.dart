@@ -1,5 +1,7 @@
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/pin.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/CreatePin2.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/EnterPin.dart';
 import 'package:flutter/material.dart';
 
 class pinkey1 extends StatefulWidget {
@@ -198,7 +200,10 @@ class _pinkey1State extends State<pinkey1> {
                   ),
                   IconButton(
                     onPressed: () {
-                      print("Hello world");
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => RenterPin()),
+                      );
                     },
                     icon: Image.asset("assets/images/delete_key.png"),
                   ),

@@ -1,6 +1,7 @@
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
+import 'package:ecentialsclone/src/Widgets/navDrawer.dart';
 import 'package:ecentialsclone/src/Widgets/storeList.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,8 @@ class storeHome extends StatelessWidget {
         leading: Builder(
           builder: (context) => IconButton(
             onPressed: () {
-              Scaffold.of(context).openDrawer();
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => NavDrawer()));
             },
             icon: const Icon(
               EcentialsIcons.menu_icon,

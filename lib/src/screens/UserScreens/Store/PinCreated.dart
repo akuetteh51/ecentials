@@ -1,5 +1,7 @@
 import 'package:ecentialsclone/src/Widgets/button.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/CreateStore.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/EnterPin.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/PinEntered.dart';
 import 'package:flutter/material.dart';
 
 class pinCreated extends StatelessWidget {
@@ -38,7 +40,7 @@ class pinCreated extends StatelessWidget {
                   style: TextStyle(color: Colors.white, fontSize: 15),
                   onTap: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => pinKey2()));
+                        MaterialPageRoute(builder: (context) => createStore()));
                   }),
             ),
           ]),
