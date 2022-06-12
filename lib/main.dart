@@ -6,7 +6,6 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulance_
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/labScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/docotorInfo.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/nearbyHospital.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/schedule.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labChat.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labSchedules.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/alllabs.dart';
@@ -23,6 +22,7 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmac
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/uploadResults.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/scanResults.dart';
 import 'package:ecentialsclone/src/app_state/MainState.dart';
+import 'package:ecentialsclone/src/screens/onboardingScreen.dart';
 import 'package:provider/provider.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulanceDirection.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulanceNear.dart';
@@ -42,6 +42,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/hospitalSchedules.dart';
 import 'src/screens/UserScreens/Home/MinuteClinic/minuteClinic.dart';
 import 'src/app_state/ambulance_state.dart';
 import 'src/app_state/hospital_state.dart';
@@ -71,8 +72,8 @@ Future main() async {
         ChangeNotifierProvider<PharmacyState>(create: (_) => PharmacyState()),
         ChangeNotifierProvider<ShopState>(create: (_) => ShopState()),
       ],
-      child: const MaterialApp(
-        home: labScreen(),
+      child: const GetMaterialApp(
+        home: Schedule(),
       ),
     ),
   );

@@ -1,10 +1,30 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
+import 'package:ecentialsclone/src/screens/AuthScreens/reset.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../Widgets/button.dart';
+
 class EmailSuccess extends StatelessWidget {
-  const EmailSuccess({Key? key}) : super(key: key);
+  EmailSuccess({Key? key}) : super(key: key);
+
+  final _proceed = GestureDetector(
+    onTap: () {
+      Get.to(
+        () => PasswordReset(),
+        transition: Transition.fadeIn,
+        duration: const Duration(seconds: 1),
+      );
+    },
+    child: Button(
+      onTap: () {
+        Get.to(() => PasswordReset());
+      },
+      text: "Proceed",
+      style: TextStyle(color: AppColors.primaryWhiteColor, fontSize: 20),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +49,7 @@ class EmailSuccess extends StatelessWidget {
               "assets/images/email_success.png",
             ),
             const Text(
-              "Email Sent Succesfully !",
+              "You have an account with us!",
               style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
@@ -39,9 +59,13 @@ class EmailSuccess extends StatelessWidget {
               height: 10,
             ),
             const Text(
-              "Check your email for steps to reset your password",
+              "Proceed to reset your password",
               style: TextStyle(),
             ),
+            SizedBox(
+              height: 20,
+            ),
+            SizedBox(width: 200, child: _proceed)
           ],
         ),
       ),

@@ -7,7 +7,6 @@ import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Chat/chat.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/nearbyHospital.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/doctorInformation.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labSchedules.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labChat.dart';
@@ -23,14 +22,14 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmac
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/scanResults.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/uploadResults.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/scanDocument.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/nearbyHospital.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/homeScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Notifications/notifications.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/store.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+
+import 'HospitalScreens/nearbyHospital.dart';
 
 class MinuteClinic extends StatefulWidget {
   const MinuteClinic({Key? key}) : super(key: key);
@@ -129,11 +128,26 @@ class _MinuteClinicState extends State<MinuteClinic> {
               btnName: _btnNames[index],
               //  if(index == 0){
               onTap: () {
-                Get.to(
-                  () => const NearbyHospital(),
-                  transition: Transition.fadeIn,
-                  duration: Duration(seconds: 1),
-                );
+                if (index == 0) {
+                  Get.to(
+                    () => const NearbyHospital(),
+                    transition: Transition.fadeIn,
+                    duration: Duration(seconds: 1),
+                  );
+                } else if (index == 1) {
+                  Get.to(
+                    () => const pharmacyDashboard(),
+                    transition: Transition.fadeIn,
+                    duration: Duration(seconds: 1),
+                  );
+                } else {
+                  Get.to(
+                    () => const Alllabs(),
+                    transition: Transition.fadeIn,
+                    duration: Duration(seconds: 1),
+                  );
+                }
+
                 // }
               }),
         ),

@@ -10,13 +10,15 @@ class TopDoctor extends StatelessWidget {
   final String docName;
   final String specialization;
   final int experience;
+  final ontap;
 
   const TopDoctor(
       {Key? key,
       required this.image,
       required this.docName,
       required this.specialization,
-      required this.experience})
+      required this.experience,
+      this.ontap})
       : super(key: key);
 
   @override

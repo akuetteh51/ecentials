@@ -4,7 +4,6 @@ import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/Widgets/labResultsCard.dart';
-import 'package:ecentialsclone/src/Widgets/search.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
 import 'package:flutter/material.dart';
@@ -26,18 +25,13 @@ class _NearbyHospitalState extends State<NearbyHospital> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.only(top: 30),
+            padding: const EdgeInsets.all(20),
             child: Column(children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(
-                    width: 20,
-                  ),
                   Icon(
                     EcentialsIcons.menu_icon,
-                  ),
-                  SizedBox(
-                    width: 250,
                   ),
                   CircleAvatar(
                     radius: 15,
@@ -46,25 +40,27 @@ class _NearbyHospitalState extends State<NearbyHospital> {
                 ],
               ),
               SizedBox(height: 40, width: 0),
-              Text(
-                "Find a Nearby Hospital",
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Find a Nearby Hospital",
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                ),
               ),
               SizedBox(
                 height: 10,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
-                    width: 20,
-                  ),
-                  Search4(),
-                  SizedBox(
-                    width: 10,
+                    child: Search4(),
+                    width: MediaQuery.of(context).size.width - 80,
                   ),
                   Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      // Icon(EcentialsIcons.filter),
                       Icon(Icons.toggle_off_outlined),
                       Icon(Icons.toggle_off_outlined),
                     ],
@@ -75,13 +71,11 @@ class _NearbyHospitalState extends State<NearbyHospital> {
                 height: 40,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     "Top Doctors",
                     style: TextStyle(fontWeight: FontWeight.w600, fontSize: 17),
-                  ),
-                  SizedBox(
-                    width: 90,
                   ),
                   Text(
                     "See all",
@@ -93,11 +87,21 @@ class _NearbyHospitalState extends State<NearbyHospital> {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    TopDoctor(
+                    GestureDetector(
+                      onTap: () {
+                        // Get.to(
+                        //   () => const chat(),
+                        //   transition: Transition.fadeIn,
+                        //   duration: Duration(seconds: 1),
+                        // );
+                      },
+                      child: TopDoctor(
                         image: "assets/images/doctor1.png",
                         docName: "Dr Esther Agams",
                         specialization: "Heart Surgery",
-                        experience: 5),
+                        experience: 95,
+                      ),
+                    ),
                     TopDoctor(
                         image: "assets/images/doctor2.png",
                         docName: "Sussan Agams",
