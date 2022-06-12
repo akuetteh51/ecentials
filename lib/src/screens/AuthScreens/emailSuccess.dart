@@ -32,7 +32,6 @@ class EmailSuccess extends StatelessWidget {
               "Email Sent Succesfully !",
               style: TextStyle(
                 fontSize: 25,
-                fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(

@@ -184,6 +184,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ));
 
     return Scaffold(
+      extendBody: true,
       backgroundColor: AppColors.primaryWhiteColor,
       floatingActionButton: const FloatingAmbulance(),
       bottomNavigationBar: BottomNavBar(),

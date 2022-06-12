@@ -3,8 +3,10 @@ import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:ecentialsclone/src/Widgets/sliverFab.dart';
+import 'package:get/get.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({Key? key}) : super(key: key);
@@ -39,6 +41,7 @@ class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       backgroundColor: AppColors.primaryWhiteColor,
       bottomNavigationBar: BottomNavBar(),
       floatingActionButton: const FloatingAmbulance(),
@@ -46,6 +49,9 @@ class _EditProfileState extends State<EditProfile> {
       body: SliverFab(
         floatingWidget: Center(
           child: GestureDetector(
+            onTap: () {
+              Get.to(() => const ProfileScreen());
+            },
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
@@ -62,7 +68,7 @@ class _EditProfileState extends State<EditProfile> {
             ),
           ),
         ),
-        floatingPosition: FloatingPosition(
+        floatingPosition: const FloatingPosition(
           right: 0,
           left: 0,
         ),
