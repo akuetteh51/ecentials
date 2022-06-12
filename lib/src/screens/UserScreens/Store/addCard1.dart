@@ -14,6 +14,12 @@ class addCard extends StatelessWidget {
             Text("Add card"),
           ],
         ),
+        Text("Add a new card on your wallet for easy life"),
+        Text("Add card"),
+        IconButton(
+          onPressed: () {},
+          icon: Icon(Icons.ac_unit_sharp),
+        ),
       ],
     ));
   }

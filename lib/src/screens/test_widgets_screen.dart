@@ -2,6 +2,9 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Hospita
 import 'package:ecentialsclone/src/screens/UserScreens/Store/PinCreated.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/PinVerfication.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/SetUpEcentialsWallet.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/add_product.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/my_store_home3.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/wallet.dart';
 import 'package:flutter/material.dart';
 
 class TestWidgetsScreen extends StatefulWidget {
@@ -15,7 +18,9 @@ class _TestWidgetsScreenState extends State<TestWidgetsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SetupWallet(),
+      body: walletSet(),
+      // addingProduct(),
+      // SetupWallet(),
       //  PageView(children: [],),
     );
   }
