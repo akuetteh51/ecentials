@@ -15,21 +15,26 @@ class createStore1 extends StatelessWidget {
         backgroundColor: Colors.white,
       ),
       bottomNavigationBar: Container(
-          height: 120,
-          width: double.infinity,
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(56, 33, 56, 34),
-            child: Button(
-              text: "Create ",
-              width: 302,
-              radius: 20,
-              style: TextStyle(color: Colors.white, fontSize: 15),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => storeHome()));
-              },
-            ),
-          )),
+        height: 120,
+        width: double.infinity,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(56, 33, 56, 34),
+          child: Button(
+            text: "Create ",
+            width: 302,
+            radius: 20,
+            style: TextStyle(color: Colors.white, fontSize: 15),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => storeHome(),
+                ),
+              );
+            },
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
