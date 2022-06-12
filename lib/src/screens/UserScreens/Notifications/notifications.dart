@@ -20,6 +20,15 @@ class _NotificationsState extends State<Notifications> {
       backgroundColor: AppColors.primaryWhiteColor,
       foregroundColor: AppColors.primaryBlackColor,
       elevation: 0,
+      leading: InkWell(
+        onTap: () {
+          Navigator.pop(context);
+        },
+        child: Icon(
+          Icons.arrow_back_sharp,
+          color: Colors.black54,
+        ),
+      ),
       title: const Text("Notification"),
       centerTitle: true,
       actions: [

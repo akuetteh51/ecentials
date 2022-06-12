@@ -13,7 +13,28 @@ class _chatState extends State<chat> {
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
-          child: Text("data"),
+          child:   Row(
+            children: [
+              Icon(
+                Icons.arrow_back,
+              ),
+
+              SizedBox(
+                width: 250,
+              ),
+              Icon(Icons.alarm),
+              SizedBox(
+                width: 20,
+              ),
+              CircleAvatar(
+                radius: 15,
+                backgroundImage: AssetImage("assets/images/profilePic.png"),
+              ),
+            ],
+          ),
+
+
+
         ),
       ),
     );

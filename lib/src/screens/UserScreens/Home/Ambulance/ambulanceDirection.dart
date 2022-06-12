@@ -22,6 +22,15 @@ class _AmbulanceDirectionState extends State<AmbulanceDirection> {
         backgroundColor: AppColors.primaryWhiteColor,
         foregroundColor: AppColors.primaryBlackColor,
         elevation: 0,
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Icon(
+            Icons.arrow_back_sharp,
+            color: Colors.black54,
+          ),
+        ),
         title: const Text("Zicky Clinical Laboratory"),
         centerTitle: true,
       ),
@@ -55,7 +64,7 @@ class _AmbulanceDirectionState extends State<AmbulanceDirection> {
                             children: [
                               Container(
                                 height: 150,
-                                width: 130,
+                                width: 110,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   image: const DecorationImage(

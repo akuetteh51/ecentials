@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
@@ -21,34 +23,38 @@ class _ScheduleState extends State<Schedule> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.only(top: 30),
+            padding: const EdgeInsets.only(top: 3),
             child: Column(
               children: [
-                Row(
-                  children: [
-                    Icon(
-                      Icons.arrow_back,
-                    ),
-                    SizedBox(
-                      width: 40,
-                    ),
-                    Text(
-                      "Schedule",
-                      style: TextStyle(fontSize: 18),
-                    ),
-                    SizedBox(
-                      width: 100,
-                    ),
-                    Icon(Icons.alarm),
-                    SizedBox(
-                      width: 40,
-                    ),
-                    CircleAvatar(
-                      radius: 15,
-                      backgroundImage:
-                          AssetImage("assets/images/profilePic.png"),
-                    ),
-                  ],
+                Container(
+                  margin: EdgeInsets.all(15),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_back,
+                      ),
+                      SizedBox(
+                        width: 40,
+                      ),
+                      Text(
+                        "Schedule",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        width: 100,
+                      ),
+                      Icon(Icons.alarm),
+                      SizedBox(
+                        width: 40,
+                      ),
+                      CircleAvatar(
+                        radius: 15,
+                        backgroundImage:
+                            AssetImage("assets/images/profilePic.png"),
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(
                   width: 384,

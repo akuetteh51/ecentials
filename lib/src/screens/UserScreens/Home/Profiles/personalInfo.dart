@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
@@ -46,6 +48,15 @@ class _PersonalInfoState extends State<PersonalInfo> {
           "Personal Information",
         ),
         centerTitle: true,
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Icon(
+            Icons.arrow_back_sharp,
+            color: Colors.black54,
+          ),
+        ),
         elevation: 0,
       ),
       bottomNavigationBar: BottomNavBar(),

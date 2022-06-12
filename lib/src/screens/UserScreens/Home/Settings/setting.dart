@@ -21,6 +21,15 @@ class _SettingsState extends State<Settings> {
         backgroundColor: AppColors.primaryWhiteColor,
         foregroundColor: AppColors.primaryBlackColor,
         elevation: 0,
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Icon(
+            Icons.arrow_back_sharp,
+            color: Colors.black54,
+          ),
+        ),
         title: const Text("Settings"),
       ),
       body: ListView(

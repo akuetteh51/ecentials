@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/addSchoolButton.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
@@ -45,6 +47,15 @@ class _EducationalInfoState extends State<EducationalInfo> {
         backgroundColor: AppColors.primaryWhiteColor,
         foregroundColor: AppColors.primaryBlackColor,
         elevation: 0,
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Icon(
+            Icons.arrow_back_sharp,
+            color: Colors.black54,
+          ),
+        ),
         title: const Text("Educational Information"),
         centerTitle: true,
       ),

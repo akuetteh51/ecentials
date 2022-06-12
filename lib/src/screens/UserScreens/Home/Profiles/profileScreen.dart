@@ -1,6 +1,8 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:ecentialsclone/src/Themes/colors.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/educationalInfo.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/healthInformation.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/EducationalInfo.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/HealthInformation.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/editProfile.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/personalInfo.dart';
 import 'package:get/get.dart';
@@ -212,6 +214,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
           SliverAppBar(
             expandedHeight: MediaQuery.of(context).size.height * 0.4,
             backgroundColor: AppColors.primaryDeepColor,
+            leading: InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Icon(
+                Icons.arrow_back_sharp,
+                color: Colors.white,
+              ),
+            ),
             pinned: true,
             floating: true,
             flexibleSpace: FlexibleSpaceBar(
