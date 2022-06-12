@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/EducationalInfo.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/HealthInformation.dart';

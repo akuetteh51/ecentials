@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+
 import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -32,6 +34,7 @@ class _mapScreenState extends State<mapScreen> {
           Icons.arrow_back,
           color: Colors.black,
         ),
+        // ignore: prefer_const_constructors
         title: Center(
             child: Text(
           "Map View",
