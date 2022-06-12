@@ -73,6 +73,15 @@ class _EditProfileState extends State<EditProfile> {
             backgroundColor: AppColors.primaryDeepColor,
             pinned: true,
             floating: true,
+            leading: InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Icon(
+                Icons.arrow_back_sharp,
+                color: Colors.white,
+              ),
+            ),
             title: const Text("Edit Profile"),
             centerTitle: true,
             actions: [

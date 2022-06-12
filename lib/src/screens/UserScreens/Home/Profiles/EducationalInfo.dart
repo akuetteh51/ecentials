@@ -4,6 +4,7 @@ import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/addSchoolButton.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
+import 'package:ecentialsclone/src/Widgets/schoolsAttendedCard.dart';
 import 'package:flutter/material.dart';
 
 class EducationalInfo extends StatefulWidget {
@@ -45,26 +46,53 @@ class _EducationalInfoState extends State<EducationalInfo> {
         backgroundColor: AppColors.primaryWhiteColor,
         foregroundColor: AppColors.primaryBlackColor,
         elevation: 0,
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Icon(
+            Icons.arrow_back_sharp,
+            color: Colors.black54,
+          ),
+        ),
         title: const Text("Educational Information"),
         centerTitle: true,
       ),
-      body: Container(
-        margin: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 20,
-        ),
-        child: Stack(
-          children: [
-            Positioned(
-              bottom: 15,
-              child: AddSchoolButton(
-                onTap: () {
-                  openDialog();
-                },
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "SCHOOLS ATTENDED",
+                style: TextStyle(
+                  color: AppColors.primaryDeepColor,
+                ),
               ),
-            ),
-            // Text("Hello"),
-          ],
+              SizedBox(
+                height: 20,
+              ),
+              SchoolsAttendedCard(
+                schoolName:
+                    "Kwame Nkrumah University of Science and Technology",
+                program: "Bsc. Computer Science",
+                year: "2016 - 2020",
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              SchoolsAttendedCard(
+                schoolName: "Zion Senior High",
+                program: "General Science",
+                year: "2013 - 2016",
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              AddSchoolButton(),
+            ],
+          ),
         ),
       ),
     );

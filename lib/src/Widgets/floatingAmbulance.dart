@@ -12,8 +12,8 @@ class FloatingAmbulance extends StatelessWidget {
         Get.to(() => AmbulanceNear());
       },
       child: Container(
-        height: 60,
-        width: 60,
+        height: 50,
+        width: 50,
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/images/nav_ambulance.png"),

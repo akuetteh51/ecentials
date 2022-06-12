@@ -1,8 +1,10 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/ambulanceResultsList.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulanceDirection.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulance_map.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class FindAmulance extends StatefulWidget {
   const FindAmulance({Key? key}) : super(key: key);
@@ -30,6 +32,9 @@ class _FindAmulanceState extends State<FindAmulance> {
           vertical: 20,
         ),
         child: Button(
+          onTap: () {
+            Get.to(() => AmbulanceDirection());
+          },
           text: "Confirm",
           color: AppColors.primaryRedColor,
           style: TextStyle(
@@ -40,7 +45,7 @@ class _FindAmulanceState extends State<FindAmulance> {
       body: ListView(
         children: [
           Container(
-            height: 350,
+            height: MediaQuery.of(context).size.width * 0.8,
             width: MediaQuery.of(context).size.width,
             child: const mapScreen(),
           ),

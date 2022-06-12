@@ -213,6 +213,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
           SliverAppBar(
             expandedHeight: MediaQuery.of(context).size.height * 0.4,
             backgroundColor: AppColors.primaryDeepColor,
+            leading: InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Icon(
+                Icons.arrow_back_sharp,
+                color: Colors.white,
+              ),
+            ),
             pinned: true,
             floating: true,
             flexibleSpace: FlexibleSpaceBar(

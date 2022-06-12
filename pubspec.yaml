@@ -24,8 +24,10 @@ dependencies:
   dotted_border: ^2.0.0+2
   intl: ^0.17.0
   pin_code_fields: ^7.4.0
+  pinput: ^2.1.4
+  # pinput: ^2.2.7
+  provider: ^6.0.3
 
-  
 
 dev_dependencies:
   flutter_test:
@@ -40,6 +42,8 @@ flutter:
   - family: Montserrat
     fonts: 
     - asset: assets/fonts/Montserrat-Regular.ttf
+    - asset: assets/fonts/Montserrat-Bold.ttf
+    - asset: assets/fonts/Montserrat-SemiBold.ttf
   - family: EcentialsIcons
     fonts: 
     - asset: assets/fonts/EcentialsIcons.ttf

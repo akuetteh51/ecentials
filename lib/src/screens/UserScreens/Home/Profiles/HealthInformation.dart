@@ -45,6 +45,15 @@ class _HealthInformationState extends State<HealthInformation> {
           "Health Information",
         ),
         centerTitle: true,
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Icon(
+            Icons.arrow_back_sharp,
+            color: Colors.black54,
+          ),
+        ),
         elevation: 0,
       ),
       bottomNavigationBar: BottomNavBar(),

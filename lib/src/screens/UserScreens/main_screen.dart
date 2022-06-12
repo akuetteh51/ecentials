@@ -1,11 +1,13 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
+import 'package:ecentialsclone/src/Widgets/Dashboard.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/Widgets/navDrawer.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Chat/chat.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/minuteClinic.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital3Schedule.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/homeScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Notifications/notifications.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/store.dart';
