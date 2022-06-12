@@ -9,14 +9,14 @@ import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
 import 'package:flutter/material.dart';
 
-class NearbyH extends StatefulWidget {
-  const NearbyH({Key? key}) : super(key: key);
+class NearbyHospital extends StatefulWidget {
+  const NearbyHospital({Key? key}) : super(key: key);
 
   @override
-  State<NearbyH> createState() => _NearbyHState();
+  State<NearbyHospital> createState() => _NearbyHospitalState();
 }
 
-class _NearbyHState extends State<NearbyH> {
+class _NearbyHospitalState extends State<NearbyHospital> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

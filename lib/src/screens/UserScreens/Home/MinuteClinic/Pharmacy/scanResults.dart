@@ -2,6 +2,7 @@
 
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
+import 'package:ecentialsclone/src/Widgets/availableDrugsCard.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/Widgets/drugCard.dart';
@@ -41,7 +42,7 @@ class _ScanResultsState extends State<ScanResults> {
               Icons.arrow_back,
               color: Theme.of(context).disabledColor.withOpacity(.75),
             )),
-            centerTitle: true,
+        centerTitle: true,
         title: Text(
           "Scan Result",
           style: TextStyle(
@@ -70,132 +71,29 @@ class _ScanResultsState extends State<ScanResults> {
                         fontFamily: "Montserrat"),
                   ),
                 ),
-                
-                
+                AvailableDrugsCard(),
+                AvailableDrugsCard(),
                 SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: Wrap(                
-                    crossAxisAlignment: WrapCrossAlignment.start,
-                    children: [
-                      for (int j = 0; j < 5; j++)
-                      Container(
-                          margin: EdgeInsets.only(
-                            top: 15.34,
-                          ),
-                          child: Column(
-                            children: [
-                              Text(
-                                "Ibuprofen",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontFamily: "Montserrat",
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              Container(
-                                height: 25,
-                                width: 106,
-                                margin: EdgeInsets.only(
-                                  left: 18.42,
-                                ),
-                                child: Text(
-                                  "Tablets *5 pieces",
-                                  style: TextStyle(
-                                      color: const Color(0xFF979797),
-                                      fontSize: 12,
-                                      fontFamily: "Montserrat",
-                                      fontWeight: FontWeight.w400),
-                                ),
-                              )
-                            ],
-                          )),
-                      Container(
-                          height: 32.48,
-                          width: 105.87,
-                          margin: EdgeInsets.only(top: 15.34, left: 217.39),
-                          child: Text(
-                            "\$5.00",
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontFamily: "Montserrat",
-                              fontWeight: FontWeight.w700,
-                              color: const Color(0xFF033A64),
-                            ),
-                          )),
-                    ],
-                  ),
+                  height: 60,
                 ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: Wrap(                
-                    crossAxisAlignment: WrapCrossAlignment.start,
-                  children: [
-                    Container(
-                        margin: EdgeInsets.only(
-                          top: 15.34,
-                        ),
-                        child: Column(
-                          children: [
-                            Text(
-                              "Ibuprofen",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: "Montserrat",
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            Container(
-                              height: 25,
-                              width: 106,
-                              margin: EdgeInsets.only(
-                                left: 18.42,
-                              ),
-                              child: Text(
-                                "Tablets *5 pieces",
-                                style: TextStyle(
-                                    color: const Color(0xFF979797),
-                                    fontSize: 12,
-                                    fontFamily: "Montserrat",
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            )
-                          ],
-                        )),
-                    Container(
-                        height: 32.48,
-                        width: 105.87,
-                        margin: EdgeInsets.only(top: 15.34, left: 217.39),
-                        child: Text(
-                          "\$5.00",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontFamily: "Montserrat",
-                            fontWeight: FontWeight.w700,
-                            color: const Color(0xFF033A64),
-                          ),
-                        )),
-                  ],
-                ),
-                ),
-
-                SizedBox(height: 60,),
-    
-                Container(
-                  height: 53,
-                  width: 301.94,
-                  decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 230, 240, 244),
-                    borderRadius: BorderRadius.circular(9),
-                  ),
-                  child: Button(
-                    text: "Check out",
-                    height: 18,
-                    width: 99,
-                    style: TextStyle(
-                        color: AppColors.primaryWhiteColor,
-                        fontSize: 15,
-                        fontFamily: "Montserrat",
-                        fontWeight: FontWeight.w400),
+                Center(
+                  child: Container(
+                    height: 53,
+                    width: 301.94,
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 230, 240, 244),
+                      borderRadius: BorderRadius.circular(9),
+                    ),
+                    child: Button(
+                      text: "Check out",
+                      height: 18,
+                      width: 99,
+                      style: TextStyle(
+                          color: AppColors.primaryWhiteColor,
+                          fontSize: 15,
+                          fontFamily: "Montserrat",
+                          fontWeight: FontWeight.w400),
+                    ),
                   ),
                 ),
               ],

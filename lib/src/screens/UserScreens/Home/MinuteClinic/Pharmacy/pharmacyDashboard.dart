@@ -38,67 +38,66 @@ class _pharmacyDashboardState extends State<pharmacyDashboard> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       backgroundColor: AppColors.primaryWhiteColor,
       appBar: AppBar(
-          elevation: 0,
-          backgroundColor: AppColors.primaryWhiteColor,
-          // backgroundColor: Colors.amber,
-          foregroundColor: AppColors.primaryBlackColor,
-          leading: Builder(
-            builder: (context) => IconButton(
+        elevation: 0,
+        backgroundColor: AppColors.primaryWhiteColor,
+        // backgroundColor: Colors.amber,
+        foregroundColor: AppColors.primaryBlackColor,
+        leading: Builder(
+          builder: (context) => IconButton(
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+            icon: Icon(
+              EcentialsIcons.menu_icon,
+              color: AppColors.primaryDeepColor,
+              size: 18,
+            ),
+          ),
+        ),
+        title: RichText(
+          text: TextSpan(
+            text: "Hi, ",
+            style: TextStyle(
+              fontSize: 17,
+              fontFamily: "Montserrat",
+              color: AppColors.primaryDeepColor,
+            ),
+            children: [
+              TextSpan(
+                  text: "Sussan",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "Montserrat",
+                    color: AppColors.primaryDeepColor,
+                  )),
+            ],
+          ),
+        ),
+        actions: [
+          GestureDetector(
+            child: const CircleAvatar(
+              radius: 15,
+              backgroundImage: AssetImage("assets/images/profile.png"),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(
+              right: 20,
+              left: 10,
+            ),
+            child: IconButton(
               onPressed: () {
-                Scaffold.of(context).openDrawer();
+                Get.to(() => Cart());
               },
               icon: Icon(
-                EcentialsIcons.menu_icon,
+                EcentialsIcons.cart,
                 color: AppColors.primaryDeepColor,
-                size: 18,
+                size: 30,
               ),
             ),
-          ),
-          title: RichText(
-            text:  TextSpan(
-              text: "Hi, ",
-              style: TextStyle(
-                fontSize: 17,
-                fontFamily: "Montserrat",
-                color: AppColors.primaryDeepColor,
-              ),
-              children: [
-                TextSpan(
-                    text: "Sussan",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "Montserrat",
-                      color: AppColors.primaryDeepColor,
-                    )),
-              ],
-            ),
-          ),
-          actions: [
-            GestureDetector(
-              child: const CircleAvatar(
-                radius: 15,
-                backgroundImage: AssetImage("assets/images/profile.png"),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(
-                right: 20,
-                left: 10,
-              ),
-              child: IconButton(
-                onPressed: () {
-                  Get.to(() => Cart());
-                },
-                icon: Icon(
-                  EcentialsIcons.cart,
-                  color: AppColors.primaryDeepColor,
-                  size: 30,
-                ),
-              ),
-            )
-          ],
-        ),
-      
+          )
+        ],
+      ),
       drawer: const NavDrawer(),
       body: SingleChildScrollView(
         child: Container(
@@ -111,22 +110,23 @@ class _pharmacyDashboardState extends State<pharmacyDashboard> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-
+              // SizedBox(
+              //   width: MediaQuery.of(context).size.width,
+              //   child: Wrap(
+              //     alignment: WrapAlignment.end,
+              //     children: [
+              //       SizedBox(
+              //       width: 20,
+              //       height: 20,
+              //       child: Image.asset("assets/images/Vector.png"),),
+              //       SizedBox(width: 10.0,),
+              //       Text("Ghana",style: TextStyle(fontSize: 13.5),),
+              //     ],
+              //   ),
+              // ),
               SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: Wrap(
-                  alignment: WrapAlignment.end,
-                  children: [
-                    SizedBox(
-                    width: 20,
-                    height: 20,
-                    child: Image.asset("assets/images/Vector.png"),),
-                    SizedBox(width: 10.0,),
-                    Text("Ghana",style: TextStyle(fontSize: 13.5),),
-                  ],
-                ),
+                height: 20.0,
               ),
-SizedBox(height: 20.0,),
               Search4(
                 width: MediaQuery.of(context).size.width,
                 text: "Enter your search term here ",
@@ -143,7 +143,7 @@ SizedBox(height: 20.0,),
                       // margin: const EdgeInsets.only(
                       //  top: 38, // left: 24.78
                       // ),
-                      width: 150,
+                      width: 170,
                       height: 150,
                       child: Neumorphic(
                         style: NeumorphicStyle(
@@ -174,7 +174,7 @@ SizedBox(height: 20.0,),
                       width: 20,
                     ),
                     SizedBox(
-                      width: 150,
+                      width: 170,
                       height: 150,
                       child: Neumorphic(
                         style: NeumorphicStyle(
@@ -230,7 +230,7 @@ SizedBox(height: 20.0,),
                   scrollDirection: Axis.horizontal,
                   children: [
                     Wrap(children: [
-                      for (int j = 0; j < 5;j++)
+                      for (int j = 0; j < 5; j++)
                         Padding(
                           padding: const EdgeInsets.only(right: 12.0),
                           child: InkWell(
@@ -268,6 +268,7 @@ SizedBox(height: 20.0,),
                   top: 27.9, // left: 24.78
                 ),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       "Popular OTC Drugs",
@@ -277,7 +278,6 @@ SizedBox(height: 20.0,),
                         fontFamily: "Montserrat",
                       ),
                     ),
-                    
                     Container(
                         height: 20,
                         width: 22.86,
@@ -293,26 +293,32 @@ SizedBox(height: 20.0,),
                 ),
               ),
 
-const SizedBox(height: 16.0,),
-SizedBox(
+              const SizedBox(
+                height: 16.0,
+              ),
+              SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: 210,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
                     Wrap(children: [
-                      for (int j = 0; j < 5;j++)
-                      Padding(
-                        padding: const EdgeInsets.only(right:12.0),
-                        child: drugCard(
-                          drugName: "Ibuprofen",
-                          drugType: "Tablets",
-                          quantity: 50,
-                          price: 5.00),
-                      ),
-                    ]),],),),        
-                    SizedBox(height: 35.0,),
-            
+                      for (int j = 0; j < 5; j++)
+                        Padding(
+                          padding: const EdgeInsets.only(right: 12.0),
+                          child: drugCard(
+                              drugName: "Ibuprofen",
+                              drugType: "Tablets",
+                              quantity: 50,
+                              price: 5.00),
+                        ),
+                    ]),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 35.0,
+              ),
             ],
           ),
         ),
