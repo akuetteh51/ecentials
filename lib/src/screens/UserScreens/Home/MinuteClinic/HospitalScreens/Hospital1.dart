@@ -8,9 +8,9 @@ import 'package:ecentialsclone/src/Widgets/search.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Lab5.dart';
-import 'package:ecentialsclone/src/screens/components/CurvedBottomBar.dart';
-import 'package:ecentialsclone/src/screens/components/curved_bottom/curvedPaint.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../Widgets/CurvedBottomBar.dart';
 
 class NearbyH extends StatefulWidget {
   const NearbyH({Key? key}) : super(key: key);
