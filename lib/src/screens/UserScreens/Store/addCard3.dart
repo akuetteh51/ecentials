@@ -10,6 +10,8 @@ class cardTopup extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          shadowColor: Colors.transparent,
+          backgroundColor: Colors.white,
           leading: BackButton(color: Colors.black),
         ),
         bottomNavigationBar: Container(
@@ -34,7 +36,14 @@ class cardTopup extends StatelessWidget {
           ),
         ),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(
+              height: 2,
+            ),
+            Expanded(
+              child: Image.asset("assets/images/walletcard.png"),
+            ),
             Row(
               children: [Text("Amount")],
             )

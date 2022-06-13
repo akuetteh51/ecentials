@@ -22,7 +22,9 @@ class _TestWidgetsScreenState extends State<TestWidgetsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: topedup(),
+      body: cardDetails(),
+      // walletSet(),
+      //  topedup(),
       //  walletSet(),
       // addingProduct(),
       // SetupWallet(),

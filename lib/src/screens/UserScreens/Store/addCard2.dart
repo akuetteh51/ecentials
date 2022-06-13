@@ -10,6 +10,8 @@ class cardDetails extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          shadowColor: Colors.transparent,
+          backgroundColor: Colors.white,
           leading: BackButton(
             color: Colors.black,
           ),
@@ -37,6 +39,12 @@ class cardDetails extends StatelessWidget {
         ),
         body: Column(
           children: [
+            SizedBox(
+              height: 20,
+            ),
+            Expanded(
+              child: Image.asset("assets/images/walletcard.png"),
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
@@ -46,12 +54,14 @@ class cardDetails extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  labelText: 'Name',
-                  hintText: 'Enter Name',
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                    labelText: 'Name',
+                    hintText: 'Enter Name',
+                  ),
                 ),
               ),
             ),
