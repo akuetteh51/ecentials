@@ -217,7 +217,7 @@ class _labScreenState extends State<labScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => mapScreen()));
+                                builder: (context) =>const MapScreen()));
                       },
                       child: Row(children: [
                         Icon(Icons.directions),

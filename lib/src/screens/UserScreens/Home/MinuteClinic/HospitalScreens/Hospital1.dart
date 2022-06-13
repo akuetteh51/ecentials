@@ -8,7 +8,8 @@ import 'package:ecentialsclone/src/Widgets/search.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Lab5.dart';
-import 'package:ecentialsclone/src/screens/components/curvedPaint.dart';
+import 'package:ecentialsclone/src/screens/components/CurvedBottomBar.dart';
+import 'package:ecentialsclone/src/screens/components/curved_bottom/curvedPaint.dart';
 import 'package:flutter/material.dart';
 
 class NearbyH extends StatefulWidget {
@@ -19,33 +20,6 @@ class NearbyH extends StatefulWidget {
 }
 
 class _NearbyHState extends State<NearbyH> {
-  // Icons
-  final _icons = [
-    Icon(
-      EcentialsIcons.home,
-      color: AppColors.primaryWhiteColor,
-    ),
-    Icon(
-      EcentialsIcons.sell,
-      color: AppColors.primaryWhiteColor,
-    ),
-    Icon(
-      EcentialsIcons.notification,
-      color: AppColors.primaryWhiteColor,
-    ),
-    Icon(
-      EcentialsIcons.chat_heart,
-      color: AppColors.primaryWhiteColor,
-    ),
-  ];
-
-// Icons tooltips
-  final _tooltip = [
-    "Home",
-    "Store",
-    "Notifications",
-    "Chat Bot",
-  ];
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -61,7 +35,7 @@ class _NearbyHState extends State<NearbyH> {
                 child: Column(children: [
                   Row(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       IconButton(
@@ -72,35 +46,35 @@ class _NearbyHState extends State<NearbyH> {
                               MaterialPageRoute(
                                   builder: (context) => labScreen()));
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           EcentialsIcons.menu_icon,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 250,
                       ),
-                      CircleAvatar(
+                      const CircleAvatar(
                         radius: 15,
                         backgroundImage:
                             AssetImage("assets/images/profilePic.png"),
                       ),
                     ],
                   ),
-                  SizedBox(height: 15, width: 0),
-                  Text(
+                  const SizedBox(height: 15, width: 0),
+                  const Text(
                     "Find a Nearby Hospital",
                     style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   Row(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 20,
                       ),
-                      Search4(),
-                      SizedBox(
+                      const Search4(),
+                      const SizedBox(
                         width: 10,
                       ),
                       Container(
@@ -119,7 +93,7 @@ class _NearbyHState extends State<NearbyH> {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   Row(
@@ -196,58 +170,12 @@ class _NearbyHState extends State<NearbyH> {
             ),
           ),
         ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          //  child:
-          //   Positioned(
-          //  bottom: -80.0,
-          child: Stack(
-            children: [
-              SizedBox(
-                height: 80,
-                child: CustomPaint(
-                  size: Size(MediaQuery.of(context).size.width,
-                      80.0), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
-                  painter: RPSCustomPainter(),
-                ),
-              ),
-              Positioned(
-                bottom: 10,
-                child: Container(
-                  // color: Colors.amber.withOpacity(.2),
-                  width: MediaQuery.of(context).size.width,
-                  height: 40,
-                  child: Wrap(
-                    alignment: WrapAlignment.spaceEvenly,
-                    crossAxisAlignment: WrapCrossAlignment.end,
-                    children: List.generate(
-                      4,
-                      (index) => IconButton(
-                        onPressed: () {
-                          // widget.index = index;
-                          debugPrint("Tapped: $index");
-                        },
-                        tooltip: _tooltip[index],
-                        icon: _icons[index],
-                      ),
-                    ),
-                  ),
-                ),
-              ),              
-            ],
-          ),
-          //),
+        CurvedBottomBar(
+          currentIndex: (int index) {
+            debugPrint('Current index: $index');
+          },
+          initialIndex: 2,
         ),
-
-        Positioned(
-          bottom: 56.0,
-          child: SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: 40,
-                  child: Wrap(
-                    alignment: WrapAlignment.center,
-                    children: const[ FloatingAmbulance()],
-                  ),),)
       ],
     );
   }
