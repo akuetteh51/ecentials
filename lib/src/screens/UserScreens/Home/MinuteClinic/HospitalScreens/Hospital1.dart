@@ -40,7 +40,7 @@ class _NearbyHState extends State<NearbyH> {
                       ),
                       IconButton(
                         onPressed: () {
-                          print("object");
+                          debugPrint("object");
                           Navigator.push(
                               context,
                               MaterialPageRoute(

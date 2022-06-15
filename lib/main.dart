@@ -1,5 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:ecentialsclone/src/app_state/MainState.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Chat/chat.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Chat/chatroom/chatroom.dart';
 import 'package:provider/provider.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 
@@ -38,7 +40,8 @@ Future main() async {
       ChangeNotifierProvider<ShopState>(create: (_) => ShopState()),
       ],      
       child:const MaterialApp(
-        home: TestWidgetsScreen(),
+        home: ChatRoom(),
+        // home: TestWidgetsScreen(),
       ),
     ),
   );
