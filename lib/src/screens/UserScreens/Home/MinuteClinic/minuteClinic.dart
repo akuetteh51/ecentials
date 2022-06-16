@@ -95,7 +95,7 @@ class _MinuteClinicState extends State<MinuteClinic> {
               //  if(index == 0){
               onTap: () {
                 Get.to(
-                  () => const NearbyH(),
+                  () => const NearbyHospital(),
                   transition: Transition.fadeIn,
                   duration: Duration(seconds: 1),
                 );

@@ -57,13 +57,8 @@ class TestWidgetsScreen extends StatefulWidget {
 class _TestWidgetsScreenState extends State<TestWidgetsScreen> {
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-    return const Scaffold(
-        body: NearbyH(),);
-=======
     return Scaffold(
       body: labScreen(),
     );
->>>>>>> 3c5899f4628a7793782dcf8f4d0e9936e279d8d3
   }
 }
