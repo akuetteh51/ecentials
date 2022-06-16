@@ -56,11 +56,22 @@ class addingProduct extends StatelessWidget {
                     ),
                   ),
                 ),
-                Image.asset(
-                  "assets/images/selectsyrup.png",
-                  width: 147,
-                  height: 106,
-                ),
+                Stack(children: [
+                  Positioned(
+                    child: Image.asset(
+                      "assets/images/selectsyrup.png",
+                      width: 147,
+                      height: 106,
+                    ),
+                  ),
+                  Positioned(
+                    top: -22,
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.remove_done),
+                    ),
+                  ),
+                ]),
               ],
             ),
           ],
