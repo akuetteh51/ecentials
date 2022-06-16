@@ -73,7 +73,7 @@ Future main() async {
         ChangeNotifierProvider<ShopState>(create: (_) => ShopState()),
       ],
       child: const GetMaterialApp(
-        home: Schedule(),
+        home: OnboardingScreen(),
       ),
     ),
   );
@@ -99,7 +99,7 @@ class MyApp extends StatelessWidget {
         centered: true,
         duration: 2000,
         splashIconSize: 500,
-        nextScreen: AmbulanceNear(),
+        nextScreen: OnboardingScreen(),
         // nextScreen: showLogin ? Login() : const OnboardingScreen(),
       ),
       theme: ThemeData(
