@@ -17,175 +17,72 @@ class _DocotorInfoState extends State<DocotorInfo> {
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
-          child: Stack(
-            alignment: Alignment.topCenter,
+          child: Column(
+            // alignment: Alignment.topCenter,
+            // alignment: AlignmentDirectional.center,
             children: [
-              Column(
+              Container(
+                // margin: EdgeInsets.all(0),
+                child: Stack(
+                  children: [
+                    Positioned(
+                      child: Image(
+                        image: AssetImage("assets/images/doctor_hospital.png"),
+                      ),
+                    ),
+                    Positioned(
+                      top: 210,
+                      right: 30,
+                      child: doctorCard(
+                          fname: "Prince",
+                          lname: "Berth",
+                          role: "Heart Surgeon",
+                          hospital: "National hospital"),
+                    ),
+                  ],
+                ),
+              ),
+              Text(
+                "About",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+              ),
+              Center(
+                child: Text(
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin habitant donec habitant quis arcu aliquet non turpis. "),
+              ),
+              Text("Availability"),
+              Row(
                 children: [
-                  Positioned(
-                    top: 100,
-                    child: Image(
-                      image: AssetImage("assets/images/doctor_hospital.png"),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      padding: const EdgeInsets.all(16.0),
+                      // backgroundColor: const Color(0xFF033A64),
+                      primary: Colors.black,
+                      textStyle: const TextStyle(fontSize: 18),
+                      shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                    ),
+                    onPressed: () {
+                      print("hello");
+                    },
+                    child: Column(
+                      children: [Text("Mon"), Text("2")],
                     ),
                   ),
-                  Positioned(
-                    top: 190,
-                    child: doctorCard(
-                        fname: "Prince",
-                        lname: "Berth",
-                        role: "Heart Surgeon",
-                        hospital: "National hospital"),
-                  ),
-                  Text(
-                    "About",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
-                  ),
-                  Center(
-                    child: Text(
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin habitant donec habitant quis arcu aliquet non turpis. "),
-                  ),
-                  Text("Availability"),
-                  Row(
-                    children: [
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          padding: const EdgeInsets.all(16.0),
-                          // backgroundColor: const Color(0xFF033A64),
-                          primary: Colors.black,
-                          textStyle: const TextStyle(fontSize: 18),
-                          shape: const RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30))),
-                        ),
-                        onPressed: () {
-                          print("hello");
-                        },
-                        child: Column(
-                          children: [Text("Mon"), Text("2")],
-                        ),
-                      ),
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          padding: const EdgeInsets.all(16.0),
-                          // backgroundColor: const Color(0xFF033A64),
-                          primary: Colors.black,
-                          textStyle: const TextStyle(fontSize: 18),
-                          shape: const RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30))),
-                        ),
-                        onPressed: () {
-                          print("hello");
-                        },
-                        child: Column(
-                          children: [Text("Tue"), Text("3")],
-                        ),
-                      ),
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          padding: const EdgeInsets.all(16.0),
-                          backgroundColor: const Color(0xFF033A64),
-                          primary: Colors.white,
-                          textStyle: const TextStyle(fontSize: 18),
-                          shape: const RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30))),
-                        ),
-                        onPressed: () {
-                          print("hello");
-                        },
-                        child: Column(
-                          children: [Text("Wed"), Text("4")],
-                        ),
-                      ),
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          padding: const EdgeInsets.all(16.0),
-                          // backgroundColor: const Color(0xFF033A64),
-                          primary: Colors.black,
-                          textStyle: const TextStyle(fontSize: 18),
-                          shape: const RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30))),
-                        ),
-                        onPressed: () {
-                          print("hello");
-                        },
-                        child: Column(
-                          children: [Text("Thur"), Text("5")],
-                        ),
-                      ),
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          padding: const EdgeInsets.all(16.0),
-                          // backgroundColor: const Color(0xFF033A64),
-                          primary: Colors.black,
-                          textStyle: const TextStyle(fontSize: 18),
-                          shape: const RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(30))),
-                        ),
-                        onPressed: () {
-                          print("hello");
-                        },
-                        child: Column(
-                          children: [Text("Fri"), Text("6")],
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        "Reviews",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 17),
-                      ),
-                      Text(
-                        "About",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 17),
-                      ),
-                      Text(
-                        "4.5",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 17),
-                      ),
-                      Text(
-                        "(200)",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
-                        ),
-                      ),
-                      Text(
-                        "See all",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                            color: const Color(0xFFCB3F04)),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
-                    child: Row(
-                      children: [
-                        TopDoctor(
-                            image: "assets/images/doctor.png",
-                            docName: "Esther Essien",
-                            specialization: "Eye specialist",
-                            experience: 6),
-                        TopDoctor(
-                            image: "assets/images/doctor.png",
-                            docName: "Esther Essien",
-                            specialization: "Eye specialist",
-                            experience: 6),
-                      ],
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      padding: const EdgeInsets.all(16.0),
+                      // backgroundColor: const Color(0xFF033A64),
+                      primary: Colors.black,
+                      textStyle: const TextStyle(fontSize: 18),
+                      shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                    ),
+                    onPressed: () {
+                      print("hello");
+                    },
+                    child: Column(
+                      children: [Text("Tue"), Text("3")],
                     ),
                   ),
                   TextButton(
@@ -195,20 +92,119 @@ class _DocotorInfoState extends State<DocotorInfo> {
                       primary: Colors.white,
                       textStyle: const TextStyle(fontSize: 18),
                       shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(5),
-                        ),
-                      ),
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
                     ),
                     onPressed: () {
-                      print("booked");
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Schedule()));
+                      print("hello");
                     },
-                    child: Text("Book Appointment"),
-                  )
+                    child: Column(
+                      children: [Text("Wed"), Text("4")],
+                    ),
+                  ),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      padding: const EdgeInsets.all(16.0),
+                      // backgroundColor: const Color(0xFF033A64),
+                      primary: Colors.black,
+                      textStyle: const TextStyle(fontSize: 18),
+                      shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                    ),
+                    onPressed: () {
+                      print("hello");
+                    },
+                    child: Column(
+                      children: [Text("Thur"), Text("5")],
+                    ),
+                  ),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      padding: const EdgeInsets.all(16.0),
+                      // backgroundColor: const Color(0xFF033A64),
+                      primary: Colors.black,
+                      textStyle: const TextStyle(fontSize: 18),
+                      shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                    ),
+                    onPressed: () {
+                      print("hello");
+                    },
+                    child: Column(
+                      children: [Text("Fri"), Text("6")],
+                    ),
+                  ),
                 ],
               ),
+              Row(
+                children: [
+                  Text(
+                    "Reviews",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                  ),
+                  Text(
+                    "About",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                  ),
+                  Text(
+                    "4.5",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                  ),
+                  Text(
+                    "(200)",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12,
+                    ),
+                  ),
+                  Text(
+                    "See all",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                        color: const Color(0xFFCB3F04)),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+                child: Row(
+                  children: [
+                    TopDoctor(
+                        image: "assets/images/doctor.png",
+                        docName: "Esther Essien",
+                        specialization: "Eye specialist",
+                        experience: 6),
+                    TopDoctor(
+                        image: "assets/images/doctor.png",
+                        docName: "Esther Essien",
+                        specialization: "Eye specialist",
+                        experience: 6),
+                  ],
+                ),
+              ),
+              TextButton(
+                style: TextButton.styleFrom(
+                  padding: const EdgeInsets.all(16.0),
+                  backgroundColor: const Color(0xFF033A64),
+                  primary: Colors.white,
+                  textStyle: const TextStyle(fontSize: 18),
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(5),
+                    ),
+                  ),
+                ),
+                onPressed: () {
+                  print("booked");
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Schedule()));
+                },
+                child: Text("Book Appointment"),
+              )
             ],
           ),
         ),

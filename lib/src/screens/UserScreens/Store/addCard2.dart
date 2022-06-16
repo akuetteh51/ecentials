@@ -37,35 +37,93 @@ class cardDetails extends StatelessWidget {
             ),
           ),
         ),
-        body: Column(
-          children: [
+        body: SingleChildScrollView(
+          child: Column(children: [
             SizedBox(
               height: 20,
             ),
-            Expanded(
-              child: Image.asset("assets/images/walletcard.png"),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  labelText: 'Card Number',
-                  hintText: 'Enter Card Number',
-                ),
+            // Expanded(
+            // child:
+            Stack(children: [
+              Positioned(child: Image.asset("assets/images/walletcard.png")),
+              Positioned(
+                top: 45,
+                left: 248,
+                child: Image.asset("assets/images/chip.png"),
               ),
-            ),
-            Expanded(
+              Positioned(
+                left: 238,
+                top: 175,
+                child: Image.asset("assets/images/mastercard.png"),
+              ),
+            ]),
+            // ),
+            Container(
+              width: 320,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
                   decoration: InputDecoration(
-                    labelText: 'Name',
-                    hintText: 'Enter Name',
+                    labelText: 'Card Number',
+                    hintText: 'Enter Card Number',
                   ),
                 ),
               ),
             ),
-          ],
+            Container(
+              width: 320,
+              child: Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      labelText: 'Name',
+                      hintText: 'Enter Name',
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+            Row(
+              children: [
+                SizedBox(
+                  width: 30,
+                ),
+                Container(
+                  width: 180,
+                  child: Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          labelText: 'Expires Dates',
+                          hintText: '12/08',
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Container(
+                  width: 120,
+                  child: Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          labelText: 'CVC',
+                          hintText: '***',
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ]),
         ),
       ),
     );

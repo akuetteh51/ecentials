@@ -1,3 +1,4 @@
+import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
@@ -24,6 +25,50 @@ class _ScheduleState extends State<Schedule> {
             padding: const EdgeInsets.only(top: 30),
             child: Column(
               children: [
+                Container(
+                  margin: EdgeInsets.all(6),
+                  width: 420,
+                  height: 55,
+
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryGreyColor,
+                    // color: Colors.redAccent,
+
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  // VerticalDivider(width: 1),
+                  // backgroundColor:AppColors.primaryGreyColor,
+                  child: TabBar(
+                    indicator: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6),
+                      color: AppColors.primaryDeepColor,
+                    ),
+                    indicatorColor: AppColors.primaryGreenColor,
+                    // labelColor: AppColors.primaryBlackColor,
+
+                    unselectedLabelColor: AppColors.primaryBlackColor,
+                    // labelStyle: ,
+                    //  unselectedLabelStyle: ,
+                    //overlayColor:AppColors.primaryGreenColor,
+                    labelPadding: EdgeInsets.only(left: 10.0, right: 10.0),
+
+                    tabs: [
+                      Tab(
+                        text: 'Upcoming',
+                      ),
+                      Container(
+                        decoration: BoxDecoration(border: Border()),
+                        child: Tab(
+                          text: 'Completed',
+                        ),
+                        //  )
+                      ),
+                      Tab(
+                        text: 'Canceled',
+                      ),
+                    ],
+                  ),
+                ),
                 Row(
                   children: [
                     BackButton(color: Colors.black),
