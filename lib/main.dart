@@ -11,6 +11,7 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/lab
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/alllabs.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/doctorInformation.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labDetails.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/lab_homepage.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/mapScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/orderCompleted.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/cart.dart';
@@ -73,7 +74,7 @@ Future main() async {
         ChangeNotifierProvider<ShopState>(create: (_) => ShopState()),
       ],
       child: const GetMaterialApp(
-        home: OnboardingScreen(),
+        home: LabHomepage(),
       ),
     ),
   );
