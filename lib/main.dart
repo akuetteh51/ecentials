@@ -1,5 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:ecentialsclone/src/app_state/MainState.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Payments/Payed.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Payments/paymentMethod.dart';
 import 'package:provider/provider.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulanceDirection.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulanceNear.dart';
@@ -48,7 +50,7 @@ Future main() async {
         ChangeNotifierProvider<ShopState>(create: (_) => ShopState()),
       ],
       child: const MaterialApp(
-        home: TestWidgetsScreen(),
+        home: PaymentMethod(),
       ),
     ),
   );
@@ -74,7 +76,7 @@ class MyApp extends StatelessWidget {
         centered: true,
         duration: 2000,
         splashIconSize: 500,
-        nextScreen: AmbulanceNear(),
+        nextScreen: Payed(),
         // nextScreen: showLogin ? Login() : const OnboardingScreen(),
       ),
       theme: ThemeData(
