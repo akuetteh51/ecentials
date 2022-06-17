@@ -26,6 +26,8 @@ import 'package:ecentialsclone/src/app_state/MainState.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Payments/Payed.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Payments/paymentMethod.dart';
 import 'package:ecentialsclone/src/screens/onboardingScreen.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Chat/chat.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Chat/chatroom/chatroom.dart';
 import 'package:provider/provider.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulanceDirection.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulanceNear.dart';
@@ -76,7 +78,8 @@ Future main() async {
         ChangeNotifierProvider<ShopState>(create: (_) => ShopState()),
       ],
       child: const MaterialApp(
-        home: PaymentMethod(),
+        home: ChatRoom(),
+        // home: TestWidgetsScreen(),
       ),
     ),
   );
