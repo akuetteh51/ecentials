@@ -1,8 +1,14 @@
+import 'package:ecentialsclone/src/screens/UserScreens/Store/addCard2.dart';
 import 'package:flutter/material.dart';
 
-class addCard extends StatelessWidget {
+class addCard extends StatefulWidget {
   const addCard({Key? key}) : super(key: key);
 
+  @override
+  State<addCard> createState() => _addCardState();
+}
+
+class _addCardState extends State<addCard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +24,17 @@ class addCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset("assets/images/add.png"),
+              IconButton(
+                icon: Image.asset("assets/images/add.png"),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => cardDetails(),
+                    ),
+                  );
+                },
+              ),
               SizedBox(
                 width: 10,
               ),

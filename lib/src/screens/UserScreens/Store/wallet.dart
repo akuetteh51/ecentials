@@ -14,7 +14,7 @@ class walletSet extends StatelessWidget {
       child: Scaffold(
         backgroundColor: AppColors.primaryWhiteColor,
         bottomNavigationBar: BottomNavBar(),
-        floatingActionButton: FloatingAmbulance(),
+        floatingActionButton: const FloatingAmbulance(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         appBar: AppBar(
           shadowColor: Colors.transparent,
@@ -24,7 +24,7 @@ class walletSet extends StatelessWidget {
               color: Colors.black,
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => NavDrawer()));
+                    MaterialPageRoute(builder: (context) => const NavDrawer()));
               },
               icon: const Icon(EcentialsIcons.menu_icon),
             ),
@@ -87,7 +87,7 @@ class walletSet extends StatelessWidget {
                   child: Column(
                     children: [
                       Image.asset("assets/images/peer_to_peer.png"),
-                      Text("Peer to peer")
+                      const Text("Peer to peer")
                     ],
                   ),
                 ),
@@ -97,7 +97,7 @@ class walletSet extends StatelessWidget {
                   child: Column(
                     children: [
                       Image.asset("assets/images/Topup.png"),
-                      Text("Top up")
+                      const Text("Top up")
                     ],
                   ),
                 )

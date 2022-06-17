@@ -72,22 +72,33 @@ class doctorCard extends StatelessWidget {
                       icon: Icons.message_rounded,
                       iconColor: AppColors.primaryWhiteColor,
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Chat()));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Chat(),
+                          ),
+                        );
                       },
                     ),
                     ButtonOutlined(
-                      text: "Call",
-                      style: TextStyle(color: AppColors.primaryWhiteColor),
-                      color: AppColors.primaryGreenColor,
-                      width: 100,
-                      height: 40,
-                      radius: 50,
-                      hasIcon: true,
-                      icon: EcentialsIcons.phone,
-                      iconSize: 20,
-                      iconColor: AppColors.primaryWhiteColor,
-                    ),
+                        text: "Call",
+                        style: TextStyle(color: AppColors.primaryWhiteColor),
+                        color: AppColors.primaryGreenColor,
+                        width: 100,
+                        height: 40,
+                        radius: 50,
+                        hasIcon: true,
+                        icon: EcentialsIcons.phone,
+                        iconSize: 20,
+                        iconColor: AppColors.primaryWhiteColor,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Chat(),
+                            ),
+                          );
+                        }),
                   ],
                 ),
               ],

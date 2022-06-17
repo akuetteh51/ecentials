@@ -29,29 +29,18 @@ class _ScheduleState extends State<Schedule> {
                   margin: EdgeInsets.all(6),
                   width: 420,
                   height: 55,
-
                   decoration: BoxDecoration(
                     color: AppColors.primaryGreyColor,
-                    // color: Colors.redAccent,
-
                     borderRadius: BorderRadius.circular(5),
                   ),
-                  // VerticalDivider(width: 1),
-                  // backgroundColor:AppColors.primaryGreyColor,
                   child: TabBar(
                     indicator: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
                       color: AppColors.primaryDeepColor,
                     ),
                     indicatorColor: AppColors.primaryGreenColor,
-                    // labelColor: AppColors.primaryBlackColor,
-
                     unselectedLabelColor: AppColors.primaryBlackColor,
-                    // labelStyle: ,
-                    //  unselectedLabelStyle: ,
-                    //overlayColor:AppColors.primaryGreenColor,
                     labelPadding: EdgeInsets.only(left: 10.0, right: 10.0),
-
                     tabs: [
                       Tab(
                         text: 'Upcoming',

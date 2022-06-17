@@ -18,29 +18,27 @@ class _DocotorInfoState extends State<DocotorInfo> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
-            // alignment: Alignment.topCenter,
-            // alignment: AlignmentDirectional.center,
             children: [
-              Container(
-                // margin: EdgeInsets.all(0),
-                child: Stack(
-                  children: [
-                    Positioned(
+              Stack(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(bottom: 90),
+                    child: Positioned(
                       child: Image(
                         image: AssetImage("assets/images/doctor_hospital.png"),
                       ),
                     ),
-                    Positioned(
-                      top: 210,
-                      right: 30,
-                      child: doctorCard(
-                          fname: "Prince",
-                          lname: "Berth",
-                          role: "Heart Surgeon",
-                          hospital: "National hospital"),
-                    ),
-                  ],
-                ),
+                  ),
+                  Positioned(
+                    top: 210,
+                    right: 30,
+                    child: doctorCard(
+                        fname: "Prince",
+                        lname: "Berth",
+                        role: "Heart Surgeon",
+                        hospital: "National hospital"),
+                  ),
+                ],
               ),
               Text(
                 "About",
@@ -50,13 +48,14 @@ class _DocotorInfoState extends State<DocotorInfo> {
                 child: Text(
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin habitant donec habitant quis arcu aliquet non turpis. "),
               ),
+              SizedBox(height: 10),
               Text("Availability"),
+              SizedBox(height: 10),
               Row(
                 children: [
                   TextButton(
                     style: TextButton.styleFrom(
                       padding: const EdgeInsets.all(16.0),
-                      // backgroundColor: const Color(0xFF033A64),
                       primary: Colors.black,
                       textStyle: const TextStyle(fontSize: 18),
                       shape: const RoundedRectangleBorder(
@@ -135,6 +134,7 @@ class _DocotorInfoState extends State<DocotorInfo> {
                   ),
                 ],
               ),
+              SizedBox(height: 10),
               Row(
                 children: [
                   Text(
@@ -173,11 +173,21 @@ class _DocotorInfoState extends State<DocotorInfo> {
                 padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
                 child: Row(
                   children: [
-                    TopDoctor(
-                        image: "assets/images/doctor.png",
-                        docName: "Esther Essien",
-                        specialization: "Eye specialist",
-                        experience: 6),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DocotorInfo(),
+                          ),
+                        );
+                      },
+                      child: TopDoctor(
+                          image: "assets/images/doctor.png",
+                          docName: "Esther Essien",
+                          specialization: "Eye specialist",
+                          experience: 6),
+                    ),
                     TopDoctor(
                         image: "assets/images/doctor.png",
                         docName: "Esther Essien",
@@ -200,8 +210,10 @@ class _DocotorInfoState extends State<DocotorInfo> {
                 ),
                 onPressed: () {
                   print("booked");
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Schedule()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Schedule()));
                 },
                 child: Text("Book Appointment"),
               )

@@ -57,15 +57,19 @@ class addingProduct extends StatelessWidget {
                   ),
                 ),
                 Stack(children: [
-                  Positioned(
-                    child: Image.asset(
-                      "assets/images/selectsyrup.png",
-                      width: 147,
-                      height: 106,
+                  Container(
+                    margin: EdgeInsets.all(20),
+                    child: Positioned(
+                      child: Image.asset(
+                        "assets/images/selectsyrup.png",
+                        width: 147,
+                        height: 106,
+                      ),
                     ),
                   ),
                   Positioned(
-                    top: -22,
+                    top: -5,
+                    left: 140,
                     child: IconButton(
                       onPressed: () {},
                       icon: Icon(Icons.remove_done),
@@ -74,6 +78,7 @@ class addingProduct extends StatelessWidget {
                 ]),
               ],
             ),
+            Text("Max 4 photos per product"),
           ],
         ),
       ),

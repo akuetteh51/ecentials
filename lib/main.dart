@@ -17,13 +17,13 @@ Future main() async {
   final showSignup = preference.getBool('showSignup') ?? false;
 
   runApp(
-    // MyApp(
-    //   showLogin: true,
-    //   showSignup: false,
-    // ),
-    MaterialApp(
-      home: TestWidgetsScreen(),
+    MyApp(
+      showLogin: true,
+      showSignup: false,
     ),
+    // MaterialApp(
+    //   home: TestWidgetsScreen(),
+    // ),
   );
 }
 

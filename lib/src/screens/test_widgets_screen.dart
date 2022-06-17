@@ -2,7 +2,9 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Hospita
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital2DocProfile.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/screen6.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/homeScreen.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/CreatePin1.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/CreateStore1.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/MyStoreHome2.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/PinCreated.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/PinVerfication.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/SetUpEcentialsWallet.dart';
@@ -26,18 +28,20 @@ class _TestWidgetsScreenState extends State<TestWidgetsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: addingProduct(),
-      //  DocotorInfo(),
-      //  Schedule(),
+        // body: Mystore3(),
+        //  NearbyH(),
+        // /addingProduct(),
+        //  DocotorInfo(),
+        //  Schedule(),
 
-      //  DocotorInfo(),
-      //  cardDetails(),
-      // walletSet(),
-      //  topedup(),
-      //  walletSet(),
-      // addingProduct(),
-      // SetupWallet(),
-      //  PageView(children: [],),
-    );
+        //  DocotorInfo(),
+        //  cardDetails(),
+        // walletSet(),
+        //  topedup(),
+        //  walletSet(),
+        // addingProduct(),
+        // SetupWallet(),
+        //  PageView(children: [],),
+        );
   }
 }
