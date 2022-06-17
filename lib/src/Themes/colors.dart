@@ -9,4 +9,6 @@ class AppColors {
   static Color primaryWhiteColor = const Color(0xFFFFFFFF);
   static Color primaryGreyColor = const Color(0xFFF9F9FA);
   static Color primaryBlackColor = Color.fromARGB(255, 0, 0, 0);
+
+  AppColors(Color primaryGreenColor);
 }

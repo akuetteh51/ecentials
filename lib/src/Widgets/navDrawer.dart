@@ -13,12 +13,14 @@ class NavDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double fontSize = 18.0;
+    double labelSize = 22.0;
     return Drawer(
       elevation: 100,
       backgroundColor: AppColors.primaryWhiteColor,
       child: ListView(
         children: [
-          Container(
+          SizedBox(
             width: double.maxFinite,
             height: 170,
             child: Stack(
@@ -34,7 +36,7 @@ class NavDrawer extends StatelessWidget {
               ],
             ),
           ),
-          Divider(
+          const Divider(
             height: 2,
           ),
           ListTile(
@@ -50,22 +52,24 @@ class NavDrawer extends StatelessWidget {
             },
             leading: Image.asset(
               "assets/images/profileicon.png",
+               width: labelSize,
             ),
             title: Text(
               "Profile",
               style:
-                  TextStyle(fontSize: 20, color: AppColors.primaryBlackColor),
+                  TextStyle(fontSize: fontSize, color: AppColors.primaryBlackColor),
             ),
           ),
           ListTile(
             onTap: () {},
             leading: Image.asset(
               "assets/images/cart.png",
+               width: labelSize,
             ),
             title: Text(
               "Cart",
               style:
-                  TextStyle(fontSize: 20, color: AppColors.primaryBlackColor),
+                  TextStyle(fontSize: fontSize, color: AppColors.primaryBlackColor),
             ),
           ),
           hasShop == true
@@ -78,7 +82,7 @@ class NavDrawer extends StatelessWidget {
                   title: Text(
                     "My Shop",
                     style: TextStyle(
-                        fontSize: 20, color: AppColors.primaryBlackColor),
+                        fontSize: fontSize, color: AppColors.primaryBlackColor),
                   ),
                 )
               : Container(),
@@ -95,11 +99,12 @@ class NavDrawer extends StatelessWidget {
             },
             leading: Image.asset(
               "assets/images/hospitalicon.png",
+              width: labelSize,
             ),
             title: Text(
               "Minute Clinic",
               style:
-                  TextStyle(fontSize: 20, color: AppColors.primaryBlackColor),
+                  TextStyle(fontSize: fontSize, color: AppColors.primaryBlackColor),
             ),
           ),
           ListTile(
@@ -115,11 +120,12 @@ class NavDrawer extends StatelessWidget {
             },
             leading: Image.asset(
               "assets/images/ambulanceicon.png",
+               width: labelSize,
             ),
             title: Text(
               "Ambulance",
               style: TextStyle(
-                fontSize: 20,
+                fontSize: fontSize,
                 color: AppColors.primaryBlackColor,
               ),
             ),
@@ -131,32 +137,41 @@ class NavDrawer extends StatelessWidget {
             },
             leading: Image.asset(
               "assets/images/settings.png",
+               width: labelSize,
             ),
             title: Text(
               "Settings",
               style:
-                  TextStyle(fontSize: 20, color: AppColors.primaryBlackColor),
+                  TextStyle(fontSize: fontSize, color: AppColors.primaryBlackColor),
             ),
           ),
           ListTile(
             onTap: () {},
             leading: Image.asset(
               "assets/images/ecentialcard.png",
+               width: labelSize,
             ),
             title: Text(
               "Ecentials Wallet",
               style:
-                  TextStyle(fontSize: 20, color: AppColors.primaryBlackColor),
+                  TextStyle(fontSize: fontSize, color: AppColors.primaryBlackColor),
             ),
           ),
           ListTile(
             onTap: () {},
-            leading: Image.asset(
-              "assets/images/circlearrow.png",
+            leading: SizedBox(
+              width: labelSize,
+              height: labelSize,
+              child: Center(
+                child: Image.asset(              
+                  "assets/images/circlearrow.png",
+                   width: labelSize,
+                ),
+              ),
             ),
             title: Text(
               "Logout",
-              style: TextStyle(fontSize: 20, color: AppColors.primaryRedColor),
+              style: TextStyle(fontSize: fontSize, color: AppColors.primaryRedColor),
             ),
           ),
         ],
