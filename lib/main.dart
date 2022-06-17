@@ -2,6 +2,8 @@
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Chat/chatroom/chat_bubble.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/delivery_mode.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulance_map.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/labScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/docotorInfo.dart';
@@ -39,8 +41,6 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScre
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/setting.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Notifications/notifications.dart';
 import 'package:flutter/services.dart';
-
-import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 
 import 'package:ecentialsclone/src/screens/UserScreens/main_screen.dart';
 import 'package:flutter/material.dart';
@@ -105,7 +105,7 @@ class MyApp extends StatelessWidget {
         centered: true,
         duration: 2000,
         splashIconSize: 500,
-        nextScreen: OnboardingScreen(),
+        nextScreen: DeliveryMode(),
         // nextScreen: showLogin ? Login() : const OnboardingScreen(),
       ),
       theme: ThemeData(

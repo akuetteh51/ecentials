@@ -1,6 +1,6 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Chat/chatroom/chat_bubble.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Chat/chatroom/delivery_mode.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/delivery_mode.dart';
 import 'package:flutter/material.dart';
 
 class ChatRoom extends StatefulWidget {
