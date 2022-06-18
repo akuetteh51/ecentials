@@ -1,6 +1,7 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/outlinedButton.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Chat/chat.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -70,19 +71,34 @@ class doctorCard extends StatelessWidget {
                       hasIcon: true,
                       icon: Icons.message_rounded,
                       iconColor: AppColors.primaryWhiteColor,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Chat(),
+                          ),
+                        );
+                      },
                     ),
                     ButtonOutlined(
-                      text: "Call",
-                      style: TextStyle(color: AppColors.primaryWhiteColor),
-                      color: AppColors.primaryGreenColor,
-                      width: 100,
-                      height: 40,
-                      radius: 50,
-                      hasIcon: true,
-                      icon: EcentialsIcons.phone,
-                      iconSize: 20,
-                      iconColor: AppColors.primaryWhiteColor,
-                    ),
+                        text: "Call",
+                        style: TextStyle(color: AppColors.primaryWhiteColor),
+                        color: AppColors.primaryGreenColor,
+                        width: 100,
+                        height: 40,
+                        radius: 50,
+                        hasIcon: true,
+                        icon: EcentialsIcons.phone,
+                        iconSize: 20,
+                        iconColor: AppColors.primaryWhiteColor,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Chat(),
+                            ),
+                          );
+                        }),
                   ],
                 ),
               ],

@@ -1,10 +1,4 @@
-import 'package:ecentialsclone/src/screens/UserScreens/Chat/chat.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/homeScreen.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Notifications/notifications.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Store/store.dart';
-
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import '../Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 

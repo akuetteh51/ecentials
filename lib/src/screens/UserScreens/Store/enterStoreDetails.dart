@@ -1,39 +1,40 @@
-import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
-import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/MyStoreHome.dart';
 import 'package:flutter/material.dart';
 
-class createStore1 extends StatelessWidget {
-  const createStore1({Key? key}) : super(key: key);
+class EnterStoreDetails extends StatelessWidget {
+  const EnterStoreDetails({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading:
-            IconButton(
-              onPressed: () {
-                print("object");
-              },
-              icon: Icon(
-                Icons.arrow_back,color: Colors.black,
-              ),
-            ),
-
+        leading: BackButton(
+          color: Colors.black,
+        ),
         backgroundColor: Colors.white,
       ),
       bottomNavigationBar: Container(
-          height: 120,
-          width: double.infinity,
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(56, 33, 56, 34),
-            child: Button(
-              text: "Create ",
-              width: 302,
-              radius: 20,
-              style: TextStyle(color: Colors.white, fontSize: 15),
-            ),
-          )),
+        height: 120,
+        width: double.infinity,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(56, 33, 56, 34),
+          child: Button(
+            text: "Create ",
+            width: 302,
+            radius: 20,
+            style: TextStyle(color: Colors.white, fontSize: 15),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => storeHome(),
+                ),
+              );
+            },
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -54,7 +55,7 @@ class createStore1 extends StatelessWidget {
                 child: Center(
                     child: Text(
                   "This information is used to set up your store",
-                  style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                 )),
               ),
             ),

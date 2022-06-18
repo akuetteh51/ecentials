@@ -1,15 +1,14 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 
-import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
-
-
+import 'package:ecentialsclone/src/screens/UserScreens/Store/ecentialsWallet.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/main_screen.dart';
 import 'package:ecentialsclone/src/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
+import 'src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/ambulanceScreens/mapScreens/ambulance12.dart';
+import 'src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/ambulanceScreens/mapScreens/ambulance4.dart';
 import 'src/screens/test_widgets_screen.dart';
 
 Future main() async {
@@ -19,7 +18,7 @@ Future main() async {
   final showSignup = preference.getBool('showSignup') ?? false;
 
   runApp(
-      MyApp(showLogin: true, showSignup: false),
+    MyApp(showLogin: true, showSignup: false),
   );
 }
 

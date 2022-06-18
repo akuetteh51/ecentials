@@ -20,7 +20,7 @@ class EnteredPin extends StatelessWidget {
                 height: 20,
               ),
               Text(
-                "Re-enter your 4-digit Pincode",
+                "Enter your 4-digit Pincode",
                 style: TextStyle(fontSize: 18),
               ),
               SizedBox(
@@ -51,7 +51,7 @@ class EnteredPin extends StatelessWidget {
                     },
                     child: Text(
                       "1",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                   SizedBox(
@@ -64,7 +64,7 @@ class EnteredPin extends StatelessWidget {
                     },
                     child: Text(
                       "2",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                   SizedBox(
@@ -77,7 +77,7 @@ class EnteredPin extends StatelessWidget {
                     },
                     child: Text(
                       "3",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                 ],
@@ -94,7 +94,7 @@ class EnteredPin extends StatelessWidget {
                     },
                     child: Text(
                       "4",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                   SizedBox(
@@ -107,7 +107,7 @@ class EnteredPin extends StatelessWidget {
                     },
                     child: Text(
                       "5",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                   SizedBox(
@@ -120,11 +120,12 @@ class EnteredPin extends StatelessWidget {
                     },
                     child: Text(
                       "6",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                 ],
-              ), Row(
+              ),
+              Row(
                 children: [
                   SizedBox(
                     height: 50,
@@ -136,7 +137,7 @@ class EnteredPin extends StatelessWidget {
                     },
                     child: Text(
                       "7",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                   SizedBox(
@@ -149,7 +150,7 @@ class EnteredPin extends StatelessWidget {
                     },
                     child: Text(
                       "8",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                   SizedBox(
@@ -162,17 +163,17 @@ class EnteredPin extends StatelessWidget {
                     },
                     child: Text(
                       "9",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                 ],
-              ), Row(
+              ),
+              Row(
                 children: [
                   SizedBox(
                     height: 69,
                     width: 120,
                   ),
-
                   SizedBox(
                     height: 69,
                     width: 50,
@@ -183,19 +184,35 @@ class EnteredPin extends StatelessWidget {
                     },
                     child: Text(
                       "0",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                   SizedBox(
                     height: 69,
                     width: 50,
                   ),
-                  IconButton(onPressed: (){print("Hello world");}, icon:Icon(EcentialsIcons.bin) ),
-
-
+                  IconButton(
+                    onPressed: () {
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => pinKey2(),
+                      //   ),
+                      // );
+                    },
+                    icon: Image.asset("assets/images/delete_key.png"),
+                  ),
                 ],
-              ),    SizedBox(height: 20,width: 110,),Image.asset("assets/images/correctPn.png",height: 28,width: 28,),
-
+              ),
+              SizedBox(
+                height: 20,
+                width: 110,
+              ),
+              Image.asset(
+                "assets/images/correctPn.png",
+                height: 28,
+                width: 28,
+              ),
             ],
           ),
         ),
