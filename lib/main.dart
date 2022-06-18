@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, unused_import, unused_local_variable
 
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/language_setting.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/ecentialsWallet.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
@@ -79,7 +80,7 @@ Future main() async {
         ChangeNotifierProvider<ShopState>(create: (_) => ShopState()),
       ],
       child: const MaterialApp(
-        home: ChatRoom(),
+        home: LanguageSettingScreen(),
         // home: TestWidgetsScreen(),
       ),
     ),
