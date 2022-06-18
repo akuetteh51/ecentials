@@ -1,4 +1,5 @@
 import 'package:ecentialsclone/src/screens/UserScreens/Chat/chatMessageModel.dart';
+import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:flutter/material.dart';
 
 class Chat extends StatelessWidget {

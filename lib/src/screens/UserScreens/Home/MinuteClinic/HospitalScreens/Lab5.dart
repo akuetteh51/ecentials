@@ -5,7 +5,12 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Hospita
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital2DocProfile.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital3Schedule.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/ambulanceScreens/mapScreens/ambulanceRouting.dart';
+import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/mapScreen.dart';
 import 'package:flutter/material.dart';
+
+import 'docotorInfo.dart';
+import 'hospitalSchedules.dart';
 
 class labScreen extends StatefulWidget {
   const labScreen({Key? key}) : super(key: key);

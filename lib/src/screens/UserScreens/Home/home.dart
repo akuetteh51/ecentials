@@ -1,5 +1,6 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/Dashboard.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulanceNear.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/minuteClinic.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -34,11 +35,11 @@ class _HomeState extends State<Home> {
           ),
           DashBoard(
             onTap: () {
-              // Get.to(
-              //   () => AmbulanceNear(),
-              //   transition: Transition.rightToLeft,
-              //   duration: Duration(seconds: 1),
-              // );
+              Get.to(
+                () => AmbulanceNear(),
+                transition: Transition.rightToLeft,
+                duration: Duration(seconds: 1),
+              );
             },
             image: "assets/images/ambulance.png",
             btnName: "Ambulance Services",
