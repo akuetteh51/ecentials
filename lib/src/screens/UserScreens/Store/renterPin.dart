@@ -1,5 +1,6 @@
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/pin.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/PinCreated.dart';
 import 'package:flutter/material.dart';
 
 class RenterPin extends StatefulWidget {
@@ -56,7 +57,7 @@ class _RenterPinState extends State<RenterPin> {
                     },
                     child: Text(
                       "1",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                   SizedBox(
@@ -69,7 +70,7 @@ class _RenterPinState extends State<RenterPin> {
                     },
                     child: Text(
                       "2",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                   SizedBox(
@@ -82,7 +83,7 @@ class _RenterPinState extends State<RenterPin> {
                     },
                     child: Text(
                       "3",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                 ],
@@ -99,7 +100,7 @@ class _RenterPinState extends State<RenterPin> {
                     },
                     child: Text(
                       "4",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                   SizedBox(
@@ -112,7 +113,7 @@ class _RenterPinState extends State<RenterPin> {
                     },
                     child: Text(
                       "5",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                   SizedBox(
@@ -125,11 +126,12 @@ class _RenterPinState extends State<RenterPin> {
                     },
                     child: Text(
                       "6",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                 ],
-              ), Row(
+              ),
+              Row(
                 children: [
                   SizedBox(
                     height: 69,
@@ -141,7 +143,7 @@ class _RenterPinState extends State<RenterPin> {
                     },
                     child: Text(
                       "7",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                   SizedBox(
@@ -154,7 +156,7 @@ class _RenterPinState extends State<RenterPin> {
                     },
                     child: Text(
                       "8",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                   SizedBox(
@@ -167,17 +169,17 @@ class _RenterPinState extends State<RenterPin> {
                     },
                     child: Text(
                       "9",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                 ],
-              ), Row(
+              ),
+              Row(
                 children: [
                   SizedBox(
                     height: 69,
                     width: 120,
                   ),
-
                   SizedBox(
                     height: 69,
                     width: 50,
@@ -188,15 +190,24 @@ class _RenterPinState extends State<RenterPin> {
                     },
                     child: Text(
                       "0",
-                      style: TextStyle(fontSize: 26,color: Colors.black),
+                      style: TextStyle(fontSize: 26, color: Colors.black),
                     ),
                   ),
                   SizedBox(
                     height: 69,
                     width: 50,
                   ),
-                  IconButton(onPressed: (){print("Hello world");}, icon:Icon(EcentialsIcons.bin) ),
-
+                  IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => pinCreated(),
+                        ),
+                      );
+                    },
+                    icon: Image.asset("assets/images/delete_key.png"),
+                  ),
                 ],
               ),
             ],

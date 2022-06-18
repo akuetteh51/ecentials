@@ -1,9 +1,11 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
-import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/outlinedButton.dart';
 import 'package:ecentialsclone/src/Widgets/prominentDoctors.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital4Chat.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital2DocProfile.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital3Schedule.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/ambulanceScreens/mapScreens/ambulanceRouting.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/ambulance_map.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/mapScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -161,9 +163,11 @@ class _labScreenState extends State<labScreen> {
                       ),
                       onPressed: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Schedule()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => chat4(),
+                          ),
+                        );
                       },
                       child: Row(children: [
                         Icon(Icons.message_outlined),
@@ -188,10 +192,8 @@ class _labScreenState extends State<labScreen> {
                         ),
                       ),
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => DocotorInfo()));
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => chat4()));
                       },
                       child: Row(children: [
                         Icon(Icons.phone_in_talk),
@@ -219,7 +221,7 @@ class _labScreenState extends State<labScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>const MapScreen()));
+                                builder: (context) => AmbulanceRoutingScreen()));
                       },
                       child: Row(children: [
                         Icon(Icons.directions),
@@ -240,10 +242,18 @@ class _labScreenState extends State<labScreen> {
                   padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
                   child: Row(
                     children: [
-                      ProminentDoctors(
-                          image: "assets/images/doctor1.png",
-                          docName: "Clara",
-                          specialization: "Neuro Surgeon"),
+                      GestureDetector(
+                        child: ProminentDoctors(
+                            image: "assets/images/doctor1.png",
+                            docName: "Clara",
+                            specialization: "Neuro Surgeon"),
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DocotorInfo()));
+                        },
+                      ),
                       ProminentDoctors(
                           image: "assets/images/doctor2.png",
                           docName: "Clara",
@@ -327,7 +337,10 @@ class _labScreenState extends State<labScreen> {
                         ),
                       ),
                       onPressed: () {
-                        print("booked");
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Schedule()));
                       },
                       child: Text("Book Session"),
                     ),
