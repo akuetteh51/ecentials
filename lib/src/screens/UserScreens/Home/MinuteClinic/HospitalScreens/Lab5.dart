@@ -2,24 +2,24 @@ import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/outlinedButton.dart';
 import 'package:ecentialsclone/src/Widgets/prominentDoctors.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital4Chat.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital2DocProfile.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital3Schedule.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/ambulanceScreens/mapScreens/ambulanceRouting.dart';
-import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/mapScreen.dart';
+// import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital2DocProfile.dart';
+// import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital3Schedule.dart';
+// import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
+// import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/mapScreen.dart';
 import 'package:flutter/material.dart';
 
+import '../../Ambulance/ambulanceRouting.dart';
 import 'docotorInfo.dart';
 import 'hospitalSchedules.dart';
 
-class labScreen extends StatefulWidget {
-  const labScreen({Key? key}) : super(key: key);
+class LabScreen extends StatefulWidget {
+  const LabScreen({Key? key}) : super(key: key);
 
   @override
-  State<labScreen> createState() => _labScreenState();
+  State<LabScreen> createState() => _LabScreenState();
 }
 
-class _labScreenState extends State<labScreen> {
+class _LabScreenState extends State<LabScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

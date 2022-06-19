@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, unused_import, unused_local_variable
 
+import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/language_setting.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/ecentialsWallet.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
@@ -79,8 +80,10 @@ Future main() async {
         ChangeNotifierProvider<PharmacyState>(create: (_) => PharmacyState()),
         ChangeNotifierProvider<ShopState>(create: (_) => ShopState()),
       ],
-      child: const MaterialApp(
-        home: LanguageSettingScreen(),
+      child:  MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: ChatRoom(),
+        // home: ChatRoom(color: AppColors.primaryDeepColor),
         // home: TestWidgetsScreen(),
       ),
     ),
@@ -102,7 +105,7 @@ class MyApp extends StatelessWidget {
     ]);
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AnimatedSplashScreen(
+      home: AnimatedSplashScreen(        
         splash: "assets/images/logo.png",
         centered: true,
         duration: 2000,
