@@ -6,24 +6,25 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_widget_cache.dart';
 
 class TopDoctor extends StatelessWidget {
-  final String image;
-  final String docName;
-  final String specialization;
-  final int experience;
+  final String? image;
+  final String? docName;
+  final String? specialization;
+  final int? experience;
+  final ontap;
 
   const TopDoctor(
       {Key? key,
       required this.image,
       required this.docName,
       required this.specialization,
-      required this.experience})
+      required this.experience,
+      this.ontap})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 350,
-      height: 150,
+      width: MediaQuery.of(context).size.width - 50,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Card(
@@ -31,6 +32,7 @@ class TopDoctor extends StatelessWidget {
           child: Container(
             margin: EdgeInsets.all(10),
             child: Row(
+              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
@@ -39,7 +41,7 @@ class TopDoctor extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     image: DecorationImage(
-                      image: AssetImage(image),
+                      image: AssetImage(image!),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -52,55 +54,70 @@ class TopDoctor extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Text(
-                          docName,
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+                        Container(
+                          width: 160,
+                          child: Text(
+                            " Dr. $docName",
+                            maxLines: 1,
+                            softWrap: false,
+                            overflow: TextOverflow.fade,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         SizedBox(
                           width: 40,
                         ),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              Icons.star,
-                              size: 15,
-                              color: AppColors.primaryOrangeColor,
-                            ),
-                            Text(
-                              "4.9",
-                            ),
-                          ],
+                        SizedBox(
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                Icons.star,
+                                size: 18,
+                                color: AppColors.primaryOrangeColor,
+                              ),
+                              Text("4.9")
+                            ],
+                          ),
                         )
                       ],
+                    ),
+                    SizedBox(
+                      height: 10,
                     ),
                     Text(
                       "3 days ago",
                       style: TextStyle(color: Colors.grey, fontSize: 13),
                     ),
                     SizedBox(
-                      height: 5,
+                      height: 10,
                     ),
-                    RichText(
-                      text: TextSpan(
-                        text: "Area of specialization: ",
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.primaryBlackColor),
-                        children: [
-                          TextSpan(
-                            text: specialization,
-                            style: TextStyle(fontWeight: FontWeight.normal),
-                          ),
-                        ],
+                    Container(
+                      width: 240,
+                      child: RichText(
+                        maxLines: 1,
+                        softWrap: false,
+                        overflow: TextOverflow.fade,
+                        text: TextSpan(
+                          text: "Area of specialization: ",
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.primaryBlackColor),
+                          children: [
+                            TextSpan(
+                              text: specialization!,
+                              style: TextStyle(fontWeight: FontWeight.normal),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     SizedBox(
-                      height: 5,
+                      height: 10,
                     ),
                     RichText(
                       text: TextSpan(
@@ -108,17 +125,17 @@ class TopDoctor extends StatelessWidget {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: AppColors.primaryBlackColor,
-                            fontSize: 12),
+                            fontSize: 16),
                         children: [
                           TextSpan(
-                            text: "$experience years",
+                            text: "$experience years +",
                             style: TextStyle(fontWeight: FontWeight.normal),
                           ),
                         ],
                       ),
                     )
                   ],
-                )
+                ),
               ],
             ),
           ),

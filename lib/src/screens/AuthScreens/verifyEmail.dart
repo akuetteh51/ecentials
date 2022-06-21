@@ -8,15 +8,15 @@ import 'package:get/get.dart';
 import '../../Themes/colors.dart';
 import '../UserScreens/main_screen.dart';
 
-class PasswordReset extends StatefulWidget {
+class VerifyEmail extends StatefulWidget {
   bool isVisible;
-  PasswordReset({Key? key, this.isVisible = false}) : super(key: key);
+  VerifyEmail({Key? key, this.isVisible = false}) : super(key: key);
 
   @override
-  State<PasswordReset> createState() => _PasswordResetState();
+  State<VerifyEmail> createState() => _VerifyEmailState();
 }
 
-class _PasswordResetState extends State<PasswordReset> {
+class _VerifyEmailState extends State<VerifyEmail> {
   late TextEditingController _passwordController;
   late TextEditingController _confirmPasswordController;
 
@@ -56,12 +56,12 @@ class _PasswordResetState extends State<PasswordReset> {
     final _emailController = TextEditingController();
 
     // Password Input text
-    final _password = Column(
+    final _email = Column(
       children: [
         const Align(
           alignment: Alignment.centerLeft,
           child: Text(
-            "New Password",
+            "Enter Email",
             style: TextStyle(
               fontSize: 16,
             ),
@@ -82,28 +82,26 @@ class _PasswordResetState extends State<PasswordReset> {
             color: Colors.grey.withOpacity(.10),
           ),
           child: TextFormField(
-            obscuringCharacter: '*',
-            obscureText: !widget.isVisible,
             style: const TextStyle(fontSize: 20),
             cursorColor: AppColors.primaryDeepColor,
             controller: _passwordController,
             decoration: InputDecoration(
-              suffixIcon: IconButton(
-                onPressed: () {
-                  setState(() {
-                    widget.isVisible = !widget.isVisible;
-                  });
-                },
-                icon: Icon(
-                  widget.isVisible == true
-                      ? Icons.visibility
-                      : Icons.visibility_off,
-                  color: AppColors.primaryBlackColor.withOpacity(
-                    .50,
-                  ),
-                ),
-              ),
-              hintText: "********",
+              // suffixIcon: IconButton(
+              //   onPressed: () {
+              //     setState(() {
+              //       widget.isVisible = !widget.isVisible;
+              //     });
+              //   },
+              //   icon: Icon(
+              //     widget.isVisible == true
+              //         ? Icons.visibility
+              //         : Icons.visibility_off,
+              //     color: AppColors.primaryBlackColor.withOpacity(
+              //       .50,
+              //     ),
+              //   ),
+              // ),
+              hintText: "example@gmail.com",
               border: const UnderlineInputBorder(
                 borderSide: BorderSide.none,
               ),
@@ -113,63 +111,6 @@ class _PasswordResetState extends State<PasswordReset> {
       ],
     );
     // Confirm Password Input text
-
-    final _confirmPassword = Column(
-      children: [
-        const Align(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            "Confirm Password",
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Neumorphic(
-          padding: const EdgeInsets.only(
-            left: 10,
-            right: 20,
-          ),
-          style: NeumorphicStyle(
-            shape: NeumorphicShape.flat,
-            depth: -10,
-            lightSource: LightSource.top,
-            color: Colors.grey.withOpacity(.10),
-          ),
-          child: TextFormField(
-            obscuringCharacter: '*',
-            obscureText: !widget.isVisible,
-            style: TextStyle(fontSize: 20),
-            cursorColor: AppColors.primaryDeepColor,
-            controller: _confirmPasswordController,
-            decoration: InputDecoration(
-              suffixIcon: IconButton(
-                onPressed: () {
-                  setState(() {
-                    widget.isVisible = !widget.isVisible;
-                  });
-                },
-                icon: Icon(
-                  widget.isVisible == true
-                      ? Icons.visibility
-                      : Icons.visibility_off,
-                  color: AppColors.primaryBlackColor.withOpacity(
-                    .50,
-                  ),
-                ),
-              ),
-              hintText: "********",
-              border: const UnderlineInputBorder(
-                borderSide: BorderSide.none,
-              ),
-            ),
-          ),
-        )
-      ],
-    );
 
 // Sign in Button
     final _signin = GestureDetector(
@@ -182,9 +123,9 @@ class _PasswordResetState extends State<PasswordReset> {
       },
       child: Button(
         onTap: () {
-          Get.to(() => Login());
+          Get.to(() => EmailSuccess());
         },
-        text: "Save",
+        text: "Confirm",
         style: TextStyle(color: AppColors.primaryWhiteColor, fontSize: 20),
       ),
     );
@@ -195,7 +136,7 @@ class _PasswordResetState extends State<PasswordReset> {
       foregroundColor: AppColors.primaryBlackColor,
       elevation: 0,
       title: Text(
-        "Password Reset",
+        "Confirm Email",
         style: TextStyle(
           fontSize: 20,
         ),
@@ -229,11 +170,7 @@ class _PasswordResetState extends State<PasswordReset> {
                             const SizedBox(
                               height: 20,
                             ),
-                            _password,
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            _confirmPassword,
+                            _email,
                             const SizedBox(
                               height: 40,
                             ),

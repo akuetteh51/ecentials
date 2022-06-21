@@ -79,16 +79,37 @@ class _AmbulanceDirectionState extends State<AmbulanceDirection> {
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.end,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
+                                  Text(
+                                    "Courier",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.primaryDeepColor,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
                                   const Text(
                                     "Andrews Opoku",
                                     style: TextStyle(
                                       fontSize: 20,
                                     ),
                                   ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    "GH 039-899",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.primaryBlueColor,
+                                    ),
+                                  ),
                                   const SizedBox(
-                                    height: 30,
+                                    height: 5,
                                   ),
                                   Row(
                                     children: const [

@@ -2,16 +2,18 @@
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Chat/chatroom/chat_bubble.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/delivery_mode.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulance_map.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/labScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/docotorInfo.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/nearbyHospital.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/schedule.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labChat.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labSchedules.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/alllabs.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/doctorInformation.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labDetails.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/lab_homepage.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/mapScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/orderCompleted.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/cart.dart';
@@ -23,6 +25,11 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmac
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/uploadResults.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/scanResults.dart';
 import 'package:ecentialsclone/src/app_state/MainState.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Payments/Payed.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Payments/paymentMethod.dart';
+import 'package:ecentialsclone/src/screens/onboardingScreen.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Chat/chat.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Chat/chatroom/chatroom.dart';
 import 'package:provider/provider.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulanceDirection.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulanceNear.dart';
@@ -35,13 +42,12 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/setting.dar
 import 'package:ecentialsclone/src/screens/UserScreens/Notifications/notifications.dart';
 import 'package:flutter/services.dart';
 
-import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
-
 import 'package:ecentialsclone/src/screens/UserScreens/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/hospitalSchedules.dart';
 import 'src/screens/UserScreens/Home/MinuteClinic/minuteClinic.dart';
 import 'src/app_state/ambulance_state.dart';
 import 'src/app_state/hospital_state.dart';
@@ -59,7 +65,7 @@ Future main() async {
 
   runApp(
     MyApp(
-      showLogin: true,
+      showLogin: false,
       showSignup: false,
     ),
     // MultiProvider(
@@ -72,7 +78,8 @@ Future main() async {
     //     ChangeNotifierProvider<ShopState>(create: (_) => ShopState()),
     //   ],
     //   child: const MaterialApp(
-    //     home: labScreen(),
+    //     home: ChatRoom(),
+    //     home: TestWidgetsScreen(),
     //   ),
     // ),
   );
@@ -98,7 +105,7 @@ class MyApp extends StatelessWidget {
         centered: true,
         duration: 2000,
         splashIconSize: 500,
-        // nextScreen: AmbulanceNear(),
+        // nextScreen: DeliveryMode(),
         nextScreen: showLogin ? Login() : const OnboardingScreen(),
       ),
       theme: ThemeData(

@@ -2,6 +2,8 @@ import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/editProfile.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/langauge.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/notification.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,6 +15,7 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+  bool switched = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -119,6 +122,9 @@ class _SettingsState extends State<Settings> {
             ),
           ),
           ListTile(
+            onTap: () {
+              Get.to(() => NotificationsAndSounds());
+            },
             leading: Image.asset(
               "assets/images/notifications.png",
               scale: 1.2,
@@ -212,6 +218,9 @@ class _SettingsState extends State<Settings> {
             ),
           ),
           ListTile(
+            onTap: () {
+              Get.to(() => const Language());
+            },
             leading: Image.asset(
               "assets/images/translate.png",
             ),
@@ -231,8 +240,9 @@ class _SettingsState extends State<Settings> {
               "Dark Mode",
               style: TextStyle(fontSize: 20),
             ),
-            trailing: const Icon(
-              Icons.chevron_right,
+            trailing: Switch(
+              onChanged: (bool value) {},
+              value: false,
             ),
           ),
           ListTile(
@@ -243,8 +253,13 @@ class _SettingsState extends State<Settings> {
               "Only Download via Wifi",
               style: TextStyle(fontSize: 20),
             ),
-            trailing: const Icon(
-              Icons.chevron_right,
+            trailing: Switch(
+              value: switched == false ? true : false,
+              onChanged: (bool value) {
+                setState(() {
+                  value = switched == false ? true : false;
+                });
+              },
             ),
           ),
           Container(

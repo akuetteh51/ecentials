@@ -14,6 +14,7 @@ class SchedulesCard extends StatelessWidget {
   final String hospitalName;
   final String time;
   final String date;
+  final Color buttonColor;
   const SchedulesCard({
     Key? key,
     this.isConfirmed = false,
@@ -23,6 +24,7 @@ class SchedulesCard extends StatelessWidget {
     required this.hospitalName,
     required this.time,
     required this.date,
+    this.buttonColor = Colors.blue,
   }) : super(key: key);
 
   @override
@@ -117,60 +119,63 @@ class SchedulesCard extends StatelessWidget {
                             const SizedBox(
                               width: 10,
                             ),
-                            
                           ],
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         isConfirmed == false
-                                ? Wrap(
-                                    // mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment: WrapCrossAlignment.center,
-                                    children: [
-                                      Icon(
-                                        EcentialsIcons.times,
-                                        color: AppColors.primaryRedColor,
-                                        size: 12,
-                                      ),
-                                      const SizedBox(width: 5),
-                                      Text(
-                                        "Unconfirmed",
-                                        style: TextStyle(
-                                          color: AppColors.primaryRedColor,
-                                          fontSize: 12,
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                : Wrap(
-                                    // mainAxisSize: MainAxisSize.min,
-                                    children: const [
-                                      Icon(
-                                        EcentialsIcons.correct,
-                                        size: 12,
-                                        color: Colors.blue,
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text(
-                                        "Confirmed",
-                                        style: TextStyle(
-                                          color: Colors.blue,
-                                        ),
-                                      ),
-                                    ],
+                            ? Wrap(
+                                // mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                children: [
+                                  Icon(
+                                    EcentialsIcons.times,
+                                    color: AppColors.primaryRedColor,
+                                    size: 12,
                                   ),
+                                  const SizedBox(width: 5),
+                                  Text(
+                                    "Unconfirmed",
+                                    style: TextStyle(
+                                      color: AppColors.primaryRedColor,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : Wrap(
+                                // mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    EcentialsIcons.correct,
+                                    size: 12,
+                                    color: Colors.blue,
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    "Confirmed",
+                                    style: TextStyle(
+                                      color: Colors.blue,
+                                    ),
+                                  ),
+                                ],
+                              ),
                       ],
                     ),
                   ),
-                  SizedBox(width: 8,),
+                  SizedBox(
+                    width: 8,
+                  ),
                   Container(
                     height: 50.0,
-                      width: 50.0,
+                    width: 50.0,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
-                      image: DecorationImage(image: AssetImage(image),fit: BoxFit.cover
-                      ),
+                      image: DecorationImage(
+                          image: AssetImage(image), fit: BoxFit.cover),
                     ),
                   ),
                   // ClipRRect(
@@ -188,7 +193,6 @@ class SchedulesCard extends StatelessWidget {
                   //     image,
                   //   ),
                   // ),
-                  
                 ],
               ),
               const SizedBox(
@@ -198,7 +202,6 @@ class SchedulesCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ButtonOutlined(
-                    
                     text: "Cancel",
                     style: TextStyle(color: AppColors.primaryGreenColor),
                     width: 130,
@@ -206,12 +209,11 @@ class SchedulesCard extends StatelessWidget {
                   ),
                   Button(
                     text: "Reschedule",
-                    color: AppColors.primaryGreenColor,
+                    color: buttonColor,
                     style: TextStyle(color: AppColors.primaryWhiteColor),
                     width: 130,
                     height: 40,
                     onTap: () {
-                      
                       print("Reschedule");
                     },
                   ),

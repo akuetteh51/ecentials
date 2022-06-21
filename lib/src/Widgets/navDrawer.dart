@@ -52,24 +52,24 @@ class NavDrawer extends StatelessWidget {
             },
             leading: Image.asset(
               "assets/images/profileicon.png",
-               width: labelSize,
+              width: labelSize,
             ),
             title: Text(
               "Profile",
-              style:
-                  TextStyle(fontSize: fontSize, color: AppColors.primaryBlackColor),
+              style: TextStyle(
+                  fontSize: fontSize, color: AppColors.primaryBlackColor),
             ),
           ),
           ListTile(
             onTap: () {},
             leading: Image.asset(
               "assets/images/cart.png",
-               width: labelSize,
+              width: labelSize,
             ),
             title: Text(
               "Cart",
-              style:
-                  TextStyle(fontSize: fontSize, color: AppColors.primaryBlackColor),
+              style: TextStyle(
+                  fontSize: fontSize, color: AppColors.primaryBlackColor),
             ),
           ),
           hasShop == true
@@ -103,8 +103,8 @@ class NavDrawer extends StatelessWidget {
             ),
             title: Text(
               "Minute Clinic",
-              style:
-                  TextStyle(fontSize: fontSize, color: AppColors.primaryBlackColor),
+              style: TextStyle(
+                  fontSize: fontSize, color: AppColors.primaryBlackColor),
             ),
           ),
           ListTile(
@@ -120,7 +120,7 @@ class NavDrawer extends StatelessWidget {
             },
             leading: Image.asset(
               "assets/images/ambulanceicon.png",
-               width: labelSize,
+              width: labelSize,
             ),
             title: Text(
               "Ambulance",
@@ -137,24 +137,24 @@ class NavDrawer extends StatelessWidget {
             },
             leading: Image.asset(
               "assets/images/settings.png",
-               width: labelSize,
+              width: labelSize,
             ),
             title: Text(
               "Settings",
-              style:
-                  TextStyle(fontSize: fontSize, color: AppColors.primaryBlackColor),
+              style: TextStyle(
+                  fontSize: fontSize, color: AppColors.primaryBlackColor),
             ),
           ),
           ListTile(
             onTap: () {},
             leading: Image.asset(
               "assets/images/ecentialcard.png",
-               width: labelSize,
+              width: labelSize,
             ),
             title: Text(
               "Ecentials Wallet",
-              style:
-                  TextStyle(fontSize: fontSize, color: AppColors.primaryBlackColor),
+              style: TextStyle(
+                  fontSize: fontSize, color: AppColors.primaryBlackColor),
             ),
           ),
           ListTile(
@@ -163,15 +163,16 @@ class NavDrawer extends StatelessWidget {
               width: labelSize,
               height: labelSize,
               child: Center(
-                child: Image.asset(              
+                child: Image.asset(
                   "assets/images/circlearrow.png",
-                   width: labelSize,
+                  width: labelSize,
                 ),
               ),
             ),
             title: Text(
               "Logout",
-              style: TextStyle(fontSize: fontSize, color: AppColors.primaryRedColor),
+              style: TextStyle(
+                  fontSize: fontSize, color: AppColors.primaryRedColor),
             ),
           ),
         ],

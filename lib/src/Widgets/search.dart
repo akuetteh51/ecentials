@@ -6,24 +6,29 @@ import '../Themes/colors.dart';
 
 class Search extends StatelessWidget {
   final double width;
+  final double height;
+  final double radius;
   final String text;
   final searchPressed;
   final micPressed;
   final TextEditingController? controller;
 
-  const Search(
-      {Key? key,
-      this.width = 300,
-      this.text = "Search...",
-      this.controller,
-      this.searchPressed,
-      this.micPressed})
-      : super(key: key);
+  const Search({
+    Key? key,
+    this.width = 300,
+    this.text = "Search...",
+    this.controller,
+    this.searchPressed,
+    this.micPressed,
+    this.height = 50,
+    this.radius = 50,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
+      height: height,
       child: Neumorphic(
         padding: const EdgeInsets.only(
           left: 10,
@@ -31,12 +36,14 @@ class Search extends StatelessWidget {
         ),
         style: NeumorphicStyle(
           shape: NeumorphicShape.concave,
-          boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(50)),
+          boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(radius)),
           depth: -5,
           lightSource: LightSource.top,
           color: Colors.grey.withOpacity(.10),
         ),
         child: TextField(
+          textAlignVertical: TextAlignVertical.bottom,
+          textAlign: TextAlign.start,
           controller: controller,
           style: const TextStyle(fontSize: 20),
           cursorColor: AppColors.primaryDeepColor,

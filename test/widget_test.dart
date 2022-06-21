@@ -13,21 +13,8 @@ import 'package:ecentialsclone/main.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-<<<<<<< HEAD
-   // await tester.pumpWidget(const MyApp(showLogin: true, showSignup: null, ));
-
-   // await tester.pumpWidget(const MyApp(
-     // showLogin: true,
-   // )
-   // );
-
-=======
-<<<<<<< HEAD
     await tester.pumpWidget(const MyApp(showLogin: true, showSignup: false,));
-=======
-    await tester.pumpWidget(const MyApp(showLogin: true,showSignup: false,));
->>>>>>> 6d3c0e146e66abe0952f63c550194b1a8783f330
->>>>>>> e308b72a08e7b29eee2fc9a2ad0da712e155ea98
+
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
