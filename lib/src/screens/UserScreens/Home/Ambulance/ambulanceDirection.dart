@@ -26,7 +26,7 @@ class _AmbulanceDirectionState extends State<AmbulanceDirection> {
           onTap: () {
             Navigator.pop(context);
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_sharp,
             color: Colors.black54,
           ),
@@ -34,7 +34,7 @@ class _AmbulanceDirectionState extends State<AmbulanceDirection> {
         title: const Text("Zicky Clinical Laboratory"),
         centerTitle: true,
       ),
-      body: Container(
+      body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Stack(
@@ -44,7 +44,7 @@ class _AmbulanceDirectionState extends State<AmbulanceDirection> {
               left: 0,
               bottom: 0,
               right: 0,
-              child: mapScreen(),
+              child: MapScreen(),
             ),
             Positioned(
               child: Container(
@@ -52,8 +52,8 @@ class _AmbulanceDirectionState extends State<AmbulanceDirection> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Container(
-                      height: 150,
+                    SizedBox(
+                      height: 130,
                       width: MediaQuery.of(context).size.width,
                       child: Card(
                         elevation: 15,
@@ -63,8 +63,8 @@ class _AmbulanceDirectionState extends State<AmbulanceDirection> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                height: 150,
-                                width: 110,
+                                height: 130,
+                                width: 95,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   image: const DecorationImage(
@@ -75,34 +75,37 @@ class _AmbulanceDirectionState extends State<AmbulanceDirection> {
                                 ),
                               ),
                               const SizedBox(
-                                width: 20,
+                                width: 10,
                               ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  const Text(
-                                    "Andrews Opoku",
-                                    style: TextStyle(
-                                      fontSize: 20,
+                              Flexible(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    const Text(
+                                      "Andrews Opoku ",
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: 30,
-                                  ),
-                                  Row(
-                                    children: const [
-                                      Icon(
-                                        Icons.location_on,
-                                        size: 18,
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Text("10 Mtr Left")
-                                    ],
-                                  )
-                                ],
+                                    // const SizedBox(
+                                    //   height: 30,
+                                    // ),
+                                    Row(
+                                      children: const [
+                                        Icon(
+                                          Icons.location_on,
+                                          size: 18,
+                                        ),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        Text("10 Mtr Left")
+                                      ],
+                                    )
+                                  ],
+                                ),
                               ),
                               Icon(
                                 EcentialsIcons.arrowback,
@@ -129,6 +132,9 @@ class _AmbulanceDirectionState extends State<AmbulanceDirection> {
                           },
                         ),
                         Button(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
                           width: 150,
                           color: AppColors.primaryRedColor,
                           text: "Cancel",

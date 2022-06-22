@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
@@ -49,121 +47,129 @@ class _PaymentMethodState extends State<PaymentMethod> {
         children: [
           Container(
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.45,
+            height: MediaQuery.of(context).size.height * 0.4,
             color: AppColors.primaryOrangeColor,
-            child: const mapScreen(),
+            child: const MapScreen(),
           ),
           Container(
             margin: const EdgeInsets.only(
               bottom: 20,
             ),
-            child: SingleChildScrollView(
-              child: Container(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  children: [
-                    const Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text("How would you like to pay,"),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "GHC 120",
-                        style: TextStyle(
-                          color: AppColors.primaryGreenColor,
-                          fontWeight: FontWeight.bold,
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.6,
+              padding: const EdgeInsets.all(20),
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  Column(
+                    children: [
+                      const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text("How would you like to pay,"),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "GHC 120",
+                          style: TextStyle(
+                            color: AppColors.primaryGreenColor,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      height: 70,
-                      child: Card(
-                        shadowColor: AppColors.primaryRedColor,
-                        elevation: 10,
-                        child: Container(
-                          padding: const EdgeInsets.all(10),
-                          decoration: const BoxDecoration(
-                              border: Border(bottom: BorderSide())),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Image.asset(
-                                    "assets/images/logo.png",
-                                    scale: 1.9,
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Container(
-                                    margin: const EdgeInsets.only(top: 12),
-                                    child: Text(
-                                      "Wallet",
-                                      style: TextStyle(
-                                        color: AppColors.primaryBlueColor,
-                                        fontSize: 20,
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      SizedBox(
+                        height: 70,
+                        child: Card(
+                          margin:const EdgeInsets.all(0),
+                          shadowColor: AppColors.primaryRedColor,
+                          elevation: 10,
+                          child: Container(
+                            padding: const EdgeInsets.all(10),
+                            decoration: const BoxDecoration(
+                                border: Border(bottom: BorderSide())),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    Image.asset(
+                                      "assets/images/logo.png",
+                                      scale: 1.9,
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      margin: const EdgeInsets.only(top: 12),
+                                      child: Text(
+                                        "Wallet",
+                                        style: TextStyle(
+                                          color: AppColors.primaryBlueColor,
+                                          fontSize: 20,
+                                        ),
                                       ),
                                     ),
+                                  ],
+                                ),
+                                Container(
+                                  margin: const EdgeInsets.only(
+                                    top: 12,
                                   ),
-                                ],
-                              ),
-                              Container(
-                                margin: const EdgeInsets.only(
-                                  top: 12,
-                                ),
-                                child: const Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Text("Ending 8988"),
-                                ),
-                              )
-                            ],
+                                  child: const Align(
+                                    alignment: Alignment.centerRight,
+                                    child: Text("Ending 8988"),
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Card(
-                          elevation: 10,
-                          child: Button(
-                            width: (MediaQuery.of(context).size.width - 60) / 2,
-                            text: "Cash",
-                            icon: EcentialsIcons.cash,
-                            iconColor: AppColors.primaryGreenColor,
-                            hasIcon: true,
-                            color: AppColors.primaryWhiteColor,
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Card(
+                            elevation: 10,
+                            child: Button(
+                              width: (MediaQuery.of(context).size.width - 60) / 2,
+                              text: "Cash",
+                              icon: EcentialsIcons.cash,
+                              iconColor: AppColors.primaryGreenColor,
+                              hasIcon: true,
+                              color: AppColors.primaryWhiteColor,
+                            ),
                           ),
-                        ),
-                        Card(
-                          elevation: 10,
-                          child: Button(
-                            width: (MediaQuery.of(context).size.width - 60) / 2,
-                            text: "Add New",
-                            icon: EcentialsIcons.circle_add,
-                            iconColor: AppColors.primaryBlueColor,
-                            hasIcon: true,
-                            color: AppColors.primaryWhiteColor,
+                          Card(
+                            elevation: 10,
+                            child: Button(
+                              width: (MediaQuery.of(context).size.width - 60) / 2,
+                              text: "Add New",
+                              icon: EcentialsIcons.circle_add,
+                              iconColor: AppColors.primaryBlueColor,
+                              hasIcon: true,
+                              color: AppColors.primaryWhiteColor,
+                            ),
                           ),
-                        ),
-                      ],
-                    )
-                  ],
-                ),
+                        ],
+                      ),
+
+                    ],
+                  ),
+                              const SizedBox(height: 160,),
+
+                ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );
