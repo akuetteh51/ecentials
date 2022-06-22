@@ -82,7 +82,7 @@ Future main() async {
       ],
       child:  MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: ChatRoom(),
+        home: MyApp(showLogin: false,showSignup: false,),
         // home: ChatRoom(color: AppColors.primaryDeepColor),
         // home: TestWidgetsScreen(),
       ),
@@ -110,8 +110,8 @@ class MyApp extends StatelessWidget {
         centered: true,
         duration: 2000,
         splashIconSize: 500,
-        nextScreen: DeliveryMode(),
-        // nextScreen: showLogin ? Login() : const OnboardingScreen(),
+        // nextScreen: DeliveryMode(),
+        nextScreen: showLogin ? Login() : const OnboardingScreen(),
       ),
       theme: ThemeData(
         fontFamily: "Montserrat",

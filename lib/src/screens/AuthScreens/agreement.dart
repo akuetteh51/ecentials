@@ -1,8 +1,9 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
-import 'package:ecentialsclone/src/screens/AuthScreens/registration.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../UserScreens/main_screen.dart';
 
 class Agreement extends StatelessWidget {
   const Agreement({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class Agreement extends StatelessWidget {
         fontSize: 20,
       ),
       onTap: () {
-        Get.to(() => Registration());
+        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (builder)=>const MainScreen()), (route) => false);
       },
     );
 

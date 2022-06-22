@@ -104,13 +104,13 @@ class _ChatRoomState extends State<ChatRoom> {
                             // mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                "Anukem yugyfgyghe",
+                                "Anukem ",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Theme.of(context)
                                       .disabledColor
                                       .withOpacity(.8),
-                                  fontSize: 20,
+                                  fontSize: 18,
                                 ),
                               ),
                               const SizedBox(
@@ -120,7 +120,7 @@ class _ChatRoomState extends State<ChatRoom> {
                                 "Online - last seen, 12:00pm",
                                 style: TextStyle(
                                   color: Theme.of(context).disabledColor,
-                                  fontSize: 13,
+                                  fontSize: 12,
                                 ),
                               ),
                             ],

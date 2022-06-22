@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 
-class addingProduct extends StatelessWidget {
-  const addingProduct({Key? key}) : super(key: key);
+class AddingProduct extends StatelessWidget {
+  const AddingProduct({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

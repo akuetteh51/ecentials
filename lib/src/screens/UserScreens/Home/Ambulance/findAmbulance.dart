@@ -33,7 +33,7 @@ class _FindAmulanceState extends State<FindAmulance> {
         ),
         child: Button(
           onTap: () {
-            Get.to(() => AmbulanceDirection());
+            Get.to(() => const AmbulanceDirection());
           },
           text: "Confirm",
           color: AppColors.primaryRedColor,

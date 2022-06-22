@@ -17,32 +17,38 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryWhiteColor,
-      body: Column(
+      body: ListView(
         children: [
-          DashBoard(
-            image: "assets/images/minute_clinic.png",
-            btnName: "Minute Clinic",
-            onTap: () {
-              Get.to(
-                () => const MinuteClinic(),
-                transition: Transition.fadeIn,
-                duration: const Duration(seconds: 1),
-              );
-            },
-          ),
-          const SizedBox(
-            height: 40,
-          ),
-          DashBoard(
-            onTap: () {
-              Get.to(
-                () => AmbulanceNear(),
-                transition: Transition.rightToLeft,
-                duration: Duration(seconds: 1),
-              );
-            },
-            image: "assets/images/ambulance.png",
-            btnName: "Ambulance Services",
+          Column(
+            children: [
+              DashBoard(
+                image: "assets/images/minute_clinic.png",
+                btnName: "Minute Clinic",
+                onTap: () {
+                  Get.to(
+                    () => const MinuteClinic(),
+                    transition: Transition.fadeIn,
+                    duration: const Duration(milliseconds: 300),
+                  );
+                },
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              DashBoard(
+                onTap: () {
+                  Get.to(
+                    () => const AmbulanceNear(),
+                    transition: Transition.rightToLeft,
+                    duration: const Duration(milliseconds: 300),
+                  );
+                },
+                image: "assets/images/ambulance.png",
+                btnName: "Ambulance Services",
+              ),
+
+              const SizedBox(height: 60,),
+            ],
           ),
         ],
       ),

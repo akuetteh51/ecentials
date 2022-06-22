@@ -5,8 +5,6 @@ import '../Themes/ecentials_icons_icons.dart';
 import 'curvedPaint.dart';
 import 'floatingAmbulance.dart';
 
-
-
 class CurvedBottomBar extends StatefulWidget {
   final List<String>? tooltips;
   final List<Icon>? icons;
@@ -25,10 +23,16 @@ class CurvedBottomBar extends StatefulWidget {
 }
 
 class _CurvedBottomBarState extends State<CurvedBottomBar> {
+  int currentLocalIndex = 0;
   @override
   void initState() {
     super.initState();
-    widget.currentIndex?.call(widget.initialIndex);
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      widget.currentIndex?.call(widget.initialIndex);
+      setState(() {
+        currentLocalIndex = widget.initialIndex;
+      });
+    });
   }
 
   // Icons
@@ -90,6 +94,9 @@ class _CurvedBottomBarState extends State<CurvedBottomBar> {
                     // widget.index = index;
                     // debugPrint("Tapped: $index");
                     widget.currentIndex?.call(index);
+                    setState(() {
+                      currentLocalIndex = index;
+                    });
                   },
                   tooltip:
                       widget.tooltips != null && widget.tooltips?.length != 0

@@ -1,6 +1,6 @@
 import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/agreement.dart';
-import 'package:ecentialsclone/src/screens/AuthScreens/reset.dart';
+import 'package:ecentialsclone/src/screens/AuthScreens/registration.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/verifyEmail.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../Themes/colors.dart';
-import '../UserScreens/main_screen.dart';
 
 class Login extends StatefulWidget {
   bool isVisible;
@@ -150,7 +149,7 @@ class _LoginState extends State<Login> {
                 ),
               ),
               hintText: "********",
-              border: UnderlineInputBorder(
+              border: const UnderlineInputBorder(
                 borderSide: BorderSide.none,
               ),
             ),
@@ -172,7 +171,7 @@ class _LoginState extends State<Login> {
         onPressed: () {
           Get.to(() => VerifyEmail(),
               transition: Transition.rightToLeft,
-              duration: Duration(seconds: 1));
+              duration: const Duration(milliseconds: 300));
         },
       ),
     );
@@ -182,10 +181,11 @@ class _LoginState extends State<Login> {
       onTap: () async {
         final preference = await SharedPreferences.getInstance();
         preference.setBool("showSignup", true);
+
         Get.to(
-          () => const MainScreen(),
+          () => const Agreement(),
           transition: Transition.fadeIn,
-          duration: const Duration(seconds: 1),
+          duration: const Duration(milliseconds: 300),
         );
       },
       text: "Sign in",
@@ -210,9 +210,13 @@ class _LoginState extends State<Login> {
               ),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  Get.to(() => const Agreement(),
+                  Get.to(() => Registration(),
                       transition: Transition.rightToLeft,
-                      duration: Duration(seconds: 1));
+                      duration:const Duration(milliseconds: 400));
+                //   Get.to(() => const Agreement(),
+                //       transition: Transition.rightToLeft,
+                //       duration:const Duration(milliseconds: 400));
+                // }),
                 }),
         ],
       ),

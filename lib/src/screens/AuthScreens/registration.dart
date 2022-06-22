@@ -5,7 +5,6 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 
 import '../../Themes/colors.dart';
-import '../UserScreens/main_screen.dart';
 
 class Registration extends StatefulWidget {
   bool isVisible;
@@ -186,7 +185,7 @@ class _RegistrationState extends State<Registration> {
           child: TextFormField(
             obscuringCharacter: '*',
             obscureText: !widget.isVisible,
-            style: TextStyle(fontSize: 20),
+            style: const TextStyle(fontSize: 20),
             cursorColor: AppColors.primaryDeepColor,
             controller: _confirmPasswordController,
             decoration: InputDecoration(
@@ -218,11 +217,7 @@ class _RegistrationState extends State<Registration> {
 // Sign in Button
     final _signin = Button(
       onTap: () {
-        Get.to(
-          () => Login(),
-          transition: Transition.fadeIn,
-          duration: const Duration(seconds: 1),
-        );
+        Navigator.of(context).pop();
       },
       text: "Register",
       style: TextStyle(color: AppColors.primaryWhiteColor, fontSize: 20),
@@ -246,9 +241,7 @@ class _RegistrationState extends State<Registration> {
               ),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  Get.to(() => Login(),
-                      transition: Transition.leftToRight,
-                      duration: const Duration(seconds: 1));
+                  Navigator.of(context).pop();
                 }),
         ],
       ),

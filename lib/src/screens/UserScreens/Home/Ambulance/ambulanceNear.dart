@@ -60,7 +60,7 @@ class _AmbulanceNearState extends State<AmbulanceNear> {
                 color: Colors.grey.withOpacity(.10),
                 boxShape: NeumorphicBoxShape.roundRect(
                   const BorderRadius.only(
-                    bottomLeft: const Radius.circular(30),
+                    bottomLeft: Radius.circular(30),
                     bottomRight: Radius.circular(30),
                   ),
                 ),
@@ -131,7 +131,7 @@ class _AmbulanceNearState extends State<AmbulanceNear> {
               horizontal: 20,
               vertical: 40,
             ),
-            child: const pickupLocationCard(
+            child: const PickupLocationCard(
               title: "Pick-up Location",
               location: "location",
               address: "address",
@@ -142,7 +142,7 @@ class _AmbulanceNearState extends State<AmbulanceNear> {
             margin: const EdgeInsets.symmetric(
               horizontal: 20,
             ),
-            child: const pickupLocationCard(
+            child: const PickupLocationCard(
               title: "Pick-up Location",
               location: "location",
               address: "address",
@@ -156,7 +156,7 @@ class _AmbulanceNearState extends State<AmbulanceNear> {
             margin: const EdgeInsets.symmetric(
               horizontal: 20,
             ),
-            child: const pickupLocationCard(
+            child: const PickupLocationCard(
               title: "Pick-up Location",
               location: "location",
               address: "address",

@@ -1,13 +1,12 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
-import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:flutter/material.dart';
 
-class pickupLocationCard extends StatelessWidget {
+class PickupLocationCard extends StatelessWidget {
   final String title;
   final String location;
   final String address;
   final String country;
-  const pickupLocationCard(
+  const PickupLocationCard(
       {Key? key,
       required this.title,
       required this.location,
