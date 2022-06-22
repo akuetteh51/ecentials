@@ -28,7 +28,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
             width: MediaQuery.of(context).size.width - 40,
             text: "Pay Now",
             onTap: () {
-              Get.to(() => Payed());
+              Get.to(() => const Payed());
             },
             style: TextStyle(
               color: AppColors.primaryWhiteColor,
@@ -161,11 +161,9 @@ class _PaymentMethodState extends State<PaymentMethod> {
                           ),
                         ],
                       ),
-
                     ],
                   ),
-                              const SizedBox(height: 160,),
-
+                 const SizedBox(height: 160,),
                 ],
               ),
             ),

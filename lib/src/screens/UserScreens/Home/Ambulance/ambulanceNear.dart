@@ -77,14 +77,22 @@ class _AmbulanceNearState extends State<AmbulanceNear> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Builder(
-                          builder: (context) => IconButton(
+                        IconButton(
                             onPressed: () {
-                              Scaffold.of(context).openDrawer();
+                              Navigator.pop(context);
                             },
-                            icon: const Icon(EcentialsIcons.menu_icon),
-                          ),
-                        ),
+                            icon: Icon(
+                              Icons.arrow_back,
+                              color: Theme.of(context).disabledColor.withOpacity(.7),
+                            )),
+                        // Builder(
+                        //   builder: (context) => IconButton(
+                        //     onPressed: () {
+                        //       Scaffold.of(context).openDrawer();
+                        //     },
+                        //     icon: const Icon(EcentialsIcons.menu_icon),
+                        //   ),
+                        // ),
                         const Text(
                           "Ambulance",
                           style: TextStyle(

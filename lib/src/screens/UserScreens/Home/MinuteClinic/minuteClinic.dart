@@ -22,6 +22,7 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmac
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/scanResults.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/uploadResults.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/scanDocument.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/minutes_home.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/homeScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Notifications/notifications.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/store.dart';
@@ -29,6 +30,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
 
+import '../../../../Widgets/CurvedBottomBar.dart';
 import 'HospitalScreens/nearbyHospital.dart';
 
 class MinuteClinic extends StatefulWidget {
@@ -39,6 +41,13 @@ class MinuteClinic extends StatefulWidget {
 }
 
 class _MinuteClinicState extends State<MinuteClinic> {
+
+  int currentIndex = 0;
+  // onTap(int index) {
+  //   setState(() {
+  //     currentIndex = index;
+  //   });
+  // }  
   @override
   Widget build(BuildContext context) {
     final _appBar = AppBar(
@@ -77,81 +86,58 @@ class _MinuteClinicState extends State<MinuteClinic> {
       ),
     );
 
-    // Images
-    final _images = [
-      "assets/images/hospital.png",
-      "assets/images/pharmacy.png",
-      "assets/images/lab.png",
-    ];
-
-    // Button Names
-    final _btnNames = [
-      "Hospital",
-      "Pharmacy",
-      "Lab",
-    ];
     // screens
     final _pages = [
-      Alllabs(),
-      LabDetails(),
-      LabSchedules(),
-      pharmacyDashboard(),
-      ScanDocument(),
-      OrderProcessed(),
-      OrderSubmitted(),
-      OrderCompleted(),
-      UploadResults(),
-      ScanResults(),
-      OrderCompleted(),
-      Alllabs(),
-      DrugDashboard(),
-      DoctorInformation(),
-      Cart(),
-      LabChat(),
-      DoctorInformation(),
-      NearbyHospital(),
+      MinutesHome(),
+      // Alllabs(),
+      // LabDetails(),
+      // LabSchedules(),
+      // PharmacyDashboard(),
+      // ScanDocument(),
+      // OrderProcessed(),
+      // OrderSubmitted(),
+      // OrderCompleted(),
+      // UploadResults(),
+      // ScanResults(),
+      // OrderCompleted(),
+      // Alllabs(),
+      // DrugDashboard(),
+      // DoctorInformation(),
+      // Cart(),
+      // LabChat(),
+      // DoctorInformation(),
+      // NearbyHospital(),
     ];
 
-    return Scaffold(
-      backgroundColor: AppColors.primaryWhiteColor,
-      bottomNavigationBar: BottomNavBar(
-        backgroundColor: AppColors.primaryDeepColor,
-      ),
-      floatingActionButton: FloatingAmbulance(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      appBar: _appBar,
-      body: ListView(
-        children: List.generate(
-          3,
-          (index) => DashBoard(
-              image: _images[index],
-              btnName: _btnNames[index],
-              //  if(index == 0){
-              onTap: () {
-                if (index == 0) {
-                  Get.to(
-                    () => const NearbyHospital(),
-                    transition: Transition.fadeIn,
-                    duration: Duration(seconds: 1),
-                  );
-                } else if (index == 1) {
-                  Get.to(
-                    () => const pharmacyDashboard(),
-                    transition: Transition.fadeIn,
-                    duration: Duration(seconds: 1),
-                  );
-                } else {
-                  Get.to(
-                    () => const Alllabs(),
-                    transition: Transition.fadeIn,
-                    duration: Duration(seconds: 1),
-                  );
-                }
-
-                // }
-              }),
+    return Stack(
+      children: [
+        Scaffold(
+          // backgroundColor: AppColors.primaryWhiteColor,
+          // bottomNavigationBar: BottomNavBar(
+          //   backgroundColor: AppColors.primaryDeepColor,
+          // ),
+          // floatingActionButton: FloatingAmbulance(),
+          // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+          appBar: _appBar,
+          body: ListView(
+            shrinkWrap: true,
+            children: [
+         _pages[currentIndex],
+         const SizedBox(height: 120,), 
+            ],
+          ) ,
         ),
-      ),
+        Material(
+          type: MaterialType.transparency,
+          child: CurvedBottomBar(
+            currentIndex: (int curIndex) {
+              setState(() {
+                currentIndex = curIndex;
+              });
+            },
+          ),
+        ),        
+      ],
     );
   }
 }

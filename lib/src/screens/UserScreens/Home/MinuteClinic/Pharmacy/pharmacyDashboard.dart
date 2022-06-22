@@ -20,16 +20,16 @@ import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 
 import 'cart.dart';
 
-class pharmacyDashboard extends StatefulWidget {
-  const pharmacyDashboard({
+class PharmacyDashboard extends StatefulWidget {
+  const PharmacyDashboard({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<pharmacyDashboard> createState() => _pharmacyDashboardState();
+  State<PharmacyDashboard> createState() => _PharmacyDashboardState();
 }
 
-class _pharmacyDashboardState extends State<pharmacyDashboard> {
+class _PharmacyDashboardState extends State<PharmacyDashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
