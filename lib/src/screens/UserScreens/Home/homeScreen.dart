@@ -133,6 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
       // bottomNavigationBar: _bottomNavigationBar,
       // floatingActionButton: FloatingAmbulance(),
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      
       body: Stack(
         children: [
           _pages[currentIndex],

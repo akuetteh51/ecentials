@@ -90,9 +90,7 @@ class _CurvedBottomBarState extends State<CurvedBottomBar> {
               children: List.generate(
                 4,
                 (index) => IconButton(
-                  onPressed: () {
-                    // widget.index = index;
-                    // debugPrint("Tapped: $index");
+                  onPressed: () {                    
                     widget.currentIndex?.call(index);
                     setState(() {
                       currentLocalIndex = index;
