@@ -13,7 +13,7 @@ class Search4 extends StatelessWidget {
 
   const Search4(
       {Key? key,
-      this.width = 250,
+      this.width = 280,
       this.text = "Search...",
       this.controller,
       this.searchPressed,

@@ -155,10 +155,10 @@ class _pharmacyDashboardState extends State<pharmacyDashboard> {
                   top: 20, // left: 24.78
                 ),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     SizedBox(
-                      width: 170,
+                      width: MediaQuery.of(context).size.width * 0.85 / 2,
                       height: 150,
                       child: Neumorphic(
                         style: NeumorphicStyle(
@@ -185,11 +185,8 @@ class _pharmacyDashboardState extends State<pharmacyDashboard> {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      width: 20,
-                    ),
                     SizedBox(
-                      width: 170,
+                      width: MediaQuery.of(context).size.width * 0.85 / 2,
                       height: 150,
                       child: Neumorphic(
                         style: NeumorphicStyle(
@@ -241,41 +238,28 @@ class _pharmacyDashboardState extends State<pharmacyDashboard> {
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: 200.0,
-                child: ListView(
+                child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
-                  children: [
-                    Wrap(children: [
-                      for (int j = 0; j < 5; j++)
-                        Padding(
-                          padding: const EdgeInsets.only(right: 12.0),
-                          child: InkWell(
-                            onTap: () {
-                              Get.to(() => DrugDashboard());
-                            },
-                            child: PharmacyCard(
-                                pharmacyName: "Top up pharmacy ",
-                                location: "Spintex",
-                                address: "Accra",
-                                country: "Ghana"),
-                          ),
+                  child: Row(
+                    children: List.generate(
+                      5,
+                      (index) => Container(
+                        margin: EdgeInsets.only(
+                          right: 10,
                         ),
-                      // SizedBox(
-                      //   width: 10,
-                      // ),
-                      // InkWell(
-                      //    onTap:(){
-                      //      Get.to(() => DrugDashboard());
-
-                      //   },
-                      // child: PharmacyCard(
-                      //   pharmacyName: "The Medishop ",
-                      //   location: "Pharmacy",
-                      //   address: "Accra",
-                      //   country: "Ghana",
-                      // ),
-                      // ),
-                    ])
-                  ],
+                        child: InkWell(
+                          onTap: () {
+                            Get.to(() => DrugDashboard());
+                          },
+                          child: PharmacyCard(
+                              pharmacyName: "Top up pharmacy ",
+                              location: "Spintex",
+                              address: "Accra",
+                              country: "Ghana"),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ),
               Container(
@@ -310,7 +294,7 @@ class _pharmacyDashboardState extends State<pharmacyDashboard> {
               const SizedBox(
                 height: 16.0,
               ),
-              Container(
+              SizedBox(
                 height: MediaQuery.of(context).size.height * 0.6,
                 width: MediaQuery.of(context).size.width,
                 child: GridView.builder(

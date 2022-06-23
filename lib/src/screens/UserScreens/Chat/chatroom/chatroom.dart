@@ -4,15 +4,15 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmac
 import 'package:flutter/material.dart';
 
 class ChatRoom extends StatefulWidget {
-  const ChatRoom({Key? key}) : super(key: key);
+  /// Provide the theme color for this chatscreen
+  final Color? color;
+  const ChatRoom({Key? key, this.color}) : super(key: key);
 
   @override
   State<ChatRoom> createState() => _ChatRoomState();
 }
 
 class _ChatRoomState extends State<ChatRoom> {
-
-
   void _deliveryDialog(BuildContext ctx) {
     showModalBottomSheet(
       context: ctx,
@@ -45,6 +45,7 @@ class _ChatRoomState extends State<ChatRoom> {
                       ChatBubble(
                         text: "Message hjigkug bkeu hke kegnke",
                         isMe: y % 2 == 0 ? true : false,
+                        color:  widget.color ?? AppColors.primaryDeepColor,
                       ),
                   ],
                 ),
@@ -130,7 +131,7 @@ class _ChatRoomState extends State<ChatRoom> {
                         children: [
                           Icon(
                             Icons.phone,
-                            color: AppColors.primaryOrangeColor,
+                            color: widget.color ?? AppColors.primaryOrangeColor,
                             size: 20,
                           ),
                           const SizedBox(
@@ -138,7 +139,7 @@ class _ChatRoomState extends State<ChatRoom> {
                           ),
                           Icon(
                             Icons.video_call,
-                            color: AppColors.primaryOrangeColor,
+                            color: widget.color ?? AppColors.primaryOrangeColor,
                           ),
                           const SizedBox(
                             width: 8.0,
@@ -254,7 +255,7 @@ class _ChatRoomState extends State<ChatRoom> {
                     width: 45,
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: AppColors.primaryOrangeColor),
+                        color: widget.color ?? AppColors.primaryOrangeColor),
                     child: IconButton(
                       onPressed: () {
                         _deliveryDialog(context);

@@ -1,3 +1,6 @@
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital1.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital2DocProfile.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/screen6.dart';
 // ignore_for_file: unused_import, duplicate_import, non_constant_identifier_names
 
 import 'package:ecentialsclone/src/Themes/colors.dart';
@@ -34,13 +37,19 @@ import 'package:ecentialsclone/src/screens/AuthScreens/registration.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Chat/chat.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital4Chat.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/homeScreen.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Notifications/notifications.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Store/CreatePin1.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Store/CreateStore.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Store/CreateStore1.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Store/MyStoreHome.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/createPin.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/enterStoreDetails.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/MyStoreHome2.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Store/SetUpEcentialsWallet.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/PinCreated.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/PinVerfication.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/setUpEcentialsWallet.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/addCard.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/addCardDetails.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/cardTopup.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/add_product.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/shopDashboard.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/topupSuccessful.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/ecentialsWallet.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/store.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labDetails.dart';
 import 'package:flutter/material.dart';
@@ -60,7 +69,20 @@ class _TestWidgetsScreenState extends State<TestWidgetsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: labScreen(),
-    );
+        // body: Mystore3(),
+        //  NearbyH(),
+        // /addingProduct(),
+        //  DocotorInfo(),
+        //  Schedule(),
+
+        //  DocotorInfo(),
+        //  cardDetails(),
+        // walletSet(),
+        //  topedup(),
+        //  walletSet(),
+        // addingProduct(),
+        // SetupWallet(),
+        //  PageView(children: [],),
+        );
   }
 }

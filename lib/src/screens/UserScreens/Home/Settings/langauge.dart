@@ -74,11 +74,12 @@ class _LanguageState extends State<Language> {
           backgroundColor: AppColors.primaryWhiteColor,
           foregroundColor: AppColors.primaryBlackColor,
           title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Search(
                 height: 40,
                 radius: 10,
+                width: MediaQuery.of(context).size.width - 100,
                 searchPressed: () {},
                 micPressed: () {},
               ),

@@ -4,14 +4,14 @@ import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class MapScreen extends StatefulWidget {
-  const MapScreen({Key? key}) : super(key: key);
+class AmbulanceRoutingScreen extends StatefulWidget {
+  const AmbulanceRoutingScreen({Key? key}) : super(key: key);
 
   @override
-  State<MapScreen> createState() => _MapScreenState();
+  State<AmbulanceRoutingScreen> createState() => _mapScreenState();
 }
 
-class _MapScreenState extends State<MapScreen> {
+class _mapScreenState extends State<AmbulanceRoutingScreen> {
   static const _initialCameraPosition = CameraPosition(
     target: LatLng(5.116833, -1.293324),
     zoom: 11.5,
@@ -67,49 +67,60 @@ class _MapScreenState extends State<MapScreen> {
                       width: 109.0,
                     ),
                   ),
-                  Stack(
-                    children: [
-                      Row(
-                       children: <Widget>[
-                         SizedBox(height: 40,),Padding(
-                           padding: const EdgeInsets.all(8.0),
-                           child: Text(
-                           "Courier",
-                           style: TextStyle(
-                             color: const Color(0xFF033A64),
-                           ),
-                       ),
-                         ),   SizedBox(width: 120,),
-                          Image.asset(
-                             "assets/images/path2.png",
-                             height: 15.16,
-                             width: 13.33,
-
-                         ),],
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.only(right: 50.0),
-                        child: Center(
-                          child: Column(
-                            children: [
-                              SizedBox(height: 45,),
-                              Text("Elvis Wells"),
-                              SizedBox(height: 25,),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Icon(Icons.location_pin),
-                                  Text("10 Mtr left")
-                                ],
-                              )
-                            ],
-                          ),
+                  Center(
+                    child: Stack(
+                      children: [
+                        Row(
+                          children: <Widget>[
+                            SizedBox(
+                              height: 40,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                "Courier",
+                                style: TextStyle(
+                                  color: const Color(0xFF033A64),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 120,
+                            ),
+                            Image.asset(
+                              "assets/images/path2.png",
+                              height: 15.16,
+                              width: 13.33,
+                            ),
+                          ],
                         ),
-                      )
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.only(right: 50.0),
+                          child: Center(
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: 45,
+                                ),
+                                Text("Elvis Wells"),
+                                SizedBox(
+                                  height: 25,
+                                ),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Icon(Icons.location_pin),
+                                    Text("10 Mtr left")
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                   )
                 ],
               ),

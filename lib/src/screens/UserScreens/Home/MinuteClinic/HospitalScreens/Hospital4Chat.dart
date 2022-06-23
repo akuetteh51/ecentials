@@ -24,11 +24,11 @@ class _chat4State extends State<chat4> {
             child: Column(children: [
               Row(
                 children: [
-                  Icon(
-                    Icons.arrow_back,
+                  BackButton(
+                    color: Colors.black,
                   ),
                   SizedBox(
-                    width: 250,
+                    width: 230,
                   ),
                   Icon(Icons.alarm),
                   SizedBox(

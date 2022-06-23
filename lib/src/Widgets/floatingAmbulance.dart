@@ -1,9 +1,6 @@
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulanceNear.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../screens/UserScreens/Home/MinuteClinic/HospitalScreens/ambulance_map.dart';
-
 class FloatingAmbulance extends StatelessWidget {
   const FloatingAmbulance({Key? key, }) : super(key: key);
 

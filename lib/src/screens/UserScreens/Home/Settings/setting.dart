@@ -15,7 +15,8 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-  bool switched = false;
+  bool isDarkmode = false;
+  bool isDownloadViaWifi = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,6 +44,7 @@ class _SettingsState extends State<Settings> {
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GestureDetector(
                   onTap: () {
@@ -55,42 +57,55 @@ class _SettingsState extends State<Settings> {
                     ),
                   ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                SizedBox(
+                  width: 10,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width - 210,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        "Andrews Opoku Kwadwo",
+                        softWrap: false,
+                        maxLines: 1,
+                        overflow: TextOverflow.fade,
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        "My name is Andrews Opoku Senior jnfnjj...",
+                        softWrap: false,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
+                ),
+                Row(
                   children: [
-                    Row(
-                      children: [
-                        Text(
-                          "Andrews Opoku",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.primaryBlackColor.withOpacity(.50),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            Get.to(() => EditProfile());
-                          },
-                          icon: Icon(
-                            EcentialsIcons.pen_underlined,
-                            color: AppColors.primaryBlueColor,
-                            size: 20,
-                          ),
-                        ),
-                      ],
+                    IconButton(
+                      onPressed: () {
+                        Get.to(() => EditProfile());
+                      },
+                      icon: Icon(
+                        EcentialsIcons.pen_underlined,
+                        color: AppColors.primaryBlueColor,
+                        size: 20,
+                      ),
                     ),
-                    const Text(
-                      "My name is Andrews Opoku...",
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(EcentialsIcons.qrcode),
                     ),
                   ],
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(EcentialsIcons.qrcode),
                 ),
               ],
             ),
@@ -240,9 +255,15 @@ class _SettingsState extends State<Settings> {
               "Dark Mode",
               style: TextStyle(fontSize: 20),
             ),
-            trailing: Switch(
-              onChanged: (bool value) {},
-              value: false,
+            trailing: Switch.adaptive(
+              value: isDarkmode,
+              onChanged: (isDarkmode) {
+                setState(
+                  () {
+                    this.isDarkmode = isDarkmode;
+                  },
+                );
+              },
             ),
           ),
           ListTile(
@@ -253,12 +274,14 @@ class _SettingsState extends State<Settings> {
               "Only Download via Wifi",
               style: TextStyle(fontSize: 20),
             ),
-            trailing: Switch(
-              value: switched == false ? true : false,
-              onChanged: (bool value) {
-                setState(() {
-                  value = switched == false ? true : false;
-                });
+            trailing: Switch.adaptive(
+              value: isDownloadViaWifi,
+              onChanged: (isDownloadViaWifi) {
+                setState(
+                  () {
+                    this.isDownloadViaWifi = isDownloadViaWifi;
+                  },
+                );
               },
             ),
           ),

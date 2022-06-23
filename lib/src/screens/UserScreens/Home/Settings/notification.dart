@@ -12,8 +12,24 @@ class NotificationsAndSounds extends StatefulWidget {
 }
 
 class _NotificationsAndSoundsState extends State<NotificationsAndSounds> {
+  bool isMobile = false;
+  bool isSound = false;
+  bool isCall = false;
+
   @override
   Widget build(BuildContext context) {
+    final _icons = [
+      EcentialsIcons.notification,
+      Icons.volume_up_outlined,
+      EcentialsIcons.phone
+    ];
+
+    final _text = [
+      "Mobile Notifications",
+      "Play Sound",
+      "Accept calls on this app",
+    ];
+
     return Scaffold(
       backgroundColor: AppColors.primaryWhiteColor,
       appBar: AppBar(
@@ -23,52 +39,74 @@ class _NotificationsAndSoundsState extends State<NotificationsAndSounds> {
         title: Text("Notifications and Sounds"),
         centerTitle: true,
       ),
-      body: ListView(
-        children: [
-          ListTile(
-            leading: CircleAvatar(
-              backgroundColor: AppColors.primaryDeepColor.withOpacity(.50),
-              child: Icon(
-                EcentialsIcons.notification,
-                color: AppColors.primaryWhiteColor,
-              ),
-            ),
-            title: Text("Mobile Notifications"),
-            trailing: Switch(
-              onChanged: ((value) {}),
-              value: true,
+      body: ListView(children: [
+        ListTile(
+          leading: CircleAvatar(
+            backgroundColor: AppColors.primaryDeepColor.withOpacity(.50),
+            child: Icon(
+              EcentialsIcons.notification,
+              color: AppColors.primaryWhiteColor,
             ),
           ),
-          ListTile(
-            leading: CircleAvatar(
-              backgroundColor: AppColors.primaryDeepColor.withOpacity(.50),
-              child: Icon(
-                Icons.speaker_sharp,
-                color: AppColors.primaryWhiteColor,
-              ),
-            ),
-            title: Text("Play Sound"),
-            trailing: Switch(
-              onChanged: ((value) {}),
-              value: true,
+          title: const Text(
+            "Mobile Notifications",
+          ),
+          trailing: Switch.adaptive(
+            value: isMobile,
+            onChanged: (isMobile) {
+              setState(
+                () {
+                  this.isMobile = isMobile;
+                },
+              );
+            },
+          ),
+        ),
+        ListTile(
+          leading: CircleAvatar(
+            backgroundColor: AppColors.primaryDeepColor.withOpacity(.50),
+            child: Icon(
+              Icons.volume_up_outlined,
+              color: AppColors.primaryWhiteColor,
             ),
           ),
-          ListTile(
-            leading: CircleAvatar(
-              backgroundColor: AppColors.primaryDeepColor.withOpacity(.50),
-              child: Icon(
-                Icons.phone,
-                color: AppColors.primaryWhiteColor,
-              ),
-            ),
-            title: Text("Accept calls on this app"),
-            trailing: Switch(
-              onChanged: ((value) {}),
-              value: true,
+          title: const Text(
+            "Play sounds",
+          ),
+          trailing: Switch.adaptive(
+            value: isSound,
+            onChanged: (isSound) {
+              setState(
+                () {
+                  this.isSound = isSound;
+                },
+              );
+            },
+          ),
+        ),
+        ListTile(
+          leading: CircleAvatar(
+            backgroundColor: AppColors.primaryDeepColor.withOpacity(.50),
+            child: Icon(
+              Icons.phone,
+              color: AppColors.primaryWhiteColor,
             ),
           ),
-        ],
-      ),
+          title: const Text(
+            "Accept calls on this appp",
+          ),
+          trailing: Switch.adaptive(
+            value: isCall,
+            onChanged: (isCall) {
+              setState(
+                () {
+                  this.isCall = isCall;
+                },
+              );
+            },
+          ),
+        ),
+      ]),
     );
   }
 }
