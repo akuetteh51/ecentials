@@ -2,6 +2,7 @@ import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/editProfile.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/downloads.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/langauge.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/notification.dart';
 import 'package:flutter/material.dart';
@@ -206,6 +207,9 @@ class _SettingsState extends State<Settings> {
             ),
           ),
           ListTile(
+            onTap: () {
+              Get.to(() => const Downloads());
+            },
             leading: Image.asset(
               "assets/images/download.png",
             ),
