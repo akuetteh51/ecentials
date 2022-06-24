@@ -5,7 +5,6 @@ import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/Dashboard.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Chat/chat.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/doctorInformation.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labSchedules.dart';
@@ -18,7 +17,6 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmac
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/orderSubmitted.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/drugDashboard.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacyDashboard.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/cart.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/scanResults.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/uploadResults.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/scanDocument.dart';
@@ -31,6 +29,7 @@ import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
 
 import '../../../../Widgets/CurvedBottomBar.dart';
+import '../../Chat/ChatHomePage.dart';
 import 'HospitalScreens/nearbyHospital.dart';
 
 class MinuteClinic extends StatefulWidget {
@@ -41,13 +40,12 @@ class MinuteClinic extends StatefulWidget {
 }
 
 class _MinuteClinicState extends State<MinuteClinic> {
-
   int currentIndex = 0;
   // onTap(int index) {
   //   setState(() {
   //     currentIndex = index;
   //   });
-  // }  
+  // }
   @override
   Widget build(BuildContext context) {
     final _appBar = AppBar(
@@ -60,9 +58,7 @@ class _MinuteClinicState extends State<MinuteClinic> {
           color: AppColors.primaryDeepColor,
         ),
         onPressed: () {
-          Get.to(
-            () => HomeScreen(),
-          );
+          Navigator.pop(context);
         },
       ),
       title: Wrap(
@@ -89,6 +85,10 @@ class _MinuteClinicState extends State<MinuteClinic> {
     // screens
     final _pages = [
       MinutesHome(),
+      const Stores(),
+      const Notifications(),
+      // const ChatRoom(),
+      const ChatHomePage(),
       // Alllabs(),
       // LabDetails(),
       // LabSchedules(),
@@ -122,10 +122,15 @@ class _MinuteClinicState extends State<MinuteClinic> {
           body: ListView(
             shrinkWrap: true,
             children: [
-         _pages[currentIndex],
-         const SizedBox(height: 120,), 
+              SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  child: _pages[currentIndex]),
+              const SizedBox(
+                height: 120,
+              ),
             ],
-          ) ,
+          ),
         ),
         Material(
           type: MaterialType.transparency,
@@ -136,7 +141,7 @@ class _MinuteClinicState extends State<MinuteClinic> {
               });
             },
           ),
-        ),        
+        ),
       ],
     );
   }

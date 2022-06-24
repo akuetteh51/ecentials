@@ -1,9 +1,7 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
-import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/Widgets/navDrawer.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Chat/chat.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Chat/chatroom/chatroom.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Chat/ChatHomePage.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/home.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Notifications/notifications.dart';
@@ -78,42 +76,12 @@ class _HomeScreenState extends State<HomeScreen> {
       const Home(),
       const Stores(),
       const Notifications(),
-      const ChatRoom(),
+      // const ChatRoom(),
+      const ChatHomePage(),
     ];
 
-    final _myAppBar = AppBar(
-      backgroundColor: AppColors.primaryWhiteColor,
-      elevation: 0,
-    );
 
     // BottomNavigation Bar
-
-    final _icons = [
-      Icon(
-        EcentialsIcons.home,
-        color: AppColors.primaryWhiteColor,
-      ),
-      Icon(
-        EcentialsIcons.sell,
-        color: AppColors.primaryWhiteColor,
-      ),
-      Icon(
-        EcentialsIcons.notification,
-        color: AppColors.primaryWhiteColor,
-      ),
-      Icon(
-        EcentialsIcons.chat_heart,
-        color: AppColors.primaryWhiteColor,
-      ),
-    ];
-
-// Icons tooltips
-    final _tooltip = [
-      "Home",
-      "Store",
-      "Notifications",
-      "Chat Bot",
-    ];
 
     return Scaffold(
       // extendBody: true,

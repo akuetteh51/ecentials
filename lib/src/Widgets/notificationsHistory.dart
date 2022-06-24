@@ -7,7 +7,7 @@ class NotificationsHistory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(
+      margin:const EdgeInsets.symmetric(
         vertical: 20,
       ),
       child: Row(
@@ -18,7 +18,7 @@ class NotificationsHistory extends StatelessWidget {
             width: 50,
             child: Stack(
               children: [
-                Container(
+                const SizedBox(
                   child: CircleAvatar(
                     backgroundImage: AssetImage(
                       "assets/images/profile.png",
@@ -43,7 +43,7 @@ class NotificationsHistory extends StatelessWidget {
               ],
             ),
           ),
-          Container(
+          SizedBox(
             width: MediaQuery.of(context).size.width * 0.6,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

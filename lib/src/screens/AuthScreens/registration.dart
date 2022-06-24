@@ -5,6 +5,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 
 import '../../Themes/colors.dart';
+import 'agreement.dart';
 
 class Registration extends StatefulWidget {
   bool isVisible;
@@ -217,7 +218,11 @@ class _RegistrationState extends State<Registration> {
 // Sign in Button
     final _signin = Button(
       onTap: () {
-        Navigator.of(context).pop();
+          Get.to(
+          () => const Agreement(),
+          transition: Transition.fadeIn,
+          duration: const Duration(milliseconds: 300),
+        );
       },
       text: "Register",
       style: TextStyle(color: AppColors.primaryWhiteColor, fontSize: 20),

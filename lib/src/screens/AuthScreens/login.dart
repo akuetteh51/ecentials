@@ -2,6 +2,7 @@ import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/agreement.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/registration.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/verifyEmail.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/main_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
@@ -183,7 +184,7 @@ class _LoginState extends State<Login> {
         preference.setBool("showSignup", true);
 
         Get.to(
-          () => const Agreement(),
+          () => const MainScreen(),
           transition: Transition.fadeIn,
           duration: const Duration(milliseconds: 300),
         );
