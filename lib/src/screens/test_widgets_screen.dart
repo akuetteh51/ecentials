@@ -15,6 +15,7 @@ import 'package:ecentialsclone/src/screens/UserScreens/Store/add_product.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/my_store_home3.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/transfer.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/wallet.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/pin_creation_prompt.dart';
 import 'package:flutter/material.dart';
 
 class TestWidgetsScreen extends StatefulWidget {
@@ -28,20 +29,21 @@ class _TestWidgetsScreenState extends State<TestWidgetsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // body: Mystore3(),
-        //  NearbyH(),
-        // /addingProduct(),
-        //  DocotorInfo(),
-        //  Schedule(),
+      body: pinCreationPrompt(),
+      // body: Mystore3(),
+      //  NearbyH(),
+      // /addingProduct(),
+      //  DocotorInfo(),
+      //  Schedule(),
 
-        //  DocotorInfo(),
-        //  cardDetails(),
-        // walletSet(),
-        //  topedup(),
-        //  walletSet(),
-        // addingProduct(),
-        // SetupWallet(),
-        // labScreen()
-        );
+      //  DocotorInfo(),
+      //  cardDetails(),
+      // walletSet(),
+      //  topedup(),
+      //  walletSet(),
+      // addingProduct(),
+      // SetupWallet(),
+      // labScreen()
+    );
   }
 }
