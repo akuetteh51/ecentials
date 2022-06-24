@@ -49,77 +49,90 @@ class TopDoctor extends StatelessWidget {
                 SizedBox(
                   width: 20,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          docName,
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 40,
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              Icons.star,
-                              size: 15,
-                              color: AppColors.primaryOrangeColor,
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Flexible(
+                            child: Text(
+                              docName,
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                            Text(
-                              "4.9",
+                          ),
+                          SizedBox(
+                            width: 25,
+                          ),
+                          SizedBox(
+                            child: Wrap(
+                              // mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  Icons.star,
+                                  size: 15,
+                                  color: AppColors.primaryOrangeColor,
+                                ),
+                                Text(
+                                  "4.9",
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        "3 days ago",
+                        style: TextStyle(color: Colors.grey, fontSize: 13),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: Wrap(
+                          children: [
+                            RichText(
+                              text: TextSpan(
+                                text: "Area of specialization: ",
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.primaryBlackColor),
+                                children: [
+                                  TextSpan(
+                                    text: specialization,
+                                    style: TextStyle(fontWeight: FontWeight.normal),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
-                        )
-                      ],
-                    ),
-                    Text(
-                      "3 days ago",
-                      style: TextStyle(color: Colors.grey, fontSize: 13),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    RichText(
-                      text: TextSpan(
-                        text: "Area of specialization: ",
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.primaryBlackColor),
-                        children: [
-                          TextSpan(
-                            text: specialization,
-                            style: TextStyle(fontWeight: FontWeight.normal),
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    RichText(
-                      text: TextSpan(
-                        text: "Experience: ",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.primaryBlackColor,
-                            fontSize: 12),
-                        children: [
-                          TextSpan(
-                            text: "$experience years",
-                            style: TextStyle(fontWeight: FontWeight.normal),
-                          ),
-                        ],
+                      SizedBox(
+                        height: 5,
                       ),
-                    )
-                  ],
+                      RichText(
+                        text: TextSpan(
+                          text: "Experience: ",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.primaryBlackColor,
+                              fontSize: 12),
+                          children: [
+                            TextSpan(
+                              text: "$experience years",
+                              style: TextStyle(fontWeight: FontWeight.normal),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),

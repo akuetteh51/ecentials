@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
@@ -25,10 +26,10 @@ class _NearbyHospitalState extends State<NearbyHospital> {
 
   Widget hospitalBody() {
     return  Scaffold(
-          floatingActionButton: FloatingAmbulance(),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
-          bottomNavigationBar: BottomNavBar(),
+          // floatingActionButton: FloatingAmbulance(),
+          // floatingActionButtonLocation:
+          //     FloatingActionButtonLocation.centerDocked,
+          // bottomNavigationBar: BottomNavBar(),
           body: SingleChildScrollView(
             child: SafeArea(
               child: Padding(
@@ -173,6 +174,7 @@ class _NearbyHospitalState extends State<NearbyHospital> {
         height: MediaQuery.of(context).size.height,
           child: _pages[currentIndex]),
         CurvedBottomBar(
+          color: AppColors.primaryGreenColor,
           currentIndex: (int curIndex) {
             setState(() {
               currentIndex = curIndex;

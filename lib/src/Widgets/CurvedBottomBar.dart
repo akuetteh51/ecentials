@@ -8,10 +8,11 @@ import 'floatingAmbulance.dart';
 class CurvedBottomBar extends StatefulWidget {
   final ValueChanged<int>? currentIndex;
   final int initialIndex;
+  final Color? color;
   const CurvedBottomBar(
       {Key? key,
       this.currentIndex,
-      this.initialIndex = 0})
+      this.initialIndex = 0, this.color})
       : super(key: key);
 
   @override
@@ -65,7 +66,7 @@ class _CurvedBottomBarState extends State<CurvedBottomBar> {
             child: CustomPaint(
               size: Size(MediaQuery.of(context).size.width,
                   80.0), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
-              painter: RPSCustomPainter(),
+              painter: RPSCustomPainter(shapeColor: widget.color),
             ),
           ),
         ),
