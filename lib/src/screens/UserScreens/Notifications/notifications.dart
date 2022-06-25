@@ -25,29 +25,27 @@ class _NotificationsState extends State<Notifications> {
           Navigator.pop(context);
         },
         child: Icon(
-          Icons.arrow_back_sharp,
-          color: Colors.black54,
+          Icons.notifications_active,
+          color: AppColors.primaryOrangeColor,
         ),
       ),
-      title: const Text("Notification"),
+      title: const Text("Notifications"),
       centerTitle: true,
       actions: [
-        Container(
-          margin: const EdgeInsets.only(
-            right: 10,
-          ),
-          child: CircleAvatar(
-            backgroundColor: AppColors.primaryDeepColor,
-            child: IconButton(
+        Padding(
+                      padding: const EdgeInsets.only(right:0.0),
+          child: SizedBox(            
+            child: IconButton(                
               icon: Icon(
                 EcentialsIcons.settings_2,
-                color: AppColors.primaryWhiteColor,
+                color: AppColors.primaryDeepColor,
+                size: 20,
               ),
               onPressed: () {
                 Get.to(
                   () => const Settings(),
                   transition: Transition.rightToLeft,
-                  duration: const Duration(milliseconds: 500),
+                  duration: const Duration(milliseconds: 300),
                 );
               },
             ),
@@ -63,7 +61,7 @@ class _NotificationsState extends State<Notifications> {
         body: Column(
           children: [
             Align(
-              alignment: Alignment.centerLeft,
+              alignment: Alignment.center,
               child: TabBar(
                   indicatorSize: TabBarIndicatorSize.label,
                   isScrollable: true,
@@ -89,7 +87,8 @@ class _NotificationsState extends State<Notifications> {
                             height: 22,
                             width: 25,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(3),
+                              shape: BoxShape.circle,
+                              // borderRadius: BorderRadius.circular(3),
                               color: AppColors.primaryRedColor,
                             ),
                             child: Center(
@@ -97,8 +96,8 @@ class _NotificationsState extends State<Notifications> {
                                 "10+",
                                 style: TextStyle(
                                   color: AppColors.primaryWhiteColor,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
@@ -111,22 +110,20 @@ class _NotificationsState extends State<Notifications> {
             Expanded(
               child: TabBarView(
                 children: [
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 20),
-                    child: const Center(
-                      child: Text(
-                        "OPPS!!! Nothing for you at the moment",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
+                  const Center(
+                    child: Text(
+                      "OPPS!!! Nothing for you at the moment",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 20,
+
                       ),
                     ),
                   ),
                   Container(
                     margin: const EdgeInsets.symmetric(
                       horizontal: 20,
-                      vertical: 40,
+                      vertical: 30,
                     ),
                     child: ListView(
                       children: List.generate(

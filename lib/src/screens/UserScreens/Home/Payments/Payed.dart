@@ -17,47 +17,48 @@ class _PayedState extends State<Payed> {
       backgroundColor: AppColors.primaryWhiteColor,
       body: Center(
         child: Container(
-          margin: EdgeInsets.all(20),
+          margin: const EdgeInsets.all(20),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SizedBox(height: MediaQuery.of(context).viewPadding.top,),
               Icon(
                 EcentialsIcons.circle_correct,
                 color: AppColors.primaryRedColor,
-                size: 100,
+                size: 80,
               ),
-              SizedBox(
+             const SizedBox(
                 height: 30,
               ),
-              Text(
+             const Text(
                 "Payment Successful!",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                 ),
               ),
-              SizedBox(
-                height: 20,
+             const SizedBox(
+                height: 15,
               ),
-              Text(
+             const Text(
                 "13 Mar 2022, 05:25 PM",
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 17,
                 ),
               ),
-              SizedBox(
-                height: 20,
+             const SizedBox(
+                height: 60,
               ),
-              Container(
+              SizedBox(
                 width: MediaQuery.of(context).size.width - 40,
-                child: Text(
+                child: const Text(
                   "Transaction ID: dae6au-4ksne9e-9lkj",
                   style: TextStyle(
                     fontSize: 20,
                   ),
                 ),
               ),
-              SizedBox(
+             const SizedBox(
                 height: 20,
               ),
               Row(
@@ -66,6 +67,7 @@ class _PayedState extends State<Payed> {
                   Text(
                     "Payment",
                     style: TextStyle(
+                      fontSize: 18,
                       color: AppColors.primaryBlackColor.withOpacity(.50),
                     ),
                   ),
@@ -78,14 +80,14 @@ class _PayedState extends State<Payed> {
                   ),
                 ],
               ),
-              SizedBox(
+             const SizedBox(
                 height: 5,
               ),
               Container(
                 height: 1,
                 color: AppColors.primaryBlackColor.withOpacity(.30),
               ),
-              SizedBox(
+             const SizedBox(
                 height: 10,
               ),
               Align(
@@ -93,14 +95,15 @@ class _PayedState extends State<Payed> {
                 child: Text(
                   "Payment Method",
                   style: TextStyle(
+                    fontSize: 18,
                     color: AppColors.primaryBlackColor.withOpacity(.50),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              Align(
+              const Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "Credit Card",
@@ -109,7 +112,7 @@ class _PayedState extends State<Payed> {
                   ),
                 ),
               ),
-              SizedBox(
+             const SizedBox(
                 height: 40,
               ),
               Button(

@@ -60,7 +60,7 @@ class _AmbulanceNearState extends State<AmbulanceNear> {
                 color: Colors.grey.withOpacity(.10),
                 boxShape: NeumorphicBoxShape.roundRect(
                   const BorderRadius.only(
-                    bottomLeft: const Radius.circular(30),
+                    bottomLeft: Radius.circular(30),
                     bottomRight: Radius.circular(30),
                   ),
                 ),
@@ -77,14 +77,22 @@ class _AmbulanceNearState extends State<AmbulanceNear> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Builder(
-                          builder: (context) => IconButton(
+                        IconButton(
                             onPressed: () {
-                              Scaffold.of(context).openDrawer();
+                              Navigator.pop(context);
                             },
-                            icon: const Icon(EcentialsIcons.menu_icon),
-                          ),
-                        ),
+                            icon: Icon(
+                              Icons.arrow_back,
+                              color: Theme.of(context).disabledColor.withOpacity(.7),
+                            )),
+                        // Builder(
+                        //   builder: (context) => IconButton(
+                        //     onPressed: () {
+                        //       Scaffold.of(context).openDrawer();
+                        //     },
+                        //     icon: const Icon(EcentialsIcons.menu_icon),
+                        //   ),
+                        // ),
                         const Text(
                           "Ambulance",
                           style: TextStyle(
@@ -131,7 +139,7 @@ class _AmbulanceNearState extends State<AmbulanceNear> {
               horizontal: 20,
               vertical: 40,
             ),
-            child: const pickupLocationCard(
+            child: const PickupLocationCard(
               title: "Pick-up Location",
               location: "location",
               address: "address",
@@ -142,7 +150,7 @@ class _AmbulanceNearState extends State<AmbulanceNear> {
             margin: const EdgeInsets.symmetric(
               horizontal: 20,
             ),
-            child: const pickupLocationCard(
+            child: const PickupLocationCard(
               title: "Pick-up Location",
               location: "location",
               address: "address",
@@ -156,7 +164,7 @@ class _AmbulanceNearState extends State<AmbulanceNear> {
             margin: const EdgeInsets.symmetric(
               horizontal: 20,
             ),
-            child: const pickupLocationCard(
+            child: const PickupLocationCard(
               title: "Pick-up Location",
               location: "location",
               address: "address",

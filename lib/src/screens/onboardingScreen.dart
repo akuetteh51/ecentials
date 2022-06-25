@@ -83,7 +83,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           Get.to(
             () => Login(),
             transition: Transition.rightToLeft,
-            duration: const Duration(seconds: 1),
+            duration: const Duration(milliseconds: 300),
           );
         },
         child: Text(
@@ -106,7 +106,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         Get.to(
           () => Login(),
           transition: Transition.rightToLeft,
-          duration: const Duration(milliseconds: 500),
+          duration: const Duration(milliseconds: 300),
         );
       },
       text: "Next",
@@ -119,7 +119,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 // smooth page indicator
     final _pageIndicator = SmoothPageIndicator(
       onDotClicked: (index) => _pageController.animateToPage(index,
-          duration: const Duration(milliseconds: 500), curve: Curves.easeIn),
+          duration: const Duration(milliseconds: 300), curve: Curves.easeIn),
       controller: _pageController,
       count: 4,
       axisDirection: Axis.horizontal,

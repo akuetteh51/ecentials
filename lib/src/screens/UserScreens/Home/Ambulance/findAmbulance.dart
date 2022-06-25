@@ -33,7 +33,7 @@ class _FindAmulanceState extends State<FindAmulance> {
         ),
         child: Button(
           onTap: () {
-            Get.to(() => AmbulanceDirection());
+            Get.to(() => const AmbulanceDirection());
           },
           text: "Confirm",
           color: AppColors.primaryRedColor,
@@ -47,7 +47,7 @@ class _FindAmulanceState extends State<FindAmulance> {
           Container(
             height: MediaQuery.of(context).size.width * 0.8,
             width: MediaQuery.of(context).size.width,
-            child: const mapScreen(),
+            child: const MapScreen(),
           ),
           const SizedBox(
             height: 10,

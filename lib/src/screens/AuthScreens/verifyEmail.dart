@@ -1,7 +1,5 @@
 import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/emailSuccess.dart';
-import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 
@@ -85,24 +83,10 @@ class _VerifyEmailState extends State<VerifyEmail> {
             style: const TextStyle(fontSize: 20),
             cursorColor: AppColors.primaryDeepColor,
             controller: _passwordController,
-            decoration: InputDecoration(
-              // suffixIcon: IconButton(
-              //   onPressed: () {
-              //     setState(() {
-              //       widget.isVisible = !widget.isVisible;
-              //     });
-              //   },
-              //   icon: Icon(
-              //     widget.isVisible == true
-              //         ? Icons.visibility
-              //         : Icons.visibility_off,
-              //     color: AppColors.primaryBlackColor.withOpacity(
-              //       .50,
-              //     ),
-              //   ),
-              // ),
+            decoration: const InputDecoration(
+             
               hintText: "example@gmail.com",
-              border: const UnderlineInputBorder(
+              border:  UnderlineInputBorder(
                 borderSide: BorderSide.none,
               ),
             ),
@@ -116,9 +100,9 @@ class _VerifyEmailState extends State<VerifyEmail> {
     final _signin = GestureDetector(
       onTap: () {
         Get.to(
-          () => MainScreen(),
+          () => const MainScreen(),
           transition: Transition.fadeIn,
-          duration: const Duration(seconds: 1),
+          duration: const Duration(milliseconds: 300),
         );
       },
       child: Button(
@@ -135,7 +119,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
       backgroundColor: AppColors.primaryWhiteColor,
       foregroundColor: AppColors.primaryBlackColor,
       elevation: 0,
-      title: Text(
+      title: const Text(
         "Confirm Email",
         style: TextStyle(
           fontSize: 20,
