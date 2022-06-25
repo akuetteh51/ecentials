@@ -116,6 +116,7 @@ class _NotificationsState extends State<Notifications> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 20,
+
                       ),
                     ),
                   ),

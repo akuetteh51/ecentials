@@ -6,26 +6,27 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_widget_cache.dart';
 
 class TopDoctor extends StatelessWidget {
-  final String image;
-  final String docName;
-  final String specialization;
-  final int experience;
+  final String? image;
+  final String? docName;
+  final String? days;
+  final String? specialization;
+  final int? experience;
   final ontap;
 
-  const TopDoctor(
-      {Key? key,
-      required this.image,
-      required this.docName,
-      required this.specialization,
-      required this.experience,
-      this.ontap})
-      : super(key: key);
+  const TopDoctor({
+    Key? key,
+    required this.image,
+    required this.docName,
+    required this.specialization,
+    required this.experience,
+    this.days,
+    this.ontap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 350,
-      height: 150,
+      width: MediaQuery.of(context).size.width - 60,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Card(
@@ -33,6 +34,7 @@ class TopDoctor extends StatelessWidget {
           child: Container(
             margin: EdgeInsets.all(10),
             child: Row(
+              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
@@ -41,29 +43,36 @@ class TopDoctor extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     image: DecorationImage(
-                      image: AssetImage(image),
+                      image: AssetImage(image!),
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
                 SizedBox(
-                  width: 20,
+                  width: 10,
                 ),
+               
                 Flexible(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
+
                         children: [
                           Flexible(
                             child: Text(
-                              docName,
+                          "Dr. $docName",
+                              softWrap: false,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 16,
+
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
+
                           SizedBox(
                             width: 25,
                           ),
@@ -115,6 +124,7 @@ class TopDoctor extends StatelessWidget {
                       ),
                       SizedBox(
                         height: 5,
+
                       ),
                       RichText(
                         text: TextSpan(
@@ -126,6 +136,7 @@ class TopDoctor extends StatelessWidget {
                           children: [
                             TextSpan(
                               text: "$experience years",
+
                               style: TextStyle(fontWeight: FontWeight.normal),
                             ),
                           ],
@@ -134,6 +145,7 @@ class TopDoctor extends StatelessWidget {
                     ],
                   ),
                 )
+
               ],
             ),
           ),

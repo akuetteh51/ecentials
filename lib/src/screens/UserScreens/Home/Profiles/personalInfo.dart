@@ -39,6 +39,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       backgroundColor: AppColors.primaryWhiteColor,
       appBar: AppBar(
         backgroundColor: AppColors.primaryWhiteColor,

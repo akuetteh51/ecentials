@@ -11,6 +11,7 @@ import 'package:ecentialsclone/src/Widgets/search.dart';
 
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labDetails.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
 //import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Sreen3.dart';
 //import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Lab5.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,8 @@ class _AlllabsState extends State<Alllabs> {
 
   Widget labsHome() {
     return Scaffold(
-            // bottomNavigationBar: BottomNavBar(
+
+      // bottomNavigationBar: BottomNavBar(
             //   backgroundColor: AppColors.primaryGreenColor,
             // ),
             // floatingActionButton: FloatingAmbulance(),
@@ -58,14 +60,22 @@ class _AlllabsState extends State<Alllabs> {
                     ),
                   ),
                 ),
-                actions: [
-                  Container(
-                    margin: EdgeInsets.all(10),
-                    child: CircleAvatar(
-                        backgroundImage:
-                            AssetImage("assets/images/profile.png")),
-                  ),
-                ]),
+        actions: [
+          GestureDetector(
+            onTap: () {
+              Get.to(
+                () => ProfileScreen(),
+                transition: Transition.leftToRight,
+              );
+            },
+            child: Container(
+              margin: EdgeInsets.all(10),
+              child: CircleAvatar(
+                  backgroundImage: AssetImage("assets/images/profile.png")),
+            ),
+          ),
+        ],
+            ),
             drawer: const NavDrawer(),
             body: Container(
                 margin: const EdgeInsets.symmetric(
@@ -79,10 +89,12 @@ class _AlllabsState extends State<Alllabs> {
                         color: AppColors.primaryBlackColor,
                         fontWeight: FontWeight.w600,
                         fontSize: 24),
+
                   ),
                   SizedBox(
                     height: 20,
                   ),
+
                   Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -161,6 +173,7 @@ class _AlllabsState extends State<Alllabs> {
           ),
         ),
       ],
+
     );
   }
 }

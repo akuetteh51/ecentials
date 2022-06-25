@@ -5,9 +5,13 @@ import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/Widgets/labResultsCard.dart';
+import 'package:ecentialsclone/src/Widgets/navDrawer.dart';
+import 'package:ecentialsclone/src/Widgets/search.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../../Widgets/CurvedBottomBar.dart';
 import '../../../Chat/ChatHomePage.dart';
@@ -22,9 +26,53 @@ class NearbyHospital extends StatefulWidget {
 }
 
 class _NearbyHospitalState extends State<NearbyHospital> {
+
   int currentIndex = 0;
 
   Widget hospitalBody() {
+    
+       final _docsInfo = [
+      {
+        "image": "assets/images/doctor1.png",
+        "name": "Sussan Agams Ayarega",
+        "days": "3 days ago",
+        "area": "Heart Surgeon",
+        "experience": "5",
+      },
+      {
+        "image": "assets/images/sussan.png",
+        "name": "Jennifer Harrison",
+        "days": "1 week ago",
+        "area": "Dentist, Neurologist",
+        "experience": "5",
+      },
+      {
+        "image": "assets/images/doctor.png",
+        "name": "Andrews Kwadwo dhgfhsgfh",
+        "days": "8 hours ago",
+        "area": "Optometry",
+        "experience": "8",
+      },
+    ];
+
+    final _hospitalInfo = [
+      {
+        "image": "assets/images/hospitalNational.png",
+        "labName": "ZIky National Hospital",
+        "openingHours": "Weekdays |7:00am -8:pm",
+      },
+      {
+        "image": "assets/images/hospitalna.png",
+        "labName": "Andrews Medical Hospital",
+        "openingHours": "Weekdays |8:00am -4:pm",
+      },
+      {
+        "image": "assets/images/hospitaln.png",
+        "labName": "Quame Medical Center",
+        "openingHours": "Weekdays |7:00am -8:pm",
+      },
+    ]; 
+    
     return  Scaffold(
           // floatingActionButton: FloatingAmbulance(),
           // floatingActionButtonLocation:
@@ -121,31 +169,19 @@ class _NearbyHospitalState extends State<NearbyHospital> {
                       ],
                     ),
                   ),
-                  SingleChildScrollView(
+           SingleChildScrollView(
                     child: Column(
-                      children: [
-                        SizedBox(
-                          height: 20,
+                      children: List.generate(
+                        3,
+                        (index) => Container(
+                          margin: EdgeInsets.only(bottom: 20),
+                          child: LabResultsCard(
+                            image: _hospitalInfo[index]["image"],
+                            labName: _hospitalInfo[index]["labName"],
+                            openingHours: "Weekdays |7:00am -8:pm",
+                          ),
                         ),
-                        LabResultsCard(
-                            image: "assets/images/hospitalNational.png",
-                            labName: "ZIky National Hospital",
-                            openingHours: "Weekdays |7:00am -8:pm"),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        LabResultsCard(
-                            image: "assets/images/hospitaln.png",
-                            labName: "ZIky National Hospital",
-                            openingHours: "Weekdays |7:00am -8:pm"),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        LabResultsCard(
-                            image: "assets/images/hospitalna.png",
-                            labName: "ZIky National Hospital",
-                            openingHours: "Weekdays |7:00am -8:pm")
-                      ],
+                      ),
                     ),
                   ),
                 ]),

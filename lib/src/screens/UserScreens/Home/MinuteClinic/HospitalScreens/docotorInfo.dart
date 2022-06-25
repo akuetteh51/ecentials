@@ -206,15 +206,19 @@ class _DocotorInfoState extends State<DocotorInfo> {
                         child: Row(
                           children: [
                             TopDoctor(
-                                image: "assets/images/doctor.png",
-                                docName: "Esther Essien",
-                                specialization: "Eye specialist",
-                                experience: 6),
+                              image: "assets/images/doctor.png",
+                              docName: "Esther Essien",
+                              days: "3 days ago",
+                              specialization: "Eye specialist",
+                              experience: 6,
+                            ),
                             TopDoctor(
-                                image: "assets/images/doctor.png",
-                                docName: "Esther Essien",
-                                specialization: "Eye specialist",
-                                experience: 6),
+                              image: "assets/images/doctor.png",
+                              docName: "Esther Essien",
+                              days: "3 days ago",
+                              specialization: "Eye specialist",
+                              experience: 6,
+                            ),
                           ],
                         ),
                       ),

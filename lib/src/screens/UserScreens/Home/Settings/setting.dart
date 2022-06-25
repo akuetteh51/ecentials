@@ -2,6 +2,9 @@ import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/editProfile.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/downloads.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/langauge.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/notification.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,6 +16,8 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+  bool isDarkmode = false;
+  bool isDownloadViaWifi = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +45,7 @@ class _SettingsState extends State<Settings> {
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GestureDetector(
                   onTap: () {
@@ -52,6 +58,7 @@ class _SettingsState extends State<Settings> {
                     ),
                   ),
                 ),
+
                 const SizedBox(width: 8,),
                 Flexible(
                   child: SizedBox(
@@ -87,14 +94,36 @@ class _SettingsState extends State<Settings> {
                         ),
                         const Text(
                           "My name is Andrews Opoku...",
+
                         ),
-                      ],
-                    ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        "My name is Andrews Opoku Senior jnfnjj...",
+                        softWrap: false,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
                   ),
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(EcentialsIcons.qrcode),
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Get.to(() => EditProfile());
+                      },
+                      icon: Icon(
+                        EcentialsIcons.pen_underlined,
+                        color: AppColors.primaryBlueColor,
+                        size: 20,
+                      ),
+                    ),
+
+                    ),
+
                 ),
               ],
             ),
@@ -126,6 +155,9 @@ class _SettingsState extends State<Settings> {
             ),
           ),
           ListTile(
+            onTap: () {
+              Get.to(() => NotificationsAndSounds());
+            },
             leading: Image.asset(
               "assets/images/notifications.png",
               scale: 1.2,
@@ -192,6 +224,9 @@ class _SettingsState extends State<Settings> {
             ),
           ),
           ListTile(
+            onTap: () {
+              Get.to(() => const Downloads());
+            },
             leading: Image.asset(
               "assets/images/download.png",
             ),
@@ -219,6 +254,9 @@ class _SettingsState extends State<Settings> {
             ),
           ),
           ListTile(
+            onTap: () {
+              Get.to(() => const Language());
+            },
             leading: Image.asset(
               "assets/images/translate.png",
             ),
@@ -238,8 +276,15 @@ class _SettingsState extends State<Settings> {
               "Dark Mode",
               style: TextStyle(fontSize: 18),
             ),
-            trailing: const Icon(
-              Icons.chevron_right,
+            trailing: Switch.adaptive(
+              value: isDarkmode,
+              onChanged: (isDarkmode) {
+                setState(
+                  () {
+                    this.isDarkmode = isDarkmode;
+                  },
+                );
+              },
             ),
           ),
           ListTile(
@@ -250,8 +295,15 @@ class _SettingsState extends State<Settings> {
               "Only Download via Wifi",
               style: TextStyle(fontSize: 18),
             ),
-            trailing: const Icon(
-              Icons.chevron_right,
+            trailing: Switch.adaptive(
+              value: isDownloadViaWifi,
+              onChanged: (isDownloadViaWifi) {
+                setState(
+                  () {
+                    this.isDownloadViaWifi = isDownloadViaWifi;
+                  },
+                );
+              },
             ),
           ),
           Container(

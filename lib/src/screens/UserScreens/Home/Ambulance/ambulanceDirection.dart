@@ -60,6 +60,7 @@ class _AmbulanceDirectionState extends State<AmbulanceDirection> {
                         child: Container(
                           margin: const EdgeInsets.all(10),
                           child: Row(
+                            mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
@@ -77,6 +78,7 @@ class _AmbulanceDirectionState extends State<AmbulanceDirection> {
                               const SizedBox(
                                 width: 10,
                               ),
+
                               Flexible(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,6 +94,7 @@ class _AmbulanceDirectionState extends State<AmbulanceDirection> {
                                     // const SizedBox(
                                     //   height: 30,
                                     // ),
+
                                     Row(
                                       children: const [
                                         Icon(
@@ -107,10 +110,6 @@ class _AmbulanceDirectionState extends State<AmbulanceDirection> {
                                   ],
                                 ),
                               ),
-                              Icon(
-                                EcentialsIcons.arrowback,
-                                color: AppColors.primaryDeepColor,
-                              )
                             ],
                           ),
                         ),

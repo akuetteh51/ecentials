@@ -3,14 +3,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class MapScreen extends StatefulWidget {
-  const MapScreen({Key? key}) : super(key: key);
+class MapScreens extends StatefulWidget {
+  const MapScreens({Key? key}) : super(key: key);
 
   @override
-  State<MapScreen> createState() => _MapScreenState();
+  State<MapScreens> createState() => _MapScreensState();
 }
 
-class _MapScreenState extends State<MapScreen> {
+class _MapScreensState extends State<MapScreens> {
   static const _initialCameraPosition = CameraPosition(
     target: LatLng(5.116833, -1.293324),
     zoom: 11.5,

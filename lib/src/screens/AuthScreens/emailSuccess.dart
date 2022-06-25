@@ -54,7 +54,6 @@ class EmailSuccess extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 25,
-                fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(
