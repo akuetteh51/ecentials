@@ -64,6 +64,7 @@ Future main() async {
   final showSignup = preference.getBool('showSignup') ?? false;
 
   runApp(
+
     MyApp(
       showLogin: false,
       showSignup: false,
@@ -81,7 +82,11 @@ Future main() async {
     //     home: ChatRoom(),
     //     home: TestWidgetsScreen(),
     //   ),
+
     // ),
+    MaterialApp(
+      home: TestWidgetsScreen(),
+    ),
   );
 }
 

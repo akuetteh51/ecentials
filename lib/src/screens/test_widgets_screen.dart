@@ -47,6 +47,10 @@ import 'package:ecentialsclone/src/screens/UserScreens/Store/addCard.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/addCardDetails.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/cardTopup.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/add_product.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/my_store_home3.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/transfer.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/wallet.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/pin_creation_prompt.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/shopDashboard.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/topupSuccessful.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/ecentialsWallet.dart';
@@ -69,20 +73,21 @@ class _TestWidgetsScreenState extends State<TestWidgetsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // body: Mystore3(),
-        //  NearbyH(),
-        // /addingProduct(),
-        //  DocotorInfo(),
-        //  Schedule(),
+      body: pinCreationPrompt(),
+      // body: Mystore3(),
+      //  NearbyH(),
+      // /addingProduct(),
+      //  DocotorInfo(),
+      //  Schedule(),
 
-        //  DocotorInfo(),
-        //  cardDetails(),
-        // walletSet(),
-        //  topedup(),
-        //  walletSet(),
-        // addingProduct(),
-        // SetupWallet(),
-        //  PageView(children: [],),
-        );
+      //  DocotorInfo(),
+      //  cardDetails(),
+      // walletSet(),
+      //  topedup(),
+      //  walletSet(),
+      // addingProduct(),
+      // SetupWallet(),
+      // labScreen()
+    );
   }
 }
