@@ -252,6 +252,11 @@ class _SettingsState extends State<Settings> {
             ),
           ),
           ListTile(
+            onTap: () {
+              setState(() {
+                isDarkmode = !isDarkmode;
+              });
+            },
             leading: Image.asset(
               "assets/images/darkmode.png",
             ),
@@ -271,6 +276,11 @@ class _SettingsState extends State<Settings> {
             ),
           ),
           ListTile(
+            onTap: () {
+              setState(() {
+                isDownloadViaWifi = !isDownloadViaWifi;
+              });
+            },
             leading: Image.asset(
               "assets/images/wifi.png",
             ),

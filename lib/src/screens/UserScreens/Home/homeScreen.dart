@@ -155,10 +155,12 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: currentIndex == 0
           ? _appBar
           : currentIndex == 1
-              ? _myAppBar
+              ? null
               : currentIndex == 2
                   ? null
-                  : _myAppBar,
+                  : currentIndex == 3
+                      ? null
+                      : _myAppBar,
       drawer: NavDrawer(),
       bottomNavigationBar: _bottomNavigationBar,
       floatingActionButton: FloatingAmbulance(),
