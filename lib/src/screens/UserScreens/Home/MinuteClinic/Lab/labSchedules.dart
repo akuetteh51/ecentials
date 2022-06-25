@@ -44,30 +44,28 @@ class _LabSchedulesState extends State<LabSchedules> {
                   color: AppColors.primaryDeepColor,
                 ),
                 onPressed: () {
-                  Get.to(
-                    () => LabDetails(),
-                  );
+                  Navigator.pop(context);
                 },
               ),
               actions: [
-                Container(
-                    margin: EdgeInsets.all(20),
-                    child: Stack(
-                      children: [
-                        Positioned(
-                          child: Icon(EcentialsIcons.notification),
-                        ),
-                        Positioned(
-                          right: 0,
-                          top: 0,
-                          child: Icon(
-                            Icons.circle,
-                            size: 10,
-                            color: Color.fromARGB(255, 215, 20, 6),
-                          ),
-                        ),
-                      ],
-                    )),
+                // Container(
+                //     margin: EdgeInsets.all(20),
+                //     child: Stack(
+                //       children: [
+                //         Positioned(
+                //           child: Icon(EcentialsIcons.notification),
+                //         ),
+                //         Positioned(
+                //           right: 0,
+                //           top: 0,
+                //           child: Icon(
+                //             Icons.circle,
+                //             size: 10,
+                //             color: Color.fromARGB(255, 215, 20, 6),
+                //           ),
+                //         ),
+                //       ],
+                //     )),
                 Container(
                   margin: EdgeInsets.all(10),
                   child: CircleAvatar(
@@ -75,12 +73,12 @@ class _LabSchedulesState extends State<LabSchedules> {
                 ),
               ],
             ),
-            bottomNavigationBar: BottomNavBar(
-              backgroundColor: AppColors.primaryGreenColor,
-            ),
-            floatingActionButton: FloatingAmbulance(),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerDocked,
+            // bottomNavigationBar: BottomNavBar(
+            //   backgroundColor: AppColors.primaryGreenColor,
+            // ),
+            // floatingActionButton: FloatingAmbulance(),
+            // floatingActionButtonLocation:
+            //     FloatingActionButtonLocation.centerDocked,
             body: SingleChildScrollView(
                 child: SafeArea(
                     child: Padding(
@@ -96,7 +94,7 @@ class _LabSchedulesState extends State<LabSchedules> {
 
                       decoration: BoxDecoration(
                         color: AppColors.primaryGreyColor,
-                      // color: Colors.redAccent,
+                        // color: Colors.redAccent,
 
                         borderRadius: BorderRadius.circular(5),
                       ),
@@ -128,7 +126,7 @@ class _LabSchedulesState extends State<LabSchedules> {
                                     //   width: 1,
                                     // ),
                                     // right: BorderSide(width: 1),
-                                    )),
+                                    ),),
                             child:
                                 //Padding(
                                 // padding: const EdgeInsets.only(left:10.0, right: 3.0),

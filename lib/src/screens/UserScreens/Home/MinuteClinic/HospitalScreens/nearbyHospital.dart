@@ -165,7 +165,8 @@ class _NearbyHospitalState extends State<NearbyHospital> {
     const Notifications(),
     // const ChatRoom(),
     const ChatHomePage(),
-  ];    
+  ];
+      
     return Stack(
       children: [
        

@@ -89,25 +89,7 @@ class _MinuteClinicState extends State<MinuteClinic> {
       const Notifications(),
       // const ChatRoom(),
       const ChatHomePage(),
-      // Alllabs(),
-      // LabDetails(),
-      // LabSchedules(),
-      // PharmacyDashboard(),
-      // ScanDocument(),
-      // OrderProcessed(),
-      // OrderSubmitted(),
-      // OrderCompleted(),
-      // UploadResults(),
-      // ScanResults(),
-      // OrderCompleted(),
-      // Alllabs(),
-      // DrugDashboard(),
-      // DoctorInformation(),
-      // Cart(),
-      // LabChat(),
-      // DoctorInformation(),
-      // NearbyHospital(),
-    ];
+      ];
 
     return Stack(
       children: [
