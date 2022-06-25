@@ -28,9 +28,7 @@ class _mapScreen12State extends State<mapScreen12> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(
-          color: Colors.black,
-        ),
+        leading: BackButton(),
         title: Center(
             child: Text(
           "AnuTech National Hospital",

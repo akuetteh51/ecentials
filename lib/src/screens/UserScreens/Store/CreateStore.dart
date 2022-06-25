@@ -2,17 +2,18 @@ import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Store/CreateStore1.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/enterStoreDetails.dart';
 import 'package:flutter/material.dart';
 
-class createStore extends StatelessWidget {
-  const createStore({Key? key}) : super(key: key);
+class CreateStore extends StatelessWidget {
+  const CreateStore({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             IconButton(
               onPressed: () {
@@ -23,15 +24,12 @@ class createStore extends StatelessWidget {
                 color: Colors.black,
               ),
             ),
-            SizedBox(
-              width: 200,
-            ),
-            Expanded(
-              child: CircleAvatar(
-                radius: 15,
-                backgroundImage: AssetImage("assets/images/profilePic.png"),
-              ),
-            ),
+            // Expanded(
+            //   child: CircleAvatar(
+            //     radius: 15,
+            //     backgroundImage: AssetImage("assets/images/profilePic.png"),
+            //   ),
+            // ),
           ],
         ),
         backgroundColor: Colors.white,
@@ -68,8 +66,10 @@ class createStore extends StatelessWidget {
               radius: 20,
               style: TextStyle(color: Colors.white, fontSize: 15),
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => createStore1()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => EnterStoreDetails()));
               },
             ),
           ),

@@ -1,6 +1,5 @@
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/pin.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Store/EnterPin.dart';
 import 'package:flutter/material.dart';
 
 class EnteredPin extends StatelessWidget {
@@ -194,12 +193,12 @@ class EnteredPin extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => pinKey2(),
-                        ),
-                      );
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => pinKey2(),
+                      //   ),
+                      // );
                     },
                     icon: Image.asset("assets/images/delete_key.png"),
                   ),

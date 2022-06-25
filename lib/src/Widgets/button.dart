@@ -41,7 +41,7 @@ class Button extends StatelessWidget {
         child: Center(
           child: hasIcon == true
               ? Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Icon(
                       icon,

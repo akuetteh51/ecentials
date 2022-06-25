@@ -1,3 +1,4 @@
+import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/outlinedButton.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/add_product.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class Stores extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.primaryWhiteColor,
       appBar: AppBar(
         leading: Builder(
           builder: (context) => IconButton(
