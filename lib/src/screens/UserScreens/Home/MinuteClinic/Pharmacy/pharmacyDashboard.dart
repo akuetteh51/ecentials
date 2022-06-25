@@ -212,11 +212,11 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
                             ),
                           ),
                         ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+                      // ],
+                    // ),
+                  // ],
+              //   ),
+              // ),
               const SizedBox(
                 height: 20,
               ),
@@ -317,10 +317,10 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
               SizedBox(
                 height: 35.0,
 
-              ),
-            ),
-          ),
-        );
+              ),],),)
+          //   ),
+          // ),
+            ]))));
   }  
     
 

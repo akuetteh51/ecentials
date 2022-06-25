@@ -1,0 +1,3 @@
+keytool -genkey -v -keystore C:\Users\Administrator\Documents\flutter_stuff\ecentials\release_store\upload-keystore.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+
+keystore password: ecentials

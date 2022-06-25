@@ -20,6 +20,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 
 import '../../../../../Widgets/CurvedBottomBar.dart';
 import '../../../Chat/ChatHomePage.dart';
+import '../../../Chat/ChatHomePage.dart';
 import '../../../Notifications/notifications.dart';
 import '../../../Store/store.dart';
 

@@ -96,11 +96,11 @@ class _SettingsState extends State<Settings> {
                           "My name is Andrews Opoku...",
 
                         ),
-                      ),
-                      SizedBox(
+                      // ),
+                     const SizedBox(
                         height: 10,
                       ),
-                      Text(
+                     const Text(
                         "My name is Andrews Opoku Senior jnfnjj...",
                         softWrap: false,
                         maxLines: 1,
@@ -108,21 +108,7 @@ class _SettingsState extends State<Settings> {
                       ),
                     ],
                   ),
-                ),
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Get.to(() => EditProfile());
-                      },
-                      icon: Icon(
-                        EcentialsIcons.pen_underlined,
-                        color: AppColors.primaryBlueColor,
-                        size: 20,
-                      ),
-                    ),
-
-                    ),
+                ),                          
 
                 ),
               ],

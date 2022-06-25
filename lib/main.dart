@@ -64,10 +64,6 @@ Future main() async {
 
   runApp(
 
-    MyApp(
-      showLogin: false,
-      showSignup: false,
-    ),
     // MultiProvider(
     //   providers: [
     //     ChangeNotifierProvider<MainState>(create: (_) => MainState()),
