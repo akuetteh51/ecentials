@@ -92,24 +92,24 @@ class _MinuteClinicState extends State<MinuteClinic> {
     ];
     // screens
     final _pages = [
-      Alllabs(),
-      LabDetails(),
-      LabSchedules(),
-      pharmacyDashboard(),
-      ScanDocument(),
-      OrderProcessed(),
-      OrderSubmitted(),
-      OrderCompleted(),
-      UploadResults(),
-      ScanResults(),
-      OrderCompleted(),
-      Alllabs(),
-      DrugDashboard(),
-      DoctorInformation(),
-      Cart(),
-      LabChat(),
-      DoctorInformation(),
       NearbyHospital(),
+      pharmacyDashboard(),
+      Alllabs(),
+      // LabDetails(),
+      // LabSchedules(),
+      // ScanDocument(),
+      // OrderProcessed(),
+      // OrderSubmitted(),
+      // OrderCompleted(),
+      // UploadResults(),
+      // ScanResults(),
+      // OrderCompleted(),
+      // Alllabs(),
+      // DrugDashboard(),
+      // DoctorInformation(),
+      // Cart(),
+      // LabChat(),
+      // DoctorInformation(),
     ];
 
     return Scaffold(
@@ -128,25 +128,30 @@ class _MinuteClinicState extends State<MinuteClinic> {
               btnName: _btnNames[index],
               //  if(index == 0){
               onTap: () {
-                if (index == 0) {
-                  Get.to(
-                    () => const NearbyHospital(),
-                    transition: Transition.fadeIn,
-                    duration: Duration(seconds: 1),
-                  );
-                } else if (index == 1) {
-                  Get.to(
-                    () => const pharmacyDashboard(),
-                    transition: Transition.fadeIn,
-                    duration: Duration(seconds: 1),
-                  );
-                } else {
-                  Get.to(
-                    () => const Alllabs(),
-                    transition: Transition.fadeIn,
-                    duration: Duration(seconds: 1),
-                  );
-                }
+                // if (index == 0) {
+                //   Get.to(
+                //     () => const NearbyHospital(),
+                //     transition: Transition.fadeIn,
+                //     duration: Duration(seconds: 1),
+                //   );
+                // } else if (index == 1) {
+                //   Get.to(
+                //     () => const pharmacyDashboard(),
+                //     transition: Transition.fadeIn,
+                //     duration: Duration(seconds: 1),
+                //   );
+                // } else {
+                //   Get.to(
+                //     () => const Alllabs(),
+                //     transition: Transition.fadeIn,
+                //     duration: Duration(seconds: 1),
+                //   );
+                // }
+                Get.to(
+                  () => _pages[index],
+                  transition: Transition.fadeIn,
+                  duration: Duration(milliseconds: 500),
+                );
 
                 // }
               }),

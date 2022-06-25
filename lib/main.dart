@@ -1,8 +1,5 @@
 // ignore_for_file: prefer_const_constructors, unused_import, unused_local_variable
 
-import 'package:ecentialsclone/src/Themes/colors.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/language_setting.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Store/ecentialsWallet.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Chat/chatroom/chat_bubble.dart';
@@ -57,6 +54,7 @@ import 'src/app_state/hospital_state.dart';
 import 'src/app_state/lab_state.dart';
 import 'src/app_state/pharmacy_state.dart';
 import 'src/app_state/shop_state.dart';
+import 'src/screens/onboardingScreen.dart';
 import 'src/screens/test_widgets_screen.dart';
 
 Future main() async {
@@ -66,27 +64,24 @@ Future main() async {
   final showSignup = preference.getBool('showSignup') ?? false;
 
   runApp(
-    // MyApp(
-    //   // showLogin: true,
-    //   // showSignup: false,
-    //
-    // ),
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider<MainState>(create: (_) => MainState()),
-        ChangeNotifierProvider<LabState>(create: (_) => LabState()),
-        ChangeNotifierProvider<AmbulanceState>(create: (_) => AmbulanceState()),
-        ChangeNotifierProvider<HospitalState>(create: (_) => HospitalState()),
-        ChangeNotifierProvider<PharmacyState>(create: (_) => PharmacyState()),
-        ChangeNotifierProvider<ShopState>(create: (_) => ShopState()),
-      ],
-      child:  MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: ChatRoom(),
-        // home: ChatRoom(color: AppColors.primaryDeepColor),
-        // home: TestWidgetsScreen(),
-      ),
+    MyApp(
+      showLogin: false,
+      showSignup: false,
     ),
+    // MultiProvider(
+    //   providers: [
+    //     ChangeNotifierProvider<MainState>(create: (_) => MainState()),
+    //     ChangeNotifierProvider<LabState>(create: (_) => LabState()),
+    //     ChangeNotifierProvider<AmbulanceState>(create: (_) => AmbulanceState()),
+    //     ChangeNotifierProvider<HospitalState>(create: (_) => HospitalState()),
+    //     ChangeNotifierProvider<PharmacyState>(create: (_) => PharmacyState()),
+    //     ChangeNotifierProvider<ShopState>(create: (_) => ShopState()),
+    //   ],
+    //   child: const MaterialApp(
+    //     home: ChatRoom(),
+    //     home: TestWidgetsScreen(),
+    //   ),
+    // ),
   );
 }
 
@@ -105,13 +100,13 @@ class MyApp extends StatelessWidget {
     ]);
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AnimatedSplashScreen(        
+      home: AnimatedSplashScreen(
         splash: "assets/images/logo.png",
         centered: true,
         duration: 2000,
         splashIconSize: 500,
-        nextScreen: DeliveryMode(),
-        // nextScreen: showLogin ? Login() : const OnboardingScreen(),
+        // nextScreen: DeliveryMode(),
+        nextScreen: showLogin ? Login() : const OnboardingScreen(),
       ),
       theme: ThemeData(
         fontFamily: "Montserrat",

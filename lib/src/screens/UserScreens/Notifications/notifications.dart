@@ -111,11 +111,15 @@ class _NotificationsState extends State<Notifications> {
             Expanded(
               child: TabBarView(
                 children: [
-                  const Center(
-                    child: Text(
-                      "OPPS!!! Nothing for you at the moment",
-                      style: TextStyle(
-                        fontSize: 20,
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    child: const Center(
+                      child: Text(
+                        "OPPS!!! Nothing for you at the moment",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
                       ),
                     ),
                   ),

@@ -3,9 +3,9 @@ import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:flutter/material.dart';
 
 class LabResultsCard extends StatelessWidget {
-  final String image;
-  final String labName;
-  final String openingHours;
+  final String? image;
+  final String? labName;
+  final String? openingHours;
 
   final String? service1;
   final String? service2;
@@ -37,7 +37,7 @@ class LabResultsCard extends StatelessWidget {
         height: 200,
         width: width - 40,
         decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
+          image: DecorationImage(image: AssetImage(image!), fit: BoxFit.cover),
         ),
         child: Stack(
           children: [

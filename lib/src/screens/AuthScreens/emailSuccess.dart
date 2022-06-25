@@ -52,7 +52,6 @@ class EmailSuccess extends StatelessWidget {
               "You have an account with us!",
               style: TextStyle(
                 fontSize: 25,
-                fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(

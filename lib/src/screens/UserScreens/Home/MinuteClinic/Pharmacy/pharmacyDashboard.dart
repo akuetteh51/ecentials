@@ -14,6 +14,7 @@ import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/cart.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/cart.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/drugDashboard.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
@@ -33,11 +34,13 @@ class _pharmacyDashboardState extends State<pharmacyDashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       bottomNavigationBar: BottomNavBar(),
       floatingActionButton: FloatingAmbulance(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       backgroundColor: AppColors.primaryWhiteColor,
       appBar: AppBar(
+        toolbarHeight: 70,
         elevation: 0,
         backgroundColor: AppColors.primaryWhiteColor,
         // backgroundColor: Colors.amber,
@@ -50,7 +53,7 @@ class _pharmacyDashboardState extends State<pharmacyDashboard> {
             icon: Icon(
               EcentialsIcons.menu_icon,
               color: AppColors.primaryDeepColor,
-              size: 18,
+              size: 20,
             ),
           ),
         ),
@@ -58,7 +61,7 @@ class _pharmacyDashboardState extends State<pharmacyDashboard> {
           text: TextSpan(
             text: "Hi, ",
             style: TextStyle(
-              fontSize: 17,
+              fontSize: 20,
               fontFamily: "Montserrat",
               color: AppColors.primaryDeepColor,
             ),
@@ -75,8 +78,14 @@ class _pharmacyDashboardState extends State<pharmacyDashboard> {
         ),
         actions: [
           GestureDetector(
+            onTap: (() {
+              Get.to(
+                () => ProfileScreen(),
+                transition: Transition.leftToRight,
+              );
+            }),
             child: const CircleAvatar(
-              radius: 15,
+              radius: 20,
               backgroundImage: AssetImage("assets/images/profile.png"),
             ),
           ),
@@ -92,11 +101,24 @@ class _pharmacyDashboardState extends State<pharmacyDashboard> {
               icon: Icon(
                 EcentialsIcons.cart,
                 color: AppColors.primaryDeepColor,
-                size: 30,
+                size: 40,
               ),
             ),
           )
         ],
+        bottom: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: AppColors.primaryWhiteColor,
+          foregroundColor: AppColors.primaryBlackColor,
+          elevation: 0,
+          title: Search4(
+            searchPressed: () {},
+            micPressed: () {},
+            width: MediaQuery.of(context).size.width,
+            text: "Enter your search term here ",
+          ),
+          centerTitle: true,
+        ),
       ),
       drawer: const NavDrawer(),
       body: SingleChildScrollView(
@@ -124,26 +146,19 @@ class _pharmacyDashboardState extends State<pharmacyDashboard> {
               //     ],
               //   ),
               // ),
-              SizedBox(
-                height: 20.0,
-              ),
-              Search4(
-                width: MediaQuery.of(context).size.width,
-                text: "Enter your search term here ",
-              ),
+              // SizedBox(
+              //   height: 20.0,
+              // ),
+
               Container(
                 margin: const EdgeInsets.only(
-                  top: 38, // left: 24.78
+                  top: 20, // left: 24.78
                 ),
-                child: Wrap(
-                  alignment: WrapAlignment.spaceEvenly,
-                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     SizedBox(
-                      // margin: const EdgeInsets.only(
-                      //  top: 38, // left: 24.78
-                      // ),
-                      width: 170,
+                      width: MediaQuery.of(context).size.width * 0.85 / 2,
                       height: 150,
                       child: Neumorphic(
                         style: NeumorphicStyle(
@@ -170,11 +185,8 @@ class _pharmacyDashboardState extends State<pharmacyDashboard> {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      width: 20,
-                    ),
                     SizedBox(
-                      width: 170,
+                      width: MediaQuery.of(context).size.width * 0.85 / 2,
                       height: 150,
                       child: Neumorphic(
                         style: NeumorphicStyle(
@@ -209,7 +221,7 @@ class _pharmacyDashboardState extends State<pharmacyDashboard> {
               ),
               Container(
                 margin: const EdgeInsets.only(
-                  top: 27.9, // left: 24.78
+                  top: 15, // left: 24.78
                 ),
                 child: Text(
                   "Pharmacies  ",
@@ -226,70 +238,56 @@ class _pharmacyDashboardState extends State<pharmacyDashboard> {
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: 200.0,
-                child: ListView(
+                child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
-                  children: [
-                    Wrap(children: [
-                      for (int j = 0; j < 5; j++)
-                        Padding(
-                          padding: const EdgeInsets.only(right: 12.0),
-                          child: InkWell(
-                            onTap: () {
-                              Get.to(() => DrugDashboard());
-                            },
-                            child: PharmacyCard(
-                                pharmacyName: "Top up pharmacy ",
-                                location: "Spintex",
-                                address: "Accra",
-                                country: "Ghana"),
-                          ),
+                  child: Row(
+                    children: List.generate(
+                      5,
+                      (index) => Container(
+                        margin: EdgeInsets.only(
+                          right: 10,
                         ),
-                      // SizedBox(
-                      //   width: 10,
-                      // ),
-                      // InkWell(
-                      //    onTap:(){
-                      //      Get.to(() => DrugDashboard());
-
-                      //   },
-                      // child: PharmacyCard(
-                      //   pharmacyName: "The Medishop ",
-                      //   location: "Pharmacy",
-                      //   address: "Accra",
-                      //   country: "Ghana",
-                      // ),
-                      // ),
-                    ])
-                  ],
+                        child: InkWell(
+                          onTap: () {
+                            Get.to(() => DrugDashboard());
+                          },
+                          child: PharmacyCard(
+                              pharmacyName: "Top up pharmacy ",
+                              location: "Spintex",
+                              address: "Accra",
+                              country: "Ghana"),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ),
               Container(
                 margin: const EdgeInsets.only(
                   top: 27.9, // left: 24.78
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Popular OTC Drugs",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18,
-                        fontFamily: "Montserrat",
-                      ),
-                    ),
-                    Container(
-                        height: 20,
-                        width: 22.86,
-                        margin: const EdgeInsets.only(
-                          left: 67.03,
+                child: Container(
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Popular OTC Drugs",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                          fontFamily: "Montserrat",
                         ),
-                        child: Icon(
-                          EcentialsIcons.filter,
-                          size: 30,
-                          color: Color.fromARGB(255, 69, 68, 68),
-                        )),
-                  ],
+                      ),
+                      SizedBox(
+                        child: Image.asset("assets/images/filter.png",
+                            color:
+                                AppColors.primaryBlackColor.withOpacity(.50)),
+                      ),
+                    ],
+                  ),
                 ),
               ),
 
@@ -297,23 +295,22 @@ class _pharmacyDashboardState extends State<pharmacyDashboard> {
                 height: 16.0,
               ),
               SizedBox(
+                height: MediaQuery.of(context).size.height * 0.6,
                 width: MediaQuery.of(context).size.width,
-                height: 210,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    Wrap(children: [
-                      for (int j = 0; j < 5; j++)
-                        Padding(
-                          padding: const EdgeInsets.only(right: 12.0),
-                          child: drugCard(
-                              drugName: "Ibuprofen",
-                              drugType: "Tablets",
-                              quantity: 50,
-                              price: 5.00),
-                        ),
-                    ]),
-                  ],
+                child: GridView.builder(
+                  itemCount: 6,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 8,
+                    mainAxisSpacing: 8,
+                    mainAxisExtent: 200,
+                  ),
+                  itemBuilder: (BuildContext context, int index) => drugCard(
+                    drugName: "Ibuprofen",
+                    drugType: "Tablets",
+                    quantity: 50,
+                    price: 5.00,
+                  ),
                 ),
               ),
               SizedBox(

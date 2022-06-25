@@ -60,6 +60,7 @@ class _AmbulanceDirectionState extends State<AmbulanceDirection> {
                         child: Container(
                           margin: const EdgeInsets.all(10),
                           child: Row(
+                            mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
@@ -75,39 +76,72 @@ class _AmbulanceDirectionState extends State<AmbulanceDirection> {
                                 ),
                               ),
                               const SizedBox(
-                                width: 20,
+                                width: 10,
                               ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  const Text(
-                                    "Andrews Opoku",
-                                    style: TextStyle(
-                                      fontSize: 20,
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Courier",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: AppColors.primaryDeepColor,
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                        Icon(
+                                          EcentialsIcons.arrowback,
+                                          color: AppColors.primaryDeepColor,
+                                          size: 20,
+                                        )
+                                      ],
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: 30,
-                                  ),
-                                  Row(
-                                    children: const [
-                                      Icon(
-                                        Icons.location_on,
-                                        size: 18,
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    const Text(
+                                      "Andrews Kwadwo Opoku",
+                                      maxLines: 1,
+                                      overflow: TextOverflow.fade,
+                                      softWrap: false,
+                                      style: TextStyle(
+                                        fontSize: 20,
                                       ),
-                                      SizedBox(
-                                        width: 5,
+                                    ),
+                                    SizedBox(
+                                      height: 15,
+                                    ),
+                                    Text(
+                                      "GH 039-899",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: AppColors.primaryBlueColor,
                                       ),
-                                      Text("10 Mtr Left")
-                                    ],
-                                  )
-                                ],
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    Row(
+                                      children: const [
+                                        Icon(
+                                          Icons.location_on,
+                                          size: 18,
+                                        ),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        Text("10 Mtr Left")
+                                      ],
+                                    )
+                                  ],
+                                ),
                               ),
-                              Icon(
-                                EcentialsIcons.arrowback,
-                                color: AppColors.primaryDeepColor,
-                              )
                             ],
                           ),
                         ),

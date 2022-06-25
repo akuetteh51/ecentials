@@ -38,6 +38,7 @@ class _EducationalInfoState extends State<EducationalInfo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       backgroundColor: AppColors.primaryWhiteColor,
       bottomNavigationBar: BottomNavBar(),
       floatingActionButton: const FloatingAmbulance(),
