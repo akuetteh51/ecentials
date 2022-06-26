@@ -22,6 +22,27 @@ class _NearbyHState extends State<NearbyH> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        shadowColor: Colors.transparent,
+        backgroundColor: Colors.white12,
+        leading: IconButton(
+          color: Colors.black,
+          onPressed: () {
+            print(" NavDrawer");
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => NavDrawer()));
+          },
+          icon: Icon(
+            EcentialsIcons.menu_icon,
+          ),
+        ),
+        actions: [
+          CircleAvatar(
+            radius: 15,
+            backgroundImage: AssetImage("assets/images/profilePic.png"),
+          ),
+        ],
+      ),
       floatingActionButton: FloatingAmbulance(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavBar(),
@@ -30,30 +51,6 @@ class _NearbyHState extends State<NearbyH> {
           child: Padding(
             padding: const EdgeInsets.only(top: 30),
             child: Column(children: [
-              Row(
-                children: [
-                  SizedBox(
-                    width: 10,
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      print(" NavDrawer");
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => NavDrawer()));
-                    },
-                    icon: Icon(
-                      EcentialsIcons.menu_icon,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 250,
-                  ),
-                  CircleAvatar(
-                    radius: 15,
-                    backgroundImage: AssetImage("assets/images/profilePic.png"),
-                  ),
-                ],
-              ),
               SizedBox(height: 40, width: 0),
               Text(
                 "Find a Nearby Hospital",

@@ -5,6 +5,7 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/homeScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/CreatePin1.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/CreateStore1.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/MyStoreHome2.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/OrderSearch.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/PinCreated.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/PinVerfication.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/SetUpEcentialsWallet.dart';
@@ -29,7 +30,7 @@ class _TestWidgetsScreenState extends State<TestWidgetsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pinCreationPrompt(),
+      body:  NearbyH(),
       // body: Mystore3(),
       //  NearbyH(),
       // /addingProduct(),
