@@ -26,7 +26,7 @@ class _AmbulanceDirectionState extends State<AmbulanceDirection> {
           onTap: () {
             Navigator.pop(context);
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_sharp,
             color: Colors.black54,
           ),
@@ -34,7 +34,7 @@ class _AmbulanceDirectionState extends State<AmbulanceDirection> {
         title: const Text("Zicky Clinical Laboratory"),
         centerTitle: true,
       ),
-      body: Container(
+      body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Stack(
@@ -44,7 +44,7 @@ class _AmbulanceDirectionState extends State<AmbulanceDirection> {
               left: 0,
               bottom: 0,
               right: 0,
-              child: mapScreen(),
+              child: MapScreen(),
             ),
             Positioned(
               child: Container(
@@ -52,8 +52,8 @@ class _AmbulanceDirectionState extends State<AmbulanceDirection> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Container(
-                      height: 150,
+                    SizedBox(
+                      height: 130,
                       width: MediaQuery.of(context).size.width,
                       child: Card(
                         elevation: 15,
@@ -64,8 +64,8 @@ class _AmbulanceDirectionState extends State<AmbulanceDirection> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                height: 150,
-                                width: 110,
+                                height: 130,
+                                width: 95,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   image: const DecorationImage(
@@ -78,55 +78,23 @@ class _AmbulanceDirectionState extends State<AmbulanceDirection> {
                               const SizedBox(
                                 width: 10,
                               ),
-                              Expanded(
+
+                              Flexible(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
                                   children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "Courier",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColors.primaryDeepColor,
-                                            fontSize: 18,
-                                          ),
-                                        ),
-                                        Icon(
-                                          EcentialsIcons.arrowback,
-                                          color: AppColors.primaryDeepColor,
-                                          size: 20,
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
                                     const Text(
-                                      "Andrews Kwadwo Opoku",
-                                      maxLines: 1,
-                                      overflow: TextOverflow.fade,
-                                      softWrap: false,
+                                      "Andrews Opoku ",
                                       style: TextStyle(
                                         fontSize: 20,
                                       ),
                                     ),
-                                    SizedBox(
-                                      height: 15,
-                                    ),
-                                    Text(
-                                      "GH 039-899",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: AppColors.primaryBlueColor,
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
+                                    // const SizedBox(
+                                    //   height: 30,
+                                    // ),
+
                                     Row(
                                       children: const [
                                         Icon(
@@ -163,6 +131,9 @@ class _AmbulanceDirectionState extends State<AmbulanceDirection> {
                           },
                         ),
                         Button(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
                           width: 150,
                           color: AppColors.primaryRedColor,
                           text: "Cancel",

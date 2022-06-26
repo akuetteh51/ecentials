@@ -1,7 +1,5 @@
 import 'package:ecentialsclone/src/Widgets/button.dart';
-import 'package:ecentialsclone/src/screens/AuthScreens/emailSuccess.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 
@@ -142,7 +140,7 @@ class _PasswordResetState extends State<PasswordReset> {
           child: TextFormField(
             obscuringCharacter: '*',
             obscureText: !widget.isVisible,
-            style: TextStyle(fontSize: 20),
+            style: const TextStyle(fontSize: 20),
             cursorColor: AppColors.primaryDeepColor,
             controller: _confirmPasswordController,
             decoration: InputDecoration(
@@ -172,21 +170,14 @@ class _PasswordResetState extends State<PasswordReset> {
     );
 
 // Sign in Button
-    final _signin = GestureDetector(
+    final _signin = Button(
       onTap: () {
-        Get.to(
-          () => MainScreen(),
-          transition: Transition.fadeIn,
-          duration: const Duration(seconds: 1),
-        );
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (builder) => const MainScreen()),
+            (route) => false);
       },
-      child: Button(
-        onTap: () {
-          Get.to(() => Login());
-        },
-        text: "Save",
-        style: TextStyle(color: AppColors.primaryWhiteColor, fontSize: 20),
-      ),
+      text: "Save",
+      style: TextStyle(color: AppColors.primaryWhiteColor, fontSize: 20),
     );
 
     // App Bar
@@ -194,7 +185,7 @@ class _PasswordResetState extends State<PasswordReset> {
       backgroundColor: AppColors.primaryWhiteColor,
       foregroundColor: AppColors.primaryBlackColor,
       elevation: 0,
-      title: Text(
+      title: const Text(
         "Password Reset",
         style: TextStyle(
           fontSize: 20,

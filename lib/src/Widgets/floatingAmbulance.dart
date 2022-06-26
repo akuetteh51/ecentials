@@ -8,7 +8,7 @@ class FloatingAmbulance extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => AmbulanceNear());
+        Get.to(() => const AmbulanceNear());
       },
       child: Container(
         height: 45,

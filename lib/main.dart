@@ -28,7 +28,6 @@ import 'package:ecentialsclone/src/app_state/MainState.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Payments/Payed.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Payments/paymentMethod.dart';
 import 'package:ecentialsclone/src/screens/onboardingScreen.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Chat/chat.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Chat/chatroom/chatroom.dart';
 import 'package:provider/provider.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulanceDirection.dart';
@@ -64,10 +63,6 @@ Future main() async {
   final showSignup = preference.getBool('showSignup') ?? false;
 
   runApp(
-    MyApp(
-      showLogin: true,
-      showSignup: false,
-    ),
     // MultiProvider(
     //   providers: [
     //     ChangeNotifierProvider<MainState>(create: (_) => MainState()),
@@ -81,7 +76,27 @@ Future main() async {
     //     home: ChatRoom(),
     //     home: TestWidgetsScreen(),
     //   ),
+
     // ),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<MainState>(create: (_) => MainState()),
+        ChangeNotifierProvider<LabState>(create: (_) => LabState()),
+        ChangeNotifierProvider<AmbulanceState>(create: (_) => AmbulanceState()),
+        ChangeNotifierProvider<HospitalState>(create: (_) => HospitalState()),
+        ChangeNotifierProvider<PharmacyState>(create: (_) => PharmacyState()),
+        ChangeNotifierProvider<ShopState>(create: (_) => ShopState()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: MyApp(
+          showLogin: false,
+          showSignup: false,
+        ),
+        // home: ChatRoom(color: AppColors.primaryDeepColor),
+        // home: TestWidgetsScreen(),
+      ),
+    ),
   );
 }
 

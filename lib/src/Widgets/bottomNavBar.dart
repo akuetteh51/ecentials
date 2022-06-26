@@ -2,7 +2,7 @@
 
 // ignore_for_file: unused_import, must_be_immutable, prefer_typing_uninitialized_variables
 
-import 'package:ecentialsclone/src/screens/UserScreens/Chat/chat.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Chat/ChatHomePage.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/homeScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Notifications/notifications.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/store.dart';
@@ -56,7 +56,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       HomeScreen(),
       Stores(),
       Notifications(),
-      Chat(),
+      ChatHomePage()
     ];
 
 // Icons tooltips

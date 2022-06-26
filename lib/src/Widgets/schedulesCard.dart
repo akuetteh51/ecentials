@@ -82,10 +82,13 @@ class SchedulesCard extends StatelessWidget {
                             Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                const Icon(
-                                  EcentialsIcons.clock,
-                                  size: 13,
-                                  color: Colors.grey,
+                                Padding(
+                                  padding: const EdgeInsets.only(right:4.0),
+                                  child: const Icon(
+                                    EcentialsIcons.clock,
+                                    size: 13,
+                                    color: Colors.grey,
+                                  ),
                                 ),
                                 Text(
                                   time,
@@ -102,10 +105,13 @@ class SchedulesCard extends StatelessWidget {
                             Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                const Icon(
-                                  EcentialsIcons.calender,
-                                  size: 13,
-                                  color: Colors.grey,
+                                Padding(
+                                  padding: const EdgeInsets.only(right:4.0),
+                                  child: const Icon(
+                                    EcentialsIcons.calender,
+                                    size: 13,
+                                    color: Colors.grey,
+                                  ),
                                 ),
                                 Text(
                                   date,
@@ -146,7 +152,7 @@ class SchedulesCard extends StatelessWidget {
                               )
                             : Wrap(
                                 // mainAxisSize: MainAxisSize.min,
-                                children: [
+                                children:const [
                                   Icon(
                                     EcentialsIcons.correct,
                                     size: 12,
@@ -199,7 +205,7 @@ class SchedulesCard extends StatelessWidget {
                 height: 15,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ButtonOutlined(
                     text: "Cancel",

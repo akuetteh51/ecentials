@@ -34,11 +34,11 @@ class _ChatBubbleState extends State<ChatBubble> {
                   decoration: BoxDecoration(
                     color: widget.isMe == true
                         ? (widget.color)
-                        : Colors.grey.withOpacity(.7),
-                    borderRadius: BorderRadius.circular(20),
+                        : Colors.grey.withOpacity(.8),
+                    borderRadius: BorderRadius.circular(35),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.symmetric(vertical:5.0,horizontal: 12.0),
                     child: Text(
                       widget.text,
                       style: TextStyle(

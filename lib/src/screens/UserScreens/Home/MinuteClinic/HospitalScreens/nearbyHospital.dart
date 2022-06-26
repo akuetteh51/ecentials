@@ -13,6 +13,11 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScre
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../Widgets/CurvedBottomBar.dart';
+import '../../../Chat/ChatHomePage.dart';
+import '../../../Notifications/notifications.dart';
+import '../../../Store/store.dart';
+
 class NearbyHospital extends StatefulWidget {
   const NearbyHospital({Key? key}) : super(key: key);
 
@@ -21,8 +26,9 @@ class NearbyHospital extends StatefulWidget {
 }
 
 class _NearbyHospitalState extends State<NearbyHospital> {
-  @override
-  Widget build(BuildContext context) {
+  int currentIndex = 0;
+
+  Widget hospitalBody() {
     final _docsInfo = [
       {
         "image": "assets/images/doctor1.png",
@@ -64,50 +70,36 @@ class _NearbyHospitalState extends State<NearbyHospital> {
         "openingHours": "Weekdays |7:00am -8:pm",
       },
     ];
+
     return Scaffold(
-      backgroundColor: AppColors.primaryWhiteColor,
-      extendBody: true,
-      floatingActionButton: FloatingAmbulance(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomNavBar(),
-      appBar: AppBar(
-        backgroundColor: AppColors.primaryWhiteColor,
-        elevation: 0,
-        foregroundColor: AppColors.primaryBlackColor,
-        leading: Builder(
-          builder: (context) => IconButton(
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-            icon: const Icon(EcentialsIcons.menu_icon),
-          ),
-        ),
-        actions: [
-          GestureDetector(
-            onTap: () {
-              Get.to(() => ProfileScreen(), transition: Transition.rightToLeft);
-            },
-            child: Container(
-              margin: EdgeInsets.only(right: 20),
-              child: CircleAvatar(
-                radius: 20,
-                backgroundImage: AssetImage("assets/images/profilePic.png"),
+      // floatingActionButton: FloatingAmbulance(),
+      // floatingActionButtonLocation:
+      //     FloatingActionButtonLocation.centerDocked,
+      // bottomNavigationBar: BottomNavBar(),
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Icon(
+                    EcentialsIcons.menu_icon,
+                  ),
+                  CircleAvatar(
+                    radius: 15,
+                    backgroundImage: AssetImage("assets/images/profilePic.png"),
+                  ),
+                ],
               ),
-            ),
-          ),
-        ],
-        bottom: AppBar(
-          toolbarHeight: 100,
-          automaticallyImplyLeading: false,
-          backgroundColor: AppColors.primaryWhiteColor,
-          elevation: 0,
-          foregroundColor: AppColors.primaryBlackColor,
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Find a Nearby Hospital",
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+              SizedBox(height: 40, width: 0),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Find a Nearby Hospital",
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                ),
               ),
               SizedBox(
                 height: 10,
@@ -116,42 +108,23 @@ class _NearbyHospitalState extends State<NearbyHospital> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
-                    child: Search(
-                      searchPressed: () {},
-                      micPressed: () {},
-                    ),
-                    width: MediaQuery.of(context).size.width - 90,
+                    child: Search4(),
+                    width: MediaQuery.of(context).size.width - 80,
                   ),
-                  IconButton(
-                    padding: EdgeInsets.all(3),
-                    color: AppColors.primaryDeepColor,
-                    onPressed: () {},
-                    icon: Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        color: AppColors.primaryDeepColor,
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: Image.asset("assets/images/filter.png"),
-                    ),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      // Icon(EcentialsIcons.filter),
+                      Icon(Icons.toggle_off_outlined),
+                      Icon(Icons.toggle_off_outlined),
+                    ],
                   )
                 ],
               ),
-            ],
-          ),
-        ),
-      ),
-      drawer: NavDrawer(),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
+              SizedBox(
+                height: 40,
+              ),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -160,47 +133,85 @@ class _NearbyHospitalState extends State<NearbyHospital> {
                   ),
                   Text(
                     "See all",
-                    style: TextStyle(
-                        fontSize: 17, color: AppColors.primaryRedColor),
+                    style: TextStyle(fontSize: 17, color: Colors.red),
                   ),
                 ],
               ),
-            ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                  children: List.generate(
-                _docsInfo.length,
-                (index) => TopDoctor(
-                  image: _docsInfo[index]["image"],
-                  docName: _docsInfo[index]["name"],
-                  days: _docsInfo[index]["days"],
-                  specialization: _docsInfo[index]["area"],
-                  experience: 5,
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        // Get.to(
+                        //   () => const chat(),
+                        //   transition: Transition.fadeIn,
+                        //   duration: Duration(seconds: 1),
+                        // );
+                      },
+                      child: TopDoctor(
+                        image: "assets/images/doctor1.png",
+                        docName: "Dr Esther Agams",
+                        specialization: "Heart Surgery",
+                        experience: 95,
+                      ),
+                    ),
+                    TopDoctor(
+                        image: "assets/images/doctor2.png",
+                        docName: "Sussan Agams",
+                        specialization: "Heart Surgery",
+                        experience: 5)
+                  ],
                 ),
-              )),
-            ),
-            SingleChildScrollView(
-              child: Column(
-                children: List.generate(
-                  3,
-                  (index) => Container(
-                    margin: EdgeInsets.only(bottom: 20),
-                    child: LabResultsCard(
-                      image: _hospitalInfo[index]["image"],
-                      labName: _hospitalInfo[index]["labName"],
-                      openingHours: "Weekdays |7:00am -8:pm",
+              ),
+              SingleChildScrollView(
+                child: Column(
+                  children: List.generate(
+                    3,
+                    (index) => Container(
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: LabResultsCard(
+                        image: _hospitalInfo[index]["image"],
+                        labName: _hospitalInfo[index]["labName"],
+                        openingHours: "Weekdays |7:00am -8:pm",
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 100,
-            ),
-          ],
+            ]),
+          ),
         ),
       ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // Pages
+    final _pages = [
+      hospitalBody(),
+      Stores(),
+      const Notifications(),
+      // const ChatRoom(),
+      const ChatHomePage(),
+    ];
+
+    return Stack(
+      children: [
+        SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            child: _pages[currentIndex]),
+        CurvedBottomBar(
+          color: AppColors.primaryGreenColor,
+          currentIndex: (int curIndex) {
+            setState(() {
+              currentIndex = curIndex;
+            });
+          },
+        ),
+      ],
     );
   }
 }

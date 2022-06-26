@@ -51,89 +51,101 @@ class TopDoctor extends StatelessWidget {
                 SizedBox(
                   width: 10,
                 ),
-                Expanded(
+               
+                Flexible(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                         children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width - 210,
+                          Flexible(
                             child: Text(
-                              "Dr. $docName",
+                          "Dr. $docName",
                               softWrap: false,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 fontSize: 16,
+
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(
-                                Icons.star,
-                                size: 18,
-                                color: AppColors.primaryOrangeColor,
-                              ),
-                              Text("4.9")
-                            ],
-                          )
+
+                          SizedBox(
+                            width: 25,
+                          ),
+                          SizedBox(
+                            child: Wrap(
+                              // mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  Icons.star,
+                                  size: 15,
+                                  color: AppColors.primaryOrangeColor,
+                                ),
+                                Text(
+                                  "4.9",
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
-                      SizedBox(
-                        height: 5,
-                      ),
                       Text(
-                        days!,
+                        "3 days ago",
                         style: TextStyle(color: Colors.grey, fontSize: 13),
                       ),
                       SizedBox(
                         height: 5,
                       ),
-                      RichText(
-                        softWrap: false,
-                        maxLines: 1,
-                        overflow: TextOverflow.fade,
-                        text: TextSpan(
-                          text: "specialization: ",
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.primaryBlackColor),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: Wrap(
                           children: [
-                            TextSpan(
-                              text: specialization!,
-                              style: TextStyle(fontWeight: FontWeight.normal),
+                            RichText(
+                              text: TextSpan(
+                                text: "Area of specialization: ",
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.primaryBlackColor),
+                                children: [
+                                  TextSpan(
+                                    text: specialization,
+                                    style: TextStyle(fontWeight: FontWeight.normal),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 5,
+
                       ),
                       RichText(
                         text: TextSpan(
                           text: "Experience: ",
                           style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.primaryBlackColor,
-                            fontSize: 16,
-                          ),
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.primaryBlackColor,
+                              fontSize: 12),
                           children: [
                             TextSpan(
-                              text: "$experience years +",
+                              text: "$experience years",
+
                               style: TextStyle(fontWeight: FontWeight.normal),
                             ),
                           ],
                         ),
-                      )
+                      ),
                     ],
                   ),
-                ),
+                )
+
               ],
             ),
           ),
