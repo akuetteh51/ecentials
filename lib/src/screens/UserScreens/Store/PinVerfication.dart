@@ -1,7 +1,7 @@
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Store/CreatePin1.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/createPin.dart';
 import 'package:flutter/material.dart';
 
 class pinCheck extends StatelessWidget {
@@ -40,8 +40,10 @@ class pinCheck extends StatelessWidget {
                   style: TextStyle(color: Colors.white, fontSize: 24),
                   radius: 20,
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => pinkey1()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Createpinkey()));
                   }),
             ],
           ),
