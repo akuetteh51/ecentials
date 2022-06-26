@@ -152,15 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       extendBody: true,
       backgroundColor: AppColors.primaryWhiteColor,
-      appBar: currentIndex == 0
-          ? _appBar
-          : currentIndex == 1
-              ? null
-              : currentIndex == 2
-                  ? null
-                  : currentIndex == 3
-                      ? null
-                      : _myAppBar,
+      appBar: currentIndex == 0 ? _appBar : null,
       drawer: NavDrawer(),
       bottomNavigationBar: _bottomNavigationBar,
       floatingActionButton: FloatingAmbulance(),

@@ -5,8 +5,6 @@ import '../Themes/ecentials_icons_icons.dart';
 import 'curvedPaint.dart';
 import 'floatingAmbulance.dart';
 
-
-
 class CurvedBottomBar extends StatefulWidget {
   final List<String>? tooltips;
   final List<Icon>? icons;

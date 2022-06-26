@@ -65,7 +65,7 @@ Future main() async {
 
   runApp(
     MyApp(
-      showLogin: false,
+      showLogin: true,
       showSignup: false,
     ),
     // MultiProvider(
