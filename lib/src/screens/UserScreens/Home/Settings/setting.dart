@@ -4,7 +4,6 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/editProfile
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/downloads.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/langauge.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/navTry.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/notification.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
