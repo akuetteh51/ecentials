@@ -100,7 +100,7 @@ class _MinuteClinicState extends State<MinuteClinic> {
           // ),
           // floatingActionButton: FloatingAmbulance(),
           // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-          appBar: _appBar,
+          appBar: currentIndex == 0 ? _appBar : null,
           body: ListView(
             shrinkWrap: true,
             children: [

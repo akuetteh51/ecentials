@@ -4,6 +4,7 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/editProfile
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/downloads.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/langauge.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/navTry.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/notification.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -58,58 +59,53 @@ class _SettingsState extends State<Settings> {
                     ),
                   ),
                 ),
-
-                const SizedBox(width: 8,),
+                const SizedBox(
+                  width: 8,
+                ),
                 Flexible(
-                  child: SizedBox(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Flexible(
-                              child: Text(
-                                "Andrews Opoku",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.primaryBlackColor.withOpacity(.50),
-                                ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              "Andrews Opoku Kwadwo Opoku Senior Lios",
+                              softWrap: true,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.primaryBlackColor
+                                    .withOpacity(.50),
                               ),
                             ),
-                            const SizedBox(
-                              width: 5,
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              Get.to(() => EditProfile());
+                            },
+                            icon: Icon(
+                              EcentialsIcons.pen_underlined,
+                              color: AppColors.primaryBlueColor,
+                              size: 20,
                             ),
-                            IconButton(
-                              onPressed: () {
-                                Get.to(() => EditProfile());
-                              },
-                              icon: Icon(
-                                EcentialsIcons.pen_underlined,
-                                color: AppColors.primaryBlueColor,
-                                size: 20,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Text(
-                          "My name is Andrews Opoku...",
-
-                        ),
-                      // ),
-                     const SizedBox(
-                        height: 10,
+                          ),
+                        ],
                       ),
-                     const Text(
-                        "My name is Andrews Opoku Senior jnfnjj...",
-                        softWrap: false,
-                        maxLines: 1,
+                      const Text(
+                        "My name is Andrews Opoku Medical Doctor at Nation Hopital",
+                        softWrap: true,
+                        maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ],
                   ),
-                ),                          
-
                 ),
               ],
             ),
@@ -119,11 +115,11 @@ class _SettingsState extends State<Settings> {
           ),
           const ListTile(
             leading: Icon(EcentialsIcons.account),
-            title:  Text(
+            title: Text(
               "Account",
               style: TextStyle(fontSize: 18),
             ),
-            subtitle:  Text(
+            subtitle: Text(
               "Privacy, security, change email or number",
             ),
           ),
@@ -170,6 +166,7 @@ class _SettingsState extends State<Settings> {
             ),
           ),
           ListTile(
+            onTap: () {},
             leading: Image.asset(
               "assets/images/headphone.png",
               scale: 1.2,
