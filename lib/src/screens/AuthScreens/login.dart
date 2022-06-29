@@ -150,6 +150,9 @@ class _LoginState extends State<Login> {
                 ),
               ),
               hintText: "********",
+              hintStyle: TextStyle(
+                color: Theme.of(context).disabledColor,
+              ),
               border: const UnderlineInputBorder(
                 borderSide: BorderSide.none,
               ),
@@ -213,11 +216,11 @@ class _LoginState extends State<Login> {
                 ..onTap = () {
                   Get.to(() => Registration(),
                       transition: Transition.rightToLeft,
-                      duration:const Duration(milliseconds: 400));
-                //   Get.to(() => const Agreement(),
-                //       transition: Transition.rightToLeft,
-                //       duration:const Duration(milliseconds: 400));
-                // }),
+                      duration: const Duration(milliseconds: 400));
+                  //   Get.to(() => const Agreement(),
+                  //       transition: Transition.rightToLeft,
+                  //       duration:const Duration(milliseconds: 400));
+                  // }),
                 }),
         ],
       ),

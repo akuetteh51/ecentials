@@ -1,8 +1,8 @@
 import 'package:ecentialsclone/src/Widgets/button.dart';
-import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
+import 'package:toast/toast.dart';
 
 import '../../Themes/colors.dart';
 import 'agreement.dart';
@@ -92,7 +92,7 @@ class _RegistrationState extends State<Registration> {
             cursorColor: AppColors.primaryDeepColor,
             controller: _emailController,
             decoration: const InputDecoration(
-              hintText: "abc@gmail.com",
+              hintText: "email@domain.com",
               border: UnderlineInputBorder(
                 borderSide: BorderSide.none,
               ),
@@ -150,6 +150,9 @@ class _RegistrationState extends State<Registration> {
                 ),
               ),
               hintText: "********",
+              hintStyle: TextStyle(
+                color: Theme.of(context).disabledColor,
+              ),
               border: const UnderlineInputBorder(
                 borderSide: BorderSide.none,
               ),
@@ -206,6 +209,9 @@ class _RegistrationState extends State<Registration> {
                 ),
               ),
               hintText: "********",
+              hintStyle: TextStyle(
+                color: Theme.of(context).disabledColor,
+              ),
               border: const UnderlineInputBorder(
                 borderSide: BorderSide.none,
               ),
@@ -218,11 +224,38 @@ class _RegistrationState extends State<Registration> {
 // Sign in Button
     final _signin = Button(
       onTap: () {
-          Get.to(
-          () => const Agreement(),
-          transition: Transition.fadeIn,
-          duration: const Duration(milliseconds: 300),
-        );
+        if (_emailController.text.isNotEmpty &&
+            _passwordController.text.isNotEmpty &&
+            _confirmPasswordController.text.isNotEmpty) {
+          if (_emailController.text.isEmail) {
+            if (_confirmPasswordController.text == _passwordController.text) {
+              if(_passwordController.text.length >=8){
+            Get.to(
+                () => Agreement(
+                  data: <String, dynamic>{
+                  "email": _emailController.text,
+                  "password": _passwordController.text,
+                  }),
+                transition: Transition.fadeIn,
+                duration: const Duration(milliseconds: 300),
+              );                
+              }else{
+  Toast.show("Password too short. less than 8",
+                  duration: Toast.lengthShort, gravity: Toast.bottom);
+              }
+              
+            } else {
+              Toast.show("Passwords not equal",
+                  duration: Toast.lengthShort, gravity: Toast.bottom);
+            }
+          } else {
+            Toast.show("Not a valid email",
+                duration: Toast.lengthShort, gravity: Toast.bottom);
+          }
+        } else {
+          Toast.show("No field should be empty",
+              duration: Toast.lengthShort, gravity: Toast.bottom);
+        }
       },
       text: "Register",
       style: TextStyle(color: AppColors.primaryWhiteColor, fontSize: 20),

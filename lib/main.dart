@@ -45,6 +45,7 @@ import 'package:ecentialsclone/src/screens/UserScreens/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toast/toast.dart';
 
 import 'src/app_state/AuthState.dart';
 import 'src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/hospitalSchedules.dart';
@@ -110,6 +111,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    
+    ToastContext().init(context);
+    
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
