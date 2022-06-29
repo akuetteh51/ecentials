@@ -92,11 +92,16 @@ class _CurvedBottomBarState extends State<CurvedBottomBar> {
             ),
           ),
         ),
-        const Positioned(
+        Positioned(
           left: 0,
           right: 0,
           bottom: 40.0,
-          child: FloatingAmbulance(),
+          child: Wrap(
+            alignment: WrapAlignment.center,
+            children: [
+              FloatingAmbulance(),
+            ],
+          ),
         ),
       ],
     );

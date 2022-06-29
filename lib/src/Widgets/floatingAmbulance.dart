@@ -1,3 +1,4 @@
+import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulanceNear.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,7 +12,7 @@ class FloatingAmbulance extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Get.to(() => const AmbulanceNear());
+        Get.to(() => const AmbulanceNear());
       },
       child: Container(
         height: 45,

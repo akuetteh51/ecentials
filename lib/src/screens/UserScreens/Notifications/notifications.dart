@@ -25,27 +25,29 @@ class _NotificationsState extends State<Notifications> {
           Navigator.pop(context);
         },
         child: Icon(
-          Icons.notifications_active,
-          color: AppColors.primaryOrangeColor,
+          Icons.arrow_back_sharp,
+          color: Colors.black54,
         ),
       ),
-      title: const Text("Notifications"),
+      title: const Text("Notification"),
       centerTitle: true,
       actions: [
-        Padding(
-                      padding: const EdgeInsets.only(right:0.0),
-          child: SizedBox(            
-            child: IconButton(                
+        Container(
+          margin: const EdgeInsets.only(
+            right: 10,
+          ),
+          child: CircleAvatar(
+            backgroundColor: AppColors.primaryDeepColor,
+            child: IconButton(
               icon: Icon(
                 EcentialsIcons.settings_2,
-                color: AppColors.primaryDeepColor,
-                size: 20,
+                color: AppColors.primaryWhiteColor,
               ),
               onPressed: () {
                 Get.to(
                   () => const Settings(),
                   transition: Transition.rightToLeft,
-                  duration: const Duration(milliseconds: 300),
+                  duration: const Duration(milliseconds: 500),
                 );
               },
             ),
@@ -61,7 +63,7 @@ class _NotificationsState extends State<Notifications> {
         body: Column(
           children: [
             Align(
-              alignment: Alignment.center,
+              alignment: Alignment.centerLeft,
               child: TabBar(
                   indicatorSize: TabBarIndicatorSize.label,
                   isScrollable: true,
@@ -87,8 +89,7 @@ class _NotificationsState extends State<Notifications> {
                             height: 22,
                             width: 25,
                             decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              // borderRadius: BorderRadius.circular(3),
+                              borderRadius: BorderRadius.circular(3),
                               color: AppColors.primaryRedColor,
                             ),
                             child: Center(
@@ -96,8 +97,8 @@ class _NotificationsState extends State<Notifications> {
                                 "10+",
                                 style: TextStyle(
                                   color: AppColors.primaryWhiteColor,
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
@@ -110,24 +111,30 @@ class _NotificationsState extends State<Notifications> {
             Expanded(
               child: TabBarView(
                 children: [
-                  const Center(
-                    child: Text(
-                      "OPPS!!! Nothing for you at the moment",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 20,
-
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    child: const Center(
+                      child: Text(
+                        "OPPS!!! Nothing for you at the moment",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
                       ),
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 30,
+                    margin: const EdgeInsets.only(
+                      left: 20,
+                      right: 20,
+                      top: 20,
                     ),
-                    child: ListView(
-                      children: List.generate(
-                          10, (index) => const NotificationsHistory()),
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.only(bottom: 100),
+                      child: Column(
+                        children: List.generate(
+                            10, (index) => const NotificationsHistory()),
+                      ),
                     ),
                   ),
                 ],

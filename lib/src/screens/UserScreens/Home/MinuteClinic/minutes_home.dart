@@ -1,4 +1,7 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/hospitalHome.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labsHome.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacyHome.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -31,14 +34,15 @@ class _MinutesHomeState extends State<MinutesHome> {
 
   // Pages
   final _pages = [
-    NearbyHospital(),
-    PharmacyDashboard(),
-    Alllabs(),
+    HospitalHome(),
+    PharmacyHome(),
+    LabsHome(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.primaryWhiteColor,
       body: ListView(
         padding: EdgeInsets.symmetric(vertical: 10),
         shrinkWrap: true,

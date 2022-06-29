@@ -18,6 +18,7 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   bool isDarkmode = false;
   bool isDownloadViaWifi = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +31,7 @@ class _SettingsState extends State<Settings> {
           onTap: () {
             Navigator.pop(context);
           },
-          child: const Icon(
+          child: Icon(
             Icons.arrow_back_sharp,
             color: Colors.black54,
           ),
@@ -40,7 +41,7 @@ class _SettingsState extends State<Settings> {
       body: ListView(
         children: [
           Container(
-            margin: const EdgeInsets.symmetric(
+            margin: EdgeInsets.symmetric(
               horizontal: 10,
             ),
             child: Row(
@@ -52,59 +53,61 @@ class _SettingsState extends State<Settings> {
                     Get.to(() => const ProfileScreen());
                   },
                   child: const CircleAvatar(
-                    radius: 35,
+                    radius: 40,
                     backgroundImage: AssetImage(
                       "assets/images/profile.png",
                     ),
                   ),
                 ),
-                const SizedBox(
-                  width: 8,
+                SizedBox(
+                  width: 10,
                 ),
-                Flexible(
+                SizedBox(
+                  width: MediaQuery.of(context).size.width - 210,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Flexible(
-                            child: Text(
-                              "Andrews Opoku Kwadwo Opoku Senior Lios",
-                              softWrap: true,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.primaryBlackColor
-                                    .withOpacity(.50),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              Get.to(() => EditProfile());
-                            },
-                            icon: Icon(
-                              EcentialsIcons.pen_underlined,
-                              color: AppColors.primaryBlueColor,
-                              size: 20,
-                            ),
-                          ),
-                        ],
+                    children: const [
+                      SizedBox(
+                        height: 10,
                       ),
-                      const Text(
-                        "My name is Andrews Opoku Medical Doctor at Nation Hopital",
-                        softWrap: true,
-                        maxLines: 2,
+                      Text(
+                        "Andrews Opoku Kwadwo",
+                        softWrap: false,
+                        maxLines: 1,
+                        overflow: TextOverflow.fade,
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        "USER",
+                        softWrap: false,
+                        maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ],
                   ),
+                ),
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Get.to(() => EditProfile());
+                      },
+                      icon: Icon(
+                        EcentialsIcons.pen_underlined,
+                        color: AppColors.primaryBlueColor,
+                        size: 20,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(EcentialsIcons.qrcode),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -112,13 +115,13 @@ class _SettingsState extends State<Settings> {
           const SizedBox(
             height: 20,
           ),
-          const ListTile(
+          ListTile(
             leading: Icon(EcentialsIcons.account),
-            title: Text(
+            title: const Text(
               "Account",
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 20),
             ),
-            subtitle: Text(
+            subtitle: const Text(
               "Privacy, security, change email or number",
             ),
           ),
@@ -129,7 +132,7 @@ class _SettingsState extends State<Settings> {
             ),
             title: const Text(
               "Chats",
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 20),
             ),
             subtitle: const Text(
               "Themes, wallpapers, chat history",
@@ -145,7 +148,7 @@ class _SettingsState extends State<Settings> {
             ),
             title: const Text(
               "Notifications",
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 20),
             ),
             subtitle: const Text(
               "Message, group and call tones",
@@ -158,21 +161,20 @@ class _SettingsState extends State<Settings> {
             ),
             title: const Text(
               "Storage",
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 20),
             ),
             subtitle: const Text(
               "Network usage, auto-download",
             ),
           ),
           ListTile(
-            onTap: () {},
             leading: Image.asset(
               "assets/images/headphone.png",
               scale: 1.2,
             ),
             title: const Text(
               "Help",
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 20),
             ),
             subtitle: const Text(
               "Help center, contact us, privacy policy",
@@ -188,7 +190,7 @@ class _SettingsState extends State<Settings> {
                 "Contents",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 18,
+                  fontSize: 20,
                 ),
               ),
             ),
@@ -199,7 +201,7 @@ class _SettingsState extends State<Settings> {
             ),
             title: const Text(
               "Favorite",
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 20),
             ),
             trailing: const Icon(
               Icons.chevron_right,
@@ -214,7 +216,7 @@ class _SettingsState extends State<Settings> {
             ),
             title: const Text(
               "Download",
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 20),
             ),
             trailing: const Icon(
               Icons.chevron_right,
@@ -244,7 +246,7 @@ class _SettingsState extends State<Settings> {
             ),
             title: const Text(
               "Languages",
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 20),
             ),
             trailing: const Icon(
               Icons.chevron_right,
@@ -261,7 +263,7 @@ class _SettingsState extends State<Settings> {
             ),
             title: const Text(
               "Dark Mode",
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 20),
             ),
             trailing: Switch.adaptive(
               value: isDarkmode,
@@ -285,7 +287,7 @@ class _SettingsState extends State<Settings> {
             ),
             title: const Text(
               "Only Download via Wifi",
-              style: TextStyle(fontSize: 18),
+              style: TextStyle(fontSize: 20),
             ),
             trailing: Switch.adaptive(
               value: isDownloadViaWifi,

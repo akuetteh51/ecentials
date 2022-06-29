@@ -41,6 +41,11 @@ class _NotificationsAndSoundsState extends State<NotificationsAndSounds> {
       ),
       body: ListView(children: [
         ListTile(
+          onTap: () {
+            setState(() {
+              isMobile = !isMobile;
+            });
+          },
           leading: CircleAvatar(
             backgroundColor: AppColors.primaryDeepColor.withOpacity(.50),
             child: Icon(
@@ -63,6 +68,11 @@ class _NotificationsAndSoundsState extends State<NotificationsAndSounds> {
           ),
         ),
         ListTile(
+          onTap: () {
+            setState(() {
+              isSound = !isSound;
+            });
+          },
           leading: CircleAvatar(
             backgroundColor: AppColors.primaryDeepColor.withOpacity(.50),
             child: Icon(
@@ -85,6 +95,11 @@ class _NotificationsAndSoundsState extends State<NotificationsAndSounds> {
           ),
         ),
         ListTile(
+          onTap: () {
+            setState(() {
+              isCall = !isCall;
+            });
+          },
           leading: CircleAvatar(
             backgroundColor: AppColors.primaryDeepColor.withOpacity(.50),
             child: Icon(

@@ -18,12 +18,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 
-import '../../../../../Widgets/CurvedBottomBar.dart';
-import '../../../Chat/ChatHomePage.dart';
-import '../../../Chat/ChatHomePage.dart';
-import '../../../Notifications/notifications.dart';
-import '../../../Store/store.dart';
-
 class Alllabs extends StatefulWidget {
   const Alllabs({Key? key}) : super(key: key);
 
@@ -34,93 +28,19 @@ class Alllabs extends StatefulWidget {
 class _AlllabsState extends State<Alllabs> {
   get size => null;
 
-  int currentIndex = 0;
-
-  Widget labsHome() {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      // bottomNavigationBar: BottomNavBar(
-      //   backgroundColor: AppColors.primaryGreenColor,
-      // ),
-      // floatingActionButton: FloatingAmbulance(),
-      // floatingActionButtonLocation:
-      //     FloatingActionButtonLocation.centerDocked,
       backgroundColor: AppColors.primaryWhiteColor,
-      appBar: AppBar(
-        backgroundColor: AppColors.primaryWhiteColor,
-        foregroundColor: AppColors.primaryBlackColor,
-        elevation: 0,
-        leading: Builder(
-          builder: (context) => IconButton(
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-            icon: Icon(
-              EcentialsIcons.menu_icon,
-              color: AppColors.primaryDeepColor,
-            ),
-          ),
-        ),
-        actions: [
-          GestureDetector(
-            onTap: () {
-              Get.to(
-                () => ProfileScreen(),
-                transition: Transition.leftToRight,
-              );
-            },
-            child: Container(
-              margin: EdgeInsets.all(10),
-              child: CircleAvatar(
-                  backgroundImage: AssetImage("assets/images/profile.png")),
-            ),
-          ),
-        ],
-      ),
       drawer: const NavDrawer(),
       body: Container(
         margin: const EdgeInsets.symmetric(
           horizontal: 20,
-          // vertical: 30,
         ),
         child: ListView(
           children: [
-            Text(
-              "Search for labs",
-              style: TextStyle(
-                  color: AppColors.primaryBlackColor,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 24),
-            ),
             SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // SizedBox(width: 314.02, child:
-                Flexible(child: Search()),
-                SizedBox(
-                  width: 16.0,
-                ),
-                Container(
-                  padding: const EdgeInsets.all(5.0),
-                  width: 35,
-                  height: 35,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: Colors.teal,
-                  ),
-                  child: Icon(
-                    EcentialsIcons.filter,
-                    size: 20,
-                    color: AppColors.primaryWhiteColor,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 60,
+              height: 30,
             ),
             for (int y = 0; y <= 4; y++)
               Wrap(
@@ -143,38 +63,6 @@ class _AlllabsState extends State<Alllabs> {
           ],
         ),
       ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // Pages
-    final _pages = [
-      labsHome(),
-      Stores(),
-      const Notifications(),
-      // const ChatRoom(),
-      const ChatHomePage(),
-    ];
-    return Stack(
-      children: [
-        SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          child: _pages[currentIndex],
-        ),
-        Material(
-          type: MaterialType.transparency,
-          child: CurvedBottomBar(
-            color: AppColors.primaryGreenColor,
-            currentIndex: (int curIndex) {
-              setState(() {
-                currentIndex = curIndex;
-              });
-            },
-          ),
-        ),
-      ],
     );
   }
 }

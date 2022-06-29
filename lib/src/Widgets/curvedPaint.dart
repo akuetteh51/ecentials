@@ -1,11 +1,6 @@
-import 'dart:ui' as ui;
-
-import 'package:ecentialsclone/src/Themes/colors.dart';
+// ignore: file_names
 import 'package:flutter/material.dart';
 
-//Add this CustomPaint widget to the Widget Tree
-
-//Copy this CustomPainter code to the Bottom of the File
 class RPSCustomPainter extends CustomPainter {
   final Color? shapeColor;
   RPSCustomPainter({this.shapeColor});
@@ -77,11 +72,11 @@ class RPSCustomPainter extends CustomPainter {
         size.height * 0.5448259);
     path_0.close();
 
-    Paint paint_0_fill = Paint()
+    Paint paint0Fill = Paint()
       ..style = PaintingStyle.fill
       ..color = shapeColor ?? const Color(0xFF033A64);
 
-    canvas.drawPath(path_0, paint_0_fill);
+    canvas.drawPath(path_0, paint0Fill);
   }
 
   @override
