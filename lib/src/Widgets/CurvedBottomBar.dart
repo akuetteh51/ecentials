@@ -100,7 +100,5 @@ class _CurvedBottomBarState extends State<CurvedBottomBar> {
         ),
       ],
     );
-    //),
-    // ),
   }
 }

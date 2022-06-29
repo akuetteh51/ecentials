@@ -17,28 +17,26 @@ class StoreCard extends StatefulWidget {
 class _StoreCardState extends State<StoreCard> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5),
-        ),
-        elevation: 15,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Image.asset(widget.image),
-            SizedBox(
-              height: 15,
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(5),
+      ),
+      elevation: 15,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset(widget.image),
+          SizedBox(
+            height: 15,
+          ),
+          Text(
+            widget.text,
+            style: TextStyle(
+              fontSize: 20,
             ),
-            Text(
-              widget.text,
-              style: TextStyle(
-                fontSize: 20,
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

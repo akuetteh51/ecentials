@@ -205,11 +205,6 @@ class _NearbyHospitalState extends State<NearbyHospital> {
             child: _pages[currentIndex]),
         CurvedBottomBar(
           color: AppColors.primaryGreenColor,
-          currentIndex: (int curIndex) {
-            setState(() {
-              currentIndex = curIndex;
-            });
-          },
         ),
       ],
     );

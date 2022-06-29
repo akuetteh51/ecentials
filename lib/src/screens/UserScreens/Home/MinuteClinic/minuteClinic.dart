@@ -41,11 +41,12 @@ class MinuteClinic extends StatefulWidget {
 
 class _MinuteClinicState extends State<MinuteClinic> {
   int currentIndex = 0;
-  // onTap(int index) {
-  //   setState(() {
-  //     currentIndex = index;
-  //   });
-  // }
+  onTap(int index) {
+    setState(() {
+      currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final _appBar = AppBar(
@@ -87,44 +88,15 @@ class _MinuteClinicState extends State<MinuteClinic> {
       MinutesHome(),
       Stores(),
       const Notifications(),
-      // const ChatRoom(),
       const ChatHomePage(),
     ];
 
-    return Stack(
-      children: [
-        Scaffold(
-          // backgroundColor: AppColors.primaryWhiteColor,
-          // bottomNavigationBar: BottomNavBar(
-          //   backgroundColor: AppColors.primaryDeepColor,
-          // ),
-          // floatingActionButton: FloatingAmbulance(),
-          // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-          appBar: currentIndex == 0 ? _appBar : null,
-          body: ListView(
-            shrinkWrap: true,
-            children: [
-              SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
-                  child: _pages[currentIndex]),
-              const SizedBox(
-                height: 120,
-              ),
-            ],
-          ),
+    return Scaffold(
+        extendBody: true,
+        bottomNavigationBar: CurvedBottomBar(
+          currentIndex: onTap,
         ),
-        Material(
-          type: MaterialType.transparency,
-          child: CurvedBottomBar(
-            currentIndex: (int curIndex) {
-              setState(() {
-                currentIndex = curIndex;
-              });
-            },
-          ),
-        ),
-      ],
-    );
+        appBar: currentIndex == 0 ? _appBar : null,
+        body: _pages[currentIndex]);
   }
 }
