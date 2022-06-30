@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/get_core.dart';
 
 import '../../../../../Themes/ecentials_icons_icons.dart';
+import '../../../../../Widgets/navDrawer.dart';
 import '../../../../../Widgets/search.dart';
 import '../../../Chat/ChatHomePage.dart';
 import '../../../Notifications/notifications.dart';
@@ -120,6 +121,7 @@ class _HospitalHomeState extends State<HospitalHome> {
         currentIndex: onTap,
       ),
       appBar: currentIndex == 0 ? _appBar : null,
+      drawer: currentIndex == 0 ? const NavDrawer() : null,
       body: _pages[currentIndex],
     );
   }

@@ -56,6 +56,7 @@ class _CurvedBottomBarState extends State<CurvedBottomBar> {
           child: SizedBox(
             height: 80,
             child: CustomPaint(
+              size: Size(MediaQuery.of(context).size.width, 0),
               painter: RPSCustomPainter(shapeColor: widget.color),
             ),
           ),

@@ -126,7 +126,7 @@ class _PharmacyHomeState extends State<PharmacyHome> {
       extendBody: true,
       backgroundColor: AppColors.primaryWhiteColor,
       appBar: currentIndex == 0 ? _appBar : null,
-      drawer: const NavDrawer(),
+      drawer: currentIndex == 0 ? const NavDrawer() : null,
       bottomNavigationBar: CurvedBottomBar(
         currentIndex: onTap,
       ),
