@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:toast/toast.dart';
 
 import '../../Themes/colors.dart';
+import '../../Widgets/EcentialsToast.dart';
 import 'agreement.dart';
 
 class Registration extends StatefulWidget {
@@ -227,14 +228,15 @@ class _RegistrationState extends State<Registration> {
         // Regex to check if a string
         // contains uppercase, lowercase
         // special character & numeric value
-        
-        RegExp regex = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$');
+        RegExp regex = RegExp(
+            r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$');
 
         if (_emailController.text.trim().isNotEmpty &&
             _passwordController.text.trim().isNotEmpty &&
             _confirmPasswordController.text.trim().isNotEmpty) {
           if (_emailController.text.trim().isEmail) {
-            if (_confirmPasswordController.text.trim() == _passwordController.text.trim()) {
+            if (_confirmPasswordController.text.trim() ==
+                _passwordController.text.trim()) {
               if (_passwordController.text.trim().length >= 7) {
                 if (_passwordController.text.trim().contains(regex)) {
                   Get.to(
@@ -246,38 +248,30 @@ class _RegistrationState extends State<Registration> {
                     duration: const Duration(milliseconds: 300),
                   );
                 } else {
-                  Toast.show(
-                      "Passwords must contain: Upper case, Lower case and special symbol",
-                      duration: Toast.lengthShort,
-                      gravity: Toast.bottom,
-                      backgroundColor: Colors.redAccent,
-                      );
+                  ShowToast.ecentialsToast(
+                    message:
+                        "Passwords must contain: Upper case, Lower case and special symbol",
+                  );
                 }
               } else {
-                Toast.show(
-                  "Password too short. less than 8",
-                  duration: Toast.lengthShort,
-                  gravity: Toast.bottom,
-                  backgroundColor: Colors.redAccent,
+                ShowToast.ecentialsToast(
+                  message: "Password too short. less than 6",
                 );
               }
             } else {
-              Toast.show("Passwords not equal",
-                  duration: Toast.lengthShort,
-                  gravity: Toast.bottom,
-                  backgroundColor: Colors.redAccent);
+              ShowToast.ecentialsToast(
+                message: "Passwords not equal",
+              );
             }
           } else {
-            Toast.show("Not a valid email",
-                duration: Toast.lengthShort,
-                gravity: Toast.bottom,
-                backgroundColor: Colors.redAccent);
+            ShowToast.ecentialsToast(
+              message: "Not a valid email",
+            );
           }
         } else {
-          Toast.show("No field should be empty",
-              duration: Toast.lengthShort,
-              gravity: Toast.bottom,
-              backgroundColor: Colors.redAccent);
+          ShowToast.ecentialsToast(
+            message: "No field should be empty",
+          );
         }
       },
       text: "Register",

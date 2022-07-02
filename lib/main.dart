@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, unused_import, unused_local_variable
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:ecentialsclone/baseVerification.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Chat/chatroom/chat_bubble.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/delivery_mode.dart';
@@ -77,7 +78,7 @@ Future main() async {
       ],
       child:  MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: MyApp(showLogin: false,showSignup: false,),
+        home: MyApp(),
       ),
 
     ),
@@ -85,9 +86,8 @@ Future main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final bool showLogin;
-  final bool showSignup;
-  const MyApp({Key? key, required this.showLogin, required this.showSignup})
+
+  const MyApp({Key? key,})
       : super(key: key);
 
   // This widget is the root of your application.
@@ -105,10 +105,10 @@ class MyApp extends StatelessWidget {
       home: AnimatedSplashScreen(
         splash: "assets/images/logo.png",
         centered: true,
-        duration: 2000,
+        duration: 1000,
         splashIconSize: 500,
         // nextScreen: DeliveryMode(),
-        nextScreen: showLogin ? Login() : const OnboardingScreen(),
+        nextScreen: BaseVerification(), // BaseVerification() handles which page to show the user
       ),
       theme: ThemeData(
         fontFamily: "Montserrat",

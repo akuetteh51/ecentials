@@ -31,9 +31,9 @@ class _AgreementState extends State<Agreement> {
       onTap: () {
         // debugPrint("retried");
         authState.registerNewUser(
-            data: widget.data,
-            context: context,
-          );
+          data: widget.data,
+          context: context,
+        );
         // authState.updateRegTest();
       },
     );
@@ -64,11 +64,12 @@ class _AgreementState extends State<Agreement> {
     return Scaffold(
       backgroundColor: AppColors.primaryWhiteColor,
       extendBody: true,
-      bottomNavigationBar:
-          authState.registerLoaderState == 0 || authState.registerLoaderState == 2
-              ? _agreementButton
-              : agreementButton(
-                  authState.registerLoaderState, authState.registerNewUser),
+      bottomNavigationBar: authState.registerLoaderState == 0 ||
+              authState.registerLoaderState == 2
+          ? _agreementButton
+          : agreementButton(authState.registerLoaderState, () {
+              authState.registerNewUser(data: widget.data, context: context);
+            }),
       appBar: _appBar,
       body: ListView(
         children: [
@@ -90,7 +91,9 @@ class _AgreementState extends State<Agreement> {
     return GestureDetector(
       onTap: () {
         if (stateValue == 3) {
-          refreshFunction?.call();
+          if (refreshFunction != null) {
+            refreshFunction();
+          }
         }
       },
       child: Container(
@@ -103,13 +106,13 @@ class _AgreementState extends State<Agreement> {
         child: Center(
           child: stateValue == 1
               ? SizedBox(
-                height: 15,
-                width: 15,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2.5,
+                  height: 15,
+                  width: 15,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2.5,
                     color: Theme.of(context).canvasColor,
                   ),
-              )
+                )
               : Icon(
                   Icons.replay,
                   size: 20,
