@@ -30,7 +30,10 @@ class _AgreementState extends State<Agreement> {
       ),
       onTap: () {
         // debugPrint("retried");
-        authState.registerNewUser();
+        authState.registerNewUser(
+            data: widget.data,
+            context: context,
+          );
         // authState.updateRegTest();
       },
     );
@@ -62,10 +65,10 @@ class _AgreementState extends State<Agreement> {
       backgroundColor: AppColors.primaryWhiteColor,
       extendBody: true,
       bottomNavigationBar:
-          authState.loginLoaderState == 0 || authState.loginLoaderState == 2
+          authState.registerLoaderState == 0 || authState.registerLoaderState == 2
               ? _agreementButton
               : agreementButton(
-                  authState.loginLoaderState, authState.registerNewUser),
+                  authState.registerLoaderState, authState.registerNewUser),
       appBar: _appBar,
       body: ListView(
         children: [
@@ -77,7 +80,7 @@ class _AgreementState extends State<Agreement> {
                 color: Theme.of(context).disabledColor,
               ),
             ),
-          )
+          ),
         ],
       ),
     );

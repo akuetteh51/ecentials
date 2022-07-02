@@ -65,22 +65,6 @@ Future main() async {
   final showSignup = preference.getBool('showSignup') ?? false;
 
   runApp(
-
-    // MultiProvider(
-    //   providers: [
-    //     ChangeNotifierProvider<MainState>(create: (_) => MainState()),
-    //     ChangeNotifierProvider<LabState>(create: (_) => LabState()),
-    //     ChangeNotifierProvider<AmbulanceState>(create: (_) => AmbulanceState()),
-    //     ChangeNotifierProvider<HospitalState>(create: (_) => HospitalState()),
-    //     ChangeNotifierProvider<PharmacyState>(create: (_) => PharmacyState()),
-    //     ChangeNotifierProvider<ShopState>(create: (_) => ShopState()),
-    //   ],
-    //   child: const MaterialApp(
-    //     home: ChatRoom(),
-    //     home: TestWidgetsScreen(),
-    //   ),
-
-    // ),
     MultiProvider(
       providers: [
         ChangeNotifierProvider<MainState>(create: (_) => MainState()),
@@ -94,8 +78,6 @@ Future main() async {
       child:  MaterialApp(
         debugShowCheckedModeBanner: false,
         home: MyApp(showLogin: false,showSignup: false,),
-        // home: ChatRoom(color: AppColors.primaryDeepColor),
-        // home: TestWidgetsScreen(),
       ),
 
     ),
