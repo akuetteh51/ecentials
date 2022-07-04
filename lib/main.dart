@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, unused_import, unused_local_variable
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:ecentialsclone/baseVerification.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Chat/chatroom/chat_bubble.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/delivery_mode.dart';
@@ -45,7 +46,9 @@ import 'package:ecentialsclone/src/screens/UserScreens/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toast/toast.dart';
 
+import 'src/app_state/AuthState.dart';
 import 'src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/hospitalSchedules.dart';
 import 'src/screens/UserScreens/Home/MinuteClinic/minuteClinic.dart';
 import 'src/app_state/ambulance_state.dart';
@@ -71,29 +74,26 @@ Future main() async {
         ChangeNotifierProvider<HospitalState>(create: (_) => HospitalState()),
         ChangeNotifierProvider<PharmacyState>(create: (_) => PharmacyState()),
         ChangeNotifierProvider<ShopState>(create: (_) => ShopState()),
+        ChangeNotifierProvider<AuthState>(create: (_) => AuthState()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: MyApp(
-          showLogin: true,
-          showSignup: false,
-        ),
-        // home: ChatRoom(color: AppColors.primaryDeepColor),
-        // home: TestWidgetsScreen(),
+        home: MyApp(),
       ),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  final bool showLogin;
-  final bool showSignup;
-  const MyApp({Key? key, required this.showLogin, required this.showSignup})
-      : super(key: key);
+  const MyApp({
+    Key? key,
+  }) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    ToastContext().init(context);
+
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
@@ -103,9 +103,11 @@ class MyApp extends StatelessWidget {
       home: AnimatedSplashScreen(
         splash: "assets/images/logo.png",
         centered: true,
-        duration: 2000,
+        duration: 1000,
         splashIconSize: 500,
-        nextScreen: showLogin ? Login() : const OnboardingScreen(),
+        // nextScreen: DeliveryMode(),
+        nextScreen:
+            BaseVerification(), // BaseVerification() handles which page to show the user
       ),
       theme: ThemeData(
         fontFamily: "Montserrat",

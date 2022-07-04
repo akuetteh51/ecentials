@@ -4,6 +4,7 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulanceN
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/minuteClinic.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/setting.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Wallet/useCardWallet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -146,7 +147,9 @@ class NavDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            onTap: () {},
+            onTap: () {
+              Get.to(() => UseCardWallet());
+            },
             leading: Image.asset(
               "assets/images/ecentialcard.png",
               width: labelSize,
