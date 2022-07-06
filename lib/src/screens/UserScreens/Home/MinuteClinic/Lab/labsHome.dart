@@ -126,6 +126,7 @@ class _LabsHomeState extends State<LabsHome> {
           : null,
       drawer: currentIndex == 0 ? const NavDrawer() : null,
       bottomNavigationBar: CurvedBottomBar(
+        color: AppColors.primaryGreenColor,
         currentIndex: onTap,
       ),
       body: _pages[currentIndex],

@@ -1,16 +1,16 @@
-import 'package:ecentialsclone/src/Themes/colors.dart';
-import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Wallet/sendRequest.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
-class Payed extends StatefulWidget {
-  const Payed({Key? key}) : super(key: key);
+import '../../../../Themes/colors.dart';
+import '../../../../Themes/colors.dart';
+import '../../../../Themes/ecentials_icons_icons.dart';
 
-  @override
-  State<Payed> createState() => _PayedState();
-}
+class TopupSuccessful extends StatelessWidget {
+  const TopupSuccessful({Key? key}) : super(key: key);
 
-class _PayedState extends State<Payed> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +26,7 @@ class _PayedState extends State<Payed> {
               ),
               Icon(
                 EcentialsIcons.circle_correct,
-                color: AppColors.primaryRedColor,
+                color: AppColors.primaryDeepColor,
                 size: 90,
               ),
               const SizedBox(
@@ -119,10 +119,13 @@ class _PayedState extends State<Payed> {
               ),
               Button(
                 text: "Ok",
-                color: AppColors.primaryRedColor,
+                color: AppColors.primaryDeepColor,
                 width: 150,
                 radius: 10,
                 style: TextStyle(color: AppColors.primaryWhiteColor),
+                onTap: () {
+                  Get.to(() => SendRequest());
+                },
               )
             ],
           ),

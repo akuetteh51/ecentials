@@ -5,8 +5,12 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/minuteC
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/setting.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Wallet/useCardWallet.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Wallet/addCard.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Wallet/cardTopup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../screens/UserScreens/Home/Wallet/addCardDetails.dart';
 
 class NavDrawer extends StatelessWidget {
   final bool hasShop;
@@ -148,7 +152,8 @@ class NavDrawer extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
-              Get.to(() => UseCardWallet());
+              Get.to(() => AddCardDetails());
+              Scaffold.of(context).openEndDrawer();
             },
             leading: Image.asset(
               "assets/images/ecentialcard.png",
