@@ -1,5 +1,9 @@
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
+import 'package:ecentialsclone/src/Widgets/orders.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+import '../../../Themes/colors.dart';
 
 class orderSearch extends StatefulWidget {
   const orderSearch({Key? key}) : super(key: key);
@@ -9,6 +13,8 @@ class orderSearch extends StatefulWidget {
 }
 
 class _orderSearchState extends State<orderSearch> {
+  TextEditingController _date = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,127 +36,163 @@ class _orderSearchState extends State<orderSearch> {
         backgroundColor: Colors.white10,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.only(top: 30.0, bottom: 20),
         child: Column(
           children: [
             Container(
-                child: Row(
-              children: [
-                Container(
-                  width: 75,
-                  height: 40,
-                  color: Color(0xffF6F9FD),
-                  child: Center(child: Text("Date")),
-                ),
-                Icon(
-                  Icons.calendar_today_outlined,
-                  size: 15,
-                ),
-                Container(
+              height: 41,
+              color: Colors.grey[100],
+              child: Row(
+                children: [
+                  Container(
+                    // decoration: BoxDecoration(boxShadow: ),
+                    width: 75,
+                    height: 40,
+                    color: Color(0xffF6F9FD),
+                    child: Center(child: Text("Date")),
+                  ),
+                  IconButton(
+                    onPressed: () async {
+                      DateTime? pickeddate = await showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(2000),
+                          lastDate: DateTime(2101));
+                      if (pickeddate != null) {
+                        setState(() {
+                          _date.text =
+                              DateFormat('dd-MM-yyyy').format(pickeddate);
+                        });
+                      }
+                    },
+                    icon: Icon(
+                      Icons.calendar_today_outlined,
+                      size: 15,
+                    ),
+                  ),
+
+                  Container(
                     width: 170,
                     height: 40,
-                    child: Center(child: Text('06-02-2022'))),
-                Container(
-                  width: 58,
-                  height: 40,
-                  color: Color(0xff043B64),
-                  child: Center(
-                      child: Text(
-                    "Find",
-                    style: TextStyle(color: Colors.white),
-                  )),
-                )
-              ],
-            )),
-            SingleChildScrollView(
+
+                    //  Text('06-02-2022')
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: TextField(
+                          textAlignVertical: TextAlignVertical.bottom,
+                          textAlign: TextAlign.start,
+                          controller: _date,
+                          style: const TextStyle(fontSize: 20),
+                          cursorColor: AppColors.primaryDeepColor,
+                          decoration: const InputDecoration(
+                            //  disabledBorder:,
+
+                            hintText: '06-02-2022',
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  // SizedBox(
+                  //   width: 20,
+                  // ),
+                  Container(
+                    width: 58,
+                    height: 40,
+                    color: Color(0xff043B64),
+                    child: Center(
+                        child: Text(
+                      "Find",
+                      style: TextStyle(color: Colors.white),
+                    )),
+                  )
+                ],
+              ),
+            ),
+            Flexible(
+              child: SingleChildScrollView(
                 child: Column(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      child: Row(
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                "ORD-2345",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500, fontSize: 18),
-                              ),
-                              Text(
-                                "Pending",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 10,
-                                    color: Colors.grey),
-                                textAlign: TextAlign.start,
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            width: 190,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: Text(
-                              "6 Items",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 10,
-                                  color: Colors.grey),
-                              textAlign: TextAlign.start,
-                            ),
-                          )
-                        ],
-                      ),
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ordersList(
+                          text: "ORD-2345", state: "Pending", num: "6"),
                     ),
-                  ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ordersList(
+                          text: "ORD-2345", state: "Pending", num: "6"),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ordersList(
+                          text: "ORD-2345", state: "Pending", num: "6"),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ordersList(
+                          text: "ORD-2345", state: "Pending", num: "6"),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ordersList(
+                          text: "ORD-2345", state: "Pending", num: "6"),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ordersList(
+                          text: "ORD-2345", state: "Pending", num: "6"),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ordersList(
+                          text: "ORD-2345", state: "Pending", num: "6"),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ordersList(
+                          text: "ORD-2345", state: "Pending", num: "6"),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ordersList(
+                          text: "ORD-2345", state: "Pending", num: "6"),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ordersList(
+                          text: "ORD-2345", state: "Pending", num: "6"),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ordersList(
+                          text: "ORD-2345", state: "Pending", num: "6"),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ordersList(
+                          text: "ORD-2345", state: "Pending", num: "6"),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ordersList(
+                          text: "ORD-2345", state: "Pending", num: "6"),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ordersList(
+                          text: "ORD-2345", state: "Pending", num: "6"),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ordersList(
+                          text: "ORD-2345", state: "Pending", num: "6"),
+                    )
+                  ],
                 ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      child: Row(
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                "ORD-2345",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500, fontSize: 18),
-                              ),
-                              Text(
-                                "Pending",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 10,
-                                    color: Colors.grey),
-                                textAlign: TextAlign.start,
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            width: 190,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: Text(
-                              "6 Items",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 10,
-                                  color: Colors.grey),
-                              textAlign: TextAlign.start,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            )),
+              ),
+            ),
           ],
         ),
       ),

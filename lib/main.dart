@@ -64,11 +64,10 @@ Future main() async {
   final showSignup = preference.getBool('showSignup') ?? false;
 
   runApp(
-
-    MyApp(
-      showLogin: false,
-      showSignup: false,
-    ),
+    // MyApp(
+    //   showLogin: false,
+    //   showSignup: false,
+    // ),
     // MultiProvider(
     //   providers: [
     //     ChangeNotifierProvider<MainState>(create: (_) => MainState()),

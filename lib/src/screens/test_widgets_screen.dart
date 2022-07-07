@@ -1,7 +1,6 @@
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital1.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital2DocProfile.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/screen6.dart';
-// ignore_for_file: unused_import, duplicate_import, non_constant_identifier_names
 
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
@@ -36,7 +35,10 @@ import 'package:ecentialsclone/src/screens/AuthScreens/agreement.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/registration.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Chat/chat.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital4Chat.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Payments/Payed.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Payments/paymentMethod.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/homeScreen.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/SalePayment.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/createPin.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/enterStoreDetails.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/MyStoreHome2.dart';
@@ -48,9 +50,7 @@ import 'package:ecentialsclone/src/screens/UserScreens/Store/addCard.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/addCardDetails.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/cardTopup.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/add_product.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Store/my_store_home3.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Store/transfer.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Store/wallet.dart';
+
 import 'package:ecentialsclone/src/screens/UserScreens/pin_creation_prompt.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/shopDashboard.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/topupSuccessful.dart';
@@ -74,21 +74,7 @@ class _TestWidgetsScreenState extends State<TestWidgetsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:  NearbyH(),
-      // body: Mystore3(),
-      //  NearbyH(),
-      // /addingProduct(),
-      //  DocotorInfo(),
-      //  Schedule(),
-
-      //  DocotorInfo(),
-      //  cardDetails(),
-      // walletSet(),
-      //  topedup(),
-      //  walletSet(),
-      // addingProduct(),
-      // SetupWallet(),
-      // labScreen()
+      body: salesPayment(),
     );
   }
 }

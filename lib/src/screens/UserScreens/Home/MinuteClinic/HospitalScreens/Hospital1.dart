@@ -1,17 +1,17 @@
-import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
-import 'package:ecentialsclone/src/Widgets/button.dart';
+
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/Widgets/labResultsCard.dart';
 import 'package:ecentialsclone/src/Widgets/navDrawer.dart';
-import 'package:ecentialsclone/src/Widgets/search.dart';
-import 'package:ecentialsclone/src/Widgets/searchForh.dart';
-import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Lab5.dart';
-import 'package:flutter/material.dart';
 
-import '../../../../../Widgets/CurvedBottomBar.dart';
+import 'package:ecentialsclone/src/Widgets/searchForh.dart';
+import 'package:ecentialsclone/src/Widgets/searchLocation.dart';
+import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/docotorInfo.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/labScreen.dart';
+
+import 'package:flutter/material.dart';
 
 class NearbyH extends StatefulWidget {
   const NearbyH({Key? key}) : super(key: key);
