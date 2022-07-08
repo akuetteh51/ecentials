@@ -12,38 +12,45 @@ class SalesPayment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 40,
-      child: Row(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "$text",
-                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
-              ),
-              Text(
-                "$date",
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 10,
-                    color: Colors.grey),
-                textAlign: TextAlign.start,
-              )
-            ],
-          ),
-          SizedBox(
-            width: 190,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0, left: 50),
-            child: Icon(
-              Icons.remove_red_eye,
-              color: Color(0xff42CB91),
+    return Card(
+      margin: EdgeInsets.all(1),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "$text",
+                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 5.0),
+                  child: Text(
+                    "$date",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 10,
+                        color: Colors.grey),
+                    textAlign: TextAlign.start,
+                  ),
+                )
+              ],
             ),
-          )
-        ],
+            SizedBox(
+              height: 50,
+              width: 180,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0, left: 47),
+              child: Icon(
+                Icons.remove_red_eye,
+                color: Color(0xff42CB91),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
