@@ -276,7 +276,7 @@ class _LoginState extends State<Login> {
 
                           authState.loginLoaderState == 0 || authState.loginLoaderState == 2
                                         ? _signin
-                                        : agreementButton(),
+                                        : loadingButton(),
 
                             const SizedBox(
                               height: 40,
@@ -299,7 +299,7 @@ class _LoginState extends State<Login> {
 
 
 
-  Widget agreementButton() {
+  Widget loadingButton() {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 60,
