@@ -55,6 +55,9 @@ class TopupSuccessful extends StatelessWidget {
                 width: MediaQuery.of(context).size.width - 40,
                 child: const Text(
                   "Transaction ID: dae6au-4ksne9e-9lkj",
+                  overflow: TextOverflow.clip,
+                  maxLines: 1,
+                  softWrap: false,
                   style: TextStyle(
                     fontSize: 20,
                   ),

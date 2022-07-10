@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../Themes/colors.dart';
 import '../Themes/ecentials_icons_icons.dart';
+import '../screens/UserScreens/Chat/ChatHomePage.dart';
+import '../screens/UserScreens/Home/homeScreen.dart';
+import '../screens/UserScreens/Notifications/notifications.dart';
+import '../screens/UserScreens/Store/store.dart';
 import 'curvedPaint.dart';
 import 'floatingAmbulance.dart';
 
@@ -45,6 +49,13 @@ class _CurvedBottomBarState extends State<CurvedBottomBar> {
     "Chat Bot",
   ];
 
+  final _pages = [
+    HomeScreen(),
+    Stores(),
+    Notifications(),
+    ChatHomePage(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -74,10 +85,19 @@ class _CurvedBottomBarState extends State<CurvedBottomBar> {
                 message: _tooltip[index],
                 child: GestureDetector(
                   onTap: () {
-                    widget.currentIndex?.call(index);
-                    setState(() {
-                      currentLocalIndex = index;
-                    });
+                    if (index == 1 || index == 2 || index == 3) {
+                      widget.currentIndex?.call(index);
+                      setState(() {
+                        currentLocalIndex = index;
+                      });
+                    } else {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: ((context) => _pages[index]),
+                        ),
+                      );
+                    }
                   },
                   child: SizedBox(
                     width: 28,
@@ -99,7 +119,7 @@ class _CurvedBottomBarState extends State<CurvedBottomBar> {
           bottom: 40.0,
           child: Wrap(
             alignment: WrapAlignment.center,
-            children: [
+            children: const <Widget>[
               FloatingAmbulance(),
             ],
           ),

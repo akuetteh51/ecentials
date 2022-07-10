@@ -55,6 +55,9 @@ class _PayedState extends State<Payed> {
                 width: MediaQuery.of(context).size.width - 40,
                 child: const Text(
                   "Transaction ID: dae6au-4ksne9e-9lkj",
+                  overflow: TextOverflow.clip,
+                  softWrap: false,
+                  maxLines: 1,
                   style: TextStyle(
                     fontSize: 20,
                   ),

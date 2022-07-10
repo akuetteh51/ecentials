@@ -46,7 +46,6 @@ class _UseCardWalletState extends State<UseCardWallet> {
                   ),
                   Positioned(
                     right: 70,
-                    top: 200,
                     child: Image.asset("assets/images/mastercard.png"),
                   ),
                 ],

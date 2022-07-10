@@ -34,9 +34,9 @@ class _MinutesHomeState extends State<MinutesHome> {
 
   // Pages
   final _pages = [
-    HospitalHome(),
-    PharmacyHome(),
-    LabsHome(),
+    const HospitalHome(),
+    const PharmacyHome(),
+    const LabsHome(),
   ];
 
   @override
@@ -44,7 +44,7 @@ class _MinutesHomeState extends State<MinutesHome> {
     return Scaffold(
       backgroundColor: AppColors.primaryWhiteColor,
       body: ListView(
-        padding: EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: 10),
         shrinkWrap: true,
         children: List.generate(
           3,

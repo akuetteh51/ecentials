@@ -12,6 +12,8 @@ import 'package:get/get.dart';
 import '../Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 
+import 'CurvedBottomBar.dart';
+
 class BottomNavBar extends StatefulWidget {
   final Color backgroundColor;
   final onPressed;
@@ -52,12 +54,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       ),
     ];
 
-    final _pages = [
-      HomeScreen(),
-      Stores(),
-      Notifications(),
-      ChatHomePage()
-    ];
+    final _pages = [HomeScreen(), Stores(), Notifications(), ChatHomePage()];
 
 // Icons tooltips
     final _tooltip = [

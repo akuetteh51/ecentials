@@ -18,24 +18,13 @@ class Stores extends StatefulWidget {
 class _StoresState extends State<Stores> {
   final ScrollController _scrollController = ScrollController();
 
-  final _storeinfo = [
-    {
-      "image": "assets/images/dashboard.png",
-      "text": "Dashboard",
-    },
-    {
-      "image": "assets/images/inventory.png",
-      "text": "Inventory",
-    },
-    {
-      "image": "assets/images/orders.png",
-      "text": "Orders",
-    },
-    {
-      "image": "assets/images/sales.png",
-      "text": "Sales",
-    },
-  ];
+  final _storeinfo = {
+    "assets/images/dashboard.png": "Dashboard",
+    "assets/images/inventory.png": "Inventory",
+    "assets/images/orders.png": "Orders",
+    "assets/images/sales.png": "Sales",
+  };
+
   @override
   void initState() {
     super.initState();
@@ -119,8 +108,8 @@ class _StoresState extends State<Stores> {
                           );
                         },
                         child: StoreCard(
-                          image: _storeinfo[index]["image"].toString(),
-                          text: _storeinfo[index]["text"].toString(),
+                          image: _storeinfo.keys.elementAt(index),
+                          text: _storeinfo.values.elementAt(index),
                         ),
                       );
                     }),
