@@ -18,7 +18,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryWhiteColor,
-      bottomSheet: Container(
+      bottomNavigationBar: Container(
         height: 80,
         width: MediaQuery.of(context).size.width,
         color: AppColors.primaryWhiteColor,
@@ -43,129 +43,154 @@ class _PaymentMethodState extends State<PaymentMethod> {
         backgroundColor: AppColors.primaryWhiteColor,
         foregroundColor: AppColors.primaryBlackColor,
       ),
-      body: Column(
+      body: ListView(
         children: [
           Container(
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.4,
+            height: MediaQuery.of(context).size.height * 0.5,
             color: AppColors.primaryOrangeColor,
             child: const MapScreen(),
           ),
           Container(
-            margin: const EdgeInsets.only(
-              bottom: 20,
-            ),
-            child: Container(
-              height: MediaQuery.of(context).size.height * 0.6,
-              padding: const EdgeInsets.all(20),
-              child: ListView(
-                shrinkWrap: true,
-                children: [
-                  Column(
-                    children: [
-                      const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text("How would you like to pay,"),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "GHC 120",
-                          style: TextStyle(
-                            color: AppColors.primaryGreenColor,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      SizedBox(
-                        height: 70,
-                        child: Card(
-                          margin:const EdgeInsets.all(0),
-                          shadowColor: AppColors.primaryRedColor,
-                          elevation: 10,
+            margin: EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("How would like to pay"),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "GHC 250",
+                  style: TextStyle(color: AppColors.primaryGreenColor),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  height: 80,
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryOrangeColor,
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(20),
+                    ),
+                  ),
+                  child: Container(
+                    height: 80,
+                    child: Stack(
+                      children: [
+                        Container(
+                          height: 75,
+                          decoration: BoxDecoration(
+                              color: AppColors.primaryWhiteColor,
+                              borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(10),
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  offset: Offset(0, -1),
+                                  color: AppColors.primaryBlackColor
+                                      .withOpacity(.10),
+                                  blurRadius: 5,
+                                  spreadRadius: 1.5,
+                                )
+                              ]),
                           child: Container(
-                            padding: const EdgeInsets.all(10),
-                            decoration: const BoxDecoration(
-                                border: Border(bottom: BorderSide())),
+                            margin: EdgeInsets.symmetric(
+                              horizontal: 10,
+                            ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      "assets/images/logo.png",
-                                      scale: 1.9,
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Container(
-                                      margin: const EdgeInsets.only(top: 12),
-                                      child: Text(
-                                        "Wallet",
-                                        style: TextStyle(
-                                          color: AppColors.primaryBlueColor,
-                                          fontSize: 20,
+                                Container(
+                                  margin: EdgeInsets.only(
+                                    top: 15,
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Image.asset(
+                                        "assets/images/logo.png",
+                                        height: 30,
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(
+                                          top: 10,
+                                        ),
+                                        child: Text(
+                                          "Wallet",
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            color: Colors.deepPurple,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                                Container(
-                                  margin: const EdgeInsets.only(
-                                    top: 12,
-                                  ),
-                                  child: const Align(
-                                    alignment: Alignment.centerRight,
-                                    child: Text("Ending 8988"),
-                                  ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Icon(
+                                      Icons.circle,
+                                      size: 10,
+                                    ),
+                                    Text("Ending 8988")
+                                  ],
                                 )
                               ],
                             ),
                           ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                      flex: 1,
+                      child: Card(
+                        elevation: 10,
+                        child: Button(
+                          height: 60,
+                          text: "Cash",
+                          hasIcon: true,
+                          icon: EcentialsIcons.cash,
+                          iconColor: AppColors.primaryGreenColor,
+                          color: AppColors.primaryWhiteColor,
                         ),
                       ),
-                      const SizedBox(
-                        height: 10,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Flexible(
+                      flex: 1,
+                      child: Card(
+                        elevation: 10,
+                        child: Button(
+                          height: 60,
+                          text: "Cash",
+                          hasIcon: true,
+                          icon: EcentialsIcons.circle_add,
+                          iconColor: AppColors.primaryBlueColor,
+                          color: AppColors.primaryWhiteColor,
+                        ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Card(
-                            elevation: 10,
-                            child: Button(
-                              width: (MediaQuery.of(context).size.width - 60) / 2,
-                              text: "Cash",
-                              icon: EcentialsIcons.cash,
-                              iconColor: AppColors.primaryGreenColor,
-                              hasIcon: true,
-                              color: AppColors.primaryWhiteColor,
-                            ),
-                          ),
-                          Card(
-                            elevation: 10,
-                            child: Button(
-                              width: (MediaQuery.of(context).size.width - 60) / 2,
-                              text: "Add New",
-                              icon: EcentialsIcons.circle_add,
-                              iconColor: AppColors.primaryBlueColor,
-                              hasIcon: true,
-                              color: AppColors.primaryWhiteColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                 const SizedBox(height: 160,),
-                ],
-              ),
+                    ),
+                  ],
+                )
+              ],
             ),
           ),
         ],

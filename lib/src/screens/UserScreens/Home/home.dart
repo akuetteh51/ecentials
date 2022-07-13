@@ -15,40 +15,36 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.primaryWhiteColor,
-      body: ListView(
+    return SingleChildScrollView(
+      child: Column(
         children: [
-          Column(
-            children: [
-              DashBoard(
-                image: "assets/images/minute_clinic.png",
-                btnName: "Minute Clinic",
-                onTap: () {
-                  Get.to(
-                    () => const MinuteClinic(),
-                    transition: Transition.fadeIn,
-                    duration: const Duration(milliseconds: 300),
-                  );
-                },
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              DashBoard(
-                onTap: () {
-                  Get.to(
-                    () => const AmbulanceNear(),
-                    transition: Transition.rightToLeft,
-                    duration: const Duration(milliseconds: 300),
-                  );
-                },
-                image: "assets/images/ambulance.png",
-                btnName: "Ambulance Services",
-              ),
-
-              const SizedBox(height: 60,),
-            ],
+          DashBoard(
+            image: "assets/images/minute_clinic.png",
+            btnName: "Minute Clinic",
+            onTap: () {
+              Get.to(
+                () => const MinuteClinic(),
+                transition: Transition.fadeIn,
+                duration: const Duration(milliseconds: 300),
+              );
+            },
+          ),
+          const SizedBox(
+            height: 40,
+          ),
+          DashBoard(
+            onTap: () {
+              Get.to(
+                () => const AmbulanceNear(),
+                transition: Transition.rightToLeft,
+                duration: const Duration(milliseconds: 300),
+              );
+            },
+            image: "assets/images/ambulance.png",
+            btnName: "Ambulance Services",
+          ),
+          const SizedBox(
+            height: 60,
           ),
         ],
       ),

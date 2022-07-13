@@ -6,9 +6,12 @@ import 'package:ecentialsclone/src/screens/UserScreens/main_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../Themes/colors.dart';
+import '../../Widgets/EcentialsToast.dart';
+import '../../app_state/AuthState.dart';
 
 class Login extends StatefulWidget {
   bool isVisible;
@@ -38,6 +41,8 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    AuthState authState = Provider.of<AuthState>(context);
+
     // Logo  and Login text
     final _logotext = Row(
       mainAxisSize: MainAxisSize.min,
@@ -150,6 +155,9 @@ class _LoginState extends State<Login> {
                 ),
               ),
               hintText: "********",
+              hintStyle: TextStyle(
+                color: Theme.of(context).disabledColor,
+              ),
               border: const UnderlineInputBorder(
                 borderSide: BorderSide.none,
               ),
@@ -180,14 +188,24 @@ class _LoginState extends State<Login> {
 // Sign in Button
     final _signin = Button(
       onTap: () async {
-        final preference = await SharedPreferences.getInstance();
-        preference.setBool("showSignup", true);
+        // s|he
 
-        Get.to(
-          () => const MainScreen(),
-          transition: Transition.fadeIn,
-          duration: const Duration(milliseconds: 300),
-        );
+        // final preference = await SharedPreferences.getInstance();
+        // preference.setBool("showSignup", true);
+        if(_emailController.text.trim().isNotEmpty && _passwordController.text.trim().isNotEmpty ){
+        
+        Map<String,dynamic> inputs = {
+        "email": _emailController.text.trim(),
+        "password": _passwordController.text.trim(),
+           };
+
+        authState.loginUser(context: context,data: inputs);
+        
+        }else{
+     ShowToast.ecentialsToast(
+                    message: "Username / passwords empty",
+                  );          
+        }       
       },
       text: "Sign in",
       style: TextStyle(color: AppColors.primaryWhiteColor, fontSize: 20),
@@ -207,17 +225,18 @@ class _LoginState extends State<Login> {
               text: " Register",
               style: TextStyle(
                 color: AppColors.primaryDeepColor,
+                fontWeight: FontWeight.bold,
                 fontFamily: "Montserrat",
               ),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
                   Get.to(() => Registration(),
                       transition: Transition.rightToLeft,
-                      duration:const Duration(milliseconds: 400));
-                //   Get.to(() => const Agreement(),
-                //       transition: Transition.rightToLeft,
-                //       duration:const Duration(milliseconds: 400));
-                // }),
+                      duration: const Duration(milliseconds: 400));
+                  //   Get.to(() => const Agreement(),
+                  //       transition: Transition.rightToLeft,
+                  //       duration:const Duration(milliseconds: 400));
+                  // }),
                 }),
         ],
       ),
@@ -254,11 +273,18 @@ class _LoginState extends State<Login> {
                             const SizedBox(
                               height: 40,
                             ),
-                            _signin,
+
+                          authState.loginLoaderState == 0 || authState.loginLoaderState == 2
+                                        ? _signin
+                                        : agreementButton(),
+
                             const SizedBox(
-                              height: 20,
+                              height: 40,
                             ),
                             _newUser,
+                            const SizedBox(
+                              height: 30,
+                            ),
                           ],
                         ),
                       ),
@@ -270,4 +296,28 @@ class _LoginState extends State<Login> {
       ),
     );
   }
+
+
+
+  Widget agreementButton() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: 60,
+      decoration: BoxDecoration(
+        color: AppColors.primaryDeepColor,
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: Center(
+        child: SizedBox(
+              height: 15,
+              width: 15,
+              child: CircularProgressIndicator(
+                strokeWidth: 2.5,
+                  color: Theme.of(context).canvasColor,
+                ),
+            ),
+      ),
+    );
+  }
+
 }

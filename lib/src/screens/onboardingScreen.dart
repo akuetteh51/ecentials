@@ -2,10 +2,11 @@ import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../Themes/colors.dart';
+import '../app_state/AuthState.dart';
 import 'AuthScreens/login.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -48,6 +49,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   Widget build(BuildContext context) {
     final w = MediaQuery.of(context).size.width;
+    AuthState authState = Provider.of<AuthState>(context);
+
     // Onboarding column
     _onboard(int index) => Column(
           children: [
@@ -58,7 +61,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               width: w,
               margin: const EdgeInsets.symmetric(vertical: 30),
               child: Container(
-                margin: EdgeInsets.symmetric(
+                margin: const EdgeInsets.symmetric(
                   horizontal: 30,
                 ),
                 child: Center(
@@ -78,8 +81,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () async {
-          final preference = await SharedPreferences.getInstance();
-          preference.setBool("showLogin", true);
+          authState.saveWalkthroughPass(true);
           Get.to(
             () => Login(),
             transition: Transition.rightToLeft,
@@ -101,8 +103,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     final _nextButton = Button(
       width: MediaQuery.of(context).size.width - 80,
       onTap: () async {
-        final preference = await SharedPreferences.getInstance();
-        preference.setBool("showLogin", true);
+       authState.saveWalkthroughPass(true);
         Get.to(
           () => Login(),
           transition: Transition.rightToLeft,

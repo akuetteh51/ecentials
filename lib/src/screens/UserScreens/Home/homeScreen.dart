@@ -74,46 +74,22 @@ class _HomeScreenState extends State<HomeScreen> {
     // Pages
     final _pages = [
       const Home(),
-      const Stores(),
+      Stores(),
       const Notifications(),
-      // const ChatRoom(),
       const ChatHomePage(),
     ];
-
 
     // BottomNavigation Bar
 
     return Scaffold(
-      // extendBody: true,
+      extendBody: true,
       backgroundColor: AppColors.primaryWhiteColor,
-      appBar: 
-      currentIndex == 0
-          ?
-           _appBar : null
-          // : currentIndex == 1
-          //     ? _myAppBar
-          //     : currentIndex == 2
-          //         ? null
-          //         : _myAppBar
-                  ,
+      appBar: currentIndex == 0 ? _appBar : null,
       drawer: const NavDrawer(),
-      
-      // bottomNavigationBar: _bottomNavigationBar,
-      // floatingActionButton: FloatingAmbulance(),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      
-      body: Stack(
-        children: [
-          _pages[currentIndex],
-          CurvedBottomBar(
-          currentIndex: (int curIndex) {
-            setState(() {
-              currentIndex = curIndex;
-            });
-          },
-        ),
-        ],
+      bottomNavigationBar: CurvedBottomBar(
+        currentIndex: onTap,
       ),
+      body: _pages[currentIndex],
     );
   }
 }

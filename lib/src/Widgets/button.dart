@@ -11,6 +11,7 @@ class Button extends StatelessWidget {
   final IconData? icon;
   final Color? iconColor;
   final double? iconSize;
+  final padding;
   final onTap;
   const Button({
     Key? key,
@@ -25,6 +26,7 @@ class Button extends StatelessWidget {
     this.icon,
     this.iconColor,
     this.iconSize,
+    this.padding,
   }) : super(key: key);
 
   @override
@@ -32,6 +34,7 @@ class Button extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        padding: padding,
         width: width,
         height: height,
         decoration: BoxDecoration(
