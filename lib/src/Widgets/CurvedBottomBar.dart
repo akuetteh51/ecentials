@@ -26,7 +26,7 @@ class _CurvedBottomBarState extends State<CurvedBottomBar> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
       widget.currentIndex?.call(widget.initialIndex);
       setState(() {
         currentLocalIndex = widget.initialIndex;

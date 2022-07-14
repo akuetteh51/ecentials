@@ -246,7 +246,7 @@ class _EditProfileState extends State<EditProfile> {
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            _profileInfo.keys.elementAt(index),
+                            _heading[index],
                             style: const TextStyle(
                               fontSize: 18,
                             ),
@@ -256,9 +256,10 @@ class _EditProfileState extends State<EditProfile> {
                           height: 10,
                         ),
 
-borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: TextFormField(                        
+// borderRadius: BorderRadius.circular(10),
+                      
+                      // child:
+                       TextFormField(                        
                         keyboardType: keyInputType(index),
                         controller: giveControllerToUse(index),
                         cursorColor: AppColors.primaryDeepColor,
@@ -268,7 +269,7 @@ borderRadius: BorderRadius.circular(10),
 
                           ),
                         ),
-                      ],
+      ),],
                     ),
                   ),
                 ),
