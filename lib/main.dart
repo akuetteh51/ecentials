@@ -77,6 +77,7 @@ Future main() async {
         ChangeNotifierProvider<ShopState>(create: (_) => ShopState()),
         ChangeNotifierProvider<AuthState>(create: (_) => AuthState()),
         ChangeNotifierProvider<UserState>(create: (_) => UserState()),
+        ChangeNotifierProvider<Nk>(create: (_) => Nk()),
       ],
       child:  MaterialApp(
         debugShowCheckedModeBanner: false,

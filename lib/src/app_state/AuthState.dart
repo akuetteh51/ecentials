@@ -32,7 +32,7 @@ class AuthState extends ChangeNotifier {
     String path = APPBASEURL.BASEURL + "/api/v1/user/register";
 
     try {
-      Response response = await dio.post(path, data: data);
+      Response response = await dio.post(path, data:data);          
       if (response.statusCode == 200) {
         _registerLoaderState = 2;
         notifyListeners();
