@@ -18,7 +18,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   shared_preferences: ^2.0.13
   animated_splash_screen: ^1.2.0
-  get: ^4.6.1
+  get: ^4.6.5
   smooth_page_indicator: ^1.0.0+2
   flutter_neumorphic: ^3.2.0
   dotted_border: ^2.0.0+2
@@ -27,6 +27,7 @@ dependencies:
   pinput: ^2.1.4
   # pinput: ^2.2.7
   provider: ^6.0.3
+  toast: ^0.3.0
 
 
 dev_dependencies:

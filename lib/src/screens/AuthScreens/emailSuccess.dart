@@ -1,5 +1,4 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
-import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/reset.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,7 +13,7 @@ class EmailSuccess extends StatelessWidget {
       Get.to(
         () => PasswordReset(),
         transition: Transition.fadeIn,
-        duration: const Duration(seconds: 1),
+        duration: const Duration(milliseconds: 300),
       );
     },
     child: Button(
@@ -37,19 +36,22 @@ class EmailSuccess extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Get.to(() => Login());
+            // Get.to(() => Login());
+            Navigator.pop(context);
+            Navigator.pop(context);
           },
         ),
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Image.asset(
               "assets/images/email_success.png",
             ),
             const Text(
               "You have an account with us!",
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 25,
               ),
@@ -59,9 +61,10 @@ class EmailSuccess extends StatelessWidget {
             ),
             const Text(
               "Proceed to reset your password",
+              textAlign: TextAlign.center,
               style: TextStyle(),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             SizedBox(width: 200, child: _proceed)

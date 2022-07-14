@@ -44,7 +44,7 @@ class _AmbulanceDirectionState extends State<AmbulanceDirection> {
               left: 0,
               bottom: 0,
               right: 0,
-              child: mapScreen(),
+              child: MapScreen(),
             ),
             Positioned(
               child: Container(

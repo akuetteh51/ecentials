@@ -2,22 +2,19 @@ import 'package:flutter/material.dart';
 
 import '../Themes/colors.dart';
 import '../Themes/ecentials_icons_icons.dart';
+import '../screens/UserScreens/Chat/ChatHomePage.dart';
+import '../screens/UserScreens/Home/homeScreen.dart';
+import '../screens/UserScreens/Notifications/notifications.dart';
+import '../screens/UserScreens/Store/store.dart';
 import 'curvedPaint.dart';
 import 'floatingAmbulance.dart';
 
-
-
 class CurvedBottomBar extends StatefulWidget {
-  final List<String>? tooltips;
-  final List<Icon>? icons;
   final ValueChanged<int>? currentIndex;
   final int initialIndex;
+  final Color? color;
   const CurvedBottomBar(
-      {Key? key,
-      this.tooltips,
-      this.icons,
-      this.currentIndex,
-      this.initialIndex = 0})
+      {Key? key, this.currentIndex, this.initialIndex = 0, this.color})
       : super(key: key);
 
   @override
@@ -25,33 +22,26 @@ class CurvedBottomBar extends StatefulWidget {
 }
 
 class _CurvedBottomBarState extends State<CurvedBottomBar> {
+  int currentLocalIndex = 0;
   @override
   void initState() {
     super.initState();
-    widget.currentIndex?.call(widget.initialIndex);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      widget.currentIndex?.call(widget.initialIndex);
+      setState(() {
+        currentLocalIndex = widget.initialIndex;
+      });
+    });
   }
 
-  // Icons
-  final _icons = [
-    Icon(
-      EcentialsIcons.home,
-      color: AppColors.primaryWhiteColor,
-    ),
-    Icon(
-      EcentialsIcons.sell,
-      color: AppColors.primaryWhiteColor,
-    ),
-    Icon(
-      EcentialsIcons.notification,
-      color: AppColors.primaryWhiteColor,
-    ),
-    Icon(
-      EcentialsIcons.chat_heart,
-      color: AppColors.primaryWhiteColor,
-    ),
-  ];
+  final _icon = {
+    "assets/images/home.png": "assets/images/home_filled.png",
+    "assets/images/shop.png": "assets/images/shop_filled.png",
+    "assets/images/bar_notifications.png":
+        "assets/images/notifications_filled.png",
+    "assets/images/chat.png": "assets/images/chat_filled.png",
+  };
 
-// Icons tooltips
   final _tooltip = [
     "Home",
     "Store",
@@ -59,69 +49,82 @@ class _CurvedBottomBarState extends State<CurvedBottomBar> {
     "Chat Bot",
   ];
 
+  final _pages = [
+    HomeScreen(),
+    Stores(),
+    Notifications(),
+    ChatHomePage(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Positioned(
-          bottom: -20.0,
+          bottom: -8.0,
+          left: 0,
+          right: 0,
           child: SizedBox(
             height: 80,
             child: CustomPaint(
-              size: Size(MediaQuery.of(context).size.width,
-                  80.0), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
-              painter: RPSCustomPainter(),
+              size: Size(MediaQuery.of(context).size.width, 0),
+              painter: RPSCustomPainter(shapeColor: widget.color),
             ),
           ),
         ),
         Positioned(
-          bottom: 8,
-          child: Container(
-            // color: Colors.amber.withOpacity(.5),
-            width: MediaQuery.of(context).size.width,
-            height: 40,
-            child: Wrap(
-              alignment: WrapAlignment.spaceEvenly,
-              crossAxisAlignment: WrapCrossAlignment.end,
-              children: List.generate(
-                4,
-                (index) => IconButton(
-                  onPressed: () {
-                    // widget.index = index;
-                    // debugPrint("Tapped: $index");
-                    widget.currentIndex?.call(index);
+          bottom: 20,
+          left: 20,
+          right: 20,
+          child: Wrap(
+            alignment: WrapAlignment.spaceBetween,
+            crossAxisAlignment: WrapCrossAlignment.end,
+            children: List.generate(
+              _icon.length,
+              (index) => Tooltip(
+                message: _tooltip[index],
+                child: GestureDetector(
+                  onTap: () {
+                    if (index == 1 || index == 2 || index == 3) {
+                      widget.currentIndex?.call(index);
+                      setState(() {
+                        currentLocalIndex = index;
+                      });
+                    } else {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: ((context) => _pages[index]),
+                        ),
+                      );
+                    }
                   },
-                  tooltip:
-                      widget.tooltips != null && widget.tooltips?.length != 0
-                          ? widget.tooltips![index]
-                          : _tooltip[index],
-                  icon: widget.icons != null && widget.icons?.length != 0
-                      ? widget.icons![index]
-                      : _icons[index],
+                  child: SizedBox(
+                    width: 28,
+                    height: 28,
+                    child: Image.asset(
+                      currentLocalIndex == index
+                          ? _icon.values.elementAt(index)
+                          : _icon.keys.elementAt(index),
+                    ),
+                  ),
                 ),
               ),
             ),
           ),
         ),
         Positioned(
-          bottom: 32.0,
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            height: 40,
-            child: Wrap(
-              alignment: WrapAlignment.center,
-              children: const [
-                Padding(
-                  padding: EdgeInsets.only(right: 5.0),
-                  child: FloatingAmbulance(),
-                )
-              ],
-            ),
+          left: 0,
+          right: 0,
+          bottom: 40.0,
+          child: Wrap(
+            alignment: WrapAlignment.center,
+            children: const <Widget>[
+              FloatingAmbulance(),
+            ],
           ),
         ),
       ],
     );
-    //),
-    // ),
   }
 }

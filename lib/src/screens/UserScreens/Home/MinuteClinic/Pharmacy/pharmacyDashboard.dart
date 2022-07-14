@@ -21,105 +21,21 @@ import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 
 import 'cart.dart';
 
-class pharmacyDashboard extends StatefulWidget {
-  const pharmacyDashboard({
+class PharmacyDashboard extends StatefulWidget {
+  const PharmacyDashboard({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<pharmacyDashboard> createState() => _pharmacyDashboardState();
+  State<PharmacyDashboard> createState() => _PharmacyDashboardState();
 }
 
-class _pharmacyDashboardState extends State<pharmacyDashboard> {
+class _PharmacyDashboardState extends State<PharmacyDashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      bottomNavigationBar: BottomNavBar(),
-      floatingActionButton: FloatingAmbulance(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       backgroundColor: AppColors.primaryWhiteColor,
-      appBar: AppBar(
-        toolbarHeight: 70,
-        elevation: 0,
-        backgroundColor: AppColors.primaryWhiteColor,
-        // backgroundColor: Colors.amber,
-        foregroundColor: AppColors.primaryBlackColor,
-        leading: Builder(
-          builder: (context) => IconButton(
-            onPressed: () {
-              Scaffold.of(context).openDrawer();
-            },
-            icon: Icon(
-              EcentialsIcons.menu_icon,
-              color: AppColors.primaryDeepColor,
-              size: 20,
-            ),
-          ),
-        ),
-        title: RichText(
-          text: TextSpan(
-            text: "Hi, ",
-            style: TextStyle(
-              fontSize: 20,
-              fontFamily: "Montserrat",
-              color: AppColors.primaryDeepColor,
-            ),
-            children: [
-              TextSpan(
-                  text: "Sussan",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Montserrat",
-                    color: AppColors.primaryDeepColor,
-                  )),
-            ],
-          ),
-        ),
-        actions: [
-          GestureDetector(
-            onTap: (() {
-              Get.to(
-                () => ProfileScreen(),
-                transition: Transition.leftToRight,
-              );
-            }),
-            child: const CircleAvatar(
-              radius: 20,
-              backgroundImage: AssetImage("assets/images/profile.png"),
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(
-              right: 20,
-              left: 10,
-            ),
-            child: IconButton(
-              onPressed: () {
-                Get.to(() => Cart());
-              },
-              icon: Icon(
-                EcentialsIcons.cart,
-                color: AppColors.primaryDeepColor,
-                size: 40,
-              ),
-            ),
-          )
-        ],
-        bottom: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: AppColors.primaryWhiteColor,
-          foregroundColor: AppColors.primaryBlackColor,
-          elevation: 0,
-          title: Search4(
-            searchPressed: () {},
-            micPressed: () {},
-            width: MediaQuery.of(context).size.width,
-            text: "Enter your search term here ",
-          ),
-          centerTitle: true,
-        ),
-      ),
       drawer: const NavDrawer(),
       body: SingleChildScrollView(
         child: Container(
@@ -130,26 +46,7 @@ class _pharmacyDashboardState extends State<pharmacyDashboard> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // SizedBox(
-              //   width: MediaQuery.of(context).size.width,
-              //   child: Wrap(
-              //     alignment: WrapAlignment.end,
-              //     children: [
-              //       SizedBox(
-              //       width: 20,
-              //       height: 20,
-              //       child: Image.asset("assets/images/Vector.png"),),
-              //       SizedBox(width: 10.0,),
-              //       Text("Ghana",style: TextStyle(fontSize: 13.5),),
-              //     ],
-              //   ),
-              // ),
-              // SizedBox(
-              //   height: 20.0,
-              // ),
-
               Container(
                 margin: const EdgeInsets.only(
                   top: 20, // left: 24.78
@@ -290,7 +187,6 @@ class _pharmacyDashboardState extends State<pharmacyDashboard> {
                   ),
                 ),
               ),
-
               const SizedBox(
                 height: 16.0,
               ),

@@ -31,7 +31,7 @@ class Invoice extends StatelessWidget {
           subtitle: Text(subtitle),
           trailing: Text(trailing),
         ),
-        Divider(
+        const Divider(
           thickness: 2.0,
           endIndent: 15,
           indent: 15,

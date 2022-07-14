@@ -15,9 +15,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.primaryWhiteColor,
-      body: Column(
+    return SingleChildScrollView(
+      child: Column(
         children: [
           DashBoard(
             image: "assets/images/minute_clinic.png",
@@ -26,7 +25,7 @@ class _HomeState extends State<Home> {
               Get.to(
                 () => const MinuteClinic(),
                 transition: Transition.fadeIn,
-                duration: const Duration(seconds: 1),
+                duration: const Duration(milliseconds: 300),
               );
             },
           ),
@@ -36,13 +35,16 @@ class _HomeState extends State<Home> {
           DashBoard(
             onTap: () {
               Get.to(
-                () => AmbulanceNear(),
+                () => const AmbulanceNear(),
                 transition: Transition.rightToLeft,
-                duration: Duration(seconds: 1),
+                duration: const Duration(milliseconds: 300),
               );
             },
             image: "assets/images/ambulance.png",
             btnName: "Ambulance Services",
+          ),
+          const SizedBox(
+            height: 60,
           ),
         ],
       ),

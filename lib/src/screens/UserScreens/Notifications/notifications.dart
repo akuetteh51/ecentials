@@ -124,13 +124,17 @@ class _NotificationsState extends State<Notifications> {
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 40,
+                    margin: const EdgeInsets.only(
+                      left: 20,
+                      right: 20,
+                      top: 20,
                     ),
-                    child: ListView(
-                      children: List.generate(
-                          10, (index) => const NotificationsHistory()),
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.only(bottom: 100),
+                      child: Column(
+                        children: List.generate(
+                            10, (index) => const NotificationsHistory()),
+                      ),
                     ),
                   ),
                 ],

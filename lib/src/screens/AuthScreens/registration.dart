@@ -1,11 +1,12 @@
 import 'package:ecentialsclone/src/Widgets/button.dart';
-import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
+import 'package:toast/toast.dart';
 
 import '../../Themes/colors.dart';
-import '../UserScreens/main_screen.dart';
+import '../../Widgets/EcentialsToast.dart';
+import 'agreement.dart';
 
 class Registration extends StatefulWidget {
   bool isVisible;
@@ -92,7 +93,7 @@ class _RegistrationState extends State<Registration> {
             cursorColor: AppColors.primaryDeepColor,
             controller: _emailController,
             decoration: const InputDecoration(
-              hintText: "abc@gmail.com",
+              hintText: "email@domain.com",
               border: UnderlineInputBorder(
                 borderSide: BorderSide.none,
               ),
@@ -150,6 +151,9 @@ class _RegistrationState extends State<Registration> {
                 ),
               ),
               hintText: "********",
+              hintStyle: TextStyle(
+                color: Theme.of(context).disabledColor,
+              ),
               border: const UnderlineInputBorder(
                 borderSide: BorderSide.none,
               ),
@@ -186,7 +190,7 @@ class _RegistrationState extends State<Registration> {
           child: TextFormField(
             obscuringCharacter: '*',
             obscureText: !widget.isVisible,
-            style: TextStyle(fontSize: 20),
+            style: const TextStyle(fontSize: 20),
             cursorColor: AppColors.primaryDeepColor,
             controller: _confirmPasswordController,
             decoration: InputDecoration(
@@ -206,6 +210,9 @@ class _RegistrationState extends State<Registration> {
                 ),
               ),
               hintText: "********",
+              hintStyle: TextStyle(
+                color: Theme.of(context).disabledColor,
+              ),
               border: const UnderlineInputBorder(
                 borderSide: BorderSide.none,
               ),
@@ -218,11 +225,54 @@ class _RegistrationState extends State<Registration> {
 // Sign in Button
     final _signin = Button(
       onTap: () {
-        Get.to(
-          () => Login(),
-          transition: Transition.fadeIn,
-          duration: const Duration(seconds: 1),
-        );
+        // Regex to check if a string
+        // contains uppercase, lowercase
+        // special character & numeric value
+        RegExp regex = RegExp(
+            r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$');
+
+        if (_emailController.text.trim().isNotEmpty &&
+            _passwordController.text.trim().isNotEmpty &&
+            _confirmPasswordController.text.trim().isNotEmpty) {
+          if (_emailController.text.trim().isEmail) {
+            if (_confirmPasswordController.text.trim() ==
+                _passwordController.text.trim()) {
+              if (_passwordController.text.trim().length >= 7) {
+                if (_passwordController.text.trim().contains(regex)) {
+                  Get.to(
+                    () => Agreement(data: <String, dynamic>{
+                      "email": _emailController.text.trim(),
+                      "password": _passwordController.text.trim(),
+                    }),
+                    transition: Transition.fadeIn,
+                    duration: const Duration(milliseconds: 300),
+                  );
+                } else {
+                  ShowToast.ecentialsToast(
+                    message:
+                        "Passwords must contain: Upper case, Lower case and special symbol",
+                  );
+                }
+              } else {
+                ShowToast.ecentialsToast(
+                  message: "Password too short. less than 6",
+                );
+              }
+            } else {
+              ShowToast.ecentialsToast(
+                message: "Passwords not equal",
+              );
+            }
+          } else {
+            ShowToast.ecentialsToast(
+              message: "Not a valid email",
+            );
+          }
+        } else {
+          ShowToast.ecentialsToast(
+            message: "No field should be empty",
+          );
+        }
       },
       text: "Register",
       style: TextStyle(color: AppColors.primaryWhiteColor, fontSize: 20),
@@ -246,9 +296,7 @@ class _RegistrationState extends State<Registration> {
               ),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  Get.to(() => Login(),
-                      transition: Transition.leftToRight,
-                      duration: const Duration(seconds: 1));
+                  Navigator.of(context).pop();
                 }),
         ],
       ),

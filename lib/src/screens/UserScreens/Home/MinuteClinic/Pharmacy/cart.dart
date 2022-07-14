@@ -107,7 +107,7 @@ class _CartState extends State<Cart> {
                   ),
                   child: Button(
                     onTap: () {
-                      Get.to(() => pharmacyDashboard());
+                      Get.to(() => PharmacyDashboard());
                     },
                     text: "Go Shopping",
                     height: 18,

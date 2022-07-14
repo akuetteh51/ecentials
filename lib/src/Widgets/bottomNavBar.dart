@@ -2,7 +2,7 @@
 
 // ignore_for_file: unused_import, must_be_immutable, prefer_typing_uninitialized_variables
 
-import 'package:ecentialsclone/src/screens/UserScreens/Chat/chat.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Chat/ChatHomePage.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/homeScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Notifications/notifications.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/store.dart';
@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
+
+import 'CurvedBottomBar.dart';
 
 class BottomNavBar extends StatefulWidget {
   final Color backgroundColor;
@@ -52,12 +54,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       ),
     ];
 
-    final _pages = [
-      HomeScreen(),
-      Stores(),
-      Notifications(),
-      Chat(),
-    ];
+    final _pages = [HomeScreen(), Stores(), Notifications(), ChatHomePage()];
 
 // Icons tooltips
     final _tooltip = [

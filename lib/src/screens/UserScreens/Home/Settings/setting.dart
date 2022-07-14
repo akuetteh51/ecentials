@@ -18,6 +18,7 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   bool isDarkmode = false;
   bool isDownloadViaWifi = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,7 +83,7 @@ class _SettingsState extends State<Settings> {
                         height: 10,
                       ),
                       Text(
-                        "My name is Andrews Opoku Senior jnfnjj...",
+                        "USER",
                         softWrap: false,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -252,6 +253,11 @@ class _SettingsState extends State<Settings> {
             ),
           ),
           ListTile(
+            onTap: () {
+              setState(() {
+                isDarkmode = !isDarkmode;
+              });
+            },
             leading: Image.asset(
               "assets/images/darkmode.png",
             ),
@@ -271,6 +277,11 @@ class _SettingsState extends State<Settings> {
             ),
           ),
           ListTile(
+            onTap: () {
+              setState(() {
+                isDownloadViaWifi = !isDownloadViaWifi;
+              });
+            },
             leading: Image.asset(
               "assets/images/wifi.png",
             ),

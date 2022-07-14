@@ -32,12 +32,23 @@ class _EditProfileState extends State<EditProfile> {
     "AOPOKU255@GMAIL.COM",
     "+233545098438",
     "MALE",
-    "PLT 16 BLK III",
+    "PLT 16 BLK IV",
     "MEDICAL DOCTOR",
     "093356147",
     "6.0ft",
     "80 lbs",
   ];
+  final _profileInfo = {
+    "Name": "ANDREWS OPOKU",
+    "Email": "AOPOKU255@GMAIL.COM",
+    "Phone Number": "+233545098438",
+    "Gender": "MALE",
+    "Address": "PLT 16 BLK III",
+    "Occupation": "MEDICAL DOCTOR",
+    "Ghana Card Number": "093356147",
+    "Height": "6.0ft",
+    "Weight": "80 lbs",
+  };
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -120,67 +131,69 @@ class _EditProfileState extends State<EditProfile> {
           ),
           SliverToBoxAdapter(
             child: Container(
-              // color: AppColors.primaryRedColor,
-              margin: const EdgeInsets.symmetric(horizontal: 40),
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 1,
-                  childAspectRatio: 3,
-                ),
-                primary: false,
-                shrinkWrap: true,
-                itemCount: 9,
-                itemBuilder: (context, index) => Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        _heading[index],
-                        style: const TextStyle(
-                          fontSize: 18,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: AppColors.primaryBlackColor.withOpacity(.50),
-                        ),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: TextFormField(
-                        initialValue: _text[index],
-                        cursorColor: AppColors.primaryDeepColor,
-                        decoration: const InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(
-                            horizontal: 10,
+              margin: EdgeInsets.only(
+                left: 20,
+                right: 20,
+                bottom: 20,
+              ),
+              child: Column(
+                children: List.generate(
+                  _heading.length,
+                  (index) => Container(
+                    margin: EdgeInsets.only(bottom: 20),
+                    child: Column(
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            _profileInfo.keys.elementAt(index),
+                            style: const TextStyle(
+                              fontSize: 18,
+                            ),
                           ),
-                          border: InputBorder.none,
                         ),
-                      ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color:
+                                  AppColors.primaryBlackColor.withOpacity(.50),
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: TextFormField(
+                            initialValue: _profileInfo.values.elementAt(index),
+                            cursorColor: AppColors.primaryDeepColor,
+                            decoration: const InputDecoration(
+                              contentPadding: EdgeInsets.symmetric(
+                                horizontal: 10,
+                              ),
+                              border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),
           ),
           SliverToBoxAdapter(
             child: Container(
-              margin: const EdgeInsets.only(
-                left: 60,
-                right: 60,
-                bottom: 60,
-                top: 20,
+              margin: EdgeInsets.only(
+                bottom: 100,
+                left: 50,
+                right: 50,
               ),
               child: Button(
                 text: "Update",
                 style: TextStyle(
                   color: AppColors.primaryWhiteColor,
-                  fontSize: 20,
                 ),
+                onTap: () {},
               ),
             ),
           )
