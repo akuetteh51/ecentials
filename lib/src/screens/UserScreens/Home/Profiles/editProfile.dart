@@ -1,12 +1,17 @@
+import 'dart:developer';
+
 import 'package:ecentialsclone/src/Themes/colors.dart';
-import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
+import 'package:ecentialsclone/src/app_state/user_state.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:ecentialsclone/src/Widgets/sliverFab.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../Widgets/EcentialsToast.dart';
 
 class EditProfile extends StatefulWidget {
   const EditProfile({Key? key}) : super(key: key);
@@ -16,41 +21,136 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController genderController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+  TextEditingController occupationController = TextEditingController();
+  TextEditingController idCardController = TextEditingController();
+  TextEditingController heightController = TextEditingController();
+  TextEditingController weigthController = TextEditingController();
+
+  giveControllerToUse(int value) {
+    switch (value) {
+      case 0:
+        return nameController;
+      case 1:
+        return emailController;
+      case 2:
+        return phoneController;
+      case 3:
+        return genderController;
+      case 4:
+        return addressController;
+      case 5:
+        return occupationController;
+      case 6:
+        return idCardController;
+      case 7:
+        return heightController;
+      case 8:
+        return weigthController;
+      default:
+        return nameController;
+    }
+  }
+
   final _heading = [
-    "Name",
-    "Email",
-    "Phone Number",
-    "Gender",
-    "Address",
-    "Occupation",
-    "Ghana Card Number",
-    "Height",
-    "Weight",
+    "Name *",
+    "Email *",
+    "Phone Number *",
+    "Gender *",
+    "Address *",
+    "Occupation *",
+    "Ghana Card Number *",
+    "Height (ft)",
+    "Weight (lbs)",
   ];
-  final _text = [
-    "ANDREWS OPOKU",
-    "AOPOKU255@GMAIL.COM",
-    "+233545098438",
-    "MALE",
-    "PLT 16 BLK IV",
-    "MEDICAL DOCTOR",
-    "093356147",
-    "6.0ft",
-    "80 lbs",
-  ];
-  final _profileInfo = {
-    "Name": "ANDREWS OPOKU",
-    "Email": "AOPOKU255@GMAIL.COM",
-    "Phone Number": "+233545098438",
-    "Gender": "MALE",
-    "Address": "PLT 16 BLK III",
-    "Occupation": "MEDICAL DOCTOR",
-    "Ghana Card Number": "093356147",
-    "Height": "6.0ft",
-    "Weight": "80 lbs",
-  };
+  // final _text = [
+  //   "ANDREWS OPOKU",
+  //   "AOPOKU255@GMAIL.COM",
+  //   "+233545098438",
+  //   "MALE",
+  //   "PLT 16 BLK III",
+  //   "MEDICAL DOCTOR",
+  //   "093356147",
+  //   "6.0",
+  //   "80",
+  // ];
+
+  keyInputType(int value) {
+    switch (value) {
+      case 0:
+        return TextInputType.name;
+      case 1:
+        return TextInputType.emailAddress;
+      case 2:
+        return TextInputType.phone;
+      case 3:
+        return TextInputType.name;
+      case 4:
+        return TextInputType.streetAddress;
+      case 5:
+        return TextInputType.text;
+      case 6:
+        return TextInputType.text;
+      case 7:
+        return TextInputType.number;
+      case 8:
+        return TextInputType.number;
+      default:
+        return TextInputType.name;
+    }
+  }
+
+  handleInputUpdateValidate() {
+    UserState userState = Provider.of<UserState>(context, listen: false);
+
+    // Check if compulsory fields are not empty
+    if (nameController.text.isNotEmpty &&
+        emailController.text.isNotEmpty &&
+        phoneController.text.isNotEmpty &&
+        genderController.text.isNotEmpty &&
+        idCardController.text.isNotEmpty &&
+        addressController.text.isNotEmpty &&
+        occupationController.text.isNotEmpty) {
+      if (genderController.text.toLowerCase() == "male" ||
+          genderController.text.toLowerCase() == "female" ||
+          genderController.text.toLowerCase() == "other") {
+        Map<String, dynamic>? dataToSend = {
+          "name": nameController.text,
+          "address": addressController.text,
+          "gender": genderController.text,
+          "occupation": occupationController.text,
+          "phone": phoneController.text,
+        };
+
+        if (heightController.text.isNotEmpty) {
+          dataToSend["height"] = num.tryParse(heightController.text) ?? 0.0;
+        }
+        if (weigthController.text.isNotEmpty) {
+          dataToSend["weight"] = num.tryParse(weigthController.text) ?? 0.0;
+        }
+
+        // Request to update data
+        userState.updateUserInfo(data: dataToSend);
+      } else {
+        ShowToast.ecentialsToast(
+          message: "Gender must be male female or other",
+        );
+      }
+    } else {
+      ShowToast.ecentialsToast(
+        message: "Fiels marked (*) are required",
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    UserState userState = Provider.of<UserState>(context);
+
     return Scaffold(
       extendBody: true,
       backgroundColor: AppColors.primaryWhiteColor,
@@ -94,7 +194,7 @@ class _EditProfileState extends State<EditProfile> {
               onTap: () {
                 Navigator.pop(context);
               },
-              child: Icon(
+              child: const Icon(
                 Icons.arrow_back_sharp,
                 color: Colors.white,
               ),
@@ -155,23 +255,17 @@ class _EditProfileState extends State<EditProfile> {
                         const SizedBox(
                           height: 10,
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color:
-                                  AppColors.primaryBlackColor.withOpacity(.50),
-                            ),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: TextFormField(
-                            initialValue: _profileInfo.values.elementAt(index),
-                            cursorColor: AppColors.primaryDeepColor,
-                            decoration: const InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
-                                horizontal: 10,
-                              ),
-                              border: InputBorder.none,
-                            ),
+
+borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: TextFormField(                        
+                        keyboardType: keyInputType(index),
+                        controller: giveControllerToUse(index),
+                        cursorColor: AppColors.primaryDeepColor,
+                        decoration: const InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: 10,
+
                           ),
                         ),
                       ],
@@ -183,21 +277,51 @@ class _EditProfileState extends State<EditProfile> {
           ),
           SliverToBoxAdapter(
             child: Container(
-              margin: EdgeInsets.only(
+
+                margin: const EdgeInsets.only(
+                left: 60,
+                right: 60,
                 bottom: 100,
-                left: 50,
-                right: 50,
+                top: 5,
+
               ),
-              child: Button(
-                text: "Update",
-                style: TextStyle(
-                  color: AppColors.primaryWhiteColor,
-                ),
-                onTap: () {},
-              ),
+              child: userState.updateInfoLoaderState == 0 ||
+                      userState.updateInfoLoaderState == 2
+                  ? Button(
+                      text: "Update",
+                      style: TextStyle(
+                        color: AppColors.primaryWhiteColor,
+                        fontSize: 20,
+                      ),
+                      onTap: () {
+                        handleInputUpdateValidate();
+                      },
+                    )
+                  : loadingButton(),
             ),
-          )
+          ),
         ],
+      ),
+    );
+  }
+
+  Widget loadingButton() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: 60,
+      decoration: BoxDecoration(
+        color: AppColors.primaryDeepColor,
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: Center(
+        child: SizedBox(
+          height: 15,
+          width: 15,
+          child: CircularProgressIndicator(
+            strokeWidth: 2.5,
+            color: Theme.of(context).canvasColor,
+          ),
+        ),
       ),
     );
   }

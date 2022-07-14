@@ -49,6 +49,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
 
 import 'src/app_state/AuthState.dart';
+import 'src/app_state/user_state.dart';
 import 'src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/hospitalSchedules.dart';
 import 'src/screens/UserScreens/Home/MinuteClinic/minuteClinic.dart';
 import 'src/app_state/ambulance_state.dart';
@@ -75,6 +76,8 @@ Future main() async {
         ChangeNotifierProvider<PharmacyState>(create: (_) => PharmacyState()),
         ChangeNotifierProvider<ShopState>(create: (_) => ShopState()),
         ChangeNotifierProvider<AuthState>(create: (_) => AuthState()),
+        ChangeNotifierProvider<UserState>(create: (_) => UserState()),
+        ChangeNotifierProvider<Nk>(create: (_) => Nk()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -50,7 +50,7 @@ class EmailSuccess extends StatelessWidget {
               "assets/images/email_success.png",
             ),
             const Text(
-              "You have an account with us!",
+              "We would send you an email to verify",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 25,

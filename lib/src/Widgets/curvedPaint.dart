@@ -84,3 +84,44 @@ class RPSCustomPainter extends CustomPainter {
     return true;
   }
 }
+
+
+// class RPSCustomPainter extends CustomPainter{
+  
+//   final Color? shapeColor;
+
+//   RPSCustomPainter({this.shapeColor});
+
+//   @override
+//   void paint(Canvas canvas, Size size) {
+//     Paint paint0 = Paint()
+//       ..color = shapeColor ?? const Color(0xFF033A64)
+//       ..style = PaintingStyle.fill
+//       ..strokeWidth = 1;
+     
+         
+//     Path path0 = Path();
+//     path0.moveTo(size.width*0.0015000,size.height*0.9930000);
+//     path0.lineTo(size.width*0.9975000,size.height*0.9960000);
+//     path0.lineTo(size.width*0.9975000,size.height*0.0900000);
+//     path0.quadraticBezierTo(size.width*0.9929375,size.height*0.0235000,size.width*0.9727500,size.height*0.0280000);
+//     path0.cubicTo(size.width*0.8779375,size.height*0.0240000,size.width*0.5958125,size.height*-0.0250000,size.width*0.5955000,size.height*0.0320000);
+//     path0.cubicTo(size.width*0.5786250,size.height*0.0502500,size.width*0.5748750,size.height*0.3827500,size.width*0.5020000,size.height*0.3890000);
+//     path0.cubicTo(size.width*0.4261875,size.height*0.3930000,size.width*0.4215625,size.height*0.0370000,size.width*0.4067500,size.height*0.0250000);
+//     path0.cubicTo(size.width*0.4074375,size.height*-0.0177500,size.width*0.1228125,size.height*0.0287500,size.width*0.0275000,size.height*0.0300000);
+//     path0.quadraticBezierTo(size.width*0.0042500,size.height*0.0207500,size.width*0.0025000,size.height*0.1050000);
+//     path0.lineTo(size.width*0.0015000,size.height*0.9930000);
+//     path0.close();
+
+//     canvas.drawPath(path0, paint0);
+  
+    
+//   }
+
+//   @override
+//   bool shouldRepaint(covariant CustomPainter oldDelegate) {
+//     return true;
+//   }
+  
+// }
+

@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:ecentialsclone/src/Themes/colors.dart';
+import 'package:ecentialsclone/src/app_state/user_state.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/EducationalInfo.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/HealthInformation.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/editProfile.dart';
@@ -9,13 +10,11 @@ import 'package:get/get.dart';
 // import 'package:sliver_fab/sliver_fab.dart';
 import 'package:ecentialsclone/src/Widgets/sliverFab.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
-import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
-import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/Widgets/infoCard.dart';
-import 'package:ecentialsclone/src/Widgets/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -27,6 +26,8 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
+    UserState userState = Provider.of<UserState>(context);
+
     // Text
     final _topText = [
       "Personal",
@@ -121,7 +122,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     Future openDialog() => showDialog(
         context: context,
         builder: (context) => AlertDialog(
-              content: Container(
+              content: SizedBox(
                 height: 150,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -223,21 +224,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
             pinned: true,
             floating: true,
             flexibleSpace: FlexibleSpaceBar(
-              title: ListTile(
-                contentPadding: const EdgeInsets.all(0),
-                title: Text(
-                  "Andrews",
-                  style: TextStyle(
-                      color: AppColors.primaryWhiteColor,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold),
-                ),
-                subtitle: Text(
-                  "aopoku255@gmail.com",
-                  style: TextStyle(
-                    color: AppColors.primaryWhiteColor,
+              title: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    userState.userInfo?['name'] ?? "no username",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: AppColors.primaryWhiteColor,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),
                   ),
-                ),
+                  Text(
+                    userState.userInfo?['email'] ?? "aopoku255@gmail.com",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: AppColors.primaryWhiteColor,
+                    ),
+                  ),
+                ],
               ),
               background: Image.asset(
                 "assets/images/profile.png",

@@ -12,6 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../Themes/colors.dart';
 import '../../Widgets/EcentialsToast.dart';
 import '../../app_state/AuthState.dart';
+import '../../app_state/hospital_state.dart';
 
 class Login extends StatefulWidget {
   bool isVisible;
@@ -39,16 +40,23 @@ class _LoginState extends State<Login> {
     super.dispose();
   }
 
+  // myFunct() {
+  // AuthState authState = Provider.of<AuthState>(context,listen: false);
+  // }
+
   @override
   Widget build(BuildContext context) {
     AuthState authState = Provider.of<AuthState>(context);
+    // HospitalState hospitalState = Provider.of<HospitalState>(context);
 
     // Logo  and Login text
     final _logotext = Row(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // hospitalState.changeName();
         Image.asset(
+          // hospitalState.nameOfPerson
           "assets/images/logo.png",
           scale: 1.5,
           fit: BoxFit.cover,
@@ -192,20 +200,19 @@ class _LoginState extends State<Login> {
 
         // final preference = await SharedPreferences.getInstance();
         // preference.setBool("showSignup", true);
-        if(_emailController.text.trim().isNotEmpty && _passwordController.text.trim().isNotEmpty ){
-        
-        Map<String,dynamic> inputs = {
-        "email": _emailController.text.trim(),
-        "password": _passwordController.text.trim(),
-           };
+        if (_emailController.text.trim().isNotEmpty &&
+            _passwordController.text.trim().isNotEmpty) {
+          Map<String, dynamic> inputs = {
+            "email": _emailController.text.trim(),
+            "password": _passwordController.text.trim(),
+          };
 
-        authState.loginUser(context: context,data: inputs);
-        
-        }else{
-     ShowToast.ecentialsToast(
-                    message: "Username / passwords empty",
-                  );          
-        }       
+          authState.loginUser(context: context, data: inputs);
+        } else {
+          ShowToast.ecentialsToast(
+            message: "Username / passwords empty",
+          );
+        }
       },
       text: "Sign in",
       style: TextStyle(color: AppColors.primaryWhiteColor, fontSize: 20),
@@ -273,11 +280,10 @@ class _LoginState extends State<Login> {
                             const SizedBox(
                               height: 40,
                             ),
-
-                          authState.loginLoaderState == 0 || authState.loginLoaderState == 2
-                                        ? _signin
-                                        : agreementButton(),
-
+                            authState.loginLoaderState == 0 ||
+                                    authState.loginLoaderState == 2
+                                ? _signin
+                                : loadingButton(),
                             const SizedBox(
                               height: 40,
                             ),
@@ -297,9 +303,7 @@ class _LoginState extends State<Login> {
     );
   }
 
-
-
-  Widget agreementButton() {
+  Widget loadingButton() {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 60,
@@ -309,15 +313,14 @@ class _LoginState extends State<Login> {
       ),
       child: Center(
         child: SizedBox(
-              height: 15,
-              width: 15,
-              child: CircularProgressIndicator(
-                strokeWidth: 2.5,
-                  color: Theme.of(context).canvasColor,
-                ),
-            ),
+          height: 15,
+          width: 15,
+          child: CircularProgressIndicator(
+            strokeWidth: 2.5,
+            color: Theme.of(context).canvasColor,
+          ),
+        ),
       ),
     );
   }
-
 }

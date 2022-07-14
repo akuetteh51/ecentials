@@ -1,5 +1,6 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
+import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulanceNear.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/minuteClinic.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
@@ -9,6 +10,9 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/Wallet/addCard.dart'
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Wallet/cardTopup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+
+import '../app_state/AuthState.dart';
 
 import '../screens/UserScreens/Home/Wallet/addCardDetails.dart';
 
@@ -18,6 +22,9 @@ class NavDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+  
+  AuthState authState = Provider.of<AuthState>(context);
+
     double fontSize = 18.0;
     double labelSize = 22.0;
     return Drawer(
@@ -47,9 +54,9 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             onTap: () {
               Get.to(
-                () => ProfileScreen(),
+                () => const ProfileScreen(),
                 transition: Transition.rightToLeft,
-                duration: Duration(
+                duration: const Duration(
                   seconds: 1,
                 ),
               );
@@ -94,9 +101,9 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             onTap: () {
               Get.to(
-                () => MinuteClinic(),
+                () => const MinuteClinic(),
                 transition: Transition.rightToLeft,
-                duration: Duration(
+                duration:const Duration(
                   seconds: 1,
                 ),
               );
@@ -115,9 +122,9 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             onTap: () {
               Get.to(
-                () => AmbulanceNear(),
+                () => const AmbulanceNear(),
                 transition: Transition.rightToLeft,
-                duration: Duration(
+                duration: const Duration(
                   seconds: 1,
                 ),
               );
@@ -137,7 +144,7 @@ class NavDrawer extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
-              Get.to(() => Settings());
+              Get.to(() => const Settings());
               Scaffold.of(context).openEndDrawer();
             },
             leading: Image.asset(
@@ -166,7 +173,14 @@ class NavDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            onTap: () {},
+            onTap: () {
+            authState.saveLoginSuccessState(false);
+            
+            // Go to the Login Screen
+            Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (builder) => Login()),
+                (route) => false);
+            },
             leading: SizedBox(
               width: labelSize,
               height: labelSize,

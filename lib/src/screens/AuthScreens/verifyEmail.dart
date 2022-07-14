@@ -4,6 +4,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 
 import '../../Themes/colors.dart';
+import '../../Widgets/EcentialsToast.dart';
 import '../UserScreens/main_screen.dart';
 
 class VerifyEmail extends StatefulWidget {
@@ -15,22 +16,22 @@ class VerifyEmail extends StatefulWidget {
 }
 
 class _VerifyEmailState extends State<VerifyEmail> {
-  late TextEditingController _passwordController;
-  late TextEditingController _confirmPasswordController;
+  // late TextEditingController _passwordController;
+  // late TextEditingController _confirmPasswordController;
 
-  @override
-  void initState() {
-    super.initState();
-    _passwordController = TextEditingController();
-    _confirmPasswordController = TextEditingController();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _passwordController = TextEditingController();
+  //   _confirmPasswordController = TextEditingController();
+  // }
 
-  @override
-  void dispose() {
-    _passwordController.dispose();
-    _confirmPasswordController.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   _passwordController.dispose();
+  //   _confirmPasswordController.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +83,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
           child: TextFormField(
             style: const TextStyle(fontSize: 20),
             cursorColor: AppColors.primaryDeepColor,
-            controller: _passwordController,
+            controller: _emailController,
             decoration: const InputDecoration(
              
               hintText: "example@gmail.com",
@@ -107,7 +108,22 @@ class _VerifyEmailState extends State<VerifyEmail> {
       },
       child: Button(
         onTap: () {
-          Get.to(() => EmailSuccess());
+          if(_emailController.text.isNotEmpty){
+            if(_emailController.text.isEmail){
+
+              Get.to(() => EmailSuccess());
+
+            }else{
+                ShowToast.ecentialsToast(
+                    message: "Invalid email address",
+                  );  
+            }
+
+          }else{
+  ShowToast.ecentialsToast(
+                    message: "Email is empty",
+                  );              
+          }
         },
         text: "Confirm",
         style: TextStyle(color: AppColors.primaryWhiteColor, fontSize: 20),
