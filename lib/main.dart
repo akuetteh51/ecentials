@@ -79,7 +79,7 @@ Future main() async {
         ChangeNotifierProvider<UserState>(create: (_) => UserState()),
         ChangeNotifierProvider<Nk>(create: (_) => Nk()),
       ],
-      child:  MaterialApp(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: MyApp(),
       ),
@@ -88,16 +88,15 @@ Future main() async {
 }
 
 class MyApp extends StatelessWidget {
-
-  const MyApp({Key? key,})
-      : super(key: key);
+  const MyApp({
+    Key? key,
+  }) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    
     ToastContext().init(context);
-    
+
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
@@ -110,7 +109,8 @@ class MyApp extends StatelessWidget {
         duration: 1000,
         splashIconSize: 500,
         // nextScreen: DeliveryMode(),
-        nextScreen: BaseVerification(), // BaseVerification() handles which page to show the user
+        nextScreen:
+            BaseVerification(), // BaseVerification() handles which page to show the user
       ),
       theme: ThemeData(
         fontFamily: "Montserrat",

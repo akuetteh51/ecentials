@@ -1,4 +1,4 @@
-import 'package:ecentialsclone/src/screens/UserScreens/Store/addCardDetails.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Wallet/addCardDetails.dart';
 import 'package:flutter/material.dart';
 
 class AddCard extends StatefulWidget {

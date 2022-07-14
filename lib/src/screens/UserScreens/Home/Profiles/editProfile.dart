@@ -231,36 +231,32 @@ class _EditProfileState extends State<EditProfile> {
           ),
           SliverToBoxAdapter(
             child: Container(
-              // color: AppColors.primaryRedColor,
-              margin: const EdgeInsets.symmetric(horizontal: 40),
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 1,
-                  childAspectRatio: 3,
-                ),
-                primary: false,
-                shrinkWrap: true,
-                itemCount: 9,
-                itemBuilder: (context, index) => Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        _heading[index],
-                        style: const TextStyle(
-                          fontSize: 18,
+              margin: EdgeInsets.only(
+                left: 20,
+                right: 20,
+                bottom: 20,
+              ),
+              child: Column(
+                children: List.generate(
+                  _heading.length,
+                  (index) => Container(
+                    margin: EdgeInsets.only(bottom: 20),
+                    child: Column(
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            _profileInfo.keys.elementAt(index),
+                            style: const TextStyle(
+                              fontSize: 18,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: AppColors.primaryBlackColor.withOpacity(.50),
+                        const SizedBox(
+                          height: 10,
                         ),
-                        borderRadius: BorderRadius.circular(10),
+
+borderRadius: BorderRadius.circular(10),
                       ),
                       child: TextFormField(                        
                         keyboardType: keyInputType(index),
@@ -269,23 +265,25 @@ class _EditProfileState extends State<EditProfile> {
                         decoration: const InputDecoration(
                           contentPadding: EdgeInsets.symmetric(
                             horizontal: 10,
+
                           ),
-                          border: InputBorder.none,
                         ),
-                      ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),
           ),
           SliverToBoxAdapter(
             child: Container(
-              margin: const EdgeInsets.only(
+
+                margin: const EdgeInsets.only(
                 left: 60,
                 right: 60,
                 bottom: 100,
                 top: 5,
+
               ),
               child: userState.updateInfoLoaderState == 0 ||
                       userState.updateInfoLoaderState == 2

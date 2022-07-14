@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../Themes/colors.dart';
 import '../Themes/ecentials_icons_icons.dart';
+import '../screens/UserScreens/Chat/ChatHomePage.dart';
+import '../screens/UserScreens/Home/homeScreen.dart';
+import '../screens/UserScreens/Notifications/notifications.dart';
+import '../screens/UserScreens/Store/store.dart';
 import 'curvedPaint.dart';
 import 'floatingAmbulance.dart';
 
@@ -10,9 +14,7 @@ class CurvedBottomBar extends StatefulWidget {
   final int initialIndex;
   final Color? color;
   const CurvedBottomBar(
-      {Key? key,
-      this.currentIndex,
-      this.initialIndex = 0, this.color})
+      {Key? key, this.currentIndex, this.initialIndex = 0, this.color})
       : super(key: key);
 
   @override
@@ -24,7 +26,7 @@ class _CurvedBottomBarState extends State<CurvedBottomBar> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       widget.currentIndex?.call(widget.initialIndex);
       setState(() {
         currentLocalIndex = widget.initialIndex;
@@ -32,22 +34,14 @@ class _CurvedBottomBarState extends State<CurvedBottomBar> {
     });
   }
 
-  // Icons
-  final _icons = [
-    "assets/images/home.png",
-    "assets/images/shop.png",
-    "assets/images/bar_notifications.png",
-    "assets/images/chat.png",
-  ];
-  // Icons fileed
-  final _iconsFilled = [
-    "assets/images/home_filled.png",
-    "assets/images/shop_filled.png",
-    "assets/images/notifications_filled.png",
-    "assets/images/chat_filled.png",
-  ];
+  final _icon = {
+    "assets/images/home.png": "assets/images/home_filled.png",
+    "assets/images/shop.png": "assets/images/shop_filled.png",
+    "assets/images/bar_notifications.png":
+        "assets/images/notifications_filled.png",
+    "assets/images/chat.png": "assets/images/chat_filled.png",
+  };
 
-// Icons tooltips
   final _tooltip = [
     "Home",
     "Store",
@@ -55,82 +49,82 @@ class _CurvedBottomBarState extends State<CurvedBottomBar> {
     "Chat Bot",
   ];
 
+  final _pages = [
+    HomeScreen(),
+    Stores(),
+    Notifications(),
+    ChatHomePage(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Positioned(
-          bottom: -20.0,
+          bottom: -8.0,
+          left: 0,
+          right: 0,
           child: SizedBox(
             height: 80,
             child: CustomPaint(
-              size: Size(MediaQuery.of(context).size.width,
-                  80.0), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
+              size: Size(MediaQuery.of(context).size.width, 0),
               painter: RPSCustomPainter(shapeColor: widget.color),
             ),
           ),
         ),
         Positioned(
-          bottom: 8,
-          child: Container(
-            // color: Colors.amber.withOpacity(.5),
-            width: MediaQuery.of(context).size.width,
-            // height: 40,
-            child: Wrap(
-              alignment: WrapAlignment.spaceEvenly,
-              crossAxisAlignment: WrapCrossAlignment.end,
-              children: List.generate(
-                4,
-                (index) => Tooltip(
-                  message:  _tooltip[index],
-                  child: GestureDetector(
-                    onTap: () {
+          bottom: 20,
+          left: 20,
+          right: 20,
+          child: Wrap(
+            alignment: WrapAlignment.spaceBetween,
+            crossAxisAlignment: WrapCrossAlignment.end,
+            children: List.generate(
+              _icon.length,
+              (index) => Tooltip(
+                message: _tooltip[index],
+                child: GestureDetector(
+                  onTap: () {
+                    if (index == 1 || index == 2 || index == 3) {
                       widget.currentIndex?.call(index);
                       setState(() {
                         currentLocalIndex = index;
-                      });                    
-                    },
-                    child: SizedBox(
-                      width: 28,
-                      height:28,
-                      child: Image.asset(currentLocalIndex == index?_iconsFilled[index] :  _icons[index]),
+                      });
+                    } else {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: ((context) => _pages[index]),
+                        ),
+                      );
+                    }
+                  },
+                  child: SizedBox(
+                    width: 28,
+                    height: 28,
+                    child: Image.asset(
+                      currentLocalIndex == index
+                          ? _icon.values.elementAt(index)
+                          : _icon.keys.elementAt(index),
                     ),
                   ),
                 ),
-                // IconButton(
-                //   onPressed: () {
-                //     widget.currentIndex?.call(index);
-                //     setState(() {
-                //       currentLocalIndex = index;
-                //     });
-                //   },
-                //   tooltip:
-                //       ,
-                //   icon: ,
-                // ),
               ),
             ),
           ),
         ),
         Positioned(
-          bottom: 32.0,
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            height: 40,
-            child: Wrap(
-              alignment: WrapAlignment.center,
-              children: const [
-                Padding(
-                  padding: EdgeInsets.only(right: 5.0),
-                  child: FloatingAmbulance(),
-                )
-              ],
-            ),
+          left: 0,
+          right: 0,
+          bottom: 40.0,
+          child: Wrap(
+            alignment: WrapAlignment.center,
+            children: const <Widget>[
+              FloatingAmbulance(),
+            ],
           ),
         ),
       ],
     );
-    //),
-    // ),
   }
 }

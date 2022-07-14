@@ -23,7 +23,6 @@ class _BaseVerificationState extends State<BaseVerification> {
 
     // Check if user has passed walkthrough
     if (walkedPass == true) {
-
       // Verify if user has logged in already, if not send them to login screen
       if (res == true) {
         Navigator.of(context).pushAndRemoveUntil(
@@ -34,8 +33,7 @@ class _BaseVerificationState extends State<BaseVerification> {
             MaterialPageRoute(builder: (builder) => Login()), (route) => false);
       }
     } else {
-      
-      // user has no logged in so send him to OnBoardingScreen 
+      // user has no logged in so send him to OnBoardingScreen
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (builder) => const OnboardingScreen()),
           (route) => false);
@@ -45,7 +43,7 @@ class _BaseVerificationState extends State<BaseVerification> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       getLoginStateAndMoveToAppropriateScreen();
     });
   }
