@@ -79,6 +79,11 @@ class _EditProfileState extends State<EditProfile> {
   //   "80",
   // ];
 
+  getUserDataFromServer() {
+    UserState userState = Provider.of<UserState>(context, listen: false);
+    userState.getUserInfoFromServer(token: userState.userInfo?['token']);
+  }
+
   keyInputType(int value) {
     switch (value) {
       case 0:
@@ -134,7 +139,8 @@ class _EditProfileState extends State<EditProfile> {
         }
 
         // Request to update data
-        userState.updateUserInfo(data: dataToSend);
+        userState.updateUserInfo(
+            data: dataToSend, token: userState.userInfo?['token']);
       } else {
         ShowToast.ecentialsToast(
           message: "Gender must be male female or other",
@@ -145,6 +151,14 @@ class _EditProfileState extends State<EditProfile> {
         message: "Fiels marked (*) are required",
       );
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      getUserDataFromServer();
+    });
   }
 
   @override
@@ -231,74 +245,112 @@ class _EditProfileState extends State<EditProfile> {
           ),
           SliverToBoxAdapter(
             child: Container(
-              margin: EdgeInsets.only(
+              margin: const EdgeInsets.only(
                 left: 20,
                 right: 20,
                 bottom: 20,
               ),
-              child: Column(
-                children: List.generate(
-                  _heading.length,
-                  (index) => Container(
-                    margin: EdgeInsets.only(bottom: 20),
-                    child: Column(
-                      children: [
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            _heading[index],
-                            style: const TextStyle(
-                              fontSize: 18,
+              child: userState.fetchInfoLoaderState == 2
+                  ? Column(
+                      children: List.generate(
+                        _heading.length,
+                        (index) => Container(
+                          margin: const EdgeInsets.only(bottom: 20),
+                          child: Column(
+                            children: [
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  _heading[index],
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+
+// borderRadius: BorderRadius.circular(10),
+
+                              // child:
+                              TextFormField(
+                                keyboardType: keyInputType(index),
+                                controller: giveControllerToUse(index),
+                                cursorColor: AppColors.primaryDeepColor,
+                                decoration: const InputDecoration(
+                                  contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                  : userState.fetchInfoLoaderState == 0 ||
+                          userState.fetchInfoLoaderState == 1
+                      ? Padding(
+                        padding: const EdgeInsets.only(top: 50),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                                height: 25,
+                                width: 25,
+                                child: Center(
+                                  child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                          AppColors.primaryDeepColor)),
+                                ),
+                              ),
+                          ],
+                        ),
+                      )
+                      : GestureDetector(
+                          onTap: () {
+                            getUserDataFromServer();
+                          },
+                          child:  Padding(
+                            padding: const EdgeInsets.only(top: 50),
+                            child: SizedBox(
+                              height: 30,
+                              width: 30,
+                              child: Icon(Icons.replay,color: AppColors.primaryDeepColor,size: 40,),
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-
-// borderRadius: BorderRadius.circular(10),
-                      
-                      // child:
-                       TextFormField(                        
-                        keyboardType: keyInputType(index),
-                        controller: giveControllerToUse(index),
-                        cursorColor: AppColors.primaryDeepColor,
-                        decoration: const InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(
-                            horizontal: 10,
-
-                          ),
-                        ),
-      ),],
-                    ),
-                  ),
-                ),
-              ),
             ),
           ),
           SliverToBoxAdapter(
             child: Container(
-
-                margin: const EdgeInsets.only(
+              margin: const EdgeInsets.only(
                 left: 60,
                 right: 60,
                 bottom: 100,
                 top: 5,
-
               ),
-              child: userState.updateInfoLoaderState == 0 ||
-                      userState.updateInfoLoaderState == 2
-                  ? Button(
-                      text: "Update",
-                      style: TextStyle(
-                        color: AppColors.primaryWhiteColor,
-                        fontSize: 20,
-                      ),
-                      onTap: () {
-                        handleInputUpdateValidate();
-                      },
-                    )
-                  : loadingButton(),
+              child: userState.fetchInfoLoaderState == 2
+                  ? (userState.updateInfoLoaderState == 0 ||
+                          userState.updateInfoLoaderState == 2
+                      ? Button(
+                          text: "Update",
+                          style: TextStyle(
+                            color: AppColors.primaryWhiteColor,
+                            fontSize: 20,
+                          ),
+                          onTap: () {
+                            handleInputUpdateValidate();
+                          },
+                        )
+                      : userState.updateInfoLoaderState == 3
+                          ? loadingButton(
+                              isRetry: true,
+                              tap: () {
+                                handleInputUpdateValidate();
+                              })
+                          : loadingButton())
+                  : const SizedBox(),
             ),
           ),
         ],
@@ -306,21 +358,31 @@ class _EditProfileState extends State<EditProfile> {
     );
   }
 
-  Widget loadingButton() {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: 60,
-      decoration: BoxDecoration(
-        color: AppColors.primaryDeepColor,
-        borderRadius: BorderRadius.circular(5),
-      ),
-      child: Center(
-        child: SizedBox(
-          height: 15,
-          width: 15,
-          child: CircularProgressIndicator(
-            strokeWidth: 2.5,
-            color: Theme.of(context).canvasColor,
+  Widget loadingButton({bool? isRetry, Function? tap}) {
+    return GestureDetector(
+      onTap: () {
+        tap?.call();
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 60,
+        decoration: BoxDecoration(
+          color: AppColors.primaryDeepColor,
+          borderRadius: BorderRadius.circular(5),
+        ),
+        child: Center(
+          child: SizedBox(
+            height: 15,
+            width: 15,
+            child: isRetry == true
+                ? Icon(
+                    Icons.replay_outlined,
+                    color: Theme.of(context).canvasColor,
+                  )
+                : CircularProgressIndicator(
+                    strokeWidth: 2.5,
+                    color: Theme.of(context).canvasColor,
+                  ),
           ),
         ),
       ),
