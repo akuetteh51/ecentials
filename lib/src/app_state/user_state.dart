@@ -50,8 +50,9 @@ class UserState extends ChangeNotifier {
 
     Dio dio = Dio();
 
-    String path = APPBASEURL.BASEURL + "/api/v1/user/addEdit-personal-details";
-
+    String path =
+        APPBASEURL.BASEURL + "/api/v1/user/account/addEdit-personal-details";
+    log("THE TKN: $token");
     try {
       Response response = await dio.post(path,
           data: data, options: Options(headers: {"auth-token": token}));
@@ -69,7 +70,7 @@ class UserState extends ChangeNotifier {
             message: "${response.data['message']}",
           );
 
-          _updateInfoLoaderState = 3;
+          _updateInfoLoaderState = 0;
           notifyListeners();
         }
       } else {
@@ -79,7 +80,7 @@ class UserState extends ChangeNotifier {
           message: "There was an error while making the request",
         );
 
-        _updateInfoLoaderState = 3;
+        _updateInfoLoaderState = 0;
         notifyListeners();
       }
     } catch (e) {
@@ -87,13 +88,13 @@ class UserState extends ChangeNotifier {
       ShowToast.ecentialsToast(
         message: "There was an error while making the request",
       );
-      _updateInfoLoaderState = 3;
+      _updateInfoLoaderState = 0;
       notifyListeners();
     }
   }
 
   // Get User Info
-  getUserInfoFromServer({required String? token}) async {
+  Future<UserDataModel?> getUserInfoFromServer({required String? token}) async {
     _fetchInfoLoaderState = 0;
     _fetchInfoLoaderState = 1;
     notifyListeners();
@@ -104,7 +105,7 @@ class UserState extends ChangeNotifier {
         APPBASEURL.BASEURL + "/api/v1/user/account/fetch-personal-details";
 
     try {
-      debugPrint("TKN: $token");
+      // debugPrint("TKN: $token");
       Response response = await dio.get(path,
           options: Options(headers: {"auth-token": "$token"}));
       if (response.statusCode == 200) {
@@ -113,26 +114,29 @@ class UserState extends ChangeNotifier {
 
         if (response.statusCode == 200) {
           log("ONLINE DATA: ${response.data}");
-          var data = response.data['data']['personal'];
-          _userDataModel = UserDataModel(
+          var data = response.data['data']['personal'];         
+          notifyListeners();
+          
+          return UserDataModel(
             name: data["name"] ?? "",
             address: data["address"] ?? "",
+            email: data["email"] ?? "",
             gender: data["gender"] ?? "",
             occupation: data["occupation"] ?? "",
             phone: data["phone_number"] ?? "",
             dob: data["dob"] ?? "",
             height: data["height"] ?? 0,
             weight: data["weight"] ?? 0,
+            ghana_card_number:data["ghana_card_number"] ?? "" 
           );
-          log("Model: $_userDataModel");
-          notifyListeners();
         } else {
           log("Status Not 200");
           ShowToast.ecentialsToast(
-            message: "Erro getting your data not 200",
+            message: "Error getting your data",
           );
           _fetchInfoLoaderState = 3;
           notifyListeners();
+          return null;
         }
       } else {
         // If there was an error while making the request
@@ -142,6 +146,7 @@ class UserState extends ChangeNotifier {
 
         _fetchInfoLoaderState = 3;
         notifyListeners();
+        return null;
       }
     } catch (e) {
       log("There was an Error: $e");
@@ -150,6 +155,7 @@ class UserState extends ChangeNotifier {
       );
       _fetchInfoLoaderState = 3;
       notifyListeners();
+      return null;
     }
   }
 }

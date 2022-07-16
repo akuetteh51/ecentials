@@ -1,6 +1,7 @@
 class UserDataModel {
   final String? name;
   final String? address;
+  final String? email;
   final String? gender;
   final String? occupation;
   final String? dob;
@@ -9,7 +10,7 @@ class UserDataModel {
   final int? height;
   final int? weight;
 
-  UserDataModel({this.name, this.address, this.gender, this.occupation, this.phone, this.height, this.weight,this.dob,this.ghana_card_number,});
+  UserDataModel({this.name, this.address, this.gender, this.occupation, this.phone, this.height, this.weight,this.dob,this.ghana_card_number,this.email});
 
   factory UserDataModel.fromJson(Map<String,dynamic> data){
       return UserDataModel(
