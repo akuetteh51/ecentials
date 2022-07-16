@@ -33,9 +33,11 @@ class UserState extends ChangeNotifier {
 
     Map<String, dynamic> saveInfo = json.decode(state);
 
-    log("LOCAL DATA: $saveInfo");
+    log("LOCAL DATA: ${saveInfo.runtimeType}");
 
     _userInfo = saveInfo;
+
+    log("INfo RUNTIME: ${userInfo.runtimeType}");
 
     notifyListeners();
   }
@@ -102,30 +104,32 @@ class UserState extends ChangeNotifier {
         APPBASEURL.BASEURL + "/api/v1/user/account/fetch-personal-details";
 
     try {
-      Response response = await dio.post(path,
-          options: Options(headers: {"auth-token": token}));
+      debugPrint("TKN: $token");
+      Response response = await dio.get(path,
+          options: Options(headers: {"auth-token": "$token"}));
       if (response.statusCode == 200) {
         _fetchInfoLoaderState = 2;
         notifyListeners();
 
         if (response.statusCode == 200) {
           log("ONLINE DATA: ${response.data}");
-          // UserDataModel(
-          //   address: ,
-          //   dob: ,
-          //   gender: ,
-          //   ghana_card_number: ,
-          //   gps_coordinates: ,
-          //   height: ,
-          //   name: ,
-          //   occupation: ,
-          //   phone: ,
-          //   weight: ,
-          // );
+          var data = response.data['data']['personal'];
+          _userDataModel = UserDataModel(
+            name: data["name"] ?? "",
+            address: data["address"] ?? "",
+            gender: data["gender"] ?? "",
+            occupation: data["occupation"] ?? "",
+            phone: data["phone_number"] ?? "",
+            dob: data["dob"] ?? "",
+            height: data["height"] ?? 0,
+            weight: data["weight"] ?? 0,
+          );
+          log("Model: $_userDataModel");
+          notifyListeners();
         } else {
           log("Status Not 200");
           ShowToast.ecentialsToast(
-            message: "Erro getting your data",
+            message: "Erro getting your data not 200",
           );
           _fetchInfoLoaderState = 3;
           notifyListeners();

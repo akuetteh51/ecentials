@@ -81,6 +81,8 @@ class _EditProfileState extends State<EditProfile> {
 
   getUserDataFromServer() {
     UserState userState = Provider.of<UserState>(context, listen: false);
+    // Map<String, dynamic>? res = userState.userInfo;
+    // log(res?['token']);
     userState.getUserInfoFromServer(token: userState.userInfo?['token']);
   }
 
@@ -270,16 +272,16 @@ class _EditProfileState extends State<EditProfile> {
                               const SizedBox(
                                 height: 10,
                               ),
-
-// borderRadius: BorderRadius.circular(10),
-
-                              // child:
                               TextFormField(
                                 keyboardType: keyInputType(index),
                                 controller: giveControllerToUse(index),
                                 cursorColor: AppColors.primaryDeepColor,
-                                decoration: const InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
+                                decoration:  InputDecoration(                                  
+                                    border: UnderlineInputBorder(
+                                  borderRadius:BorderRadius.circular(10.0),
+                                  
+                                ),
+                                  contentPadding:const EdgeInsets.symmetric(
                                     horizontal: 10,
                                   ),
                                 ),
@@ -292,10 +294,10 @@ class _EditProfileState extends State<EditProfile> {
                   : userState.fetchInfoLoaderState == 0 ||
                           userState.fetchInfoLoaderState == 1
                       ? Padding(
-                        padding: const EdgeInsets.only(top: 50),
-                        child: Column(
-                          children: [
-                            SizedBox(
+                          padding: const EdgeInsets.only(top: 50),
+                          child: Column(
+                            children: [
+                              SizedBox(
                                 height: 25,
                                 width: 25,
                                 child: Center(
@@ -304,19 +306,23 @@ class _EditProfileState extends State<EditProfile> {
                                           AppColors.primaryDeepColor)),
                                 ),
                               ),
-                          ],
-                        ),
-                      )
+                            ],
+                          ),
+                        )
                       : GestureDetector(
                           onTap: () {
                             getUserDataFromServer();
                           },
-                          child:  Padding(
+                          child: Padding(
                             padding: const EdgeInsets.only(top: 50),
                             child: SizedBox(
                               height: 30,
                               width: 30,
-                              child: Icon(Icons.replay,color: AppColors.primaryDeepColor,size: 40,),
+                              child: Icon(
+                                Icons.replay,
+                                color: AppColors.primaryDeepColor,
+                                size: 40,
+                              ),
                             ),
                           ),
                         ),
