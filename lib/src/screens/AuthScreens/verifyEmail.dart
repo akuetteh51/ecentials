@@ -2,9 +2,11 @@ import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/emailSuccess.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import '../../Themes/colors.dart';
 import '../../Widgets/EcentialsToast.dart';
+import '../../app_state/AuthState.dart';
 import '../UserScreens/main_screen.dart';
 
 class VerifyEmail extends StatefulWidget {
@@ -35,6 +37,10 @@ class _VerifyEmailState extends State<VerifyEmail> {
 
   @override
   Widget build(BuildContext context) {
+    AuthState authState = Provider.of<AuthState>(
+      context,
+    );
+
     // Logo  and PasswordReset text
     final _logotext = Row(
       mainAxisSize: MainAxisSize.min,
@@ -85,49 +91,45 @@ class _VerifyEmailState extends State<VerifyEmail> {
             cursorColor: AppColors.primaryDeepColor,
             controller: _emailController,
             decoration: const InputDecoration(
-             
               hintText: "example@gmail.com",
-              border:  UnderlineInputBorder(
+              border: UnderlineInputBorder(
                 borderSide: BorderSide.none,
               ),
             ),
           ),
-        )
+        ),
       ],
     );
     // Confirm Password Input text
 
 // Sign in Button
-    final _signin = GestureDetector(
+    final _signin = Button(
       onTap: () {
-        Get.to(
-          () => const MainScreen(),
-          transition: Transition.fadeIn,
-          duration: const Duration(milliseconds: 300),
-        );
-      },
-      child: Button(
-        onTap: () {
-          if(_emailController.text.isNotEmpty){
-            if(_emailController.text.isEmail){
+        AuthState authState = Provider.of<AuthState>(context, listen: false);
 
-              Get.to(() => EmailSuccess());
-
-            }else{
-                ShowToast.ecentialsToast(
-                    message: "Invalid email address",
-                  );  
-            }
-
-          }else{
-  ShowToast.ecentialsToast(
-                    message: "Email is empty",
-                  );              
+        if (_emailController.text.isNotEmpty) {
+          if (_emailController.text.isEmail) {
+            //Get.to(() => EmailSuccess());
+            authState.sendPasswordResetCode(
+              context: context,
+              data: {
+                "email": _emailController.text.trim(),
+              },
+              email: _emailController.text.trim(),
+            );
+          } else {
+            ShowToast.ecentialsToast(
+              message: "Invalid email address",
+            );
           }
-        },
-        text: "Confirm",
-        style: TextStyle(color: AppColors.primaryWhiteColor, fontSize: 20),
-      ),
+        } else {
+          ShowToast.ecentialsToast(
+            message: "Email is empty",
+          );
+        }
+      },
+      text: "Verify",
+      style: TextStyle(color: AppColors.primaryWhiteColor, fontSize: 20),
     );
 
     // App Bar
@@ -174,7 +176,10 @@ class _VerifyEmailState extends State<VerifyEmail> {
                             const SizedBox(
                               height: 40,
                             ),
-                            _signin,
+                            authState.sendResetEmailLoader == 0 ||
+                                    authState.sendResetEmailLoader == 2
+                                ? _signin
+                                : loadingButton(),
                             const SizedBox(
                               height: 20,
                             ),
@@ -186,6 +191,27 @@ class _VerifyEmailState extends State<VerifyEmail> {
                 ),
               ),
             ]),
+      ),
+    );
+  }
+
+  Widget loadingButton() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: 50,
+      decoration: BoxDecoration(
+        color: AppColors.primaryDeepColor,
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: Center(
+        child: SizedBox(
+          height: 15,
+          width: 15,
+          child:CircularProgressIndicator(
+                  strokeWidth: 2.5,
+                  color: Theme.of(context).canvasColor,
+                ),
+        ),
       ),
     );
   }

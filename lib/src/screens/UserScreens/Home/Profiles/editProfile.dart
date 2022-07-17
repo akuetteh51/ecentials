@@ -170,8 +170,7 @@ class _EditProfileState extends State<EditProfile> {
             message: "Height or Weight not properly formated",
           );
         } else {
-          // Request to update data
-          debugPrint("b4: $dataToSend");
+          // Request to update data          
           userState.updateUserInfo(
               data: dataToSend, token: userState.userInfo?['token']);
         }
