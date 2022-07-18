@@ -1,39 +1,27 @@
 import 'package:ecentialsclone/src/Widgets/button.dart';
-import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:get/get.dart';
-
+import 'package:provider/provider.dart';
 import '../../Themes/colors.dart';
-import '../UserScreens/main_screen.dart';
+import '../../Widgets/EcentialsToast.dart';
+import '../../app_state/AuthState.dart';
 
 class PasswordReset extends StatefulWidget {
   bool isVisible;
-  PasswordReset({Key? key, this.isVisible = false}) : super(key: key);
+  final String email;
+  PasswordReset({Key? key, this.isVisible = false, required this.email})
+      : super(key: key);
 
   @override
   State<PasswordReset> createState() => _PasswordResetState();
 }
 
 class _PasswordResetState extends State<PasswordReset> {
-  late TextEditingController _passwordController;
-  late TextEditingController _confirmPasswordController;
-
-  @override
-  void initState() {
-    super.initState();
-    _passwordController = TextEditingController();
-    _confirmPasswordController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    _passwordController.dispose();
-    _confirmPasswordController.dispose();
-    super.dispose();
-  }
+  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    AuthState authState = Provider.of<AuthState>(context);
     // Logo  and PasswordReset text
     final _logotext = Row(
       mainAxisSize: MainAxisSize.min,
@@ -172,9 +160,31 @@ class _PasswordResetState extends State<PasswordReset> {
 // Sign in Button
     final _signin = Button(
       onTap: () {
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (builder) => const MainScreen()),
-            (route) => false);
+        if (_passwordController.text.trim().isNotEmpty &&
+            _confirmPasswordController.text.trim().isNotEmpty) {
+          if (_passwordController.text.trim().length > 7) {
+            if (_passwordController.text.trim() ==
+                _confirmPasswordController.text.trim()) {
+              authState.resetUserPassword(context: context, data: {
+                "email": widget.email,
+                "password": _passwordController.text.trim(),
+                "confirmPassword": _confirmPasswordController.text.trim()
+              });
+            } else {
+              ShowToast.ecentialsToast(
+                message: "Password do not match",
+              );
+            }
+          } else {
+            ShowToast.ecentialsToast(
+              message: "Password too short (<8)",
+            );
+          }
+        } else {
+          ShowToast.ecentialsToast(
+            message: "Password can not be empty",
+          );
+        }
       },
       text: "Save",
       style: TextStyle(color: AppColors.primaryWhiteColor, fontSize: 20),
@@ -228,7 +238,10 @@ class _PasswordResetState extends State<PasswordReset> {
                             const SizedBox(
                               height: 40,
                             ),
-                            _signin,
+                            authState.resetPasswordLoaderState == 0 ||
+                                    authState.resetPasswordLoaderState == 2
+                                ? _signin
+                                : loadingButton(),
                             const SizedBox(
                               height: 20,
                             ),
@@ -240,6 +253,27 @@ class _PasswordResetState extends State<PasswordReset> {
                 ),
               ),
             ]),
+      ),
+    );
+  }
+
+  Widget loadingButton() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: 50,
+      decoration: BoxDecoration(
+        color: AppColors.primaryDeepColor,
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: Center(
+        child: SizedBox(
+          height: 15,
+          width: 15,
+          child: CircularProgressIndicator(
+            strokeWidth: 2.5,
+            color: Theme.of(context).canvasColor,
+          ),
+        ),
       ),
     );
   }

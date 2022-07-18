@@ -4,7 +4,9 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:ecentialsclone/src/BASEURL/BASEURL.dart';
 import 'package:ecentialsclone/src/Widgets/EcentialsToast.dart';
+import 'package:ecentialsclone/src/screens/AuthScreens/emailSuccess.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
+import 'package:ecentialsclone/src/screens/AuthScreens/reset.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -21,6 +23,13 @@ class AuthState extends ChangeNotifier {
       0; // 0 = nothing, 1 = loading, 2= okay, 3 = failed
   int get resetPasswordLoaderState => _resetPasswordLoaderState;
 
+  int _sendResetEmailLoader =
+      0; // 0 = nothing, 1 = loading, 2= okay, 3 = failed
+  int get sendResetEmailLoader => _sendResetEmailLoader;
+
+  int _verifyingResetCode = 0; // 0 = nothing, 1 = loading, 2= okay, 3 = failed
+  int get verifyingResetCode => _verifyingResetCode;
+
   void registerNewUser(
       {Map<String, dynamic>? data, required BuildContext context}) async {
     _registerLoaderState = 0;
@@ -32,7 +41,7 @@ class AuthState extends ChangeNotifier {
     String path = APPBASEURL.BASEURL + "/api/v1/user/register";
 
     try {
-      Response response = await dio.post(path, data:data);          
+      Response response = await dio.post(path, data: data);
       if (response.statusCode == 200) {
         _registerLoaderState = 2;
         notifyListeners();
@@ -76,7 +85,6 @@ class AuthState extends ChangeNotifier {
   }
 
   // Method to login a user and move home
-
   void loginUser(
       {Map<String, dynamic>? data, required BuildContext context}) async {
     _loginLoaderState = 0;
@@ -135,8 +143,7 @@ class AuthState extends ChangeNotifier {
     }
   }
 
-  // Method to login a user and move home
-
+  // Method to reset Password
   void resetUserPassword(
       {Map<String, dynamic>? data, required BuildContext context}) async {
     _resetPasswordLoaderState = 0;
@@ -153,22 +160,22 @@ class AuthState extends ChangeNotifier {
         notifyListeners();
 
         if (response.statusCode == 200) {
-          String encodedStringForLocalStorage = json.encode(data);
-
-          saveUserInfo(encodedStringForLocalStorage).then((value) {
-            // Save that this user has logged in
-            saveLoginSuccessState(true);
-
-            // Go to the Login screen
+          log("DATA: ${response.data}");
+          // Go to the Login screen
+          if (response.data['status'].toString() == "200" &&
+              response.data['message'] == "Password reset completed") {
             Navigator.of(context).pushAndRemoveUntil(
                 MaterialPageRoute(builder: (builder) => Login()),
                 (route) => false);
-
             ShowToast.ecentialsToast(
               message: "Password Reset Successful",
               warn: false,
             );
-          });
+          } else {
+            ShowToast.ecentialsToast(
+              message: "Reset NOT Successful",
+            );
+          }
         } else {
           ShowToast.ecentialsToast(
             message: "Password Reset Failed",
@@ -189,6 +196,128 @@ class AuthState extends ChangeNotifier {
         message: "There was an error while making request",
       );
       _resetPasswordLoaderState = 3;
+      notifyListeners();
+    }
+  }
+
+  // Send an sms code to the user in his email to verify that it's them
+  sendPasswordResetCode(
+      {BuildContext? context,
+      Map<String, dynamic>? data,
+      String email = ""}) async {
+    _sendResetEmailLoader = 0;
+    _sendResetEmailLoader = 1;
+    notifyListeners();
+
+    Dio dio = Dio();
+    String path = APPBASEURL.BASEURL + "/api/v1/user/recover_password";
+
+    try {
+      Response response = await dio.post(path, data: data);
+      if (response.statusCode == 200) {
+        _sendResetEmailLoader = 2;
+        notifyListeners();
+
+        // log("Status code: ${response.statusCode}");
+        // log("Data: ${response.data}");
+
+        if (response.statusCode == 200) {
+          // Go to the Page For Code
+          Navigator.of(context!).pushAndRemoveUntil(
+              MaterialPageRoute(
+                  builder: (builder) => EmailSuccess(
+                        email: email,
+                      )),
+              (route) => false);
+
+          ShowToast.ecentialsToast(
+            message: "Email Sent",
+            warn: false,
+          );
+        } else {
+          ShowToast.ecentialsToast(
+            message: "Could not verify email now",
+          );
+          _sendResetEmailLoader = 0;
+          notifyListeners();
+        }
+      } else {
+        // If there was an error while making the request
+        ShowToast.ecentialsToast(
+          message: "There was an error while making the request",
+        );
+
+        _sendResetEmailLoader = 0;
+        notifyListeners();
+      }
+    } catch (e) {
+      // log("There was an Error: $e");
+      ShowToast.ecentialsToast(
+        message: "There was an error while making the request",
+      );
+      _loginLoaderState = 0;
+      notifyListeners();
+    }
+  }
+
+  // Verify The Code that was sent to the user
+  verifyPasswordResetCode(
+      {BuildContext? context,
+      Map<String, dynamic>? data,
+      required String email}) async {
+    _verifyingResetCode = 0;
+    _verifyingResetCode = 1;
+    notifyListeners();
+
+    Dio dio = Dio();
+    String path = APPBASEURL.BASEURL + "/api/v1/user/verify_code";
+
+    try {
+      Response response = await dio.post(path, data: data);
+      if (response.statusCode == 200) {
+        _verifyingResetCode = 2;
+        notifyListeners();
+
+        if (response.statusCode == 200) {
+          // Go to the Page For Code
+          if (response.data['message'] == "success") {
+            Navigator.of(context!).pushAndRemoveUntil(
+                MaterialPageRoute(
+                    builder: (builder) => PasswordReset(
+                          email: email,
+                        )),
+                (route) => false);
+            ShowToast.ecentialsToast(
+              message: "Code Verified",
+              warn: false,
+            );
+          } else {
+            ShowToast.ecentialsToast(
+              message: "Code Incorrect",
+            );
+          }
+        } else {
+          ShowToast.ecentialsToast(
+            message: "Could not verify reset code",
+          );
+          _verifyingResetCode = 0;
+          notifyListeners();
+        }
+      } else {
+        // If there was an error while making the request
+        ShowToast.ecentialsToast(
+          message: "There was an error while making the request",
+        );
+
+        _verifyingResetCode = 0;
+        notifyListeners();
+      }
+    } catch (e) {
+      log("There was an Error: $e");
+      ShowToast.ecentialsToast(
+        message: "There was an error while making the request",
+      );
+      _verifyingResetCode = 0;
       notifyListeners();
     }
   }

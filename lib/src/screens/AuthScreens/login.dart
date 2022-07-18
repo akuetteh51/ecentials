@@ -1,6 +1,7 @@
 import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/agreement.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/registration.dart';
+import 'package:ecentialsclone/src/screens/AuthScreens/reset.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/verifyEmail.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/main_screen.dart';
 import 'package:flutter/gestures.dart';
@@ -185,7 +186,7 @@ class _LoginState extends State<Login> {
               fontSize: 16,
               decoration: TextDecoration.underline),
         ),
-        onPressed: () {
+        onPressed: () {          
           Get.to(() => VerifyEmail(),
               transition: Transition.rightToLeft,
               duration: const Duration(milliseconds: 300));

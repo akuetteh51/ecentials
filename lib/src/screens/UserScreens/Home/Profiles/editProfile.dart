@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:ecentialsclone/models/UserDataModel.dart';
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
@@ -24,7 +25,6 @@ class _EditProfileState extends State<EditProfile> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
-  TextEditingController genderController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController occupationController = TextEditingController();
   TextEditingController idCardController = TextEditingController();
@@ -40,16 +40,14 @@ class _EditProfileState extends State<EditProfile> {
       case 2:
         return phoneController;
       case 3:
-        return genderController;
-      case 4:
         return addressController;
-      case 5:
+      case 4:
         return occupationController;
-      case 6:
+      case 5:
         return idCardController;
-      case 7:
+      case 6:
         return heightController;
-      case 8:
+      case 7:
         return weigthController;
       default:
         return nameController;
@@ -60,7 +58,6 @@ class _EditProfileState extends State<EditProfile> {
     "Name *",
     "Email *",
     "Phone Number *",
-    "Gender *",
     "Address *",
     "Occupation *",
     "Ghana Card Number *",
@@ -79,6 +76,30 @@ class _EditProfileState extends State<EditProfile> {
   //   "80",
   // ];
 
+  getUserDataFromServer() {
+    UserState userState = Provider.of<UserState>(context, listen: false);
+    // Map<String, dynamic>? res = userState.userInfo;
+    // log(res?['token']);
+    userState
+        .getUserInfoFromServer(token: userState.userInfo?['token'])
+        .then((UserDataModel? user) {
+      if (user == null) {
+      } else {
+        setState(() {
+          nameController.text = user.name!;
+          emailController.text = user.email!;
+          phoneController.text = user.phone!;
+          addressController.text = user.address!;
+          occupationController.text = user.occupation!;
+          idCardController.text = user.ghana_card_number!;
+          heightController.text = user.height.toString();
+          weigthController.text = user.weight.toString();
+          selectedDate = user.dob?.split(" ").first;
+        });
+      }
+    });
+  }
+
   keyInputType(int value) {
     switch (value) {
       case 0:
@@ -88,16 +109,14 @@ class _EditProfileState extends State<EditProfile> {
       case 2:
         return TextInputType.phone;
       case 3:
-        return TextInputType.name;
-      case 4:
         return TextInputType.streetAddress;
+      case 4:
+        return TextInputType.text;
       case 5:
         return TextInputType.text;
       case 6:
-        return TextInputType.text;
-      case 7:
         return TextInputType.number;
-      case 8:
+      case 7:
         return TextInputType.number;
       default:
         return TextInputType.name;
@@ -109,42 +128,101 @@ class _EditProfileState extends State<EditProfile> {
 
     // Check if compulsory fields are not empty
     if (nameController.text.isNotEmpty &&
-        emailController.text.isNotEmpty &&
         phoneController.text.isNotEmpty &&
-        genderController.text.isNotEmpty &&
         idCardController.text.isNotEmpty &&
         addressController.text.isNotEmpty &&
         occupationController.text.isNotEmpty) {
-      if (genderController.text.toLowerCase() == "male" ||
-          genderController.text.toLowerCase() == "female" ||
-          genderController.text.toLowerCase() == "other") {
+      if (selectedGender != null && selectedDate != null) {
         Map<String, dynamic>? dataToSend = {
           "name": nameController.text,
           "address": addressController.text,
-          "gender": genderController.text,
+          "gender": selectedGender,
           "occupation": occupationController.text,
-          "phone": phoneController.text,
+          "phone_number": phoneController.text,
+          "dob": "${pickedDate.toUtc()}",
+          "ghana_card_number": idCardController.text,
         };
 
+        bool heightIsNull = false;
+        bool weightIsNull = false;
+
         if (heightController.text.isNotEmpty) {
-          dataToSend["height"] = num.tryParse(heightController.text) ?? 0.0;
+          if (num.tryParse(heightController.text) == null) {
+            heightIsNull = true;
+          } else {
+            dataToSend["height"] = num.tryParse(heightController.text) ?? 0.0;
+          }
+        } else {
+          heightIsNull = false;
         }
         if (weigthController.text.isNotEmpty) {
-          dataToSend["weight"] = num.tryParse(weigthController.text) ?? 0.0;
+          if (num.tryParse(weigthController.text) == null) {
+            weightIsNull = true;
+          } else {
+            dataToSend["weight"] = num.tryParse(weigthController.text) ?? 0.0;
+          }
+        } else {
+          weightIsNull = false;
         }
 
-        // Request to update data
-        userState.updateUserInfo(data: dataToSend);
+        if (heightIsNull == true || weightIsNull == true) {
+          ShowToast.ecentialsToast(
+            message: "Height or Weight not properly formated",
+          );
+        } else {
+          // Request to update data          
+          userState.updateUserInfo(
+              data: dataToSend, token: userState.userInfo?['token']);
+        }
       } else {
         ShowToast.ecentialsToast(
-          message: "Gender must be male female or other",
+          message: "Gender & DOB must not be empty",
         );
       }
     } else {
       ShowToast.ecentialsToast(
-        message: "Fiels marked (*) are required",
+        message: "Fields marked (*) are required",
       );
     }
+  }
+
+  DateTime pickedDate = DateTime.now();
+
+  String? selectedGender;
+
+  List<String> genders = ["Male", "Female", "Other"];
+
+  String? selectedDate;
+
+  Future selectDate(
+    BuildContext context,
+  ) async {
+    final DateTime? response = await showDatePicker(
+      context: context,
+      initialDate: pickedDate,
+      firstDate: DateTime(1900),
+      lastDate: DateTime(2100),
+    );
+    if (response != null && response != pickedDate) {
+      setState(() {
+        pickedDate = response;
+        selectedDate = pickedDate.day.toString() +
+            "-" +
+            pickedDate.month.toString() +
+            "-" +
+            pickedDate.year.toString();
+
+        log("DAte: ${pickedDate.toUtc()}");
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      getUserDataFromServer();
+    });
   }
 
   @override
@@ -231,74 +309,267 @@ class _EditProfileState extends State<EditProfile> {
           ),
           SliverToBoxAdapter(
             child: Container(
-              margin: EdgeInsets.only(
+              margin: const EdgeInsets.only(
                 left: 20,
                 right: 20,
-                bottom: 20,
+                bottom: 2,
               ),
-              child: Column(
-                children: List.generate(
-                  _heading.length,
-                  (index) => Container(
-                    margin: EdgeInsets.only(bottom: 20),
-                    child: Column(
-                      children: [
-                        Align(
+              child: userState.fetchInfoLoaderState == 2
+                  ? Column(
+                      children: List.generate(
+                        _heading.length,
+                        (index) => Container(
+                          margin: const EdgeInsets.only(bottom: 20),
+                          child: Column(
+                            children: [
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  _heading[index],
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              TextFormField(
+                                enabled: index == 1 &&
+                                        emailController.text.isNotEmpty
+                                    ? false
+                                    : true,
+                                keyboardType: keyInputType(index),
+                                controller: giveControllerToUse(index),
+                                cursorColor: AppColors.primaryDeepColor,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 3,
+                                        color: AppColors.primaryDeepColor),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      width: 3,
+                                      color: AppColors.primaryDeepColor
+                                          .withOpacity(.5),
+                                    ),
+                                  ),
+                                  disabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      width: 3,
+                                      color: Theme.of(context)
+                                          .disabledColor
+                                          .withOpacity(.06),
+                                    ),
+                                  ),
+                                  contentPadding: const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                  : userState.fetchInfoLoaderState == 0 ||
+                          userState.fetchInfoLoaderState == 1
+                      ? Padding(
+                          padding: const EdgeInsets.only(top: 50),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 25,
+                                width: 25,
+                                child: Center(
+                                  child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                          AppColors.primaryDeepColor)),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      : GestureDetector(
+                          onTap: () {
+                            getUserDataFromServer();
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 50),
+                            child: SizedBox(
+                              height: 30,
+                              width: 30,
+                              child: Icon(
+                                Icons.replay,
+                                color: AppColors.primaryDeepColor,
+                                size: 40,
+                              ),
+                            ),
+                          ),
+                        ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: userState.fetchInfoLoaderState == 2
+                ? Column(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            _heading[index],
-                            style: const TextStyle(
+                            "Gender *",
+                            style: TextStyle(
                               fontSize: 18,
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-
-// borderRadius: BorderRadius.circular(10),
-                      
-                      // child:
-                       TextFormField(                        
-                        keyboardType: keyInputType(index),
-                        controller: giveControllerToUse(index),
-                        cursorColor: AppColors.primaryDeepColor,
-                        decoration: const InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(
-                            horizontal: 10,
-
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: PopupMenuButton<String>(
+                          onSelected: (String value) {
+                            setState(() {
+                              selectedGender = value;
+                            });
+                          },
+                          child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                color:
+                                    AppColors.primaryDeepColor.withOpacity(.2),
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 12, horizontal: 4),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Flexible(
+                                    child: Text(
+                                      selectedGender == null
+                                          ? 'Select'
+                                          : selectedGender.toString(),
+                                      style: TextStyle(
+                                        fontSize: 16.0,
+                                        color: Theme.of(context)
+                                            .disabledColor
+                                            .withOpacity(.3),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    child: RotatedBox(
+                                        quarterTurns: 3,
+                                        child: Icon(
+                                          Icons.chevron_left,
+                                          color: Theme.of(context)
+                                              .disabledColor
+                                              .withOpacity(.3),
+                                        )),
+                                  ),
+                                ],
+                              )),
+                          itemBuilder: (BuildContext context) =>
+                              List<PopupMenuEntry<String>>.generate(
+                            genders.length,
+                            (index) => PopupMenuItem<String>(
+                              value: genders[index],
+                              child: SizedBox(
+                                width: MediaQuery.of(context).size.width,
+                                child: Text(
+                                  genders[index],
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-      ),],
-                    ),
-                  ),
-                ),
-              ),
-            ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20.0),
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: Wrap(
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            alignment: WrapAlignment.spaceBetween,
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.only(left: 20.0),
+                                child: Text(
+                                  "Dob *",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                              MaterialButton(
+                                color: AppColors.primaryDeepColor,
+                                onPressed: () {
+                                  selectDate(context);
+                                },
+                                child: Text(
+                                  selectedDate == null
+                                      ? 'Pick Date'
+                                      : selectedDate!,
+                                  style: TextStyle(
+                                      color: Theme.of(context).canvasColor,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                    ],
+                  )
+                : const SizedBox(),
           ),
           SliverToBoxAdapter(
             child: Container(
-
-                margin: const EdgeInsets.only(
+              margin: const EdgeInsets.only(
                 left: 60,
                 right: 60,
                 bottom: 100,
                 top: 5,
-
               ),
-              child: userState.updateInfoLoaderState == 0 ||
-                      userState.updateInfoLoaderState == 2
-                  ? Button(
-                      text: "Update",
-                      style: TextStyle(
-                        color: AppColors.primaryWhiteColor,
-                        fontSize: 20,
-                      ),
-                      onTap: () {
-                        handleInputUpdateValidate();
-                      },
-                    )
-                  : loadingButton(),
+              child: userState.fetchInfoLoaderState == 2
+                  ? (userState.updateInfoLoaderState == 0 ||
+                          userState.updateInfoLoaderState == 2
+                      ? Button(
+                          text: "Update",
+                          style: TextStyle(
+                            color: AppColors.primaryWhiteColor,
+                            fontSize: 20,
+                          ),
+                          onTap: () {
+                            handleInputUpdateValidate();
+                          },
+                        )
+                      : userState.updateInfoLoaderState == 3
+                          ? loadingButton(
+                              isRetry: true,
+                              tap: () {
+                                handleInputUpdateValidate();
+                              })
+                          : loadingButton())
+                  : const SizedBox(),
             ),
           ),
         ],
@@ -306,21 +577,31 @@ class _EditProfileState extends State<EditProfile> {
     );
   }
 
-  Widget loadingButton() {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: 60,
-      decoration: BoxDecoration(
-        color: AppColors.primaryDeepColor,
-        borderRadius: BorderRadius.circular(5),
-      ),
-      child: Center(
-        child: SizedBox(
-          height: 15,
-          width: 15,
-          child: CircularProgressIndicator(
-            strokeWidth: 2.5,
-            color: Theme.of(context).canvasColor,
+  Widget loadingButton({bool? isRetry, Function? tap}) {
+    return GestureDetector(
+      onTap: () {
+        tap?.call();
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 50,
+        decoration: BoxDecoration(
+          color: AppColors.primaryDeepColor,
+          borderRadius: BorderRadius.circular(5),
+        ),
+        child: Center(
+          child: SizedBox(
+            height: 15,
+            width: 15,
+            child: isRetry == true
+                ? Icon(
+                    Icons.replay_outlined,
+                    color: Theme.of(context).canvasColor,
+                  )
+                : CircularProgressIndicator(
+                    strokeWidth: 2.5,
+                    color: Theme.of(context).canvasColor,
+                  ),
           ),
         ),
       ),
