@@ -1,19 +1,14 @@
 import 'package:ecentialsclone/src/Widgets/button.dart';
-import 'package:ecentialsclone/src/screens/AuthScreens/agreement.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/registration.dart';
-import 'package:ecentialsclone/src/screens/AuthScreens/reset.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/verifyEmail.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/main_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../Themes/colors.dart';
 import '../../Widgets/EcentialsToast.dart';
 import '../../app_state/AuthState.dart';
-import '../../app_state/hospital_state.dart';
 
 class Login extends StatefulWidget {
   bool isVisible;
@@ -197,7 +192,6 @@ class _LoginState extends State<Login> {
 // Sign in Button
     final _signin = Button(
       onTap: () async {
-        // s|he
 
         // final preference = await SharedPreferences.getInstance();
         // preference.setBool("showSignup", true);
@@ -307,7 +301,7 @@ class _LoginState extends State<Login> {
   Widget loadingButton() {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 60,
+      height: 50,
       decoration: BoxDecoration(
         color: AppColors.primaryDeepColor,
         borderRadius: BorderRadius.circular(5),

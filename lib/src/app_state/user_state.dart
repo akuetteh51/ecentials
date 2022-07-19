@@ -33,7 +33,7 @@ class UserState extends ChangeNotifier {
 
     Map<String, dynamic> saveInfo = json.decode(state);
 
-    log("LOCAL DATA: ${saveInfo.runtimeType}");
+    log("LOCAL DATA: $saveInfo");
 
     _userInfo = saveInfo;
 
@@ -52,7 +52,7 @@ class UserState extends ChangeNotifier {
 
     String path =
         APPBASEURL.BASEURL + "/api/v1/user/account/addEdit-personal-details";
-    log("THE TKN: $token");
+
     try {
       Response response = await dio.post(path,
           data: data, options: Options(headers: {"auth-token": token}));
@@ -114,21 +114,30 @@ class UserState extends ChangeNotifier {
 
         if (response.statusCode == 200) {
           log("ONLINE DATA: ${response.data}");
-          var data = response.data['data']['personal'];         
+          var data = response.data['data']['personal'];
           notifyListeners();
-          
+          _userDataModel = UserDataModel(
+              name: data["name"] ?? "",
+              address: data["address"] ?? "",
+              email: data["email"] ?? "",
+              gender: data["gender"] ?? "",
+              occupation: data["occupation"] ?? "",
+              phone: data["phone_number"] ?? "",
+              dob: data["dob"] ?? "",
+              height: data["height"] ?? 0,
+              weight: data["weight"] ?? 0,
+              ghana_card_number: data["ghana_card_number"] ?? "");
           return UserDataModel(
-            name: data["name"] ?? "",
-            address: data["address"] ?? "",
-            email: data["email"] ?? "",
-            gender: data["gender"] ?? "",
-            occupation: data["occupation"] ?? "",
-            phone: data["phone_number"] ?? "",
-            dob: data["dob"] ?? "",
-            height: data["height"] ?? 0,
-            weight: data["weight"] ?? 0,
-            ghana_card_number:data["ghana_card_number"] ?? "" 
-          );
+              name: data["name"] ?? "",
+              address: data["address"] ?? "",
+              email: data["email"] ?? "",
+              gender: data["gender"] ?? "",
+              occupation: data["occupation"] ?? "",
+              phone: data["phone_number"] ?? "",
+              dob: data["dob"] ?? "",
+              height: data["height"] ?? 0,
+              weight: data["weight"] ?? 0,
+              ghana_card_number: data["ghana_card_number"] ?? "");
         } else {
           log("Status Not 200");
           ShowToast.ecentialsToast(
@@ -158,4 +167,11 @@ class UserState extends ChangeNotifier {
       return null;
     }
   }
+
+  // get Educational Infromation of user
+
+  getEducation() {}
+
+  // Update the educational
+  editEducation() {}
 }

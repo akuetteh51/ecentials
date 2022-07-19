@@ -100,7 +100,7 @@ class AuthState extends ChangeNotifier {
         _loginLoaderState = 2;
         notifyListeners();
 
-        if (response.statusCode == 200) {
+        if (response.statusCode == 200 && response.data['id'] != null) {
           String encodedStringForLocalStorage = json.encode(response.data);
 
           saveUserInfo(encodedStringForLocalStorage).then((value) {

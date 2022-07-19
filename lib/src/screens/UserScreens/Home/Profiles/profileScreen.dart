@@ -224,21 +224,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
             pinned: true,
             floating: true,
             flexibleSpace: FlexibleSpaceBar(
+              centerTitle: true,
               title: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
+                  Text(                    
                     userState.userInfo?['name'] ?? "no username",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: AppColors.primaryWhiteColor,
-                        fontSize: 25,
+                        fontSize: 23,
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
                     userState.userInfo?['email'] ?? "aopoku255@gmail.com",
                     textAlign: TextAlign.center,
                     style: TextStyle(
+                      fontSize: 12,
                       color: AppColors.primaryWhiteColor,
                     ),
                   ),
