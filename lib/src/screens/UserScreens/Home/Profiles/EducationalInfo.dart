@@ -1,11 +1,16 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:ecentialsclone/models/UserEducationModel.dart';
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/addSchoolButton.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/Widgets/schoolsAttendedCard.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/add_education.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../app_state/user_state.dart';
 
 class EducationalInfo extends StatefulWidget {
   const EducationalInfo({Key? key}) : super(key: key);
@@ -15,13 +20,22 @@ class EducationalInfo extends StatefulWidget {
 }
 
 class _EducationalInfoState extends State<EducationalInfo> {
+  getEducationDataFromServer() {
+    UserState userState = Provider.of<UserState>(context, listen: false);
+    // Map<String, dynamic>? res = userState.userInfo;
+    // log(res?['token']);
+    userState
+        .getEducation(token: userState.userInfo?['token']);
+       // .then((UserEducationModel? user) {});
+  }
+
   openDialog() => showDialog(
         context: context,
         builder: (context) => AlertDialog(
           title: Text(
             "Add Educational Inlformation",
           ),
-          content: Container(
+          content: SizedBox(
             height: 150,
             child: Column(children: [
               TextFormField(
@@ -29,14 +43,23 @@ class _EducationalInfoState extends State<EducationalInfo> {
                   label: Text("School Name"),
                   border: OutlineInputBorder(),
                 ),
-              )
+              ),
             ]),
           ),
         ),
       );
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      getEducationDataFromServer();
+    });
+  }      
+
+  @override
   Widget build(BuildContext context) {
+    // UserState userState = Provider.of<UserState>(context, listen: false);
     return Scaffold(
       extendBody: true,
       backgroundColor: AppColors.primaryWhiteColor,
@@ -68,6 +91,7 @@ class _EducationalInfoState extends State<EducationalInfo> {
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.center,
                   alignment: WrapAlignment.spaceBetween,
                   children: [
                     Text(
@@ -76,32 +100,53 @@ class _EducationalInfoState extends State<EducationalInfo> {
                         color: AppColors.primaryDeepColor,
                       ),
                     ),
+                    // SizedBox(
+                    //   height: 15.0,
+                    //   width: 15.0,
+                    //   // child: ,
+                    //   //  CircularProgressIndicator(
+                    //   //     strokeWidth: 2,
+                    //   //     valueColor: AlwaysStoppedAnimation<Color>(
+                    //   //         AppColors.primaryDeepColor),),
+                    // ),
                     SizedBox(
-                      height: 15.0,
-                      width: 15.0,
-                      // child: CircularProgressIndicator(
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(PageRouteBuilder(
+                              opaque: false,
+                              pageBuilder: (pageBuilder, _, __) => AddEducation(
+                                    isNew: true,
+                                  )));
+                        },
+                        child: Icon(
+                          Icons.add,
+                          color: AppColors.primaryDeepColor,
+                          size: 30,
+                        ),
+                      ),
+
+                      //  CircularProgressIndicator(
                       //     strokeWidth: 2,
                       //     valueColor: AlwaysStoppedAnimation<Color>(
-                      //         AppColors.primaryDeepColor)),
-                    )
+                      //         AppColors.primaryDeepColor),),
+                    ),
                   ],
                 ),
               ),
               SizedBox(
                 height: 20,
               ),
-              GestureDetector(
-                onTap: () {
+              SchoolsAttendedCard(
+                schoolName:
+                    "Kwame Nkrumah University of Science and Technology",
+                program: "Bsc. Computer Science",
+                year: "2016 - 2020",
+                onEdit: () {
                   Navigator.of(context).push(PageRouteBuilder(
-                    opaque: false,                    
-                    pageBuilder: (pageBuilder,_,__)=>editEducationCard()));
+                      opaque: false,
+                      pageBuilder: (pageBuilder, _, __) =>
+                          AddEducation(isNew: false)));
                 },
-                child: SchoolsAttendedCard(
-                  schoolName:
-                      "Kwame Nkrumah University of Science and Technology",
-                  program: "Bsc. Computer Science",
-                  year: "2016 - 2020",
-                ),
               ),
               SizedBox(
                 height: 20,
@@ -122,138 +167,10 @@ class _EducationalInfoState extends State<EducationalInfo> {
     );
   }
 
-  Widget editEducationCard() {
-    return Container(
-      color: Colors.black.withOpacity(.4),
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Card(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 30),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text("School"),
-                   SizedBox(
-                    height: 12,
-                  ),
-                  TextFormField(
-                    // controller: ,
-                    cursorColor: AppColors.primaryDeepColor,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 3, color: AppColors.primaryDeepColor),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          width: 3,
-                          color: AppColors.primaryDeepColor.withOpacity(.5),
-                        ),
-                      ),
-                      disabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          width: 3,
-                          color:
-                              Theme.of(context).disabledColor.withOpacity(.06),
-                        ),
-                      ),
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                      ),
-                    ),
-                  ),
-                   SizedBox(
-                    height: 12,
-                  ),
-                  Text("Degree, program"),
-                   SizedBox(
-                    height: 12,
-                  ),
-                  TextFormField(
-                    // controller: ,
-                    cursorColor: AppColors.primaryDeepColor,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 3, color: AppColors.primaryDeepColor),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          width: 3,
-                          color: AppColors.primaryDeepColor.withOpacity(.5),
-                        ),
-                      ),
-                      disabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          width: 3,
-                          color:
-                              Theme.of(context).disabledColor.withOpacity(.06),
-                        ),
-                      ),
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                      ),
-                    ),
-                  ),
-                   SizedBox(
-                    height: 12,
-                  ),
-                  Text("Year"),
-                   SizedBox(
-                    height: 12,
-                  ),
-                  TextFormField(
-                    // controller: ,
-                    cursorColor: AppColors.primaryDeepColor,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 3, color: AppColors.primaryDeepColor),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          width: 3,
-                          color: AppColors.primaryDeepColor.withOpacity(.5),
-                        ),
-                      ),
-                      disabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          width: 3,
-                          color:
-                              Theme.of(context).disabledColor.withOpacity(.06),
-                        ),
-                      ),
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  loadingButton(),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+  // Widget editEducationCard({bool? isNew}) {
+
+  //   return ;
+  // }
 
   Widget loadingButton({bool? isRetry, Function? tap}) {
     return GestureDetector(

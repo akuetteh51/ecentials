@@ -30,8 +30,8 @@ class _PersonalInfoState extends State<PersonalInfo> {
     "WEIGHT",
   ];
 
+  List<String> _text = [];
 
-  
   getUserDataFromServer() {
     UserState userState = Provider.of<UserState>(context, listen: false);
     // Map<String, dynamic>? res = userState.userInfo;
@@ -40,11 +40,22 @@ class _PersonalInfoState extends State<PersonalInfo> {
         .getUserInfoFromServer(token: userState.userInfo?['token'])
         .then((UserDataModel? user) {
       if (user != null) {
-      } 
+        setState(() {
+          _text = [
+          userState.userDataModel?.name ?? "ANDREWS OPOKU",
+          userState.userDataModel?.email ?? "AOPOKU255@GMAIL.COM",
+          userState.userDataModel?.phone ?? "+233545098438",
+          userState.userDataModel?.gender ?? "MALE",
+          userState.userDataModel?.address ?? "PLT 16 BLK III",
+          userState.userDataModel?.occupation ?? "MEDICAL DOCTOR",
+          userState.userDataModel?.ghana_card_number ?? "093356147",
+          userState.userDataModel?.height.toString() ?? "6.0ft",
+          userState.userDataModel?.weight.toString() ?? "80 lbs",
+        ];
+        });      
+      }
     });
   }
-
-
 
   @override
   void initState() {
@@ -56,18 +67,8 @@ class _PersonalInfoState extends State<PersonalInfo> {
 
   @override
   Widget build(BuildContext context) {
-  UserState userState = Provider.of<UserState>(context, listen: false);
-  List<String> _text = [
-    userState.userDataModel?.name ?? "ANDREWS OPOKU",
-    userState.userDataModel?.email ??  "AOPOKU255@GMAIL.COM",
-    userState.userDataModel?.phone ?? "+233545098438",
-    userState.userDataModel?.gender ?? "MALE",
-    userState.userDataModel?.address ?? "PLT 16 BLK III",
-    userState.userDataModel?.occupation ??  "MEDICAL DOCTOR",
-    userState.userDataModel?.ghana_card_number ?? "093356147",
-    userState.userDataModel?.height.toString() ??  "6.0ft",
-    userState.userDataModel?.weight.toString() ?? "80 lbs",
-  ];
+    UserState userState = Provider.of<UserState>(context, listen: false);
+    print(userState.fetchInfoLoaderState);
     return Scaffold(
       extendBody: true,
       backgroundColor: AppColors.primaryWhiteColor,
@@ -95,41 +96,42 @@ class _PersonalInfoState extends State<PersonalInfo> {
       body: Container(
         margin: EdgeInsets.all(20),
         child: userState.fetchInfoLoaderState == 2
-                  ? ListView.builder(
-          itemCount: 9,
-          itemBuilder: (context, index) => Information(
-            heading: _heading[index],
-            text: _text[index],
-          ),
-        ):userState.fetchInfoLoaderState == 0 ||
-                          userState.fetchInfoLoaderState == 1
-                      ? Center(
-                        child: SizedBox(
-                          height: 25,
-                          width: 25,
-                          child: Center(
-                            child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                    AppColors.primaryDeepColor)),
-                          ),
+            ? ListView.builder(
+                itemCount: 9,
+                itemBuilder: (context, index) => Information(
+                  heading: _heading[index],
+                  text: _text[index],
+                ),
+              )
+            : userState.fetchInfoLoaderState == 0 ||
+                    userState.fetchInfoLoaderState == 1
+                ? Center(
+                    child: SizedBox(
+                      height: 25,
+                      width: 25,
+                      child: Center(
+                        child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                                AppColors.primaryDeepColor)),
+                      ),
+                    ),
+                  )
+                : GestureDetector(
+                    onTap: () {
+                      getUserDataFromServer();
+                    },
+                    child: Center(
+                      child: SizedBox(
+                        height: 30,
+                        width: 30,
+                        child: Icon(
+                          Icons.replay,
+                          color: AppColors.primaryDeepColor,
+                          size: 40,
                         ),
-                      )
-                      : GestureDetector(
-                          onTap: () {
-                            getUserDataFromServer();
-                          },
-                          child: Center(
-                            child: SizedBox(
-                              height: 30,
-                              width: 30,
-                              child: Icon(
-                                Icons.replay,
-                                color: AppColors.primaryDeepColor,
-                                size: 40,
-                              ),
-                            ),
-                          ),
-                        ),
+                      ),
+                    ),
+                  ),
       ),
     );
   }

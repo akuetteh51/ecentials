@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:ecentialsclone/models/UserEducationModel.dart';
 import 'package:flutter/foundation.dart';
+import 'package:get/get.dart' as getx;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/UserDataModel.dart';
@@ -21,8 +23,19 @@ class UserState extends ChangeNotifier {
       0; // 0 = nothing, 1 = loading, 2= okay, 3 = failed
   int get fetchInfoLoaderState => _fetchInfoLoaderState;
 
+  int _addingEducationState =
+      0; // 0 = nothing, 1 = loading, 2= okay, 3 = failed
+  int get addingEducationState => _addingEducationState;
+
+  int _gettingEducationState =
+      0; // 0 = nothing, 1 = loading, 2= okay, 3 = failed
+  int get gettingEducationState => _gettingEducationState;
+
   UserDataModel? _userDataModel;
   UserDataModel? get userDataModel => _userDataModel;
+
+  List<UserEducationModel>? _userEducation;
+  List<UserEducationModel>? get userEducation => _userEducation;
 
   getStoreUserInfo() async {
     final prefs = await SharedPreferences.getInstance();
@@ -112,41 +125,32 @@ class UserState extends ChangeNotifier {
         _fetchInfoLoaderState = 2;
         notifyListeners();
 
-        if (response.statusCode == 200) {
-          log("ONLINE DATA: ${response.data}");
-          var data = response.data['data']['personal'];
-          notifyListeners();
-          _userDataModel = UserDataModel(
-              name: data["name"] ?? "",
-              address: data["address"] ?? "",
-              email: data["email"] ?? "",
-              gender: data["gender"] ?? "",
-              occupation: data["occupation"] ?? "",
-              phone: data["phone_number"] ?? "",
-              dob: data["dob"] ?? "",
-              height: data["height"] ?? 0,
-              weight: data["weight"] ?? 0,
-              ghana_card_number: data["ghana_card_number"] ?? "");
-          return UserDataModel(
-              name: data["name"] ?? "",
-              address: data["address"] ?? "",
-              email: data["email"] ?? "",
-              gender: data["gender"] ?? "",
-              occupation: data["occupation"] ?? "",
-              phone: data["phone_number"] ?? "",
-              dob: data["dob"] ?? "",
-              height: data["height"] ?? 0,
-              weight: data["weight"] ?? 0,
-              ghana_card_number: data["ghana_card_number"] ?? "");
-        } else {
-          log("Status Not 200");
-          ShowToast.ecentialsToast(
-            message: "Error getting your data",
-          );
-          _fetchInfoLoaderState = 3;
-          notifyListeners();
-          return null;
-        }
+        log("ONLINE DATA: ${response.data}");
+        var data = response.data['data']['personal'];
+        _userDataModel = UserDataModel(
+            name: data["name"] ?? "",
+            address: data["address"] ?? "",
+            email: data["email"] ?? "",
+            gender: data["gender"] ?? "",
+            occupation: data["occupation"] ?? "",
+            phone: data["phone_number"] ?? "",
+            dob: data["dob"] ?? "",
+            height: data["height"] ?? 0,
+            weight: data["weight"] ?? 0,
+            ghana_card_number: data["ghana_card_number"] ?? "");
+        log("loder State: $fetchInfoLoaderState");
+        notifyListeners();
+        return UserDataModel(
+            name: data["name"] ?? "",
+            address: data["address"] ?? "",
+            email: data["email"] ?? "",
+            gender: data["gender"] ?? "",
+            occupation: data["occupation"] ?? "",
+            phone: data["phone_number"] ?? "",
+            dob: data["dob"] ?? "",
+            height: data["height"] ?? 0,
+            weight: data["weight"] ?? 0,
+            ghana_card_number: data["ghana_card_number"] ?? "");
       } else {
         // If there was an error while making the request
         ShowToast.ecentialsToast(
@@ -168,10 +172,114 @@ class UserState extends ChangeNotifier {
     }
   }
 
-  // get Educational Infromation of user
+  // add Educational Infromation of user
+  addEducation(
+      {required String token, required Map<String, dynamic> data}) async {
+    _addingEducationState = 0;
+    _addingEducationState = 1;
+    notifyListeners();
 
-  getEducation() {}
+    Dio dio = Dio();
 
-  // Update the educational
-  editEducation() {}
+    String path =
+        APPBASEURL.BASEURL + "/api/v1/user/account/add-school-details";
+
+    try {
+      // debugPrint("TKN: $token");
+      Response response = await dio.post(path,
+          options: Options(headers: {"auth-token": token}));
+      if (response.statusCode == 200 && response.data['status'] == 200) {
+        _addingEducationState = 2;
+        notifyListeners();
+        log("RES: ${response.data}");
+        ShowToast.ecentialsToast(
+          message: "Added successfully",
+          warn: false,
+        );
+        getx.navigator?.pop();
+      } else {
+        // If there was an error while making the request
+        ShowToast.ecentialsToast(
+          message: "${response.data['message']}",
+        );
+
+        _addingEducationState = 3;
+        notifyListeners();
+        return null;
+      }
+    } catch (e) {
+      log("There was an Error: $e");
+      ShowToast.ecentialsToast(
+        message: "Error getting your data",
+      );
+      _addingEducationState = 3;
+      notifyListeners();
+      return null;
+    }
+  }
+
+  // ger the educational informaion
+  getEducation({required String? token})async{
+    _gettingEducationState = 0;
+    _gettingEducationState = 1;
+    notifyListeners();
+
+    Dio dio = Dio();
+
+    String path =
+        APPBASEURL.BASEURL + "/api/v1/user/account/fetch-school-details";
+
+    try {
+      // debugPrint("TKN: $token");
+      Response response = await dio.get(path,
+          options: Options(headers: {"auth-token": "$token"}));
+      if (response.statusCode == 200) {
+        _gettingEducationState = 2;
+        notifyListeners();
+
+        log("EDU DATA: ${response.data}");
+        // var data = response.data['data']['personal'];
+        // _userDataModel = UserDataModel(
+        //     name: data["name"] ?? "",
+        //     address: data["address"] ?? "",
+        //     email: data["email"] ?? "",
+        //     gender: data["gender"] ?? "",
+        //     occupation: data["occupation"] ?? "",
+        //     phone: data["phone_number"] ?? "",
+        //     dob: data["dob"] ?? "",
+        //     height: data["height"] ?? 0,
+        //     weight: data["weight"] ?? 0,
+        //     ghana_card_number: data["ghana_card_number"] ?? "");
+        // log("loder State: $fetchInfoLoaderState");
+        // return UserDataModel(
+        //     name: data["name"] ?? "",
+        //     address: data["address"] ?? "",
+        //     email: data["email"] ?? "",
+        //     gender: data["gender"] ?? "",
+        //     occupation: data["occupation"] ?? "",
+        //     phone: data["phone_number"] ?? "",
+        //     dob: data["dob"] ?? "",
+        //     height: data["height"] ?? 0,
+        //     weight: data["weight"] ?? 0,
+        //     ghana_card_number: data["ghana_card_number"] ?? "");
+      } else {
+        // If there was an error while making the request
+        ShowToast.ecentialsToast(
+          message: "Error getting your data",
+        );
+
+        _gettingEducationState = 3;
+        notifyListeners();
+        return null;
+      }
+    } catch (e) {
+      log("There was an Error: $e");
+      ShowToast.ecentialsToast(
+        message: "Error getting your data",
+      );
+      _gettingEducationState = 3;
+      notifyListeners();
+      return null;
+    }    
+  }
 }
