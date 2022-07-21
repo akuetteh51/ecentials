@@ -247,6 +247,7 @@ class UserState extends ChangeNotifier {
         notifyListeners();
 
         log("EDU DATA: ${response.data}");
+        _userEducation?.clear();
         List schools = response.data['data'] ?? [];
 
         for (int j = 0; j <= schools.length - 1; j++) {
@@ -332,7 +333,6 @@ class UserState extends ChangeNotifier {
     }
   }
 
-
   // Delete a particular educational informaion
   deleteEducationalInformation(
       {required String? token,
@@ -382,5 +382,4 @@ class UserState extends ChangeNotifier {
       return null;
     }
   }
-
 }

@@ -171,7 +171,7 @@ class _EducationalInfoState extends State<EducationalInfo> {
                             height: 15,
                             child: CircularProgressIndicator(
                               strokeWidth: 2.5,
-                              color: Theme.of(context).canvasColor,
+                              color: AppColors.primaryDeepColor,
                             ),
                           ),
                         )
