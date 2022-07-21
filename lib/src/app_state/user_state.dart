@@ -31,10 +31,18 @@ class UserState extends ChangeNotifier {
       0; // 0 = nothing, 1 = loading, 2= okay, 3 = failed
   int get gettingEducationState => _gettingEducationState;
 
+  int _updateEducationState =
+      0; // 0 = nothing, 1 = loading, 2= okay, 3 = failed
+  int get updateEducationState => _updateEducationState;
+
+  int _deletingEducationState =
+      0; // 0 = nothing, 1 = loading, 2= okay, 3 = failed
+  int get deletingEducationState => _deletingEducationState;
+
   UserDataModel? _userDataModel;
   UserDataModel? get userDataModel => _userDataModel;
 
-  List<UserEducationModel>? _userEducation;
+  List<UserEducationModel>? _userEducation = [];
   List<UserEducationModel>? get userEducation => _userEducation;
 
   getStoreUserInfo() async {
@@ -210,7 +218,7 @@ class UserState extends ChangeNotifier {
     } catch (e) {
       log("There was an Error: $e");
       ShowToast.ecentialsToast(
-        message: "Error getting your data",
+        message: "Error adding your data",
       );
       _addingEducationState = 3;
       notifyListeners();
@@ -218,8 +226,8 @@ class UserState extends ChangeNotifier {
     }
   }
 
-  // ger the educational informaion
-  getEducation({required String? token})async{
+  // get the educational informaion
+  getEducation({required String? token}) async {
     _gettingEducationState = 0;
     _gettingEducationState = 1;
     notifyListeners();
@@ -233,35 +241,25 @@ class UserState extends ChangeNotifier {
       // debugPrint("TKN: $token");
       Response response = await dio.get(path,
           options: Options(headers: {"auth-token": "$token"}));
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 &&
+          response.data['status'].toString() == "200") {
         _gettingEducationState = 2;
         notifyListeners();
 
         log("EDU DATA: ${response.data}");
-        // var data = response.data['data']['personal'];
-        // _userDataModel = UserDataModel(
-        //     name: data["name"] ?? "",
-        //     address: data["address"] ?? "",
-        //     email: data["email"] ?? "",
-        //     gender: data["gender"] ?? "",
-        //     occupation: data["occupation"] ?? "",
-        //     phone: data["phone_number"] ?? "",
-        //     dob: data["dob"] ?? "",
-        //     height: data["height"] ?? 0,
-        //     weight: data["weight"] ?? 0,
-        //     ghana_card_number: data["ghana_card_number"] ?? "");
-        // log("loder State: $fetchInfoLoaderState");
-        // return UserDataModel(
-        //     name: data["name"] ?? "",
-        //     address: data["address"] ?? "",
-        //     email: data["email"] ?? "",
-        //     gender: data["gender"] ?? "",
-        //     occupation: data["occupation"] ?? "",
-        //     phone: data["phone_number"] ?? "",
-        //     dob: data["dob"] ?? "",
-        //     height: data["height"] ?? 0,
-        //     weight: data["weight"] ?? 0,
-        //     ghana_card_number: data["ghana_card_number"] ?? "");
+        List schools = response.data['data'] ?? [];
+
+        for (int j = 0; j <= schools.length - 1; j++) {
+          _userEducation?.add(UserEducationModel(
+            school_name: schools[j]['school_name'] ?? "",
+            course: schools[j]['course'] ?? "",
+            duration: schools[j]['duration'] ?? "",
+            user_id: "",
+            id: schools[j]['_id'] ?? "",
+            highest_level: schools[j]['highest_level'] ?? "",
+          ));
+        }
+        notifyListeners();
       } else {
         // If there was an error while making the request
         ShowToast.ecentialsToast(
@@ -280,6 +278,109 @@ class UserState extends ChangeNotifier {
       _gettingEducationState = 3;
       notifyListeners();
       return null;
-    }    
+    }
   }
+
+  // Update a particular educational informaion
+  updateEducationalInformation(
+      {required String? token,
+      Map<String, dynamic>? data,
+      Function? getNewData}) async {
+    _updateEducationState = 0;
+    _updateEducationState = 1;
+    notifyListeners();
+
+    Dio dio = Dio();
+
+    String path =
+        APPBASEURL.BASEURL + "/api/v1/user/account/edit-school-details";
+
+    try {
+      // debugPrint("TKN: $token");
+      Response response = await dio.post(path,
+          data: data, options: Options(headers: {"auth-token": "$token"}));
+      if (response.statusCode == 200 &&
+          response.data['message'] == "Educational Info updated successfully") {
+        _updateEducationState = 2;
+        notifyListeners();
+
+        log("Update Edu DATA: ${response.data}");
+        ShowToast.ecentialsToast(
+          message: "Error updating your data",
+          warn: false,
+        );
+        getx.navigator?.pop();
+        getNewData?.call();
+      } else {
+        // If there was an error while making the request
+        ShowToast.ecentialsToast(
+          message: "Error updating your data",
+        );
+
+        _updateEducationState = 3;
+        notifyListeners();
+        return null;
+      }
+    } catch (e) {
+      log("There was an Error: $e");
+      ShowToast.ecentialsToast(
+        message: "Error updating your data",
+      );
+      _updateEducationState = 3;
+      notifyListeners();
+      return null;
+    }
+  }
+
+
+  // Delete a particular educational informaion
+  deleteEducationalInformation(
+      {required String? token,
+      Map<String, dynamic>? data,
+      Function? getNewData}) async {
+    _deletingEducationState = 0;
+    _deletingEducationState = 1;
+    notifyListeners();
+
+    Dio dio = Dio();
+
+    String path =
+        APPBASEURL.BASEURL + "/api/v1/user/account/delete-school-details";
+
+    try {
+      // debugPrint("TKN: $token");
+      Response response = await dio.post(path,
+          data: data, options: Options(headers: {"auth-token": "$token"}));
+      if (response.statusCode == 200) {
+        _deletingEducationState = 2;
+        notifyListeners();
+
+        log("DELETED Edu DATA: ${response.data}");
+        ShowToast.ecentialsToast(
+          message: "Error deleting your data",
+          warn: false,
+        );
+        getx.navigator?.pop();
+        getNewData?.call();
+      } else {
+        // If there was an error while making the request
+        ShowToast.ecentialsToast(
+          message: "Error deleting your data",
+        );
+
+        _deletingEducationState = 3;
+        notifyListeners();
+        return null;
+      }
+    } catch (e) {
+      log("There was an Error: $e");
+      ShowToast.ecentialsToast(
+        message: "Error deleting your data",
+      );
+      _deletingEducationState = 3;
+      notifyListeners();
+      return null;
+    }
+  }
+
 }

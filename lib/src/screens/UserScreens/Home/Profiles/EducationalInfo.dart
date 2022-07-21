@@ -22,32 +22,9 @@ class EducationalInfo extends StatefulWidget {
 class _EducationalInfoState extends State<EducationalInfo> {
   getEducationDataFromServer() {
     UserState userState = Provider.of<UserState>(context, listen: false);
-    // Map<String, dynamic>? res = userState.userInfo;
-    // log(res?['token']);
-    userState
-        .getEducation(token: userState.userInfo?['token']);
-       // .then((UserEducationModel? user) {});
+    userState.getEducation(token: userState.userInfo?['token']);
+    // .then((UserEducationModel? user) {});
   }
-
-  openDialog() => showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text(
-            "Add Educational Inlformation",
-          ),
-          content: SizedBox(
-            height: 150,
-            child: Column(children: [
-              TextFormField(
-                decoration: InputDecoration(
-                  label: Text("School Name"),
-                  border: OutlineInputBorder(),
-                ),
-              ),
-            ]),
-          ),
-        ),
-      );
 
   @override
   void initState() {
@@ -55,11 +32,11 @@ class _EducationalInfoState extends State<EducationalInfo> {
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
       getEducationDataFromServer();
     });
-  }      
+  }
 
   @override
   Widget build(BuildContext context) {
-    // UserState userState = Provider.of<UserState>(context, listen: false);
+    UserState userState = Provider.of<UserState>(context);
     return Scaffold(
       extendBody: true,
       backgroundColor: AppColors.primaryWhiteColor,
@@ -136,30 +113,91 @@ class _EducationalInfoState extends State<EducationalInfo> {
               SizedBox(
                 height: 20,
               ),
-              SchoolsAttendedCard(
-                schoolName:
-                    "Kwame Nkrumah University of Science and Technology",
-                program: "Bsc. Computer Science",
-                year: "2016 - 2020",
-                onEdit: () {
-                  Navigator.of(context).push(PageRouteBuilder(
-                      opaque: false,
-                      pageBuilder: (pageBuilder, _, __) =>
-                          AddEducation(isNew: false)));
-                },
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              SchoolsAttendedCard(
-                schoolName: "Zion Senior High",
-                program: "General Science",
-                year: "2013 - 2016",
-              ),
+              userState.gettingEducationState == 2
+                  ? Column(
+                      children: [
+                       
+                          // SchoolsAttendedCard(
+                          //   schoolName: "",
+                          //   program:"",
+                          //   year: "xxxx - xxxx",
+                          //   onEdit: () {
+                          //     Navigator.of(context).push(PageRouteBuilder(
+                          //         opaque: false,
+                          //         pageBuilder: (pageBuilder, _, __) =>
+                          //             AddEducation(
+                          //               isNew: false,
+                          //               school: "",
+                          //               program: "",
+                          //               year: "xxxx - xxxx",
+                          //               elementId: "2342rwef",
+                          //             )));
+                          //   },
+                          // ),
+                        for (int i = 0;
+                            i <= userState.userEducation!.length - 1;
+                            i++)
+                          SchoolsAttendedCard(
+                            schoolName:
+                                userState.userEducation![i].school_name ?? "",
+                            program: userState.userEducation![i].course ?? "",
+                            year: userState.userEducation![i].duration ??
+                                "xxxx - xxxx",
+                            onEdit: () {
+                              Navigator.of(context).push(PageRouteBuilder(
+                                  opaque: false,
+                                  pageBuilder: (pageBuilder, _, __) =>
+                                      AddEducation(
+                                        isNew: false,
+                                        school: userState.userEducation![i]
+                                                .school_name ??
+                                            "",
+                                        program: userState
+                                                .userEducation![i].course ??
+                                            "",
+                                        year: userState
+                                                .userEducation![i].duration ??
+                                            "xxxx - xxxx",
+                                            elementId: userState.userEducation![i].id,
+                                      )));
+                            },
+                          ),
+                      ],
+                    )
+                  : userState.gettingEducationState == 1
+                      ? Center(
+                          child: SizedBox(
+                            width: 15,
+                            height: 15,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2.5,
+                              color: Theme.of(context).canvasColor,
+                            ),
+                          ),
+                        )
+                      : Center(
+                          child: GestureDetector(
+                              onTap: () {
+                                getEducationDataFromServer();
+                              },
+                              child: Icon(
+                                Icons.replay,
+                                color: AppColors.primaryDeepColor,
+                                size: 30,
+                              )),
+                        ),
               SizedBox(
                 height: 30,
               ),
-              AddSchoolButton(),
+              GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(PageRouteBuilder(
+                        opaque: false,
+                        pageBuilder: (pageBuilder, _, __) => AddEducation(
+                              isNew: true,
+                            )));
+                  },
+                  child: AddSchoolButton()),
             ],
           ),
         ),

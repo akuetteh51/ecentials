@@ -4,13 +4,16 @@ class UserEducationModel {
   final String? course;
   final String? duration;
   final String? highest_level;
+  final String? id;
 
-  UserEducationModel(
+  UserEducationModel( 
       {this.school_name,
       this.course,
       this.duration,
       this.highest_level,
-      this.user_id});
+      this.user_id,
+      this.id,
+      });
 
   factory UserEducationModel.fromJson(Map<String, dynamic>? data) {
     return UserEducationModel(
@@ -18,6 +21,7 @@ class UserEducationModel {
         course: data?['course'] ?? "",
         duration: data?['duration'] ?? "",
         highest_level: data?['highest_level'] ?? "",
+        id: data?['_id'] ?? "",
         );
   }
 }
