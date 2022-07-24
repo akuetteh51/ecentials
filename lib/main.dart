@@ -2,6 +2,8 @@
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:ecentialsclone/baseVerification.dart';
+import 'package:ecentialsclone/src/Widgets/genkey.dart';
+import 'package:ecentialsclone/src/app_state/HealthPin_state.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Chat/chatroom/chat_bubble.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/delivery_mode.dart';
@@ -28,6 +30,9 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmac
 import 'package:ecentialsclone/src/app_state/MainState.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Payments/Payed.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Payments/paymentMethod.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/createPin.dart';
+
+import 'package:ecentialsclone/src/screens/UserScreens/pin_creation_prompt.dart';
 import 'package:ecentialsclone/src/screens/onboardingScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Chat/chatroom/chatroom.dart';
 import 'package:provider/provider.dart';
@@ -77,11 +82,12 @@ Future main() async {
         ChangeNotifierProvider<ShopState>(create: (_) => ShopState()),
         ChangeNotifierProvider<AuthState>(create: (_) => AuthState()),
         ChangeNotifierProvider<UserState>(create: (_) => UserState()),
-        ChangeNotifierProvider<Nk>(create: (_) => Nk()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: MyApp(),
+        home:
+            // MyApp(),
+            pinCreationPrompt(),
       ),
     ),
   );
