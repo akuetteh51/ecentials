@@ -1,5 +1,4 @@
 import 'package:ecentialsclone/src/Widgets/button.dart';
-import 'package:ecentialsclone/src/screens/AuthScreens/emailSuccess.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -7,7 +6,6 @@ import 'package:provider/provider.dart';
 import '../../Themes/colors.dart';
 import '../../Widgets/EcentialsToast.dart';
 import '../../app_state/AuthState.dart';
-import '../UserScreens/main_screen.dart';
 
 class VerifyEmail extends StatefulWidget {
   bool isVisible;
@@ -18,22 +16,7 @@ class VerifyEmail extends StatefulWidget {
 }
 
 class _VerifyEmailState extends State<VerifyEmail> {
-  // late TextEditingController _passwordController;
-  // late TextEditingController _confirmPasswordController;
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _passwordController = TextEditingController();
-  //   _confirmPasswordController = TextEditingController();
-  // }
-
-  // @override
-  // void dispose() {
-  //   _passwordController.dispose();
-  //   _confirmPasswordController.dispose();
-  //   super.dispose();
-  // }
+  TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -56,10 +39,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
         ),
       ],
     );
-    // Email Input text
-    final _formkey = GlobalKey<FormState>();
-    final _emailController = TextEditingController();
-
+    
     // Password Input text
     final _email = Column(
       children: [
@@ -89,7 +69,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
           child: TextFormField(
             style: const TextStyle(fontSize: 20),
             cursorColor: AppColors.primaryDeepColor,
-            controller: _emailController,
+            controller: emailController,
             decoration: const InputDecoration(
               hintText: "example@gmail.com",
               border: UnderlineInputBorder(
@@ -107,15 +87,15 @@ class _VerifyEmailState extends State<VerifyEmail> {
       onTap: () {
         AuthState authState = Provider.of<AuthState>(context, listen: false);
 
-        if (_emailController.text.isNotEmpty) {
-          if (_emailController.text.isEmail) {
+        if (emailController.text.isNotEmpty) {
+          if (emailController.text.isEmail) {
             //Get.to(() => EmailSuccess());
             authState.sendPasswordResetCode(
               context: context,
               data: {
-                "email": _emailController.text.trim(),
+                "email": emailController.text.trim(),
               },
-              email: _emailController.text.trim(),
+              email: emailController.text.trim(),
             );
           } else {
             ShowToast.ecentialsToast(
@@ -164,8 +144,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Form(
-                      key: _formkey,
+                    Form(                      
                       child: SingleChildScrollView(
                         child: Column(
                           children: [

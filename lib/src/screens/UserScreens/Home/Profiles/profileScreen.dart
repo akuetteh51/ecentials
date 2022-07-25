@@ -224,6 +224,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             pinned: true,
             floating: true,
             flexibleSpace: FlexibleSpaceBar(
+              centerTitle: true,
               title: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -232,13 +233,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: AppColors.primaryWhiteColor,
-                        fontSize: 25,
+                        fontSize: 23,
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
                     userState.userInfo?['email'] ?? "aopoku255@gmail.com",
                     textAlign: TextAlign.center,
                     style: TextStyle(
+                      fontSize: 12,
                       color: AppColors.primaryWhiteColor,
                     ),
                   ),
@@ -282,6 +284,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 (BuildContext context, int index) {
                   return InfoCard(
                     onTap: () {
+                      if (index == 0) {
+                       userState.setFetchInfoLoaderState(0);
+                      }
                       index == 1 ? openDialog() : Get.to(() => _pages[index]);
                     },
                     topText: _topText[index],

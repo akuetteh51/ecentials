@@ -230,6 +230,7 @@ class _RegistrationState extends State<Registration> {
         // special character & numeric value
         RegExp regex = RegExp(
             r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$');
+            // r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$');
 
         if (_emailController.text.trim().isNotEmpty &&
             _passwordController.text.trim().isNotEmpty &&
@@ -250,7 +251,7 @@ class _RegistrationState extends State<Registration> {
                 } else {
                   ShowToast.ecentialsToast(
                     message:
-                        "Passwords must contain: Upper case, Lower case and special symbol",
+                        "Passwords must contain: Upper case, Number, Lower case and special symbol",
                   );
                 }
               } else {

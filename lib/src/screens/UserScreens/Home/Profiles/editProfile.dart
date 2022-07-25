@@ -87,7 +87,7 @@ class _EditProfileState extends State<EditProfile> {
       } else {
         setState(() {
           nameController.text = user.name!;
-          emailController.text = user.email!;
+          emailController.text = userState.userInfo?['email'] ?? "";
           phoneController.text = user.phone!;
           addressController.text = user.address!;
           occupationController.text = user.occupation!;
@@ -523,7 +523,7 @@ class _EditProfileState extends State<EditProfile> {
                                 child: Text(
                                   selectedDate == null
                                       ? 'Pick Date'
-                                      : selectedDate!,
+                                      : selectedDate!.isEmpty? "Pick Date" :selectedDate!,
                                   style: TextStyle(
                                       color: Theme.of(context).canvasColor,
                                       fontSize: 18,
