@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import '../../Widgets/button.dart';
+import 'Store/createPin.dart';
 
 class pinCreationPrompt extends StatelessWidget {
   const pinCreationPrompt({Key? key}) : super(key: key);
@@ -31,7 +31,12 @@ class pinCreationPrompt extends StatelessWidget {
               width: 300,
               style: TextStyle(color: Colors.white, fontSize: 16),
               radius: 5,
-              onTap: () {}),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => pinGen()),
+                );
+              }),
         ),
       ],
     ));

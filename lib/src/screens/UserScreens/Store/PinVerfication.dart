@@ -40,10 +40,8 @@ class pinCheck extends StatelessWidget {
                   style: TextStyle(color: Colors.white, fontSize: 24),
                   radius: 20,
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Createpinkey()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => pinGen()));
                   }),
             ],
           ),

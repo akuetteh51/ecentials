@@ -1,9 +1,8 @@
 import 'package:ecentialsclone/src/Widgets/button.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Store/CreateStore.dart';
 import 'package:flutter/material.dart';
 
-class pinCreated extends StatelessWidget {
-  const pinCreated({Key? key}) : super(key: key);
+class Createdpin extends StatelessWidget {
+  const Createdpin({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +31,14 @@ class pinCreated extends StatelessWidget {
             ),
             Center(
               child: Button(
-                  text: "Go to Store",
+                  text: "Done",
                   width: 302,
                   radius: 20,
                   style: TextStyle(color: Colors.white, fontSize: 15),
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => CreateStore()));
+                    //   Navigator.push(context,
+                    //       MaterialPageRoute(builder: (context) => CreateStore()));
+                    //
                   }),
             ),
           ]),
