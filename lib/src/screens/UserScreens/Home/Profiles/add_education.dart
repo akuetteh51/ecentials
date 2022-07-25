@@ -200,15 +200,20 @@ class _AddEducationState extends State<AddEducation> {
                                         log("Record ID: ${widget.elementId}");
                                         if (userState.deletingEducationState !=
                                             1) {
-
-                                            userState.deleteEducationalInformation(
-                                              token:
-                                                  userState.userInfo?['token'],
-                                              data: {
-                                                    "record_id": widget.elementId,
-                                                },
-                                            );
-
+                                          userState
+                                              .deleteEducationalInformation(
+                                                  token: userState
+                                                      .userInfo?['token'],
+                                                  data: {
+                                                    "record_id":
+                                                        widget.elementId,
+                                                  },
+                                                  getNewData: () {
+                                                    userState.getEducation(
+                                                        token:
+                                                            userState.userInfo?[
+                                                                'token']);
+                                                  });
                                         }
                                       },
                                       child: userState.deletingEducationState !=
@@ -246,15 +251,18 @@ class _AddEducationState extends State<AddEducation> {
                                               token:
                                                   userState.userInfo?['token'],
                                               data: {
-                                                "user_id":
-                                                    userState.userInfo?['id'] ??
-                                                        "",
                                                 "school_name":
                                                     school.text.trim(),
                                                 "course": program.text.trim(),
                                                 "duration": year.text.trim(),
                                                 "highest_level": "",
                                               },
+                                              getNewData: () {
+                                                    userState.getEducation(
+                                                        token:
+                                                            userState.userInfo?[
+                                                                'token']);
+                                                  }
                                             );
                                           } else {
                                             ShowToast.ecentialsToast(
@@ -308,7 +316,14 @@ class _AddEducationState extends State<AddEducation> {
                                                 "course": program.text.trim(),
                                                 "duration": year.text.trim(),
                                                 "highest_level": "",
+                                                "record_id": widget.elementId,
                                               },
+                                              getNewData: () {
+                                                    userState.getEducation(
+                                                        token:
+                                                            userState.userInfo?[
+                                                                'token']);
+                                                  }
                                             );
                                           } else {
                                             ShowToast.ecentialsToast(

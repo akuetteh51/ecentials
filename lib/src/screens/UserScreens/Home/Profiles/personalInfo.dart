@@ -43,7 +43,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
         setState(() {
           _text = [
           userState.userDataModel?.name ?? "ANDREWS OPOKU",
-          userState.userDataModel?.email ?? "AOPOKU255@GMAIL.COM",
+          userState.userInfo?['email'] ?? "AOPOKU255@GMAIL.COM",
           userState.userDataModel?.phone ?? "+233545098438",
           userState.userDataModel?.gender ?? "MALE",
           userState.userDataModel?.address ?? "PLT 16 BLK III",

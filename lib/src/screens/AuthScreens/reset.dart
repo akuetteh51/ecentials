@@ -16,8 +16,8 @@ class PasswordReset extends StatefulWidget {
 }
 
 class _PasswordResetState extends State<PasswordReset> {
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _confirmPasswordController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -36,158 +36,6 @@ class _PasswordResetState extends State<PasswordReset> {
           width: 10,
         ),
       ],
-    );
-    // Email Input text
-    final _formkey = GlobalKey<FormState>();
-    final _emailController = TextEditingController();
-
-    // Password Input text
-    final _password = Column(
-      children: [
-        const Align(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            "New Password",
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Neumorphic(
-          padding: const EdgeInsets.only(
-            left: 10,
-            right: 20,
-          ),
-          style: NeumorphicStyle(
-            shape: NeumorphicShape.flat,
-            depth: -10,
-            lightSource: LightSource.top,
-            color: Colors.grey.withOpacity(.10),
-          ),
-          child: TextFormField(
-            obscuringCharacter: '*',
-            obscureText: !widget.isVisible,
-            style: const TextStyle(fontSize: 20),
-            cursorColor: AppColors.primaryDeepColor,
-            controller: _passwordController,
-            decoration: InputDecoration(
-              suffixIcon: IconButton(
-                onPressed: () {
-                  setState(() {
-                    widget.isVisible = !widget.isVisible;
-                  });
-                },
-                icon: Icon(
-                  widget.isVisible == true
-                      ? Icons.visibility
-                      : Icons.visibility_off,
-                  color: AppColors.primaryBlackColor.withOpacity(
-                    .50,
-                  ),
-                ),
-              ),
-              hintText: "********",
-              border: const UnderlineInputBorder(
-                borderSide: BorderSide.none,
-              ),
-            ),
-          ),
-        )
-      ],
-    );
-    // Confirm Password Input text
-
-    final _confirmPassword = Column(
-      children: [
-        const Align(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            "Confirm Password",
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Neumorphic(
-          padding: const EdgeInsets.only(
-            left: 10,
-            right: 20,
-          ),
-          style: NeumorphicStyle(
-            shape: NeumorphicShape.flat,
-            depth: -10,
-            lightSource: LightSource.top,
-            color: Colors.grey.withOpacity(.10),
-          ),
-          child: TextFormField(
-            obscuringCharacter: '*',
-            obscureText: !widget.isVisible,
-            style: const TextStyle(fontSize: 20),
-            cursorColor: AppColors.primaryDeepColor,
-            controller: _confirmPasswordController,
-            decoration: InputDecoration(
-              suffixIcon: IconButton(
-                onPressed: () {
-                  setState(() {
-                    widget.isVisible = !widget.isVisible;
-                  });
-                },
-                icon: Icon(
-                  widget.isVisible == true
-                      ? Icons.visibility
-                      : Icons.visibility_off,
-                  color: AppColors.primaryBlackColor.withOpacity(
-                    .50,
-                  ),
-                ),
-              ),
-              hintText: "********",
-              border: const UnderlineInputBorder(
-                borderSide: BorderSide.none,
-              ),
-            ),
-          ),
-        )
-      ],
-    );
-
-// Sign in Button
-    final _signin = Button(
-      onTap: () {
-        if (_passwordController.text.trim().isNotEmpty &&
-            _confirmPasswordController.text.trim().isNotEmpty) {
-          if (_passwordController.text.trim().length > 7) {
-            if (_passwordController.text.trim() ==
-                _confirmPasswordController.text.trim()) {
-              authState.resetUserPassword(context: context, data: {
-                "email": widget.email,
-                "password": _passwordController.text.trim(),
-                "confirmPassword": _confirmPasswordController.text.trim()
-              });
-            } else {
-              ShowToast.ecentialsToast(
-                message: "Password do not match",
-              );
-            }
-          } else {
-            ShowToast.ecentialsToast(
-              message: "Password too short (<8)",
-            );
-          }
-        } else {
-          ShowToast.ecentialsToast(
-            message: "Password can not be empty",
-          );
-        }
-      },
-      text: "Save",
-      style: TextStyle(color: AppColors.primaryWhiteColor, fontSize: 20),
     );
 
     // App Bar
@@ -223,25 +71,22 @@ class _PasswordResetState extends State<PasswordReset> {
                       height: 20,
                     ),
                     Form(
-                      key: _formkey,
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
                             const SizedBox(
                               height: 20,
                             ),
-                            _password,
+                            password(),
                             const SizedBox(
                               height: 20,
                             ),
-                            _confirmPassword,
+                            confirmPassword(),
                             const SizedBox(
                               height: 40,
                             ),
-                            authState.resetPasswordLoaderState == 0 ||
-                                    authState.resetPasswordLoaderState == 2
-                                ? _signin
-                                : loadingButton(),
+                            authState.resetPasswordLoaderState == 1
+                                ? loadingButton() : signin(authState),
                             const SizedBox(
                               height: 20,
                             ),
@@ -254,6 +99,161 @@ class _PasswordResetState extends State<PasswordReset> {
               ),
             ]),
       ),
+    );
+  }
+
+  Widget password() {
+    return Column(
+      children: [
+        const Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            "New Password",
+            style: TextStyle(
+              fontSize: 16,
+            ),
+          ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Neumorphic(
+          padding: const EdgeInsets.only(
+            left: 10,
+            right: 20,
+          ),
+          style: NeumorphicStyle(
+            shape: NeumorphicShape.flat,
+            depth: -10,
+            lightSource: LightSource.top,
+            color: Colors.grey.withOpacity(.10),
+          ),
+          child: TextFormField(
+            obscuringCharacter: '*',
+            obscureText: !widget.isVisible,
+            style: const TextStyle(fontSize: 20),
+            cursorColor: AppColors.primaryDeepColor,
+            controller: passwordController,
+            decoration: InputDecoration(
+              suffixIcon: IconButton(
+                onPressed: () {
+                  setState(() {
+                    widget.isVisible = !widget.isVisible;
+                  });
+                },
+                icon: Icon(
+                  widget.isVisible == true
+                      ? Icons.visibility
+                      : Icons.visibility_off,
+                  color: AppColors.primaryBlackColor.withOpacity(
+                    .50,
+                  ),
+                ),
+              ),
+              hintText: "********",
+              border: const UnderlineInputBorder(
+                borderSide: BorderSide.none,
+              ),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget confirmPassword() {
+    return Column(
+      children: [
+        const Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            "Confirm Password",
+            style: TextStyle(
+              fontSize: 16,
+            ),
+          ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Neumorphic(
+          padding: const EdgeInsets.only(
+            left: 10,
+            right: 20,
+          ),
+          style: NeumorphicStyle(
+            shape: NeumorphicShape.flat,
+            depth: -10,
+            lightSource: LightSource.top,
+            color: Colors.grey.withOpacity(.10),
+          ),
+          child: TextFormField(
+            obscuringCharacter: '*',
+            obscureText: !widget.isVisible,
+            style: const TextStyle(fontSize: 20),
+            cursorColor: AppColors.primaryDeepColor,
+            controller: confirmPasswordController,
+            decoration: InputDecoration(
+              suffixIcon: IconButton(
+                onPressed: () {
+                  setState(() {
+                    widget.isVisible = !widget.isVisible;
+                  });
+                },
+                icon: Icon(
+                  widget.isVisible == true
+                      ? Icons.visibility
+                      : Icons.visibility_off,
+                  color: AppColors.primaryBlackColor.withOpacity(
+                    .50,
+                  ),
+                ),
+              ),
+              hintText: "********",
+              border: const UnderlineInputBorder(
+                borderSide: BorderSide.none,
+              ),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+
+// Sign in Button
+  Widget signin(AuthState authState) {
+    // AuthState authState = Provider.of<AuthState>(context,listen: false);
+
+    return Button(
+      onTap: () {
+        if (passwordController.text.trim().isNotEmpty &&
+            confirmPasswordController.text.trim().isNotEmpty) {
+          if (passwordController.text.trim().length > 7) {
+            if (passwordController.text.trim() ==
+                confirmPasswordController.text.trim()) {
+              authState.resetUserPassword(context: context, data: {
+                "email": widget.email,
+                "password": passwordController.text.trim(),
+                "confirmPassword": confirmPasswordController.text.trim()
+              });
+            } else {
+              ShowToast.ecentialsToast(
+                message: "Password do not match",
+              );
+            }
+          } else {
+            ShowToast.ecentialsToast(
+              message: "Password too short (<8)",
+            );
+          }
+        } else {
+          ShowToast.ecentialsToast(
+            message: "Password can not be empty",
+          );
+        }
+      },
+      text: "Save",
+      style: TextStyle(color: AppColors.primaryWhiteColor, fontSize: 20),
     );
   }
 

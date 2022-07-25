@@ -336,6 +336,25 @@ class AuthState extends ChangeNotifier {
     return true;
   }
 
+  // Update Local Data
+   updateSavedUserInfo(
+      {Map<String, dynamic>? value, String? email, String? nameOf}) async {
+    final prefs = await SharedPreferences.getInstance();
+    Map<String, dynamic>? settValue = value;
+
+    if (email != null) {
+      settValue?['email'] = email;
+    }
+    if (nameOf != null) {
+      settValue?['name'] = nameOf;
+    }
+
+    String valueEncoded = json.encode(settValue);
+
+    prefs.setString('user_info', valueEncoded);
+
+  }
+
   Future<bool> getLoginState() async {
     final prefs = await SharedPreferences.getInstance();
 

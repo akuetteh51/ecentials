@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:ecentialsclone/models/UserEducationModel.dart';
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/addSchoolButton.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
@@ -116,24 +115,23 @@ class _EducationalInfoState extends State<EducationalInfo> {
               userState.gettingEducationState == 2
                   ? Column(
                       children: [
-                       
-                          // SchoolsAttendedCard(
-                          //   schoolName: "",
-                          //   program:"",
-                          //   year: "xxxx - xxxx",
-                          //   onEdit: () {
-                          //     Navigator.of(context).push(PageRouteBuilder(
-                          //         opaque: false,
-                          //         pageBuilder: (pageBuilder, _, __) =>
-                          //             AddEducation(
-                          //               isNew: false,
-                          //               school: "",
-                          //               program: "",
-                          //               year: "xxxx - xxxx",
-                          //               elementId: "2342rwef",
-                          //             )));
-                          //   },
-                          // ),
+                        // SchoolsAttendedCard(
+                        //   schoolName: "",
+                        //   program:"",
+                        //   year: "xxxx - xxxx",
+                        //   onEdit: () {
+                        //     Navigator.of(context).push(PageRouteBuilder(
+                        //         opaque: false,
+                        //         pageBuilder: (pageBuilder, _, __) =>
+                        //             AddEducation(
+                        //               isNew: false,
+                        //               school: "",
+                        //               program: "",
+                        //               year: "xxxx - xxxx",
+                        //               elementId: "2342rwef",
+                        //             )));
+                        //   },
+                        // ),
                         for (int i = 0;
                             i <= userState.userEducation!.length - 1;
                             i++)
@@ -158,7 +156,8 @@ class _EducationalInfoState extends State<EducationalInfo> {
                                         year: userState
                                                 .userEducation![i].duration ??
                                             "xxxx - xxxx",
-                                            elementId: userState.userEducation![i].id,
+                                        elementId:
+                                            userState.userEducation![i].id,
                                       )));
                             },
                           ),

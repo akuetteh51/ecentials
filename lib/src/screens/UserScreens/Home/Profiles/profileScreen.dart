@@ -228,7 +228,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               title: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(                    
+                  Text(
                     userState.userInfo?['name'] ?? "no username",
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -284,6 +284,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 (BuildContext context, int index) {
                   return InfoCard(
                     onTap: () {
+                      if (index == 0) {
+                       userState.setFetchInfoLoaderState(0);
+                      }
                       index == 1 ? openDialog() : Get.to(() => _pages[index]);
                     },
                     topText: _topText[index],

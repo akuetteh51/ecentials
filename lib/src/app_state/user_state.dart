@@ -13,7 +13,8 @@ import '../Widgets/EcentialsToast.dart';
 
 class UserState extends ChangeNotifier {
   Map<String, dynamic>? _userInfo;
-  Map<String, dynamic>? get userInfo => _userInfo;
+  Map<String, dynamic>? get userInfo =>
+      _userInfo; //{"token":"hvhjf"} => userInfo['token']
 
   int _updateInfoLoaderState =
       0; // 0 = nothing, 1 = loading, 2= okay, 3 = failed
@@ -58,7 +59,7 @@ class UserState extends ChangeNotifier {
 
     _userInfo = saveInfo;
 
-    log("INfo RUNTIME: ${userInfo.runtimeType}");
+    // log("INfo RUNTIME: ${userInfo.runtimeType}");
 
     notifyListeners();
   }
@@ -96,7 +97,7 @@ class UserState extends ChangeNotifier {
         }
       } else {
         // If there was an error while making the request
-        log("status: ${response.statusCode}");
+        // log("status: ${response.statusCode}");
         ShowToast.ecentialsToast(
           message: "There was an error while making the request",
         );
@@ -105,7 +106,7 @@ class UserState extends ChangeNotifier {
         notifyListeners();
       }
     } catch (e) {
-      log("There was an Error: $e");
+      // log("There was an Error: $e");
       ShowToast.ecentialsToast(
         message: "There was an error while making the request",
       );
@@ -134,7 +135,7 @@ class UserState extends ChangeNotifier {
         notifyListeners();
 
         log("ONLINE DATA: ${response.data}");
-        var data = response.data['data']['personal'];
+        var data = response.data['data']['personal'];        
         _userDataModel = UserDataModel(
             name: data["name"] ?? "",
             address: data["address"] ?? "",
@@ -146,7 +147,7 @@ class UserState extends ChangeNotifier {
             height: data["height"] ?? 0,
             weight: data["weight"] ?? 0,
             ghana_card_number: data["ghana_card_number"] ?? "");
-        log("loder State: $fetchInfoLoaderState");
+        // log("loder State: $fetchInfoLoaderState");
         notifyListeners();
         return UserDataModel(
             name: data["name"] ?? "",
@@ -170,7 +171,7 @@ class UserState extends ChangeNotifier {
         return null;
       }
     } catch (e) {
-      log("There was an Error: $e");
+      // log("There was an Error: $e");
       ShowToast.ecentialsToast(
         message: "Error getting your data",
       );
@@ -182,7 +183,9 @@ class UserState extends ChangeNotifier {
 
   // add Educational Infromation of user
   addEducation(
-      {required String token, required Map<String, dynamic> data}) async {
+      {required String token,
+      required Map<String, dynamic> data,
+      required Function? getNewData}) async {
     _addingEducationState = 0;
     _addingEducationState = 1;
     notifyListeners();
@@ -195,7 +198,7 @@ class UserState extends ChangeNotifier {
     try {
       // debugPrint("TKN: $token");
       Response response = await dio.post(path,
-          options: Options(headers: {"auth-token": token}));
+          options: Options(headers: {"auth-token": token}), data: data);
       if (response.statusCode == 200 && response.data['status'] == 200) {
         _addingEducationState = 2;
         notifyListeners();
@@ -205,6 +208,7 @@ class UserState extends ChangeNotifier {
           warn: false,
         );
         getx.navigator?.pop();
+        getNewData?.call();
       } else {
         // If there was an error while making the request
         ShowToast.ecentialsToast(
@@ -286,7 +290,7 @@ class UserState extends ChangeNotifier {
   updateEducationalInformation(
       {required String? token,
       Map<String, dynamic>? data,
-      Function? getNewData}) async {
+      required Function? getNewData}) async {
     _updateEducationState = 0;
     _updateEducationState = 1;
     notifyListeners();
@@ -306,6 +310,7 @@ class UserState extends ChangeNotifier {
         notifyListeners();
 
         log("Update Edu DATA: ${response.data}");
+        log("Datat to Up: $data");
         ShowToast.ecentialsToast(
           message: "Error updating your data",
           warn: false,
@@ -337,7 +342,7 @@ class UserState extends ChangeNotifier {
   deleteEducationalInformation(
       {required String? token,
       Map<String, dynamic>? data,
-      Function? getNewData}) async {
+      required Function? getNewData}) async {
     _deletingEducationState = 0;
     _deletingEducationState = 1;
     notifyListeners();
@@ -349,7 +354,7 @@ class UserState extends ChangeNotifier {
 
     try {
       // debugPrint("TKN: $token");
-      Response response = await dio.post(path,
+      Response response = await dio.delete(path,
           data: data, options: Options(headers: {"auth-token": "$token"}));
       if (response.statusCode == 200) {
         _deletingEducationState = 2;
@@ -381,5 +386,10 @@ class UserState extends ChangeNotifier {
       notifyListeners();
       return null;
     }
+  }
+
+  setFetchInfoLoaderState(int value) {
+    _fetchInfoLoaderState = value;
+    notifyListeners();
   }
 }
