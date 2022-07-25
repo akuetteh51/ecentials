@@ -5,6 +5,7 @@ import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
+import 'package:ecentialsclone/src/app_state/nk.dart';
 import 'package:ecentialsclone/src/app_state/user_state.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
 import 'package:flutter/material.dart';
@@ -170,7 +171,7 @@ class _EditProfileState extends State<EditProfile> {
             message: "Height or Weight not properly formated",
           );
         } else {
-          // Request to update data          
+          // Request to update data
           userState.updateUserInfo(
               data: dataToSend, token: userState.userInfo?['token']);
         }
@@ -228,6 +229,7 @@ class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
     UserState userState = Provider.of<UserState>(context);
+    Nk nk = Provider.of<Nk>(context);
 
     return Scaffold(
       extendBody: true,
@@ -239,7 +241,8 @@ class _EditProfileState extends State<EditProfile> {
         floatingWidget: Center(
           child: GestureDetector(
             onTap: () {
-              Get.to(() => const ProfileScreen());
+              // nk.createPin(token: userState.userInfo?['token'], dataToSend: {"data": code });
+               Get.to(() => const ProfileScreen());
             },
             child: Container(
               decoration: BoxDecoration(
@@ -288,6 +291,11 @@ class _EditProfileState extends State<EditProfile> {
               ),
             ],
           ),
+
+        //  nk.newPinCreationState == false?
+        //   Container(height: 30,width: 30,color: Colors.red,) :
+        //   Container(height: 30,width: 30,child: CircularProgressIndicator(),),
+
           SliverToBoxAdapter(
             child: Container(
               margin: const EdgeInsets.only(
@@ -523,7 +531,9 @@ class _EditProfileState extends State<EditProfile> {
                                 child: Text(
                                   selectedDate == null
                                       ? 'Pick Date'
-                                      : selectedDate!.isEmpty? "Pick Date" :selectedDate!,
+                                      : selectedDate!.isEmpty
+                                          ? "Pick Date"
+                                          : selectedDate!,
                                   style: TextStyle(
                                       color: Theme.of(context).canvasColor,
                                       fontSize: 18,
