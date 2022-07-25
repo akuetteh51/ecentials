@@ -100,7 +100,7 @@ class AuthState extends ChangeNotifier {
         _loginLoaderState = 2;
         notifyListeners();
 
-        if (response.statusCode == 200) {
+        if (response.statusCode == 200 && response.data['id'] != null) {
           String encodedStringForLocalStorage = json.encode(response.data);
 
           saveUserInfo(encodedStringForLocalStorage).then((value) {
@@ -334,6 +334,25 @@ class AuthState extends ChangeNotifier {
     await prefs.setString('user_info', value);
 
     return true;
+  }
+
+  // Update Local Data
+   updateSavedUserInfo(
+      {Map<String, dynamic>? value, String? email, String? nameOf}) async {
+    final prefs = await SharedPreferences.getInstance();
+    Map<String, dynamic>? settValue = value;
+
+    if (email != null) {
+      settValue?['email'] = email;
+    }
+    if (nameOf != null) {
+      settValue?['name'] = nameOf;
+    }
+
+    String valueEncoded = json.encode(settValue);
+
+    prefs.setString('user_info', valueEncoded);
+
   }
 
   Future<bool> getLoginState() async {

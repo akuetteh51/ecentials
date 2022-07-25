@@ -139,10 +139,8 @@ class _EmailSuccessState extends State<EmailSuccess> {
                 height: 60,
               ),
               SizedBox(width: 200, child: 
-              authState.verifyingResetCode == 0 ||
-                                    authState.verifyingResetCode == 2
-                                ? _proceed
-                                : loadingButton(),
+              authState.verifyingResetCode == 1
+                                ? loadingButton() : _proceed,
               ),
             ],
           ),
