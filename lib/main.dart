@@ -3,6 +3,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:ecentialsclone/baseVerification.dart';
 import 'package:ecentialsclone/src/Widgets/genkey.dart';
+import 'package:ecentialsclone/src/Widgets/profile.dart';
 import 'package:ecentialsclone/src/app_state/HealthPin_state.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Chat/chatroom/chat_bubble.dart';
@@ -87,9 +88,8 @@ Future main() async {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home:
-            MyApp(),
-            // pinCreationPrompt(),
+        home: MyApp(),
+        // pinCreationPrompt(),
       ),
     ),
   );

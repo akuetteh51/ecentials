@@ -1,13 +1,18 @@
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/app_state/HealthPin_state.dart';
+import 'package:ecentialsclone/src/app_state/user_state.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/PinCreated.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/createPin.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 
 import '../../../Widgets/EcentialsToast.dart';
 import '../../../Widgets/genkey.dart';
 import '../../../Widgets/widget_pin.dart';
+import '../../../app_state/nk.dart';
+
+String Re_enteredpin = '';
 
 class RenterPin extends StatefulWidget {
   const RenterPin({Key? key}) : super(key: key);
@@ -19,10 +24,12 @@ class RenterPin extends StatefulWidget {
 class _RenterPinState extends State<RenterPin> {
   void check() {
     if (pins.length == 4) {
-      String Re_enteredpin = pins.join();
+      Re_enteredpin = pins.join();
       if (createdpin == Re_enteredpin) {
         print("$Re_enteredpin ,Confirmed");
+
         // create_pin();
+
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => Createdpin()),
@@ -44,7 +51,15 @@ class _RenterPinState extends State<RenterPin> {
   final List<String> pins = [];
   @override
   Widget build(BuildContext context) {
+    UserState userState = Provider.of<UserState>(context);
     ToastContext().init(context);
+    Nk nk = Provider.of<Nk>(context);
+    nk.createPin(
+        token: userState.userInfo?['token'],
+        dataToSend: {"data": Re_enteredpin});
+    print(Re_enteredpin);
+    print("Pin is " + Re_enteredpin);
+    print(userState.userInfo?['token']);
     return Scaffold(
       body: Column(
         children: [

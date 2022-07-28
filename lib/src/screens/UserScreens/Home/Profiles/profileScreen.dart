@@ -285,7 +285,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   return InfoCard(
                     onTap: () {
                       if (index == 0) {
-                       userState.setFetchInfoLoaderState(0);
+                        userState.setFetchInfoLoaderState(0);
                       }
                       index == 1 ? openDialog() : Get.to(() => _pages[index]);
                     },

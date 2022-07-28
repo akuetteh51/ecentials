@@ -1,7 +1,9 @@
 import 'package:ecentialsclone/src/Widgets/genkey.dart';
 import 'package:ecentialsclone/src/Widgets/widget_pin.dart';
+import 'package:ecentialsclone/src/app_state/AuthState.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/renterPin.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../Themes/ecentials_icons_icons.dart';
 
@@ -15,14 +17,20 @@ class pinGen extends StatefulWidget {
 }
 
 class _pinGenState extends State<pinGen> {
-  void check() {
-    if (pins.length == 4) {
-      createdpin = pins.join();
-      print(createdpin);
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => RenterPin()),
-      );
+  void check() async {
+    AuthState authState = Provider.of<AuthState>(context, listen: false);
+
+    bool? res = await authState.getLoginState();
+
+    if (res == true) {
+      if (pins.length == 4) {
+        createdpin = pins.join();
+        print(createdpin);
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => RenterPin()),
+        );
+      }
     }
   }
 
