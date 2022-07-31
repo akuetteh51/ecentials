@@ -1,10 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:ecentialsclone/src/Themes/colors.dart';
-import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
-import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/Widgets/information.dart';
 import 'package:flutter/material.dart';
+
+import 'edit-health-data.dart';
 
 class HealthInformation extends StatefulWidget {
   const HealthInformation({Key? key}) : super(key: key);
@@ -56,10 +56,20 @@ class _HealthInformationState extends State<HealthInformation> {
           ),
         ),
         elevation: 0,
+        // actions: [],
       ),
-      bottomNavigationBar: BottomNavBar(),
-      floatingActionButton: FloatingAmbulance(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // bottomNavigationBar: BottomNavBar(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (builder)=> EditHealthData() ));
+        },
+        child: Icon(
+          Icons.edit,
+          color: Theme.of(context).canvasColor,
+        ),
+        backgroundColor: AppColors.primaryDeepColor,
+      ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: Container(
         margin: EdgeInsets.all(20),
         child: ListView.builder(

@@ -1,5 +1,4 @@
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
-import 'package:ecentialsclone/src/app_state/HealthPin_state.dart';
 import 'package:ecentialsclone/src/app_state/user_state.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/PinCreated.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/createPin.dart';
@@ -10,41 +9,43 @@ import 'package:toast/toast.dart';
 import '../../../Widgets/EcentialsToast.dart';
 import '../../../Widgets/genkey.dart';
 import '../../../Widgets/widget_pin.dart';
-import '../../../app_state/nk.dart';
+import '../../../app_state/Health_Info_state.dart';
+import '../Home/Profiles/HealthInformation.dart';
 
-String Re_enteredpin = '';
+// String Re_enteredpin = '';
 
 class RenterPin extends StatefulWidget {
-  const RenterPin({Key? key}) : super(key: key);
+  final String? previousPin;
+  const RenterPin({Key? key, required this.previousPin}) : super(key: key);
 
   @override
   _RenterPinState createState() => _RenterPinState();
 }
 
 class _RenterPinState extends State<RenterPin> {
-  void check() {
-    if (pins.length == 4) {
-      Re_enteredpin = pins.join();
-      if (createdpin == Re_enteredpin) {
-        print("$Re_enteredpin ,Confirmed");
-
-        // create_pin();
-
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => Createdpin()),
-        );
-      } else {
-        print("$Re_enteredpin ,Wrong Pin");
-
-        ShowToast.ecentialsToast(
-          message: "Doesn't match, try again with the pin",
-        );
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => pinGen()),
-        );
-      }
+  void checkMatchAndupdate() {
+    HealthInformationState healthInformationState =
+        Provider.of<HealthInformationState>(context, listen: false);
+    UserState userState = Provider.of<UserState>(context, listen: false);
+    String? pin1 = widget.previousPin ?? "";
+    String? pin2 = pins.join();
+    if (pin1 == pin2) {
+      // Handle update
+      healthInformationState.resetHealthPin(        
+          token: userState.userInfo?['token'],
+          dataToSend: {
+            "pin": pin1,
+          },
+          callback: () {
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (builder) => const HealthInformation()));
+          });
+    } else {
+      ShowToast.ecentialsToast(
+        message: "Doesn't match, try again with the pin",
+      );
     }
   }
 
@@ -53,31 +54,29 @@ class _RenterPinState extends State<RenterPin> {
   Widget build(BuildContext context) {
     UserState userState = Provider.of<UserState>(context);
     ToastContext().init(context);
-    Nk nk = Provider.of<Nk>(context);
-    nk.createPin(
-        token: userState.userInfo?['token'],
-        dataToSend: {"data": Re_enteredpin});
-    print(Re_enteredpin);
-    print("Pin is " + Re_enteredpin);
-    print(userState.userInfo?['token']);
+    // Nk nk = Provider.of<Nk>(context);
+    // nk.createPin(
+    //     token: userState.userInfo?['token'],
+    //     dataToSend: {"data": Re_enteredpin});
+
     return Scaffold(
       body: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 80,
           ),
-          Icon(EcentialsIcons.lock),
-          SizedBox(
+          const Icon(EcentialsIcons.lock),
+          const SizedBox(
             height: 20,
           ),
-          Text(
+          const Text(
             "Re-enter your 4-digit Pincode",
             style: TextStyle(fontSize: 18),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          Container(
+          SizedBox(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -90,32 +89,31 @@ class _RenterPinState extends State<RenterPin> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 40,
           ),
-          Text(
+          const Text(
             "Forgot PIN?",
             style: TextStyle(fontSize: 16),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Expanded(
             child: KeyGen(
               onTap: (value) {
-                print(value);
                 if (pins.length < 4 && value != null) {
                   pins.add(value);
                 } else if (pins.length > 0 && value == null) {
                   pins.removeLast();
                 }
-                print(pins);
+
                 setState(() {});
-                check();
+                checkMatchAndupdate();
               },
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
           )
         ],
