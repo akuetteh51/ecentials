@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'dart:developer';
-
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/pinloader.dart';
 import 'package:ecentialsclone/src/app_state/user_state.dart';
@@ -9,7 +7,6 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/Educational
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/HealthInformation.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/editProfile.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/personalInfo.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Store/PinVerfication.dart';
 import 'package:flutter/gestures.dart';
 import 'package:get/get.dart';
 // import 'package:sliver_fab/sliver_fab.dart';

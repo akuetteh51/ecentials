@@ -20,6 +20,13 @@ class HealthInformationState extends ChangeNotifier {
   int _loginLoaderState = 0; // 0 = nothing, 1 = loading, 2= okay, 3 = failed
   int get loginLoaderState => _loginLoaderState;
 
+  int? _fetchingHealthInfoState =
+      0; // 0 = nothing, 1 = loading, 2= okay, 3 = failed
+  int? get fetchingHealthInfoState => _fetchingHealthInfoState;
+
+  bool? _updateHealthInfoState = false;
+  bool? get updateHealthInfoState => _updateHealthInfoState;
+
   void createPin({
     String? token,
     Map<String, dynamic>? dataToSend,
@@ -69,7 +76,6 @@ class HealthInformationState extends ChangeNotifier {
     }
   }
 
-
   void resetHealthPin({
     String? token,
     Map<String, dynamic>? dataToSend,
@@ -90,10 +96,9 @@ class HealthInformationState extends ChangeNotifier {
         _pinUpdateState = false;
         notifyListeners();
 
-          ShowToast.ecentialsToast(
-              message: "Pin updated succefully", warn: false, long: true);
-          callback?.call();
-        
+        ShowToast.ecentialsToast(
+            message: "Pin updated succefully", warn: false, long: true);
+        callback?.call();
       } else {
         _pinUpdateState = false;
         notifyListeners();
@@ -103,6 +108,92 @@ class HealthInformationState extends ChangeNotifier {
       }
     } catch (e) {
       _pinUpdateState = false;
+      notifyListeners();
+      log("There was an Error: $e");
+      ShowToast.ecentialsToast(
+        message: "Error making request",
+      );
+    }
+  }
+
+  void fetchHealthDetails({
+    String? token,
+    Function? callback,
+  }) async {
+    _fetchingHealthInfoState = 1;
+    notifyListeners();
+
+    Dio dio = Dio();
+
+    String path =
+        APPBASEURL.BASEURL + "/api/v1/user/account/fetch-health-details";
+
+    try {
+      Response response =
+          await dio.get(path, options: Options(headers: {"auth-token": token}));
+
+      if (response.statusCode == 200) {
+        _fetchingHealthInfoState = 2;
+        notifyListeners();
+
+        log("Health Info: ${response.data}");
+
+        // ShowToast.ecentialsToast(
+        //     message: "Pin updated succefully", warn: false, long: true);
+        callback?.call();
+      } else {
+        _fetchingHealthInfoState = 3;
+        notifyListeners();
+        ShowToast.ecentialsToast(
+          message: "Error fetching data",
+        );
+      }
+    } catch (e) {
+      _fetchingHealthInfoState = 3;
+      notifyListeners();
+      log("There was an Error: $e");
+      ShowToast.ecentialsToast(
+        message: "Error making request",
+      );
+    }
+  }
+
+
+  void addEditHealthDetails({
+    String? token,
+    Map<String, dynamic>? dataToSend,
+    Function? callback,
+  }) async {
+    _updateHealthInfoState = true;
+    notifyListeners();
+
+    Dio dio = Dio();
+
+    String path =
+        APPBASEURL.BASEURL + "/api/v1/user/account/addEdit-health-details";
+
+    try {
+      Response response =
+          await dio.post(path, data: dataToSend ,options: Options(headers: {"auth-token": token}));
+
+      if (response.statusCode == 200) {
+        _updateHealthInfoState = false;
+        notifyListeners();
+
+        ShowToast.ecentialsToast(
+            message: "Data updated succefully", warn: false, long: true);
+
+        // The callback refreshed the data bymaking a new get request    
+        callback?.call();
+      } else {
+        _updateHealthInfoState = false;
+        notifyListeners();
+        ShowToast.ecentialsToast(
+          message: "Error updating data",
+        );
+      }
+    } catch (e) {
+      _updateHealthInfoState = false;
       notifyListeners();
       log("There was an Error: $e");
       ShowToast.ecentialsToast(
