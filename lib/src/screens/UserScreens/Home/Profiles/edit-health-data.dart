@@ -9,7 +9,7 @@ import '../../../../app_state/Health_Info_state.dart';
 
 class EditHealthData extends StatefulWidget {
   final String bloodGroup;
-  final List<String>? alergies;
+  final List alergies;
   final String pulseRate;
   final String bloodPressure;
   final String temperature;
@@ -18,7 +18,7 @@ class EditHealthData extends StatefulWidget {
   const EditHealthData(
       {Key? key,
       this.bloodGroup = "",
-      this.alergies,
+      required this.alergies,
       this.pulseRate = "",
       this.bloodPressure = "",
       this.temperature = "",
@@ -37,7 +37,7 @@ class _EditHealthDataState extends State<EditHealthData> {
   TextEditingController temperature = TextEditingController();
   TextEditingController nhis = TextEditingController();
 
-  List<String> myAlergies = [];
+  List myAlergies = [];
 
   List<String> infoText = [
     "BLOOD GROUP",
@@ -53,7 +53,7 @@ class _EditHealthDataState extends State<EditHealthData> {
   assignValuesToTextFields() {
     setState(() {
       bloodGroup.text = widget.bloodGroup;
-      myAlergies = widget.alergies ?? [];
+      myAlergies = widget.alergies;
       pulseRate.text = widget.pulseRate;
       bloodPressure.text = widget.bloodPressure;
       temperature.text = widget.temperature;
@@ -536,8 +536,15 @@ class _EditHealthDataState extends State<EditHealthData> {
                                                     token: userState
                                                         .userInfo?['token'],
                                                     dataToSend: data,
-                                                    callback: () {healthInformationState.fetchHealthDetails(token: userState
-                                                        .userInfo?['token'], );});
+                                                    callback: () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                      healthInformationState
+                                                          .fetchHealthDetails(
+                                                        token: userState
+                                                            .userInfo?['token'],
+                                                      );
+                                                    });
                                           }
                                         }
                                       },

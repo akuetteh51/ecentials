@@ -1,27 +1,40 @@
 class UserHealthInfoModel {
-  final String? name;
-  final String? address;
-  final String? email;
-  final String? gender;
-  final String? occupation;
-  final String? dob;
-  final String? ghana_card_number;
-  final String? phone;
-  final int? height;
-  final int? weight;
+  final String? bloodGroup;
+  final List<String>? alergies;
+  final String? bloodPressure;
+  final String? nhisNo;
+  final int? pulseRate;
+  final int? temperature;
 
-  UserHealthInfoModel({this.name, this.address, this.gender, this.occupation, this.phone, this.height, this.weight,this.dob,this.ghana_card_number,this.email});
+  UserHealthInfoModel({
+    this.bloodGroup,
+    this.alergies,
+    this.bloodPressure,
+    this.nhisNo,
+    this.pulseRate,
+    this.temperature,
+  });
 
-  factory UserHealthInfoModel.fromJson(Map<String,dynamic> data){
-      return UserHealthInfoModel(
-        name: data["name"] ?? "", 
-        address: data["address"] ?? "",
-        gender: data["gender"] ?? "", 
-        occupation: data["occupation"] ?? "", 
-        phone: data["phone_number"] ?? "", 
-        dob: data["dob"]??"", 
-        height: data["height"] ?? 0, 
-        weight: data["weight"] ?? 0,
-        );
-  }   
+  List<String> fiels = [
+    "blood_group",
+    "alergies",
+    "blood_pressure",
+    "nhis_no",
+    "pulse_rate",
+    "temperature"];
+
+  List<String> giveClassFields() {
+    return fiels;
+  }
+
+  factory UserHealthInfoModel.fromJson(Map<String, dynamic> data) {
+    return UserHealthInfoModel(
+      bloodGroup: data["blood_group"] ?? "",
+      alergies: data["alergies"] ?? "",
+      bloodPressure: data["blood_pressure"] ?? "",
+      nhisNo: data["nhis_no"] ?? "",
+      pulseRate: data["pulse_rate"] ?? 0,
+      temperature: data["temperature"] ?? 0,
+    );
+  }
 }

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:ecentialsclone/models/HealthInfoModel.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:ecentialsclone/src/screens/UserScreens/Home/Wallet/useCardWallet.dart';
@@ -26,6 +27,9 @@ class HealthInformationState extends ChangeNotifier {
 
   bool? _updateHealthInfoState = false;
   bool? get updateHealthInfoState => _updateHealthInfoState;
+
+  Map<String, dynamic>? _healthData = {};
+  Map<String, dynamic>? get healthData => _healthData;
 
   void createPin({
     String? token,
@@ -137,6 +141,8 @@ class HealthInformationState extends ChangeNotifier {
         notifyListeners();
 
         log("Health Info: ${response.data}");
+        _healthData = response.data['message']['health'];
+        notifyListeners();
 
         // ShowToast.ecentialsToast(
         //     message: "Pin updated succefully", warn: false, long: true);
@@ -158,7 +164,6 @@ class HealthInformationState extends ChangeNotifier {
     }
   }
 
-
   void addEditHealthDetails({
     String? token,
     Map<String, dynamic>? dataToSend,
@@ -173,8 +178,8 @@ class HealthInformationState extends ChangeNotifier {
         APPBASEURL.BASEURL + "/api/v1/user/account/addEdit-health-details";
 
     try {
-      Response response =
-          await dio.post(path, data: dataToSend ,options: Options(headers: {"auth-token": token}));
+      Response response = await dio.post(path,
+          data: dataToSend, options: Options(headers: {"auth-token": token}));
 
       if (response.statusCode == 200) {
         _updateHealthInfoState = false;
@@ -183,7 +188,7 @@ class HealthInformationState extends ChangeNotifier {
         ShowToast.ecentialsToast(
             message: "Data updated succefully", warn: false, long: true);
 
-        // The callback refreshed the data bymaking a new get request    
+        // The callback refreshed the data bymaking a new get request
         callback?.call();
       } else {
         _updateHealthInfoState = false;
