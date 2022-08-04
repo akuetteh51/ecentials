@@ -2,8 +2,6 @@ import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/CurvedBottomBar.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacyDashboard.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
 import '../../../../../Themes/ecentials_icons_icons.dart';
@@ -73,7 +71,7 @@ class _PharmacyHomeState extends State<PharmacyHome> {
         GestureDetector(
           onTap: (() {
             Get.to(
-              () => ProfileScreen(),
+              () => const ProfileScreen(),
               transition: Transition.leftToRight,
             );
           }),
@@ -89,7 +87,7 @@ class _PharmacyHomeState extends State<PharmacyHome> {
           ),
           child: IconButton(
             onPressed: () {
-              Get.to(() => Cart());
+              Get.to(() => const Cart());
             },
             icon: Icon(
               EcentialsIcons.cart,

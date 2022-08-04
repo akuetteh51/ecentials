@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:toast/toast.dart';
 
 class ShowToast {
- static void ecentialsToast({String message = "",bool warn = true}) {
+ static void ecentialsToast({String message = "",bool warn = true, bool long =false}) {
     Toast.show(
             message,
-            duration: Toast.lengthShort,
+            duration: long == true ? Toast.lengthLong : Toast.lengthShort,
             gravity: Toast.bottom,
-            backgroundColor: warn == true? Colors.redAccent :const Color.fromARGB(255, 16, 242, 72),
+            backgroundColor: warn == true? Colors.redAccent : Color.fromARGB(255, 1, 198, 50),
           );
   }
 }

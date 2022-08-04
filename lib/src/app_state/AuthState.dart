@@ -121,7 +121,7 @@ class AuthState extends ChangeNotifier {
           ShowToast.ecentialsToast(
             message: "Incorrect username / password",
           );
-          _resetPasswordLoaderState = 3;
+          _loginLoaderState = 3;
           notifyListeners();
         }
       } else {

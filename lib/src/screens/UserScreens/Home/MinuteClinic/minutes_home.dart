@@ -6,9 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../Widgets/Dashboard.dart';
-import 'HospitalScreens/nearbyHospital.dart';
-import 'Lab/alllabs.dart';
-import 'Pharmacy/pharmacyDashboard.dart';
 
 class MinutesHome extends StatefulWidget {
   const MinutesHome({Key? key}) : super(key: key);
@@ -20,22 +17,22 @@ class MinutesHome extends StatefulWidget {
 class _MinutesHomeState extends State<MinutesHome> {
   // Images
   final _images = [
-    "assets/images/hospital.png",
     "assets/images/pharmacy.png",
+    "assets/images/hospital.png",
     "assets/images/lab.png",
   ];
 
   // Button Names
   final _btnNames = [
-    "Hospital",
     "Pharmacy",
+    "Hospital",
     "Lab",
   ];
 
   // Pages
   final _pages = [
-    const HospitalHome(),
     const PharmacyHome(),
+    const HospitalHome(),
     const LabsHome(),
   ];
 
@@ -46,7 +43,9 @@ class _MinutesHomeState extends State<MinutesHome> {
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 10),
         shrinkWrap: true,
-        children: List.generate(
+        children:[
+          Column(
+            children:List.generate(
           3,
           (index) => DashBoard(
               image: _images[index],
@@ -55,6 +54,9 @@ class _MinutesHomeState extends State<MinutesHome> {
                 Get.to(() => _pages[index]);
               }),
         ),
+          ),
+          const SizedBox(height: 120,),
+        ],
       ),
     );
   }

@@ -1,28 +1,36 @@
 import 'package:ecentialsclone/src/Widgets/genkey.dart';
 import 'package:ecentialsclone/src/Widgets/widget_pin.dart';
+import 'package:ecentialsclone/src/app_state/AuthState.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/renterPin.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../Themes/ecentials_icons_icons.dart';
 
 String createdpin = '';
 
-class pinGen extends StatefulWidget {
-  const pinGen({Key? key}) : super(key: key);
+class PinGen extends StatefulWidget {
+  const PinGen({Key? key}) : super(key: key);
 
   @override
-  State<pinGen> createState() => _pinGenState();
+  State<PinGen> createState() => _PinGenState();
 }
 
-class _pinGenState extends State<pinGen> {
-  void check() {
-    if (pins.length == 4) {
-      createdpin = pins.join();
-      print(createdpin);
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => RenterPin()),
-      );
+class _PinGenState extends State<PinGen> {
+  void check() async {
+    AuthState authState = Provider.of<AuthState>(context, listen: false);
+
+    bool? res = await authState.getLoginState();
+
+    if (res == true) {
+      if (pins.length == 4) {
+        createdpin = pins.join();
+        // print(createdpin);
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => RenterPin(previousPin: pins.join(),)),
+        );
+      }
     }
   }
 
@@ -32,21 +40,21 @@ class _pinGenState extends State<pinGen> {
     return Scaffold(
       body: Column(
         children: [
-          SizedBox(
+         const SizedBox(
             height: 80,
           ),
-          Icon(EcentialsIcons.lock),
-          SizedBox(
+         const Icon(EcentialsIcons.lock),
+         const SizedBox(
             height: 20,
           ),
-          Text(
+         const Text(
             "Enter your 4-digit Pincode",
             style: TextStyle(fontSize: 18),
           ),
-          SizedBox(
+         const SizedBox(
             height: 20,
           ),
-          Container(
+          SizedBox(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -59,14 +67,14 @@ class _pinGenState extends State<pinGen> {
               ],
             ),
           ),
-          SizedBox(
+         const SizedBox(
             height: 40,
           ),
-          Text(
+         const Text(
             "Forgot PIN?",
             style: TextStyle(fontSize: 16),
           ),
-          SizedBox(
+         const SizedBox(
             height: 30,
           ),
           Expanded(
@@ -84,7 +92,7 @@ class _pinGenState extends State<pinGen> {
               },
             ),
           ),
-          SizedBox(
+         const SizedBox(
             height: 50,
           )
         ],
