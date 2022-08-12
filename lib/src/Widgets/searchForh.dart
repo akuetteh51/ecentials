@@ -43,17 +43,17 @@ class Search4 extends StatelessWidget {
           decoration: InputDecoration(
             icon: IconButton(
               icon: Icon(
-                EcentialsIcons.search,
-                color: AppColors.primaryBlackColor,
-              ),
-              onPressed: searchPressed,
-            ),
-            suffixIcon: IconButton(
-              icon: Icon(
                 EcentialsIcons.mic,
                 color: AppColors.primaryBlackColor,
               ),
               onPressed: micPressed,
+            ),
+            suffixIcon: IconButton(
+              icon: Icon(
+                EcentialsIcons.search,
+                color: AppColors.primaryBlackColor,
+              ),
+              onPressed: searchPressed,
             ),
             hintText: text,
             iconColor: AppColors.primaryDeepColor,

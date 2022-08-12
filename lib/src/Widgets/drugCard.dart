@@ -4,13 +4,13 @@ import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:flutter/material.dart';
 
-class drugCard extends StatelessWidget {
+class DrugCard extends StatelessWidget {
   final String drugName;
   final String drugType;
   final int quantity;
   final double price;
 
-  const drugCard(
+  const DrugCard(
       {Key? key,
       required this.drugName,
       required this.drugType,
@@ -48,7 +48,7 @@ class drugCard extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        "$drugName",
+                        drugName,
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),

@@ -1,12 +1,18 @@
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class PharmacyCard extends StatelessWidget {
+import '../app_state/pharmacy_state.dart';
+import '../app_state/user_state.dart';
+
+
+class PharmacyCard extends StatefulWidget {
   final String pharmacyName;
   final String location;
   final String address;
   final String country;
   final String logo;
+  final Function onFav;
   const PharmacyCard({
     Key? key,
     required this.pharmacyName,
@@ -14,9 +20,17 @@ class PharmacyCard extends StatelessWidget {
     required this.address,
     required this.country,
     this.logo = "",
+    required this.onFav,
   }) : super(key: key);
 
-  String shortenLongString(String str) {
+  
+  @override
+  State<PharmacyCard> createState() => _PharmacyCardState();
+}
+
+class _PharmacyCardState extends State<PharmacyCard> {
+
+String shortenLongString(String str) {
     if (str.length <= 23) {
       return str;
     } else {
@@ -26,6 +40,10 @@ class PharmacyCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    PharmacyState pharmacyState = Provider.of<PharmacyState>(context);
+    UserState userState = Provider.of<UserState>(
+      context,
+    );    
     return SizedBox(
       height: 200.0,
       width: 174.0,
@@ -40,12 +58,27 @@ class PharmacyCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   IconButton(
-                    icon: const Icon(
-                      EcentialsIcons.heart_fill,
-                      color: Colors.red,
-                    ),
-                    onPressed: () {},
-                  ),
+                    icon: 
+                    const Icon(
+                      Icons.bookmark_add_rounded,
+                      // Icons.bookmark_add_outlined,
+                      // EcentialsIcons.heart_fill,
+                      color: Colors.amber,
+                    )
+                    // const Icon(
+                    //   Icons.bookmark_add_outlined,
+                    //   // EcentialsIcons.heart_fill,
+                    //   color: Colors.amber,
+                    // )
+                    ,
+                    onPressed: () {
+                      widget.onFav.call();
+                    },
+                  )
+                  
+                  // const SizedBox(height: 30,width: 30,child: CircularProgressIndicator(),),
+                  ,
+
                 ],
               ),
             ),
@@ -68,7 +101,7 @@ class PharmacyCard extends StatelessWidget {
             ),
             Center(
               child: Text(
-                shortenLongString(pharmacyName),
+                shortenLongString(widget.pharmacyName),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                     fontWeight: FontWeight.bold, fontSize: 14.0),
@@ -76,7 +109,7 @@ class PharmacyCard extends StatelessWidget {
             ),
             Center(
               child: Text(
-                " -${shortenLongString(location)}",
+                " -${shortenLongString(widget.location)}",
                 style: const TextStyle(
                     fontWeight: FontWeight.w400, fontSize: 13.0),
               ),
@@ -86,7 +119,7 @@ class PharmacyCard extends StatelessWidget {
             ),
             Center(
               child: Text(
-               shortenLongString(address),
+                shortenLongString(widget.address),
               ),
             ),
             const SizedBox(
