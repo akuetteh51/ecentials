@@ -104,12 +104,13 @@ class _RenterPinState extends State<RenterPin> {
               onTap: (value) {
                 if (pins.length < 4 && value != null) {
                   pins.add(value);
+                  
+                setState(() {});
+                checkMatchAndupdate();
+                
                 } else if (pins.length > 0 && value == null) {
                   pins.removeLast();
                 }
-
-                setState(() {});
-                checkMatchAndupdate();
               },
             ),
           ),

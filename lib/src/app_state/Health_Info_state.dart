@@ -223,7 +223,7 @@ class HealthInformationState extends ChangeNotifier {
 
   // Method to verify User Before giving them access to reset password
   void loginUser(
-      {Map<String, dynamic>? data, required BuildContext context}) async {
+      {Map<String, dynamic>? data, required BuildContext context, Function? trigger}) async {
     _loginLoaderState = 0;
     _loginLoaderState = 1;
     notifyListeners();
