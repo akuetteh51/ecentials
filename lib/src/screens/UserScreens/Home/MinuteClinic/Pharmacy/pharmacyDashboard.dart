@@ -12,6 +12,7 @@ import 'package:ecentialsclone/src/Widgets/schedulesCard.dart';
 import 'package:ecentialsclone/src/Widgets/search.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
 import 'package:ecentialsclone/src/app_state/user_state.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/UploadPrescription.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/cart.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/cart.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/drugDashboard.dart';
@@ -24,6 +25,7 @@ import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../app_state/pharmacy_state.dart';
+import 'FindPharmacy.dart';
 import 'cart.dart';
 
 class PharmacyDashboard extends StatefulWidget {
@@ -49,6 +51,9 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
       pharmacyState.getPopularDrugs(
         token: userState.userInfo?['token'],
       );
+
+      // prevent showing wrong loading indicator
+      pharmacyState.setPharmyBookmarkingIndexToEmpty();
     });
   }
 
@@ -100,7 +105,9 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
                             Button(
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (builder) => ScanDocument()));
+                                    builder: (builder) => UploadPrescription()));
+                                // Navigator.of(context).push(MaterialPageRoute(
+                                //     builder: (builder) => ScanDocument()));
                               },
                               text: "Upload",
                               height: 30,
@@ -131,7 +138,8 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
                             ),
                             Button(
                               onTap: () {
-                                // Get.to(() => Find());
+                            Get.to(() => FindPharmacy());
+
                               },
                               text: "Find",
                               height: 30,
@@ -183,6 +191,7 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
                                   Get.to(() => DrugDashboard());
                                 },
                                 child: PharmacyCard(
+                                  index: index,
                                   pharmacyName: pharmacyState
                                           .allPharmacyPreviews[index].name ??
                                       "Top up pharmacy ",
@@ -196,7 +205,14 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
                                   logo: pharmacyState
                                           .allPharmacyPreviews[index].logo ??
                                       "",
-                                  onFav: () {},
+                                  onFav: () {
+                                    pharmacyState.bookmarkPharmacy(
+                                      index: index,
+                                      itemId: pharmacyState
+                                          .allPharmacyPreviews[index].id!,
+                                      token:  userState.userInfo?['token'],                                      
+                                    );
+                                  },
                                 ),
                               ),
                             ),
@@ -269,8 +285,7 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
                 child: pharmacyState.fetchPopularDrugs == 2
                     ? ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: pharmacyState
-                                          .allPopularDrugs.length,
+                        itemCount: pharmacyState.allPopularDrugs.length,
                         // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         //   crossAxisCount: 2,
                         //   crossAxisSpacing: 8,
@@ -282,13 +297,16 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
                             Column(
                           children: [
                             DrugCard(
-                              drugName:pharmacyState
-                                          .allPopularDrugs[index].name ?? "Drug",
+                              drugName:
+                                  pharmacyState.allPopularDrugs[index].name ??
+                                      "Drug",
                               drugType: "Tablets",
                               quantity: pharmacyState
-                                          .allPopularDrugs[index].quantity ?? 1,
-                              price:pharmacyState
-                                          .allPopularDrugs[index].prize.toDouble() ?? 0.00,
+                                      .allPopularDrugs[index].quantity ??
+                                  1,
+                              price: pharmacyState.allPopularDrugs[index].prize
+                                      .toDouble() ??
+                                  0.00,
                             ),
                           ],
                         ),

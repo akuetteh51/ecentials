@@ -18,6 +18,9 @@ class PharmacyState extends ChangeNotifier {
   int _bookmarkingDrugState = 0;
   int get bookmarkingDrugState => _bookmarkingDrugState;
 
+  int _gettingUserFavoritePharmacies = 0;
+  int get gettingUserFavoritePharmacies => _gettingUserFavoritePharmacies;
+
   List<AllPharmaciesPreview> _allPharmacyPreviews = [];
   List<AllPharmaciesPreview> get allPharmacyPreviews => _allPharmacyPreviews;
 
@@ -27,6 +30,8 @@ class PharmacyState extends ChangeNotifier {
   List<int> _pharmacyBookmarkingIndexes = [];
   List<int> get pharmacyBookmarkingIndexes => _pharmacyBookmarkingIndexes;
 
+
+  // Fetch all pharmacies available
   fetchPharmaciesPreview({
     String? token,
     Function? callback,
@@ -77,6 +82,8 @@ class PharmacyState extends ChangeNotifier {
     }
   }
 
+
+  // Get all popular drugs
   getPopularDrugs({
     String? token,
     Function? callback,
@@ -98,13 +105,12 @@ class PharmacyState extends ChangeNotifier {
         _fetchPopularDrugs = 2;
         notifyListeners();
 
-        log("Poular Drugs: ${response.data}");
+        // log("Poular Drugs: ${response.data}");
         // _fetchPopularDrugs = response.data['message']['health'];
         List popular = response.data['data'];
 
         for (int drug = 0; drug < popular.length; drug++) {
-          _allPopularDrugs
-              .add(PopularPharmacy.fromJson(popular[drug]));
+          _allPopularDrugs.add(PopularPharmacy.fromJson(popular[drug]));
         }
 
         notifyListeners();
@@ -129,16 +135,22 @@ class PharmacyState extends ChangeNotifier {
     }
   }
 
+
+  // Bookmark a pharmacy
   bookmarkPharmacy(
-      {String? token,
-      Function? callback,
-      Map<String, dynamic>? data,
-      required int index}) async {
+      {String? token, required int index, required String itemId}) async {
     _bookmarkingDrugState = 0;
     _bookmarkingDrugState = 1;
     notifyListeners();
 
     Dio dio = Dio();
+
+    Map<String, dynamic> requestData = {
+      "bookmark_type": "pharmacy",
+      "item_id": itemId,
+    };
+
+    log("Bookmark ID: $requestData");
 
     String path =
         APPBASEURL.BASEURL + "/api/v1/user/bookmarks/add-new-bookmark-item";
@@ -146,35 +158,69 @@ class PharmacyState extends ChangeNotifier {
     try {
       _pharmacyBookmarkingIndexes.add(index);
       Response response = await dio.post(path,
-          options: Options(headers: {"auth-token": token}), data: data);
+          options: Options(headers: {"auth-token": token}), data: requestData);
 
       if (response.statusCode == 200) {
         _bookmarkingDrugState = 2;
         notifyListeners();
 
-        // log("Poular Drugs: ${response.data}");
-        // _fetchPopularDrugs = response.data['message']['health'];
-        // notifyListeners();
-
-        // ShowToast.ecentialsToast(
-        //     message: "Pin updated succefully", warn: false, long: true);
-        callback?.call();
+        ShowToast.ecentialsToast(
+          message: "Bookmarked",
+          warn: false,
+        );
+        _pharmacyBookmarkingIndexes.remove(index);
       } else {
+        log("fail 2: ${response.data}");
         _bookmarkingDrugState = 3;
         _pharmacyBookmarkingIndexes.remove(index);
         notifyListeners();
         ShowToast.ecentialsToast(
-          message: "Error fetching data",
+          message: "action failed",
         );
       }
     } catch (e) {
       _bookmarkingDrugState = 3;
       _pharmacyBookmarkingIndexes.remove(index);
       notifyListeners();
-      // log("There was an Error: $e");
+      log("There was an Error: $e");
       ShowToast.ecentialsToast(
-        message: "Error making request",
+        message: "action failed",
       );
     }
+  }
+
+
+  // Get the favorite Pharmacies for this user
+  getFavoritePharmacies(
+      {required String? token}) async {
+    _gettingUserFavoritePharmacies = 0;
+    _gettingUserFavoritePharmacies = 1;
+    notifyListeners();
+
+    Dio dio = Dio();
+
+    String path =
+        APPBASEURL.BASEURL + "/api/v1/user/favourites";
+
+    try {
+      Response response = await dio.get(path, options: Options(headers: {"auth-token": token}),);
+
+      if (response.statusCode == 200) {
+        _gettingUserFavoritePharmacies = 2;
+        notifyListeners();
+
+      } else {
+        _gettingUserFavoritePharmacies = 3;
+        notifyListeners();       
+      }
+    } catch (e) {
+      _gettingUserFavoritePharmacies = 3;
+      notifyListeners();     
+    }
+  }
+
+  setPharmyBookmarkingIndexToEmpty() {
+    _pharmacyBookmarkingIndexes = [];
+    notifyListeners();
   }
 }

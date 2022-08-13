@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/createPin.dart';
 import 'package:flutter/material.dart';

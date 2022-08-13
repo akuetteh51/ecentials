@@ -1,3 +1,4 @@
+import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -12,6 +13,7 @@ class PharmacyCard extends StatefulWidget {
   final String address;
   final String country;
   final String logo;
+  final int index ;
   final Function onFav;
   const PharmacyCard({
     Key? key,
@@ -20,7 +22,7 @@ class PharmacyCard extends StatefulWidget {
     required this.address,
     required this.country,
     this.logo = "",
-    required this.onFav,
+    required this.onFav, required this.index,
   }) : super(key: key);
 
   
@@ -57,19 +59,28 @@ String shortenLongString(String str) {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
+                pharmacyState.pharmacyBookmarkingIndexes.contains(widget.index)?
+                  SizedBox(
+                      width: 30,
+                      height: 30,
+                      child: Center(
+                        child: SizedBox(
+                          height: 13,
+                          width: 13,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2.5,
+                            color: AppColors.primaryDeepColor,
+                          ),
+                        ),
+                      ),
+                    )
+                  :
                   IconButton(
-                    icon: 
-                    const Icon(
-                      Icons.bookmark_add_rounded,
-                      // Icons.bookmark_add_outlined,
+                    icon: const Icon(
+                      Icons.bookmark_add_outlined,
                       // EcentialsIcons.heart_fill,
                       color: Colors.amber,
                     )
-                    // const Icon(
-                    //   Icons.bookmark_add_outlined,
-                    //   // EcentialsIcons.heart_fill,
-                    //   color: Colors.amber,
-                    // )
                     ,
                     onPressed: () {
                       widget.onFav.call();
