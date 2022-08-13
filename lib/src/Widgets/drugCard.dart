@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +26,7 @@ class drugCard extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(9.0),
         ),
-        elevation: 10,
+        elevation: 6,
         child: Padding(
           padding: EdgeInsets.all(8),
           child: Column(

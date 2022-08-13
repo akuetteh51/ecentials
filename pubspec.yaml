@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 publish_to: 'none' 
 
-version: 1.0.0+1
+version: 1.0.0+2
 
 environment:
   sdk: ">=2.16.0 <3.0.0"
@@ -18,19 +18,22 @@ dependencies:
   cupertino_icons: ^1.0.2
   shared_preferences: ^2.0.13
   animated_splash_screen: ^1.2.0
-  get: ^4.6.1
+  get: ^4.6.5
   smooth_page_indicator: ^1.0.0+2
   flutter_neumorphic: ^3.2.0
-  curved_navigation_bar: ^1.0.3
   dotted_border: ^2.0.0+2
   intl: ^0.17.0
-  
+  pin_code_fields: ^7.4.0
+  pinput: ^2.1.4
+  # pinput: ^2.2.7
+  provider: ^6.0.3
+  toast: ^0.3.0
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
- 
   flutter_lints: ^1.0.0
 
 
@@ -40,6 +43,8 @@ flutter:
   - family: Montserrat
     fonts: 
     - asset: assets/fonts/Montserrat-Regular.ttf
+    - asset: assets/fonts/Montserrat-Bold.ttf
+    - asset: assets/fonts/Montserrat-SemiBold.ttf
   - family: EcentialsIcons
     fonts: 
     - asset: assets/fonts/EcentialsIcons.ttf

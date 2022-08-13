@@ -1,31 +1,58 @@
 import 'package:ecentialsclone/src/Widgets/button.dart';
-import 'package:ecentialsclone/src/screens/AuthScreens/agreement.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/registration.dart';
-import 'package:ecentialsclone/src/screens/AuthScreens/reset.dart';
+import 'package:ecentialsclone/src/screens/AuthScreens/verifyEmail.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
 
 import '../../Themes/colors.dart';
-import '../UserScreens/main_screen.dart';
+import '../../Widgets/EcentialsToast.dart';
+import '../../app_state/AuthState.dart';
 
 class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+  bool isVisible;
+  Login({Key? key, this.isVisible = false}) : super(key: key);
 
   @override
   State<Login> createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
+  late TextEditingController _emailController;
+  late TextEditingController _passwordController;
+
+  @override
+  void initState() {
+    super.initState();
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  // myFunct() {
+  // AuthState authState = Provider.of<AuthState>(context,listen: false);
+  // }
+
   @override
   Widget build(BuildContext context) {
+    AuthState authState = Provider.of<AuthState>(context);
+    // HospitalState hospitalState = Provider.of<HospitalState>(context);
+
     // Logo  and Login text
     final _logotext = Row(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // hospitalState.changeName();
         Image.asset(
+          // hospitalState.nameOfPerson
           "assets/images/logo.png",
           scale: 1.5,
           fit: BoxFit.cover,
@@ -44,7 +71,7 @@ class _LoginState extends State<Login> {
     );
     // Email Input text
     final _formkey = GlobalKey<FormState>();
-    final _emailController = TextEditingController();
+
     final _email = Column(
       children: [
         const SizedBox(height: 40),
@@ -52,7 +79,7 @@ class _LoginState extends State<Login> {
           alignment: Alignment.centerLeft,
           child: Text(
             "Email",
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 16),
           ),
         ),
         const SizedBox(
@@ -86,14 +113,13 @@ class _LoginState extends State<Login> {
 
     // Password Input text
 
-    final _passwordController = TextEditingController();
     final _password = Column(
       children: [
         const Align(
           alignment: Alignment.centerLeft,
           child: Text(
             "Password",
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 16),
           ),
         ),
         const SizedBox(
@@ -112,13 +138,31 @@ class _LoginState extends State<Login> {
           ),
           child: TextField(
             obscuringCharacter: '*',
-            obscureText: true,
+            obscureText: !widget.isVisible,
             style: const TextStyle(fontSize: 20),
             cursorColor: AppColors.primaryDeepColor,
             controller: _passwordController,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
+              suffixIcon: IconButton(
+                onPressed: () {
+                  setState(() {
+                    widget.isVisible = !widget.isVisible;
+                  });
+                },
+                icon: Icon(
+                  widget.isVisible == true
+                      ? Icons.visibility
+                      : Icons.visibility_off,
+                  color: AppColors.primaryBlackColor.withOpacity(
+                    .50,
+                  ),
+                ),
+              ),
               hintText: "********",
-              border: UnderlineInputBorder(
+              hintStyle: TextStyle(
+                color: Theme.of(context).disabledColor,
+              ),
+              border: const UnderlineInputBorder(
                 borderSide: BorderSide.none,
               ),
             ),
@@ -137,10 +181,10 @@ class _LoginState extends State<Login> {
               fontSize: 16,
               decoration: TextDecoration.underline),
         ),
-        onPressed: () {
-          Get.to(() => PasswordReset(),
+        onPressed: () {          
+          Get.to(() => VerifyEmail(),
               transition: Transition.rightToLeft,
-              duration: Duration(seconds: 1));
+              duration: const Duration(milliseconds: 300));
         },
       ),
     );
@@ -148,13 +192,22 @@ class _LoginState extends State<Login> {
 // Sign in Button
     final _signin = Button(
       onTap: () async {
-        final preference = await SharedPreferences.getInstance();
-        preference.setBool("showSignup", true);
-        Get.to(
-          () => const MainScreen(),
-          transition: Transition.fadeIn,
-          duration: const Duration(seconds: 1),
-        );
+
+        // final preference = await SharedPreferences.getInstance();
+        // preference.setBool("showSignup", true);
+        if (_emailController.text.trim().isNotEmpty &&
+            _passwordController.text.trim().isNotEmpty) {
+          Map<String, dynamic> inputs = {
+            "email": _emailController.text.trim(),
+            "password": _passwordController.text.trim(),
+          };
+
+          authState.loginUser(context: context, data: inputs);
+        } else {
+          ShowToast.ecentialsToast(
+            message: "Username / passwords empty",
+          );
+        }
       },
       text: "Sign in",
       style: TextStyle(color: AppColors.primaryWhiteColor, fontSize: 20),
@@ -168,21 +221,24 @@ class _LoginState extends State<Login> {
           color: Colors.grey.withOpacity(.90),
           fontSize: 16,
           fontFamily: "Montserrat",
-          fontWeight: FontWeight.bold,
         ),
         children: [
           TextSpan(
               text: " Register",
               style: TextStyle(
-                fontWeight: FontWeight.bold,
                 color: AppColors.primaryDeepColor,
+                fontWeight: FontWeight.bold,
                 fontFamily: "Montserrat",
               ),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  Get.to(() => const Agreement(),
+                  Get.to(() => Registration(),
                       transition: Transition.rightToLeft,
-                      duration: Duration(seconds: 1));
+                      duration: const Duration(milliseconds: 400));
+                  //   Get.to(() => const Agreement(),
+                  //       transition: Transition.rightToLeft,
+                  //       duration:const Duration(milliseconds: 400));
+                  // }),
                 }),
         ],
       ),
@@ -207,7 +263,6 @@ class _LoginState extends State<Login> {
                       height: 20,
                     ),
                     Form(
-                      key: _formkey,
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
@@ -220,11 +275,17 @@ class _LoginState extends State<Login> {
                             const SizedBox(
                               height: 40,
                             ),
-                            _signin,
+                            authState.loginLoaderState == 0 ||
+                                    authState.loginLoaderState == 2
+                                ? _signin
+                                : loadingButton(),
                             const SizedBox(
-                              height: 20,
+                              height: 40,
                             ),
                             _newUser,
+                            const SizedBox(
+                              height: 30,
+                            ),
                           ],
                         ),
                       ),
@@ -233,6 +294,27 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ]),
+      ),
+    );
+  }
+
+  Widget loadingButton() {
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: 50,
+      decoration: BoxDecoration(
+        color: AppColors.primaryDeepColor,
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: Center(
+        child: SizedBox(
+          height: 15,
+          width: 15,
+          child: CircularProgressIndicator(
+            strokeWidth: 2.5,
+            color: Theme.of(context).canvasColor,
+          ),
+        ),
       ),
     );
   }
