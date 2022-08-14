@@ -213,6 +213,8 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
                                       token:  userState.userInfo?['token'],                                      
                                     );
                                   },
+                                  pharmacyId: pharmacyState
+                                          .allPharmacyPreviews[index].id!,
                                 ),
                               ),
                             ),

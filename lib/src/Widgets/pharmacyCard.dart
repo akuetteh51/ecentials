@@ -1,11 +1,12 @@
+import 'dart:developer';
+
 import 'package:ecentialsclone/src/Themes/colors.dart';
-import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../app_state/pharmacy_state.dart';
 import '../app_state/user_state.dart';
-
 
 class PharmacyCard extends StatefulWidget {
   final String pharmacyName;
@@ -13,7 +14,8 @@ class PharmacyCard extends StatefulWidget {
   final String address;
   final String country;
   final String logo;
-  final int index ;
+  final String pharmacyId;
+  final int index;
   final Function onFav;
   const PharmacyCard({
     Key? key,
@@ -22,17 +24,17 @@ class PharmacyCard extends StatefulWidget {
     required this.address,
     required this.country,
     this.logo = "",
-    required this.onFav, required this.index,
+    required this.onFav,
+    required this.index,
+    required this.pharmacyId,
   }) : super(key: key);
 
-  
   @override
   State<PharmacyCard> createState() => _PharmacyCardState();
 }
 
 class _PharmacyCardState extends State<PharmacyCard> {
-
-String shortenLongString(String str) {
+  String shortenLongString(String str) {
     if (str.length <= 23) {
       return str;
     } else {
@@ -41,11 +43,23 @@ String shortenLongString(String str) {
   }
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      PharmacyState pharmacyState =
+          Provider.of<PharmacyState>(context, listen: false);
+      UserState userState = Provider.of<UserState>(context, listen: false);
+
+      pharmacyState.getFavoritePharmacies(
+          token: userState.userInfo?['token'] ?? "");
+
+      log("message");
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     PharmacyState pharmacyState = Provider.of<PharmacyState>(context);
-    UserState userState = Provider.of<UserState>(
-      context,
-    );    
     return SizedBox(
       height: 200.0,
       width: 174.0,
@@ -59,37 +73,61 @@ String shortenLongString(String str) {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                pharmacyState.pharmacyBookmarkingIndexes.contains(widget.index)?
-                  SizedBox(
-                      width: 30,
-                      height: 30,
-                      child: Center(
-                        child: SizedBox(
-                          height: 13,
-                          width: 13,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2.5,
-                            color: AppColors.primaryDeepColor,
+                  pharmacyState.gettingUserFavoritePharmacies == 2
+                      ? (pharmacyState.pharmacyBookmarkingIndexes
+                              .contains(widget.index)
+                          ? SizedBox(
+                              width: 30,
+                              height: 30,
+                              child: Center(
+                                child: SizedBox(
+                                  height: 13,
+                                  width: 13,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2.5,
+                                    color: AppColors.primaryDeepColor,
+                                  ),
+                                ),
+                              ),
+                            )
+                          : pharmacyState.userFAVpharmacies
+                                  .contains(widget.pharmacyId)
+                              ? IconButton(
+                                  icon: const Icon(
+                                    Icons.bookmark,
+                                    // EcentialsIcons.heart_fill,
+                                    color: Colors.amber,
+                                  ),
+                                  onPressed: () {
+                                    widget.onFav.call();
+                                  },
+                                )
+                              : IconButton(
+                                  icon: const Icon(
+                                    Icons.bookmark_add_outlined,
+                                    // EcentialsIcons.heart_fill,
+                                    color: Colors.amber,
+                                  ),
+                                  onPressed: () {
+                                    widget.onFav.call();
+                                  },
+                                ))
+                      : Shimmer.fromColors(
+                          baseColor: const Color.fromARGB(255, 255, 255, 255),
+                          highlightColor:
+                              const Color.fromARGB(255, 206, 200, 200),
+                          enabled: true,
+                          child: const Center(
+                            child: Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: Icon(
+                                Icons.bookmark,
+                                // EcentialsIcons.heart_fill,
+                                color: Colors.black,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    )
-                  :
-                  IconButton(
-                    icon: const Icon(
-                      Icons.bookmark_add_outlined,
-                      // EcentialsIcons.heart_fill,
-                      color: Colors.amber,
-                    )
-                    ,
-                    onPressed: () {
-                      widget.onFav.call();
-                    },
-                  )
-                  
-                  // const SizedBox(height: 30,width: 30,child: CircularProgressIndicator(),),
-                  ,
-
                 ],
               ),
             ),

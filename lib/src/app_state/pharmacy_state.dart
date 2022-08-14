@@ -30,6 +30,8 @@ class PharmacyState extends ChangeNotifier {
   List<int> _pharmacyBookmarkingIndexes = [];
   List<int> get pharmacyBookmarkingIndexes => _pharmacyBookmarkingIndexes;
 
+  List _userFAVpharmacies = [];
+  List get userFAVpharmacies => _userFAVpharmacies;
 
   // Fetch all pharmacies available
   fetchPharmaciesPreview({
@@ -81,7 +83,6 @@ class PharmacyState extends ChangeNotifier {
       );
     }
   }
-
 
   // Get all popular drugs
   getPopularDrugs({
@@ -135,7 +136,6 @@ class PharmacyState extends ChangeNotifier {
     }
   }
 
-
   // Bookmark a pharmacy
   bookmarkPharmacy(
       {String? token, required int index, required String itemId}) async {
@@ -169,6 +169,7 @@ class PharmacyState extends ChangeNotifier {
           warn: false,
         );
         _pharmacyBookmarkingIndexes.remove(index);
+        getFavoritePharmacies(token: token);
       } else {
         log("fail 2: ${response.data}");
         _bookmarkingDrugState = 3;
@@ -189,10 +190,8 @@ class PharmacyState extends ChangeNotifier {
     }
   }
 
-
   // Get the favorite Pharmacies for this user
-  getFavoritePharmacies(
-      {required String? token}) async {
+  getFavoritePharmacies({required String? token}) async {
     _gettingUserFavoritePharmacies = 0;
     _gettingUserFavoritePharmacies = 1;
     notifyListeners();
@@ -200,22 +199,37 @@ class PharmacyState extends ChangeNotifier {
     Dio dio = Dio();
 
     String path =
-        APPBASEURL.BASEURL + "/api/v1/user/favourites";
+        APPBASEURL.BASEURL + "/api/v1/user/bookmarks/list-bookmark-items";
+
+    Map<String, dynamic> requestData = {
+      "bookmark_type": "pharmacy",
+    };
 
     try {
-      Response response = await dio.get(path, options: Options(headers: {"auth-token": token}),);
+      log("stRT");
+      Response response = await dio.post(path,
+          options: Options(headers: {"auth-token": token}), data: requestData);
 
       if (response.statusCode == 200) {
         _gettingUserFavoritePharmacies = 2;
-        notifyListeners();
 
+        List favData = response.data['data'];
+        for (int fav = 0; fav < favData.length; fav++) {
+          _userFAVpharmacies.add(favData[fav]['item_id']);
+        }
+        log("USER FAVS: ${response.data}");
+        notifyListeners();
       } else {
+        log("NOT 200");
+
         _gettingUserFavoritePharmacies = 3;
-        notifyListeners();       
+        notifyListeners();
       }
     } catch (e) {
+      log("FAILED $e");
+
       _gettingUserFavoritePharmacies = 3;
-      notifyListeners();     
+      notifyListeners();
     }
   }
 
