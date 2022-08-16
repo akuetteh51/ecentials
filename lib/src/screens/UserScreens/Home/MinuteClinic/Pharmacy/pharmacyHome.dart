@@ -116,7 +116,7 @@ class _PharmacyHomeState extends State<PharmacyHome> {
             Get.to(() => FindDrug()); 
           },
 
-          searchPressed: () {},
+        
 
           micPressed: () {},
           width: MediaQuery.of(context).size.width,
