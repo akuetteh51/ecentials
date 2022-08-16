@@ -12,9 +12,13 @@ import 'package:ecentialsclone/src/Widgets/schedulesCard.dart';
 import 'package:ecentialsclone/src/Widgets/search.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
 
+
 import 'package:ecentialsclone/src/app_state/user_state.dart';
 
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/UploadPrescription.dart';
+
+
+import 'package:ecentialsclone/src/app_state/user_state.dart';
 
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/cart.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/cart.dart';
@@ -22,6 +26,7 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmac
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/FindPharmacy.dart';
+
 import 'package:get/get.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 import 'package:provider/provider.dart';
@@ -100,6 +105,7 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
                             SizedBox(
                               height: 20,
                             ),
+
                             Builder(
                               builder: (context) {
                                 return Button(
@@ -113,11 +119,13 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
                                       TextStyle(color: AppColors.primaryWhiteColor),
                                 );
                               }
-                            )
-                          ],
+
+                          
+                          
                         ),
-                      ),
-                    ),
+                          
+                      
+                    
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.85 / 2,
                       height: 150,
@@ -135,6 +143,7 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
                             SizedBox(
                               height: 20,
                             ),
+
                             Builder(
                               builder: (context) {
                                  
@@ -150,18 +159,19 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
                                       TextStyle(color: AppColors.primaryWhiteColor),
                                 );
                               }
-                            ),
-                          ],
+
+                            )
+                          ] 
                         ),
                       ),
                     ),
-                  ],
+                  ]
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
-              Container(
+              // const SizedBox(
+             //   height: 20,
+             ),
+               Container(
                 margin: const EdgeInsets.only(
                   top: 15, // left: 24.78
                 ),
@@ -325,6 +335,10 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
             ],
           ),
         ),
+            ]
+          )
+        )    
+          
       ),
     );
   }

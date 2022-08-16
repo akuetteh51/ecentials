@@ -9,6 +9,7 @@ import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/Widgets/schedulesCard.dart';
 import 'package:ecentialsclone/src/Widgets/sliverFab.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/TechnicianSchedule.dart';
+
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 
@@ -26,25 +27,25 @@ class _DoctorInformationState extends State<DoctorInformation> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColors.primaryWhiteColor,
-         bottomSheet: Container(
-        width: MediaQuery.of(context).size.width,
-        margin: const EdgeInsets.symmetric(
-          horizontal: 40,
-          vertical: 10,
-        ),
-        child: GestureDetector(
-          onTap: () {
-            Get.to(() => TechnicianSchedule());
-          },
-          child: Button(
-            text: "Book session",
-            color: Colors.teal,
-            style: TextStyle(
-              color: AppColors.primaryWhiteColor,
+        bottomSheet: Container(
+          width: MediaQuery.of(context).size.width,
+          margin: const EdgeInsets.symmetric(
+            horizontal: 40,
+            vertical: 10,
+          ),
+          child: GestureDetector(
+            onTap: () {
+              Get.to(() => TechnicianSchedule());
+            },
+            child: Button(
+              text: "Book session",
+              color: Colors.teal,
+              style: TextStyle(
+                color: AppColors.primaryWhiteColor,
+              ),
             ),
           ),
         ),
-      ),
         body: SliverFab(
             floatingWidget: FloatingActionButton(
               backgroundColor: AppColors.primaryOrangeColor,
@@ -75,9 +76,6 @@ class _DoctorInformationState extends State<DoctorInformation> {
                       fit: BoxFit.cover,
                     ),
                   )),
-
-            ]
-            )
-            );
+            ]));
   }
 }

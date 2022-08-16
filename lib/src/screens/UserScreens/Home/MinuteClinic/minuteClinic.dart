@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, prefer_const_constructors, unused_import, duplicate_impor, duplicate_ignore, duplicate_import
+
 // ignore_for_file: file_names, prefer_const_constructors, unused_import
 
 import 'package:ecentialsclone/src/Themes/colors.dart';
@@ -6,16 +6,20 @@ import 'package:ecentialsclone/src/Widgets/Dashboard.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
+
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/Hospital2DocProfile.dart';
 
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/LabDirection.dart';
+
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/doctorInformation.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labSchedules.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labChat.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/alllabs.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labDetails.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/cart.dart';
+
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/FindPharmacy.dart';
+
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/orderCompleted.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/orderProcessed.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/orderSubmitted.dart';
@@ -92,6 +96,7 @@ class _MinuteClinicState extends State<MinuteClinic> {
     // screens
     final _pages = [
 
+
       Alllabs(),
       LabDetails(),
       LabSchedules(),
@@ -134,6 +139,7 @@ class _MinuteClinicState extends State<MinuteClinic> {
       // Cart(),
       // LabChat(),
       // DoctorInformation(),
+
 
 
       MinutesHome(),

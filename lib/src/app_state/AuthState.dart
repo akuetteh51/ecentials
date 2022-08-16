@@ -1,4 +1,3 @@
-// ignore_for_file: unnecessary_import
 
 import 'dart:convert';
 import 'dart:developer';
@@ -11,7 +10,7 @@ import 'package:ecentialsclone/src/screens/AuthScreens/emailSuccess.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/reset.dart';
 import 'package:flutter/material.dart';
-//import 'package:get/get_connect/http/src/response/response.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../screens/UserScreens/main_screen.dart';

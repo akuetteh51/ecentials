@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import, camel_case_types, prefer_const_constructors, prefer_const_literals_to_create_immutables, duplicate_ignore, avoid_print, unnecessary_import, unused_label, duplicate_import
+
 
 import 'dart:ui';
 
@@ -12,6 +12,7 @@ import 'package:ecentialsclone/src/Widgets/outlinedButton.dart';
 import 'package:ecentialsclone/src/Widgets/prominentDoctors.dart';
 import 'package:ecentialsclone/src/Widgets/search.dart';
 
+
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart ';
 
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/Hospital2DocProfile.dart';
@@ -19,6 +20,9 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/Hos
 
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/LabDirection.dart';
 
+
+
+import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
 
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/doctorInformation.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labSchedules.dart';
@@ -282,7 +286,11 @@ class _LabDetailsState extends State<LabDetails> {
                             ),
                           ),
                           onPressed: () {
+
                             Get.to(() => LabDirection());
+
+                            Get.to(() => LabChat());
+
                           },
                           child: Row(children: [
                             Text("Direction"),
@@ -312,6 +320,7 @@ class _LabDetailsState extends State<LabDetails> {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
+
 
                   InkWell(
                     onTap: () {
@@ -347,6 +356,7 @@ class _LabDetailsState extends State<LabDetails> {
                     ),
                   ),
 
+
                   for (int j = 0; j < 5; j++)
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -360,7 +370,11 @@ class _LabDetailsState extends State<LabDetails> {
                             specialization: "Neuro Surgeon"),
                       ),
                     ),
+
        ],
+
+                ],
+
               ),
             ),
           ),

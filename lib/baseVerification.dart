@@ -1,6 +1,8 @@
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
+
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/FindDrug.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/UploadVault.dart';
+
 import 'package:ecentialsclone/src/screens/UserScreens/main_screen.dart';
 import 'package:ecentialsclone/src/screens/onboardingScreen.dart';
 import 'package:flutter/material.dart';
