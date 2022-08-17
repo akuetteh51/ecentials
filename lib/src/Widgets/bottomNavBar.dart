@@ -50,14 +50,7 @@ class BottomNavBar extends StatefulWidget {
 
   
 
-  BottomNavBar({
-    Key? key,
-    this.backgroundColor = const Color(0xFF033A64),
-
-    // this.index = 0,
-    //this.onPressed = 0, required SingleChildScrollView body,
-    this.onPressed,
-  }) : super(key: key);
+ 
 
 
   @override
