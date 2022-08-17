@@ -298,17 +298,22 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
                         itemBuilder: (BuildContext context, int index) =>
                             Column(
                           children: [
-                            DrugCard(
-                              drugName:
-                                  pharmacyState.allPopularDrugs[index].name ??
-                                      "Drug",
-                              drugType: "Tablets",
-                              quantity: pharmacyState
-                                      .allPopularDrugs[index].quantity ??
-                                  1,
-                              price: pharmacyState.allPopularDrugs[index].prize
-                                      .toDouble() ??
-                                  0.00,
+                            GestureDetector(
+                              onTap:(){
+                                Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>DrugDashboard()));
+                              },
+                              child: DrugCard(
+                                drugName:
+                                    pharmacyState.allPopularDrugs[index].name ??
+                                        "Drug",
+                                drugType: "Tablets",
+                                quantity: pharmacyState
+                                        .allPopularDrugs[index].quantity ??
+                                    1,
+                                price: pharmacyState.allPopularDrugs[index].prize
+                                        .toDouble() ??
+                                    0.00,
+                              ),
                             ),
                           ],
                         ),
