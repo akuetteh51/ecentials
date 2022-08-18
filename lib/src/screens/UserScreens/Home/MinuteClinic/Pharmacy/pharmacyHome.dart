@@ -3,10 +3,12 @@ import 'package:ecentialsclone/src/Widgets/CurvedBottomBar.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacyDashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../Themes/ecentials_icons_icons.dart';
 import '../../../../../Widgets/navDrawer.dart';
 import '../../../../../Widgets/searchForh.dart';
+import '../../../../../app_state/user_state.dart';
 import '../../../Chat/ChatHomePage.dart';
 import '../../../Notifications/notifications.dart';
 import '../../../Store/store.dart';
@@ -28,8 +30,19 @@ class _PharmacyHomeState extends State<PharmacyHome> {
     });
   }
 
+  String shortenLongString(String str) {
+    if (str.length <= 12) {
+      return str;
+    } else {
+      return str.substring(0, 9) + "...";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    UserState userState = Provider.of<UserState>(
+      context,
+    );    
     final _appBar = AppBar(
       toolbarHeight: 70,
       elevation: 0,
@@ -58,12 +71,12 @@ class _PharmacyHomeState extends State<PharmacyHome> {
           ),
           children: [
             TextSpan(
-                text: "Sussan",
+                text:shortenLongString(userState.userInfo?['name'] ?? "welcome"),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontFamily: "Montserrat",
                   color: AppColors.primaryDeepColor,
-                )),
+                ),),
           ],
         ),
       ),
