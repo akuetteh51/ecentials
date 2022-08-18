@@ -1,5 +1,7 @@
 
 
+// ignore_for_file: dead_code
+
 import 'dart:ui';
 
 import 'package:ecentialsclone/src/Themes/colors.dart';
@@ -373,7 +375,7 @@ class _LabDetailsState extends State<LabDetails> {
 
        ],
 
-                ],
+                
 
               ),
             ),
