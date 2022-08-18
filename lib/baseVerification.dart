@@ -1,7 +1,9 @@
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/FindDrug.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/Pharmacy2.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/UploadVault.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/drugDetails.dart';
 
 import 'package:ecentialsclone/src/screens/UserScreens/main_screen.dart';
 import 'package:ecentialsclone/src/screens/onboardingScreen.dart';
@@ -30,7 +32,7 @@ class _BaseVerificationState extends State<BaseVerification> {
       // Verify if user has logged in already, if not send them to login screen
       if (res == true) {
         Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (builder) => const MainScreen()),
+            MaterialPageRoute(builder: (builder) => const Pharmacy2()),
             (route) => false);
       } else {
         Navigator.of(context).pushAndRemoveUntil(
