@@ -1,6 +1,6 @@
 
 
-// ignore_for_file: dead_code
+// ignore_for_file: dead_code, prefer_const_constructors
 
 import 'dart:ui';
 
