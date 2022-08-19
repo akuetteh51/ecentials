@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/app_state/user_state.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/homeScreen.dart';

@@ -1,4 +1,6 @@
-// ignore_for_file: unused_import, camel_case_types, prefer_const_constructors, prefer_const_literals_to_create_immutables, duplicate_ignore, avoid_print, unnecessary_import, unused_label
+
+
+// ignore_for_file: dead_code, prefer_const_constructors
 
 import 'dart:ui';
 
@@ -12,11 +14,23 @@ import 'package:ecentialsclone/src/Widgets/outlinedButton.dart';
 import 'package:ecentialsclone/src/Widgets/prominentDoctors.dart';
 import 'package:ecentialsclone/src/Widgets/search.dart';
 
+
+import 'package:ecentialsclone/src/Widgets/topDoctor.dart ';
+
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/Hospital2DocProfile.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/Hospital2DocProfile.dart';
+
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/LabDirection.dart';
+
+
+
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
+
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/doctorInformation.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labSchedules.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labChat.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labDetails.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -274,7 +288,11 @@ class _LabDetailsState extends State<LabDetails> {
                             ),
                           ),
                           onPressed: () {
+
+                            Get.to(() => LabDirection());
+
                             Get.to(() => LabChat());
+
                           },
                           child: Row(children: [
                             Text("Direction"),
@@ -304,6 +322,43 @@ class _LabDetailsState extends State<LabDetails> {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
+
+
+                  InkWell(
+                    onTap: () {
+                      Get.to(() => Hospital2DocProfile());
+                    },
+                    child: ProminentDoctors(
+                        image: "assets/images/doctor1.png",
+                        docName: "Clara",
+                        specialization: "Neuro Surgeon"),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 25.97, top: 0),
+                    child: InkWell(
+                      onTap: () {
+                        Get.to(() => Hospital2DocProfile());
+                      },
+                      child: ProminentDoctors(
+                          image: "assets/images/doctor2.png",
+                          docName: "Clara",
+                          specialization: "Cardio Surgeon"),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 25.05, top: 0),
+                    child: InkWell(
+                      onTap: () {
+                        Get.to(() => Hospital2DocProfile());
+                      },
+                      child: ProminentDoctors(
+                          image: "assets/images/doctor.png",
+                          docName: "Clara",
+                          specialization: "Neuro Surgeon"),
+                    ),
+                  ),
+
+
                   for (int j = 0; j < 5; j++)
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -317,7 +372,11 @@ class _LabDetailsState extends State<LabDetails> {
                             specialization: "Neuro Surgeon"),
                       ),
                     ),
-                ],
+
+       ],
+
+                
+
               ),
             ),
           ),

@@ -1,7 +1,12 @@
+
+// ignore_for_file: prefer_
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/editProfile.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/Favorite.dart';
+
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/downloads.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/downloads.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/langauge.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/notification.dart';
@@ -31,6 +36,8 @@ class _SettingsState extends State<Settings> {
           onTap: () {
             Navigator.pop(context);
           },
+
+
           child: Icon(
             Icons.arrow_back_sharp,
             color: Colors.black54,
@@ -196,6 +203,11 @@ class _SettingsState extends State<Settings> {
             ),
           ),
           ListTile(
+
+             onTap: () {
+              Get.to(() => const Favorite());
+            },
+
             leading: Image.asset(
               "assets/images/heart.png",
             ),

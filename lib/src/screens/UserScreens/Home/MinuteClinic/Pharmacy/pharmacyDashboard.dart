@@ -11,8 +11,17 @@ import 'package:ecentialsclone/src/Widgets/pharmacyCard.dart';
 import 'package:ecentialsclone/src/Widgets/schedulesCard.dart';
 import 'package:ecentialsclone/src/Widgets/search.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
+
+
 import 'package:ecentialsclone/src/app_state/user_state.dart';
+
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/UploadPrescription.dart';
+
+
+import 'package:ecentialsclone/src/app_state/user_state.dart';
+
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/UploadPrescription.dart';
+
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/cart.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/cart.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/drugDashboard.dart';
@@ -20,6 +29,8 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmac
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/scanDocument.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/FindPharmacy.dart';
+
 import 'package:get/get.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 import 'package:provider/provider.dart';
@@ -102,23 +113,42 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
                             SizedBox(
                               height: 20,
                             ),
-                            Button(
-                              onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (builder) => UploadPrescription()));
-                                // Navigator.of(context).push(MaterialPageRoute(
-                                //     builder: (builder) => ScanDocument()));
-                              },
-                              text: "Upload",
-                              height: 30,
-                              width: 100,
-                              style:
-                                  TextStyle(color: AppColors.primaryWhiteColor),
-                            )
-                          ],
+
+                            Builder(
+                              builder: (context) {
+                                return Button(
+                                   onTap: () {
+                               Get.to(() => UploadPrescription());
+                                   },
+                                  text: "Upload",
+                                  height: 30,
+                                  width: 100,
+                                  style:
+                                      TextStyle(color: AppColors.primaryWhiteColor),
+                                );
+                              }
+
+                          
+                          
+ //                           Button(
+ //                             onTap: () {
+  //                              Navigator.of(context).push(MaterialPageRoute(
+  //                                  builder: (builder) => UploadPrescription()));
+ //                               // Navigator.of(context).push(MaterialPageRoute(
+   //                             //     builder: (builder) => ScanDocument()));
+    //                          },
+  //                            text: "Upload",
+   //                           height: 30,
+  //                            width: 100,
+ //                             style:
+      //                            TextStyle(color: AppColors.primaryWhiteColor),
+    //                        )
+  //                        ],
+//
                         ),
-                      ),
-                    ),
+                          
+                      
+                    
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.85 / 2,
                       height: 150,
@@ -136,28 +166,36 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
                             SizedBox(
                               height: 20,
                             ),
-                            Button(
-                              onTap: () {
-                            Get.to(() => FindPharmacy());
 
-                              },
-                              text: "Find",
-                              height: 30,
-                              width: 100,
-                              style:
-                                  TextStyle(color: AppColors.primaryWhiteColor),
-                            ),
-                          ],
+                            Builder(
+                              builder: (context) {
+                                 
+                                return Button(
+                                   onTap: () {
+                               Get.to(() => FindPharmacy());
+                                   },
+                                 
+                                  text: "Find",
+                                  height: 30,
+                                  width: 100,
+                                  style:
+                                      TextStyle(color: AppColors.primaryWhiteColor),
+                                );
+                              }
+
+                            )
+                          ] 
+
                         ),
                       ),
                     ),
-                  ],
+                  ]
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
-              Container(
+              // const SizedBox(
+             //   height: 20,
+             ),
+               Container(
                 margin: const EdgeInsets.only(
                   top: 15, // left: 24.78
                 ),
@@ -354,6 +392,10 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
             ],
           ),
         ),
+            ]
+          )
+        )    
+          
       ),
     );
   }

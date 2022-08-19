@@ -142,7 +142,7 @@ class _FindDrugState extends State<FindDrug> {
                     mainAxisSpacing: 8,
                     mainAxisExtent: 200,
                   ),
-                  itemBuilder: (BuildContext context, int index) => DrugCard(
+ itemBuilder: (BuildContext context, int index) => DrugCard(
                     drugName: "Ibuprofen",
                     drugType: "Tablets",
                     quantity: 50,
