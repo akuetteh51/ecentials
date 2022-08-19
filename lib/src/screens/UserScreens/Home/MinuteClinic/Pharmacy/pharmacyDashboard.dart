@@ -20,9 +20,13 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmac
 
 import 'package:ecentialsclone/src/app_state/user_state.dart';
 
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/UploadPrescription.dart';
+
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/cart.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/cart.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/drugDashboard.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacyHome.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/scanDocument.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/FindPharmacy.dart';
@@ -32,6 +36,7 @@ import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../app_state/pharmacy_state.dart';
+import 'FindPharmacy.dart';
 import 'cart.dart';
 
 class PharmacyDashboard extends StatefulWidget {
@@ -57,6 +62,9 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
       pharmacyState.getPopularDrugs(
         token: userState.userInfo?['token'],
       );
+
+      // prevent showing wrong loading indicator
+      pharmacyState.setPharmyBookmarkingIndexToEmpty();
     });
   }
 
@@ -122,6 +130,21 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
 
                           
                           
+ //                           Button(
+ //                             onTap: () {
+  //                              Navigator.of(context).push(MaterialPageRoute(
+  //                                  builder: (builder) => UploadPrescription()));
+ //                               // Navigator.of(context).push(MaterialPageRoute(
+   //                             //     builder: (builder) => ScanDocument()));
+    //                          },
+  //                            text: "Upload",
+   //                           height: 30,
+  //                            width: 100,
+ //                             style:
+      //                            TextStyle(color: AppColors.primaryWhiteColor),
+    //                        )
+  //                        ],
+//
                         ),
                           
                       
@@ -162,6 +185,7 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
 
                             )
                           ] 
+
                         ),
                       ),
                     ),
@@ -189,7 +213,7 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
               ),
               SizedBox(
                 width: MediaQuery.of(context).size.width,
-                height: 200.0,
+                height: 250.0,
                 child: pharmacyState.fetchingPharmaciesPreview == 2
                     ? SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
@@ -205,11 +229,31 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
                                   Get.to(() => DrugDashboard());
                                 },
                                 child: PharmacyCard(
-                                    pharmacyName:pharmacyState.allPharmacyPreviews[index].name  ?? "Top up pharmacy ",
-                                    location:pharmacyState.allPharmacyPreviews[index].city  ??  "Spintex",
-                                    address:pharmacyState.allPharmacyPreviews[index].address  ??  "Accra",
-                                    country: "Ghana",
-                                    logo: pharmacyState.allPharmacyPreviews[index].logo ?? "",),
+                                  index: index,
+                                  pharmacyName: pharmacyState
+                                          .allPharmacyPreviews[index].name ??
+                                      "Top up pharmacy ",
+                                  location: pharmacyState
+                                          .allPharmacyPreviews[index].city ??
+                                      "Spintex",
+                                  address: pharmacyState
+                                          .allPharmacyPreviews[index].address ??
+                                      "Accra",
+                                  country: "Ghana",
+                                  logo: pharmacyState
+                                          .allPharmacyPreviews[index].logo ??
+                                      "",
+                                  onFav: () {
+                                    pharmacyState.bookmarkPharmacy(
+                                      index: index,
+                                      itemId: pharmacyState
+                                          .allPharmacyPreviews[index].id!,
+                                      token:  userState.userInfo?['token'],                                      
+                                    );
+                                  },
+                                  pharmacyId: pharmacyState
+                                          .allPharmacyPreviews[index].id!,
+                                ),
                               ),
                             ),
                           ),
@@ -273,33 +317,46 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
                 ),
               ),
               const SizedBox(
-                height: 16.0,
+                height: 30.0,
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.6,
+                height: 250,
                 width: MediaQuery.of(context).size.width,
-                child:pharmacyState.fetchPopularDrugs == 2 ?  
-                 GridView.builder(
-                  itemCount: 6,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 8,
-                    mainAxisSpacing: 8,
-                    mainAxisExtent: 200,
-                  ),
-                  itemBuilder: (BuildContext context, int index) =>
-                   Column(
-                     children: [
-                     
-                       drugCard(
-                        drugName: "Ibuprofen",
-                        drugType: "Tablets",
-                        quantity: 50,
-                        price: 5.00,
-                  ),
-                     ],
-                   ),
-                ):pharmacyState.fetchPopularDrugs == 3
+                child: pharmacyState.fetchPopularDrugs == 2
+                    ? ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: pharmacyState.allPopularDrugs.length,
+                        // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        //   crossAxisCount: 2,
+                        //   crossAxisSpacing: 8,
+                        //   mainAxisSpacing: 8,
+                        //   mainAxisExtent: 200,
+                        // ),
+                        // _allPopularDrugs
+                        itemBuilder: (BuildContext context, int index) =>
+                            Column(
+                          children: [
+                            GestureDetector(
+                              onTap:(){
+                                Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>DrugDashboard()));
+                              },
+                              child: DrugCard(
+                                drugName:
+                                    pharmacyState.allPopularDrugs[index].name ??
+                                        "Drug",
+                                drugType: "Tablets",
+                                quantity: pharmacyState
+                                        .allPopularDrugs[index].quantity ??
+                                    1,
+                                price: pharmacyState.allPopularDrugs[index].prize
+                                        .toDouble() ??
+                                    0.00,
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    : pharmacyState.fetchPopularDrugs == 3
                         ? Center(
                             child: GestureDetector(
                               onTap: () {

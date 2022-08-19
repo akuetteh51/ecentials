@@ -24,7 +24,7 @@ class AllPharmaciesPreview {
       licence_no: data['licence_no'] ?? "",
       gps_lat: data['gps_lat'] ?? 0.0,
       gps_lng: data['gps_lng'] ?? 0.0,
-      id: data['id'] ?? "",
+      id: data['_id'] ?? "",
       store_pin: data['store_pin'] ?? "",
       user_id: data['user_id'] ?? "",);
   }

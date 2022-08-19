@@ -166,11 +166,11 @@ class _DrugDashboardState extends State<DrugDashboard> {
                   mainAxisSpacing: 8,
                   mainAxisExtent: 200,
                 ),
-                itemBuilder: (BuildContext context, int index) => drugCard(
+                itemBuilder: (BuildContext context, int index) => DrugCard(
                   drugName: "Ibuprofen",
                   drugType: "Tablets",
                   quantity: 50,
-                  price: 5.00,
+                  price: 5.00,                  
                 ),
               ),
             ),
