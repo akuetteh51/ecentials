@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class AvailableDrugsCard extends StatelessWidget {
@@ -20,6 +22,7 @@ class AvailableDrugsCard extends StatelessWidget {
             children: [
               Column(
                 children: [
+                  // ignore: prefer_const_constructors
                   Text(
                     "Ibuprofen",
                     style: TextStyle(

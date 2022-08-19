@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:dotted_border/dotted_border.dart';
 import 'package:ecentialsclone/src/Widgets/search.dart';
 import 'package:flutter/material.dart';
