@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import, prefer_const_constructors
+// ignore_for_file: unused_import, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/colors.dart';
@@ -34,6 +34,23 @@ class _Pharmacy2State extends State<Pharmacy2> {
     return Scaffold(
       extendBody: true,
       backgroundColor: AppColors.primaryWhiteColor,
+      bottomSheet: Container(
+        width: MediaQuery.of(context).size.width,
+        margin: const EdgeInsets.symmetric(
+          horizontal: 40,
+          vertical: 1,
+        ),
+        child: GestureDetector(
+          onTap: () {},
+          child: Button(
+            text: "Add to cart",
+            color: const Color(0xFF033A64),
+            style: TextStyle(
+              color: AppColors.primaryWhiteColor,
+            ),
+          ),
+        ),
+      ),
       appBar: AppBar(
         backgroundColor: AppColors.primaryWhiteColor,
         foregroundColor: AppColors.primaryBlackColor,
@@ -89,15 +106,233 @@ class _Pharmacy2State extends State<Pharmacy2> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    SizedBox(
-                      height: 50,
+                    Container(
+                      margin: EdgeInsets.only(top: 56.71, left: 24.60),
+                      //  height: 32.48,
+                      // width: 245.91,
+                      child: Row(
+                        children: [
+                          Text(
+                            "Ibuprofen",
+                            style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.w700,
+                                color: AppColors.primaryBlackColor),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 90.95, right: 27),
+                            height: 22.29,
+                            width: 25,
+                            child: Image.asset(
+                              "assets/images/heart.png",
+                              color: Colors.red,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    Text(
-                      "Ibuprofen",
-                      style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.primaryBlackColor),
+                    Container(
+                      margin: EdgeInsets.only(left: 24.66, top: 5.52),
+                      height: 25.33,
+                      width: 114.89,
+                      child: Text(
+                        "Tablets * 50 pieces",
+                        style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            color: AppColors.primaryBlackColor),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 24.66, top: 3.52),
+                      height: 25.33,
+                      width: 63.34,
+                      child: Text(
+                        "In Stock",
+                        style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            color: AppColors.primaryBlackColor),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(left: 24.66, top: 3.52),
+                          height: 32.48,
+                          width: 85.23,
+                          child: Text(
+                            "\$5.68",
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w400,
+                              color: const Color(0xFF033A64),
+                              fontFamily: "Montserrat",
+                            ),
+                          ),
+                        ),
+                        Column(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(left: 30.48, top: 22),
+                              height: 25.35,
+                              width: 92.45,
+                              child: Text(
+                                "10 in stock",
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColors.primaryBlackColor,
+                                  fontFamily: "Montserrat",
+                                ),
+                              ),
+                            ),
+                            Container(
+                                height: 7,
+                                width: 128,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.grey,
+                                ),
+                                child: Container(
+                                  height: 7,
+                                  width: 70.35,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: const Color(0xFFF69B2B),
+                                  ),
+                                )),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(left: 22.48, top: 21),
+                          height: 25.33,
+                          width: 86.64,
+                          child: Text(
+                            "Dosage form",
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.primaryBlackColor,
+                              fontFamily: "Montserrat",
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 59.93, top: 21),
+                          height: 25.33,
+                          width: 128,
+                          child: Text(
+                            "Active Substance",
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.primaryBlackColor,
+                              fontFamily: "Montserrat",
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(left: 26.07, top: 4.15),
+                          height: 32.48,
+                          width: 85.23,
+                          child: Text(
+                            "Pills",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.primaryBlackColor,
+                              fontFamily: "Montserrat",
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 64.58, top: 21),
+                          height: 32.48,
+                          width: 120.12,
+                          child: Text(
+                            "Ibuprofen",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.primaryBlackColor,
+                              fontFamily: "Montserrat",
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(left: 22.48, top: 19),
+                          height: 25.33,
+                          width: 49.57,
+                          child: Text(
+                            "Dosage",
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.primaryBlackColor,
+                              fontFamily: "Montserrat",
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 97, top: 21),
+                          height: 25.33,
+                          width: 94,
+                          child: Text(
+                            "Manufacturer",
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.primaryBlackColor,
+                              fontFamily: "Montserrat",
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(left: 26.07, top: 4.15),
+                          height: 25.33,
+                          width: 85.23,
+                          child: Text(
+                            "0.2g",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.primaryBlackColor,
+                              fontFamily: "Montserrat",
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 64.58, top: 21),
+                          height: 25.33,
+                          width: 168.69,
+                          child: Text(
+                            "Biosyn, Russia",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700,
+                              color: AppColors.primaryBlackColor,
+                              fontFamily: "Montserrat",
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ]),
             ),
