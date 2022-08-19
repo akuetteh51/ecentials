@@ -32,7 +32,7 @@ class _BaseVerificationState extends State<BaseVerification> {
       // Verify if user has logged in already, if not send them to login screen
       if (res == true) {
         Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (builder) => const Pharmacy2()),
+            MaterialPageRoute(builder: (builder) => const MainScreen()),
             (route) => false);
       } else {
         Navigator.of(context).pushAndRemoveUntil(
