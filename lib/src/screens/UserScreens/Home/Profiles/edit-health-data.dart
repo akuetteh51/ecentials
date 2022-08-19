@@ -30,7 +30,7 @@ class EditHealthData extends StatefulWidget {
 }
 
 class _EditHealthDataState extends State<EditHealthData> {
-  TextEditingController bloodGroup = TextEditingController();
+  // TextEditingController bloodGroup = TextEditingController();
   TextEditingController alergiesController = TextEditingController();
   TextEditingController pulseRate = TextEditingController();
   TextEditingController bloodPressure = TextEditingController();
@@ -52,7 +52,7 @@ class _EditHealthDataState extends State<EditHealthData> {
 
   assignValuesToTextFields() {
     setState(() {
-      bloodGroup.text = widget.bloodGroup;
+    selectedbloodGroup = widget.bloodGroup;
       myAlergies = widget.alergies;
       pulseRate.text = widget.pulseRate;
       bloodPressure.text = widget.bloodPressure;
@@ -68,6 +68,20 @@ class _EditHealthDataState extends State<EditHealthData> {
     });
     super.initState();
   }
+
+  String? selectedbloodGroup = "";
+  List<String> bloodGroupList = [
+    "A positive (A+)",
+    "A negative (A-)",
+    "B positive (B+)",
+    "B negative (B-)",
+    "O positive (O+)",
+    "O negative (O-)",
+    "AB positive (AB+)",
+    "AB negative (AB-)"
+  ];
+
+  RegExp _regExp = RegExp(r"(\([a-zA-Z]+(\+|-)\))");
 
   @override
   Widget build(BuildContext context) {
@@ -95,36 +109,99 @@ class _EditHealthDataState extends State<EditHealthData> {
                     const SizedBox(
                       height: 8,
                     ),
-                    TextFormField(
-                      controller: bloodGroup,
-                      cursorColor: AppColors.primaryDeepColor,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              width: 3, color: AppColors.primaryDeepColor),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 3,
-                            color: AppColors.primaryDeepColor.withOpacity(.5),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 0),
+                        child: PopupMenuButton<String>(
+                          onSelected: (String value) {
+                            setState(() {
+                              selectedbloodGroup = value;
+                            });
+                          },
+                          child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                color:
+                                    AppColors.primaryDeepColor.withOpacity(.2),
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 12, horizontal: 4),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Flexible(
+                                    child: Text(
+                                      selectedbloodGroup == null 
+                                          ? 'Select'
+                                          : selectedbloodGroup!.isEmpty? "Select" : selectedbloodGroup.toString(),
+                                      style: TextStyle(
+                                        fontSize: 16.0,
+                                        color: Theme.of(context)
+                                            .disabledColor
+                                            .withOpacity(.3),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    child: RotatedBox(
+                                        quarterTurns: 3,
+                                        child: Icon(
+                                          Icons.chevron_left,
+                                          color: Theme.of(context)
+                                              .disabledColor
+                                              .withOpacity(.3),
+                                        )),
+                                  ),
+                                ],
+                              )),
+                          itemBuilder: (BuildContext context) =>
+                              List<PopupMenuEntry<String>>.generate(
+                            bloodGroupList.length,
+                            (index) => PopupMenuItem<String>(
+                              value: bloodGroupList[index],
+                              child: SizedBox(
+                                width: MediaQuery.of(context).size.width,
+                                child: Text(
+                                  bloodGroupList[index],
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                        disabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 3,
-                            color: Theme.of(context)
-                                .disabledColor
-                                .withOpacity(.06),
-                          ),
-                        ),
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                        ),
-                      ),
-                    ),
+                      ),                    
+                    // TextFormField(
+                    //   controller: bloodGroup,
+                    //   cursorColor: AppColors.primaryDeepColor,
+                    //   decoration: InputDecoration(
+                    //     border: OutlineInputBorder(
+                    //       borderRadius: BorderRadius.circular(10.0),
+                    //     ),
+                    //     focusedBorder: OutlineInputBorder(
+                    //       borderSide: BorderSide(
+                    //           width: 3, color: AppColors.primaryDeepColor),
+                    //     ),
+                    //     enabledBorder: OutlineInputBorder(
+                    //       borderSide: BorderSide(
+                    //         width: 3,
+                    //         color: AppColors.primaryDeepColor.withOpacity(.5),
+                    //       ),
+                    //     ),
+                    //     disabledBorder: OutlineInputBorder(
+                    //       borderSide: BorderSide(
+                    //         width: 3,
+                    //         color: Theme.of(context)
+                    //             .disabledColor
+                    //             .withOpacity(.06),
+                    //       ),
+                    //     ),
+                    //     contentPadding: const EdgeInsets.symmetric(
+                    //       horizontal: 10,
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -478,7 +555,7 @@ class _EditHealthDataState extends State<EditHealthData> {
                     const SizedBox(
                       height: 30,
                     ),
-                    !(bloodGroup.text.isEmpty &&
+                    !(selectedbloodGroup!.isEmpty &&
                             pulseRate.text.isEmpty &&
                             bloodPressure.text.isEmpty &&
                             temperature.text.isEmpty &&
@@ -498,7 +575,7 @@ class _EditHealthDataState extends State<EditHealthData> {
                                         if (healthInformationState
                                                 .updateHealthInfoState !=
                                             true) {
-                                          if (bloodGroup.text.isEmpty &&
+                                          if (selectedbloodGroup!.isEmpty &&
                                               pulseRate.text.isEmpty &&
                                               bloodPressure.text.isEmpty &&
                                               temperature.text.isEmpty) {
@@ -508,7 +585,7 @@ class _EditHealthDataState extends State<EditHealthData> {
                                                 long: true);
                                           } else {
                                             Map<String, dynamic> data = {
-                                              "blood_group": bloodGroup.text,
+                                              "blood_group":_regExp.stringMatch(selectedbloodGroup!).toString(),
                                               "alergies": myAlergies,
                                               "blood_pressure":
                                                   bloodPressure.text,

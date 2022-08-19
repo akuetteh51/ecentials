@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:ecentialsclone/models/HealthInfoModel.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:ecentialsclone/src/screens/UserScreens/Home/Wallet/useCardWallet.dart';
@@ -217,13 +216,13 @@ class HealthInformationState extends ChangeNotifier {
 
   void saveHealthPinLocally(String value) async {
     final prefs = await SharedPreferences.getInstance();
-    log("seeting new string $value");
+    // log("seeting new string $value");
     await prefs.setString('health_pin_local', value);
   }
 
   // Method to verify User Before giving them access to reset password
   void loginUser(
-      {Map<String, dynamic>? data, required BuildContext context}) async {
+      {Map<String, dynamic>? data, required BuildContext context, Function? trigger}) async {
     _loginLoaderState = 0;
     _loginLoaderState = 1;
     notifyListeners();

@@ -4,11 +4,7 @@ import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/app_state/Health_Info_state.dart';
 import 'package:ecentialsclone/src/app_state/user_state.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-
-import '../app_state/AuthState.dart';
-import '../screens/UserScreens/Store/PinVerfication.dart';
 
 class ResetPinGuardPassword extends StatefulWidget {
   final String? email;

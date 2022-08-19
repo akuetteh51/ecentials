@@ -229,7 +229,7 @@ class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
     UserState userState = Provider.of<UserState>(context);
-    Nk nk = Provider.of<Nk>(context);
+    // Nk nk = Provider.of<Nk>(context);
 
     return Scaffold(
       extendBody: true,

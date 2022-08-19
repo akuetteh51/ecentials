@@ -95,6 +95,8 @@ class _UploadPrescriptionState extends State<UploadPrescription> {
                   height: 66.67,
                   width: 50,
                   child: Image.asset("assets/images/vector2.png")),
+                  //child: Image.asset("assets/images/Vector3.png")),
+
               Container(
                 margin: const EdgeInsets.only(top: 78.67, left: 10.65),
                 height: 33.33,
