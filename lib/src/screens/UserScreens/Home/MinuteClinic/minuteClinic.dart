@@ -95,53 +95,6 @@ class _MinuteClinicState extends State<MinuteClinic> {
 
     // screens
     final _pages = [
-
-
-      Alllabs(),
-      LabDetails(),
-      LabSchedules(),
-      
-      Hospital2DocProfile(),
-      Hospital2DocProfile(),
-      ScanDocument(),
-      OrderProcessed(),
-      OrderSubmitted(),
-      OrderCompleted(),
-      UploadResults(),
-      ScanResults(),
-      OrderCompleted(),
-      Alllabs(),
-      
-      FindPharmacy(),
-      DoctorInformation(),
-      Cart(),
-      LabChat(),
-      LabDirection(),
-      DoctorInformation(),
-      NearbyHospital(),
-
-
-      NearbyHospital(),
-      
-      Alllabs(),
-      // LabDetails(),
-      // LabSchedules(),
-      // ScanDocument(),
-      // OrderProcessed(),
-      // OrderSubmitted(),
-      // OrderCompleted(),
-      // UploadResults(),
-      // ScanResults(),
-      // OrderCompleted(),
-      // Alllabs(),
-      // DrugDashboard(),
-      // DoctorInformation(),
-      // Cart(),
-      // LabChat(),
-      // DoctorInformation(),
-
-
-
       MinutesHome(),
       Stores(),
       const Notifications(),
