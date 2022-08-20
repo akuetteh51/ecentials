@@ -9,10 +9,13 @@ import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/Widgets/schedulesCard.dart';
 import 'package:ecentialsclone/src/Widgets/search.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
+import 'package:ecentialsclone/src/app_state/pharmacy_state.dart';
+import 'package:ecentialsclone/src/app_state/user_state.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/scanResults.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/scanDocument.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 class DrugDashboard extends StatefulWidget {
   const DrugDashboard({
@@ -25,7 +28,34 @@ class DrugDashboard extends StatefulWidget {
 
 class _DrugDashboardState extends State<DrugDashboard> {
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      PharmacyState pharmacyState =
+          Provider.of<PharmacyState>(context, listen: false);
+      UserState userState = Provider.of<UserState>(context, listen: false);
+      // pharmacyState.fetchPharmaciesPreview(
+      //   token: userState.userInfo?['token'],
+      // );
+
+      if (pharmacyState.fetchPopularDrugs != 2 ||
+          pharmacyState.allPopularDrugs.isEmpty) {
+        pharmacyState.getPopularDrugs(
+          token: userState.userInfo?['token'],
+        );
+      }
+
+      // prevent showing wrong loading indicator
+      pharmacyState.setPharmyBookmarkingIndexToEmpty();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    PharmacyState pharmacyState = Provider.of<PharmacyState>(context);
+    UserState userState = Provider.of<UserState>(
+      context,
+    );
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -158,21 +188,28 @@ class _DrugDashboardState extends State<DrugDashboard> {
             SizedBox(
               height: height * 0.5,
               width: width,
-              child: GridView.builder(
-                itemCount: 6,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 8,
-                  mainAxisSpacing: 8,
-                  mainAxisExtent: 200,
-                ),
-                itemBuilder: (BuildContext context, int index) => DrugCard(
-                  drugName: "Ibuprofen",
-                  drugType: "Tablets",
-                  quantity: 50,
-                  price: 5.00,                  
-                ),
-              ),
+              child: pharmacyState.allPopularDrugs.isEmpty
+                  ? SizedBox.shrink()
+                  : GridView.builder(
+                      itemCount: pharmacyState.allPopularDrugs.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 8,
+                        mainAxisSpacing: 8,
+                        mainAxisExtent: 200,
+                      ),
+                      itemBuilder: (BuildContext context, int index) =>
+                          DrugCard(
+                        drugName:
+                            pharmacyState.allPopularDrugs[index].name ?? "Drug",
+                        drugType: "Tablets",
+                        quantity:
+                            pharmacyState.allPopularDrugs[index].quantity ?? 1,
+                        price: pharmacyState.allPopularDrugs[index].prize
+                                .toDouble() ??
+                            0.00,
+                      ),
+                    ),
             ),
             SizedBox(
               height: 35.0,
