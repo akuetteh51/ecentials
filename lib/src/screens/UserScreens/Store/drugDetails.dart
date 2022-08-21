@@ -30,7 +30,6 @@ class _DrugDetailsState extends State<DrugDetails> {
     PopularPharmacy details = widget.details;
     int index = cartState.cart.indexWhere((e) => e.drug.id == details.id);
     _addedToCart = index > -1 ? true : false;
-    print(index);
     return Scaffold(
       extendBody: true,
       backgroundColor: AppColors.primaryWhiteColor,

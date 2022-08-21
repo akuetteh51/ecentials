@@ -25,6 +25,7 @@ class Cart extends StatefulWidget {
 }
 
 class _CartState extends State<Cart> {
+  bool expandNote = false;
   @override
   Widget build(BuildContext context) {
     CartState cartState = Provider.of<CartState>(context);
@@ -200,30 +201,66 @@ class _CartState extends State<Cart> {
                             itemBuilder: (context, index) => CartCard(
                                 item: cartState.cart[index], index: index)),
                         SizedBox(height: 120),
-                        Container(
+                        AnimatedContainer(
+                          duration: const Duration(seconds: 1),
+                          curve: Curves.fastOutSlowIn,
                           padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Row(
+                          child: Column(
+                            children: [
+                              Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 12.0),
-                                      child: Icon(Icons.note_add,
-                                          color: AppColors.primaryBlueColor),
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              right: 12.0),
+                                          child: Icon(Icons.note_add,
+                                              color:
+                                                  AppColors.primaryBlueColor),
+                                        ),
+                                        Text("Add an order note"),
+                                      ],
                                     ),
-                                    Text("Add an order note"),
-                                  ],
+                                    IconButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            expandNote = !expandNote;
+                                          });
+                                        },
+                                        icon: Icon(
+                                            expandNote
+                                                ? Icons.expand_less_rounded
+                                                : Icons.expand_more_rounded,
+                                            color: AppColors.primaryBlackColor
+                                                .withAlpha(210)))
+                                  ]),
+                              if (expandNote)
+                                Divider(
+                                  height: 1,
                                 ),
-                                IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(Icons.expand_less_rounded,
-                                        color: AppColors.primaryBlackColor
-                                            .withAlpha(210)))
-                              ]),
+                              if (expandNote)
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: TextField(
+                                    maxLines: 8,
+                                    cursorColor: AppColors.primaryDeepColor,
+                                    decoration: InputDecoration(
+                                      contentPadding: EdgeInsets.only(left: 8),
+                                      hintText: "Add note...",
+                                      focusColor: AppColors.primaryDeepColor,
+                                      border: const UnderlineInputBorder(
+                                        borderSide: BorderSide.none,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
                           decoration: BoxDecoration(
                               border: Border.symmetric(
                                   horizontal: BorderSide(
