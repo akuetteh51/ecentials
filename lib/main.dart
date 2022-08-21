@@ -5,6 +5,7 @@ import 'package:ecentialsclone/baseVerification.dart';
 import 'package:ecentialsclone/src/Widgets/genkey.dart';
 import 'package:ecentialsclone/src/Widgets/profile.dart';
 import 'package:ecentialsclone/src/app_state/Health_Info_state.dart';
+import 'package:ecentialsclone/src/app_state/cart_state.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Chat/chatroom/chat_bubble.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/delivery_mode.dart';
@@ -84,7 +85,9 @@ Future main() async {
         ChangeNotifierProvider<ShopState>(create: (_) => ShopState()),
         ChangeNotifierProvider<AuthState>(create: (_) => AuthState()),
         ChangeNotifierProvider<UserState>(create: (_) => UserState()),
-        ChangeNotifierProvider<HealthInformationState>(create: (_) => HealthInformationState()),
+        ChangeNotifierProvider<HealthInformationState>(
+            create: (_) => HealthInformationState()),
+        ChangeNotifierProvider<CartState>(create: (_) => CartState()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -13,6 +13,7 @@ import 'package:ecentialsclone/src/app_state/pharmacy_state.dart';
 import 'package:ecentialsclone/src/app_state/user_state.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/scanResults.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/scanDocument.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/drugDetails.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -105,92 +106,96 @@ class _DrugDashboardState extends State<DrugDashboard> {
           centerTitle: true,
         ),
       ),
-      body: Container(
-        margin: EdgeInsets.all(20),
-        child: ListView(
-          children: [
-            Container(
-              width: width,
-              height: height * 0.30,
-              decoration: BoxDecoration(
-                color: AppColors.primaryBlueColor.withOpacity(.05),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(
-                      width: width - 55 / 0.25,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "We will deliver your medicines",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Button(
-                            width: width - 55 / 0.20,
-                            height: 40,
-                            text: "Catalog",
-                            style: TextStyle(
-                              color: AppColors.primaryWhiteColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Image.asset(
-                        "assets/images/delivery_guy.png",
-                      ),
-                    ),
-                  ],
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                width: width,
+                height: height * 0.30,
+                decoration: BoxDecoration(
+                  color: AppColors.primaryBlueColor.withOpacity(.05),
+                  borderRadius: BorderRadius.circular(10),
                 ),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Popular",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: 15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SizedBox(
+                        width: width - 55 / 0.25,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "We will deliver your medicines",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Button(
+                              width: width - 55 / 0.20,
+                              height: 40,
+                              text: "Catalog",
+                              style: TextStyle(
+                                color: AppColors.primaryWhiteColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Image.asset(
+                          "assets/images/delivery_guy.png",
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: Image.asset(
-                    "assets/images/filter.png",
-                    color: AppColors.primaryBlackColor.withOpacity(.80),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Popular",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
                   ),
-                )
-              ],
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            SizedBox(
-              height: height * 0.5,
-              width: width,
-              child: pharmacyState.allPopularDrugs.isEmpty
+                  IconButton(
+                    onPressed: () {},
+                    icon: Image.asset(
+                      "assets/images/filter.png",
+                      color: AppColors.primaryBlackColor.withOpacity(.80),
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              // SizedBox(
+              // height: height * 0.5,
+              // width: width,
+              // child:
+              pharmacyState.allPopularDrugs.isEmpty
                   ? SizedBox.shrink()
                   : GridView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
                       itemCount: pharmacyState.allPopularDrugs.length,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
@@ -199,22 +204,34 @@ class _DrugDashboardState extends State<DrugDashboard> {
                         mainAxisExtent: 200,
                       ),
                       itemBuilder: (BuildContext context, int index) =>
-                          DrugCard(
-                        drugName:
-                            pharmacyState.allPopularDrugs[index].name ?? "Drug",
-                        drugType: "Tablets",
-                        quantity:
-                            pharmacyState.allPopularDrugs[index].quantity ?? 1,
-                        price: pharmacyState.allPopularDrugs[index].prize
-                                .toDouble() ??
-                            0.00,
+                          GestureDetector(
+                        onTap: () {
+                          Get.to(
+                            () => DrugDetails(
+                                details: pharmacyState.allPopularDrugs[index]),
+                          );
+                        },
+                        child: DrugCard(
+                          drugName: pharmacyState.allPopularDrugs[index].name ??
+                              "Drug",
+                          drugType: pharmacyState
+                                  .allPopularDrugs[index].dosage_form ??
+                              "Tablet",
+                          quantity:
+                              pharmacyState.allPopularDrugs[index].quantity ??
+                                  1,
+                          price: pharmacyState.allPopularDrugs[index].prize
+                                  .toDouble() ??
+                              0.00,
+                        ),
                       ),
                     ),
-            ),
-            SizedBox(
-              height: 35.0,
-            ),
-          ],
+              // ),
+              SizedBox(
+                height: 35.0,
+              ),
+            ],
+          ),
         ),
       ),
     );
