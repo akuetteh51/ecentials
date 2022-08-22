@@ -2,10 +2,11 @@ import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class DrugInfo extends StatelessWidget {
-  const DrugInfo({Key? key, required this.title, required this.info})
+  DrugInfo({Key? key, required this.title, required this.info, this.size})
       : super(key: key);
   final String title;
   final String info;
+  double? size;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class DrugInfo extends StatelessWidget {
         ),
         Text(info,
             style: TextStyle(
-                fontSize: 26,
+                fontSize: size ?? 26,
                 fontWeight: FontWeight.w700,
                 color: AppColors.primaryBlackColor.withAlpha(180)))
       ]),

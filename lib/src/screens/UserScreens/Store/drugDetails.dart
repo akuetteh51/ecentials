@@ -6,10 +6,12 @@ import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/Widgets/drugInfo.dart';
 import 'package:ecentialsclone/src/Widgets/sliverFab.dart';
 import 'package:ecentialsclone/src/app_state/cart_state.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class DrugDetails extends StatefulWidget {
@@ -205,7 +207,7 @@ class _DrugDetailsState extends State<DrugDetails> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         SizedBox(
-                          width: width * .45,
+                          width: width * .44,
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -215,11 +217,13 @@ class _DrugDetailsState extends State<DrugDetails> {
                                     info: details.dosage_form ?? "Pills"),
                                 DrugInfo(
                                     title: "Dosage",
-                                    info: details.dosage ?? "0.2g"),
+                                    info: details.dosage ?? "0.2g",
+                                    size: 17),
                               ]),
                         ),
+                        SizedBox(width: 18),
                         SizedBox(
-                          width: width * .45,
+                          width: width * .44,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -228,7 +232,8 @@ class _DrugDetailsState extends State<DrugDetails> {
                                   title: "Active substance", info: "Ibuprofen"),
                               DrugInfo(
                                   title: "Manufacturer",
-                                  info: details.manufacturer ?? "Manufacturer"),
+                                  info: details.manufacturer ?? "Manufacturer",
+                                  size: 17),
                             ],
                           ),
                         ),
@@ -273,6 +278,7 @@ class _DrugDetailsState extends State<DrugDetails> {
                           _addedToCart
                               ? cartState.removeFromCart(details.id!, "id")
                               : cartState.addToCart(details);
+                          Get.to(() => Cart());
 
                           _addedToCart = !_addedToCart;
                         });
