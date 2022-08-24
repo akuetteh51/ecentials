@@ -248,25 +248,31 @@ class PharmacyState extends ChangeNotifier {
   searchForPharmacy(
       {String? token,
       Map<String, dynamic>? searchParams,
+      bool? filter,
       Function? callback}) async {
     _searchingPharmacies = 0;
     _searchingPharmacies = 1;
     notifyListeners();
 
     Dio dio = Dio();
+    String route = filter == true
+        ? "/api/v1/pharmacies/search-nearby-pharmacies"
+        : "/api/v1/pharmacies/search-for-pharmacy";
 
-    String path = APPBASEURL.BASEURL + "/api/v1/pharmacies/search-for-pharmacy";
+    String path = APPBASEURL.BASEURL + route;
 
     try {
+      print(path);
       Response response = await dio.post(path,
           data: searchParams, options: Options(headers: {"auth-token": token}));
-
+      print(response.statusCode);
+      print(searchParams);
+      print(response.statusMessage);
       if (response.statusCode == 200) {
         _searchingPharmacies = 2;
         notifyListeners();
 
         List pharmacies = response.data['data'];
-        print("length: ${response.data['data'].length}");
         if (response.data['data'].length == 0) {
           _pharmacySearchResults = [];
         } else {

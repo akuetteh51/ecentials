@@ -19,6 +19,7 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmac
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:geolocator/geolocator.dart';
 
 class FindPharmacy extends StatefulWidget {
   const FindPharmacy({
@@ -35,11 +36,47 @@ class _FindPharmacyState extends State<FindPharmacy> {
   String disDropdownValue = '50 Kilometers';
   final searchTextController = TextEditingController();
 
+  Future<Position> _determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+
+    if (!serviceEnabled) {
+      print("Not Enabled");
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      print("Permision denied");
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        print("Permision denied again");
+        // Permissions are denied, next time you could try
+        // requesting permissions again (this is also where
+        // Android's shouldShowRequestPermissionRationale
+        // returned true. According to Android guidelines
+        // your App should show an explanatory UI now.
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      print("Permision denied 4ever");
+      // Permissions are denied forever, handle appropriately.
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+
+    // When we reach here, permissions are granted and we can
+    // continue accessing the position of the device.
+    return await Geolocator.getCurrentPosition();
+  }
+
   @override
   Widget build(BuildContext context) {
     PharmacyState pharmacyState = Provider.of<PharmacyState>(context);
     final width = MediaQuery.of(context).size.width;
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
         bottomNavigationBar: BottomNavBar(),
         floatingActionButton: FloatingAmbulance(),
@@ -109,31 +146,30 @@ class _FindPharmacyState extends State<FindPharmacy> {
                       ),
                     ),
                   ]),
-              Container(
-                margin: EdgeInsets.only(top: 56),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Top Pharmacists",
-                      style: TextStyle(
-                          color: AppColors.primaryBlackColor.withAlpha(190),
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18),
-                    ),
-                    Text(
-                      "See all",
-                      style: TextStyle(
-                          color: const Color(0xFFCB3F04),
-                          fontWeight: FontWeight.w500,
-                          fontSize: 18),
-                    ),
-                  ],
+              if (pharmacyState.searchingPharmacies == 0 &&
+                  pharmacyState.pharmacySearchResults.isEmpty)
+                Container(
+                  margin: EdgeInsets.only(top: 56, bottom: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Top Pharmacists",
+                        style: TextStyle(
+                            color: AppColors.primaryBlackColor.withAlpha(190),
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18),
+                      ),
+                      Text(
+                        "See all",
+                        style: TextStyle(
+                            color: const Color(0xFFCB3F04),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 18),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
               pharmacyState.searchingPharmacies == 0 &&
                       pharmacyState.pharmacySearchResults.isEmpty
                   ? Column(
@@ -161,6 +197,7 @@ class _FindPharmacyState extends State<FindPharmacy> {
                   : pharmacyState.searchingPharmacies == 2 &&
                           pharmacyState.pharmacySearchResults.isNotEmpty
                       ? ListView.builder(
+                          padding: EdgeInsets.only(top: 40),
                           shrinkWrap: true,
                           itemCount: pharmacyState.pharmacySearchResults.length,
                           itemBuilder: (BuildContext context, int index) =>
@@ -188,8 +225,7 @@ class _FindPharmacyState extends State<FindPharmacy> {
                           ? Center(
                               child: Padding(
                                 padding: const EdgeInsets.only(top: 20.0),
-                                child: Text(
-                                    "Nothing matching your search parameters was found"),
+                                child: Text("No pharmacy found"),
                               ),
                             )
                           : pharmacyState.searchingPharmacies == 3
@@ -209,13 +245,32 @@ class _FindPharmacyState extends State<FindPharmacy> {
         ));
   }
 
-  Future searchPharmacy() async {
+  Future searchPharmacy({bool filter = false}) async {
+    final Position pos = filter
+        ? await _determinePosition()
+        : Position(
+            longitude: 0,
+            latitude: 0,
+            timestamp: DateTime(2002),
+            accuracy: 100,
+            altitude: 0,
+            heading: 0,
+            speed: 0,
+            speedAccuracy: 100);
     PharmacyState pharmacyState =
         Provider.of<PharmacyState>(context, listen: false);
     UserState userState = Provider.of<UserState>(context, listen: false);
+    Map<String, dynamic> _searchParams = filter
+        ? {
+            "search_text": searchTextController.value.text,
+            "user_latitude": pos.latitude,
+            "user_longitude": pos.longitude
+          }
+        : {"search_text": searchTextController.value.text};
     await pharmacyState.searchForPharmacy(
-        searchParams: {"search_text": searchTextController.value.text},
-        token: userState.userInfo?['token']);
+        searchParams: _searchParams,
+        token: userState.userInfo?['token'],
+        filter: filter);
   }
 
   void _showFilterBottomSheet(BuildContext ctx) {
@@ -451,6 +506,9 @@ class _FindPharmacyState extends State<FindPharmacy> {
                       children: [
                         Expanded(
                             child: Button(
+                                onTap: () async {
+                                  await searchPharmacy(filter: true);
+                                },
                                 text: "Show Results",
                                 style: TextStyle(
                                     color: AppColors.primaryWhiteColor))),

@@ -32,10 +32,9 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap ??
-          () {
-            print(text + " tapped");
-          },
+      onTap: () async {
+        onTap?.call();
+      },
       child: Container(
         padding: padding,
         width: width,
