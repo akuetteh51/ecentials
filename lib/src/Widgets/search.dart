@@ -12,17 +12,19 @@ class Search extends StatelessWidget {
   final searchPressed;
   final micPressed;
   final TextEditingController? controller;
+  final Function? onSubmitted;
 
-  const Search({
-    Key? key,
-    this.width = 300,
-    this.text = "Search...",
-    this.controller,
-    this.searchPressed,
-    this.micPressed,
-    this.height = 50,
-    this.radius = 50,
-  }) : super(key: key);
+  const Search(
+      {Key? key,
+      this.width = 300,
+      this.text = "Search...",
+      this.controller,
+      this.searchPressed,
+      this.micPressed,
+      this.height = 50,
+      this.radius = 50,
+      this.onSubmitted})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +44,11 @@ class Search extends StatelessWidget {
           color: Colors.grey.withOpacity(.10),
         ),
         child: TextField(
+          onSubmitted: (value) async {
+            await onSubmitted?.call();
+            print("searched $value");
+          },
+          textInputAction: TextInputAction.search,
           textAlignVertical: TextAlignVertical.bottom,
           textAlign: TextAlign.start,
           controller: controller,

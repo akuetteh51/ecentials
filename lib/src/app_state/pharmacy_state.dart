@@ -21,6 +21,9 @@ class PharmacyState extends ChangeNotifier {
   int _gettingUserFavoritePharmacies = 0;
   int get gettingUserFavoritePharmacies => _gettingUserFavoritePharmacies;
 
+  int _searchingPharmacies = 0;
+  int get searchingPharmacies => _searchingPharmacies;
+
   List<AllPharmaciesPreview> _allPharmacyPreviews = [];
   List<AllPharmaciesPreview> get allPharmacyPreviews => _allPharmacyPreviews;
 
@@ -32,6 +35,10 @@ class PharmacyState extends ChangeNotifier {
 
   List _userFAVpharmacies = [];
   List get userFAVpharmacies => _userFAVpharmacies;
+
+  List<AllPharmaciesPreview> _pharmacySearchResults = [];
+  List<AllPharmaciesPreview> get pharmacySearchResults =>
+      _pharmacySearchResults;
 
   // Fetch all pharmacies available
   fetchPharmaciesPreview({
@@ -236,5 +243,54 @@ class PharmacyState extends ChangeNotifier {
   setPharmyBookmarkingIndexToEmpty() {
     _pharmacyBookmarkingIndexes = [];
     notifyListeners();
+  }
+
+  searchForPharmacy(
+      {String? token,
+      Map<String, dynamic>? searchParams,
+      Function? callback}) async {
+    _searchingPharmacies = 0;
+    _searchingPharmacies = 1;
+    notifyListeners();
+
+    Dio dio = Dio();
+
+    String path = APPBASEURL.BASEURL + "/api/v1/pharmacies/search-for-pharmacy";
+
+    try {
+      Response response = await dio.post(path,
+          data: searchParams, options: Options(headers: {"auth-token": token}));
+
+      if (response.statusCode == 200) {
+        _searchingPharmacies = 2;
+        notifyListeners();
+
+        List pharmacies = response.data['data'];
+        print("length: ${response.data['data'].length}");
+        if (response.data['data'].length == 0) {
+          _pharmacySearchResults = [];
+        } else {
+          for (int pharm = 0; pharm < pharmacies.length; pharm++) {
+            _pharmacySearchResults
+                .add(AllPharmaciesPreview.fromJson(pharmacies[pharm]));
+          }
+        }
+        notifyListeners();
+
+        callback?.call();
+      } else {
+        _searchingPharmacies = 3;
+        notifyListeners();
+        ShowToast.ecentialsToast(
+          message: "Error fetching data",
+        );
+      }
+    } catch (e) {
+      _searchingPharmacies = 3;
+      notifyListeners();
+      ShowToast.ecentialsToast(
+        message: "Error making request",
+      );
+    }
   }
 }
