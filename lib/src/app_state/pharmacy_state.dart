@@ -58,9 +58,7 @@ class PharmacyState extends ChangeNotifier {
           await dio.get(path, options: Options(headers: {"auth-token": token}));
 
       if (response.statusCode == 200) {
-        _fetchingPharmaciesPreview = 2;
-        notifyListeners();
-
+        _allPharmacyPreviews = [];
         // log("All Pharmacies: ${response.data}");
         // _fetchingPharmaciesPreview = response.data['data'];
         List pharmacyData = response.data['data'];
@@ -69,6 +67,7 @@ class PharmacyState extends ChangeNotifier {
           _allPharmacyPreviews
               .add(AllPharmaciesPreview.fromJson(pharmacyData[pharm]));
         }
+        _fetchingPharmaciesPreview = 2;
         notifyListeners();
 
         // ShowToast.ecentialsToast(
@@ -262,16 +261,10 @@ class PharmacyState extends ChangeNotifier {
     String path = APPBASEURL.BASEURL + route;
 
     try {
-      print(path);
       Response response = await dio.post(path,
           data: searchParams, options: Options(headers: {"auth-token": token}));
-      print(response.statusCode);
-      print(searchParams);
-      print(response.statusMessage);
       if (response.statusCode == 200) {
-        _searchingPharmacies = 2;
-        notifyListeners();
-
+        _pharmacySearchResults = [];
         List pharmacies = response.data['data'];
         if (response.data['data'].length == 0) {
           _pharmacySearchResults = [];
@@ -281,6 +274,7 @@ class PharmacyState extends ChangeNotifier {
                 .add(AllPharmaciesPreview.fromJson(pharmacies[pharm]));
           }
         }
+        _searchingPharmacies = 2;
         notifyListeners();
 
         callback?.call();
@@ -298,5 +292,11 @@ class PharmacyState extends ChangeNotifier {
         message: "Error making request",
       );
     }
+  }
+
+  clearSearch() {
+    _searchingPharmacies = 0;
+    _pharmacySearchResults = [];
+    notifyListeners();
   }
 }

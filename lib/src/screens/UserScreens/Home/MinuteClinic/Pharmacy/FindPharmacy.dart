@@ -2,6 +2,7 @@
 
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
+import 'package:ecentialsclone/src/Widgets/EcentialsToast.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/Widgets/drugCard.dart';
@@ -31,6 +32,22 @@ class FindPharmacy extends StatefulWidget {
 }
 
 class _FindPharmacyState extends State<FindPharmacy> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) async {
+      PharmacyState pharmacyState =
+          Provider.of<PharmacyState>(context, listen: false);
+      UserState userState = Provider.of<UserState>(context, listen: false);
+      if (pharmacyState.allPharmacyPreviews.isEmpty ||
+          pharmacyState.fetchingPharmaciesPreview == 3) {
+        await pharmacyState.fetchPharmaciesPreview(
+          token: userState.userInfo?['token'],
+        );
+      }
+    });
+  }
+
   String? selectedMedType;
   String locDropdownValue = 'Ridge Venue, Accra';
   String disDropdownValue = '50 Kilometers';
@@ -48,28 +65,25 @@ class _FindPharmacyState extends State<FindPharmacy> {
 
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
-      print("Permision denied");
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        print("Permision denied again");
-        // Permissions are denied, next time you could try
-        // requesting permissions again (this is also where
-        // Android's shouldShowRequestPermissionRationale
-        // returned true. According to Android guidelines
-        // your App should show an explanatory UI now.
+        ShowToast.ecentialsToast(
+          message: "Location permissions are denied",
+        );
+        Navigator.of(context).pop();
         return Future.error('Location permissions are denied');
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      print("Permision denied 4ever");
-      // Permissions are denied forever, handle appropriately.
+      ShowToast.ecentialsToast(
+        message:
+            "Please allow Ecentialls access to location services in your settings",
+      );
       return Future.error(
           'Location permissions are permanently denied, we cannot request permissions.');
     }
 
-    // When we reach here, permissions are granted and we can
-    // continue accessing the position of the device.
     return await Geolocator.getCurrentPosition();
   }
 
@@ -171,75 +185,94 @@ class _FindPharmacyState extends State<FindPharmacy> {
                   ),
                 ),
               pharmacyState.searchingPharmacies == 0 &&
-                      pharmacyState.pharmacySearchResults.isEmpty
-                  ? Column(
-                      children: [
-                        for (int y = 0; y <= 4; y++)
-                          Wrap(
-                            direction: Axis.vertical,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  Get.to(() => DrugDashboard());
-                                },
-                                child: LabResultsCard(
-                                    image: "assets/images/pharHome.png",
-                                    labName: "Sussan Drug Store",
-                                    openingHours: "Weekdays | 7:00am - 5:00pm"),
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                            ],
-                          ),
-                      ],
-                    )
-                  : pharmacyState.searchingPharmacies == 2 &&
-                          pharmacyState.pharmacySearchResults.isNotEmpty
+                      pharmacyState.pharmacySearchResults.isEmpty &&
+                      pharmacyState.allPharmacyPreviews.isEmpty
+                  ? Center(
+                      child: Padding(
+                      padding: const EdgeInsets.only(top: 20.0),
+                      child: Text("Search for nearby pharmacies"),
+                    ))
+                  : pharmacyState.searchingPharmacies == 0 &&
+                          pharmacyState.pharmacySearchResults.isEmpty &&
+                          pharmacyState.allPharmacyPreviews.isNotEmpty &&
+                          pharmacyState.fetchingPharmaciesPreview == 2
                       ? ListView.builder(
-                          padding: EdgeInsets.only(top: 40),
+                          physics: NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
-                          itemCount: pharmacyState.pharmacySearchResults.length,
+                          itemCount: pharmacyState.allPharmacyPreviews.length,
                           itemBuilder: (BuildContext context, int index) =>
                               Wrap(
-                            direction: Axis.vertical,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  Get.to(() => DrugDashboard());
-                                },
-                                child: LabResultsCard(
-                                    image: "assets/images/pharHome.png",
-                                    labName: pharmacyState
-                                        .pharmacySearchResults[index].name,
-                                    openingHours: "Weekdays | 7:00am - 5:00pm"),
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                            ],
-                          ),
-                        )
+                                direction: Axis.vertical,
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      Get.to(() => DrugDashboard());
+                                    },
+                                    child: LabResultsCard(
+                                        image: "assets/images/pharHome.png",
+                                        labName: pharmacyState
+                                            .allPharmacyPreviews[index].name,
+                                        openingHours:
+                                            "Weekdays | 7:00am - 5:00pm"),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                ],
+                              ))
                       : pharmacyState.searchingPharmacies == 2 &&
-                              pharmacyState.pharmacySearchResults.isEmpty
-                          ? Center(
-                              child: Padding(
-                                padding: const EdgeInsets.only(top: 20.0),
-                                child: Text("No pharmacy found"),
+                              pharmacyState.pharmacySearchResults.isNotEmpty
+                          ? ListView.builder(
+                              physics: NeverScrollableScrollPhysics(),
+                              padding: EdgeInsets.only(top: 40),
+                              shrinkWrap: true,
+                              itemCount:
+                                  pharmacyState.pharmacySearchResults.length,
+                              itemBuilder: (BuildContext context, int index) =>
+                                  Wrap(
+                                direction: Axis.vertical,
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      Get.to(() => DrugDashboard());
+                                    },
+                                    child: LabResultsCard(
+                                        image: "assets/images/pharHome.png",
+                                        labName: pharmacyState
+                                            .pharmacySearchResults[index].name,
+                                        openingHours:
+                                            "Weekdays | 7:00am - 5:00pm"),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                ],
                               ),
                             )
-                          : pharmacyState.searchingPharmacies == 3
+                          : pharmacyState.searchingPharmacies == 2 &&
+                                  pharmacyState.pharmacySearchResults.isEmpty
                               ? Center(
                                   child: Padding(
-                                  padding: const EdgeInsets.only(top: 20.0),
-                                  child: Text(
-                                      "There was an error. Please try again."),
-                                ))
-                              : Center(
-                                  child: Container(
-                                      margin: const EdgeInsets.only(top: 20.0),
-                                      child: CircularProgressIndicator()),
+                                    padding: const EdgeInsets.only(top: 20.0),
+                                    child: Text("No pharmacy found"),
+                                  ),
                                 )
+                              : pharmacyState.searchingPharmacies == 3
+                                  ? Center(
+                                      child: Padding(
+                                      padding: const EdgeInsets.only(top: 20.0),
+                                      child: Text(
+                                          "There was an error. Please try again."),
+                                    ))
+                                  : Center(
+                                      child: Container(
+                                          margin:
+                                              const EdgeInsets.only(top: 20.0),
+                                          child: CircularProgressIndicator()),
+                                    ),
+              SizedBox(
+                height: 20,
+              ),
             ]),
           ),
         ));
@@ -267,14 +300,18 @@ class _FindPharmacyState extends State<FindPharmacy> {
             "user_longitude": pos.longitude
           }
         : {"search_text": searchTextController.value.text};
-    await pharmacyState.searchForPharmacy(
-        searchParams: _searchParams,
-        token: userState.userInfo?['token'],
-        filter: filter);
+    searchTextController.value.text.isEmpty && filter == false
+        ? pharmacyState.clearSearch()
+        : await pharmacyState.searchForPharmacy(
+            searchParams: _searchParams,
+            token: userState.userInfo?['token'],
+            filter: filter);
   }
 
   void _showFilterBottomSheet(BuildContext ctx) {
     Size size = MediaQuery.of(context).size;
+    PharmacyState pharmacyState =
+        Provider.of<PharmacyState>(context, listen: false);
     showModalBottomSheet(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
@@ -507,6 +544,7 @@ class _FindPharmacyState extends State<FindPharmacy> {
                         Expanded(
                             child: Button(
                                 onTap: () async {
+                                  Navigator.of(context).pop();
                                   await searchPharmacy(filter: true);
                                 },
                                 text: "Show Results",
@@ -518,7 +556,10 @@ class _FindPharmacyState extends State<FindPharmacy> {
                                 locDropdownValue = "Ridge Venue, Accra";
                                 disDropdownValue = "50 Kilometers";
                                 selectedMedType = "";
+                                searchTextController.clear();
                               });
+                              Navigator.of(context).pop();
+                              pharmacyState.clearSearch();
                             },
                             child: Padding(
                               padding:
