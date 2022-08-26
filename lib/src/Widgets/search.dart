@@ -13,6 +13,7 @@ class Search extends StatelessWidget {
   final micPressed;
   final TextEditingController? controller;
   final Function? onSubmitted;
+  final Function? onChanged;
 
   const Search(
       {Key? key,
@@ -23,7 +24,8 @@ class Search extends StatelessWidget {
       this.micPressed,
       this.height = 50,
       this.radius = 50,
-      this.onSubmitted})
+      this.onSubmitted,
+      this.onChanged})
       : super(key: key);
 
   @override
@@ -47,6 +49,11 @@ class Search extends StatelessWidget {
           onSubmitted: (value) async {
             await onSubmitted?.call();
             print("searched $value");
+          },
+          onChanged: (value) {
+            if (value.isEmpty) {
+              onChanged?.call();
+            }
           },
           textInputAction: TextInputAction.search,
           textAlignVertical: TextAlignVertical.bottom,

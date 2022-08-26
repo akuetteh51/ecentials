@@ -1,5 +1,6 @@
 // ignore_for_file: unused_import, camel_case_types, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:ecentialsclone/models/AllPharmaciePreview.dart';
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
@@ -19,9 +20,8 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class DrugDashboard extends StatefulWidget {
-  const DrugDashboard({
-    Key? key,
-  }) : super(key: key);
+  DrugDashboard({Key? key, required this.pharmacy}) : super(key: key);
+  AllPharmaciesPreview pharmacy;
 
   @override
   State<DrugDashboard> createState() => _DrugDashboardState();
@@ -57,6 +57,7 @@ class _DrugDashboardState extends State<DrugDashboard> {
     UserState userState = Provider.of<UserState>(
       context,
     );
+    AllPharmaciesPreview pharmacy = widget.pharmacy;
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -78,8 +79,8 @@ class _DrugDashboardState extends State<DrugDashboard> {
             color: Theme.of(context).disabledColor.withOpacity(.75),
           ),
         ),
-        title: const Text(
-          "The MediShop Pharmacy",
+        title: Text(
+          pharmacy.name ?? "The MediShop Pharmacy",
           style: TextStyle(fontSize: 18),
         ),
         actions: [
@@ -176,12 +177,7 @@ class _DrugDashboardState extends State<DrugDashboard> {
                     ),
                   ),
                   IconButton(
-                    onPressed: () {},
-                    icon: Image.asset(
-                      "assets/images/filter.png",
-                      color: AppColors.primaryBlackColor.withOpacity(.80),
-                    ),
-                  )
+                      onPressed: () {}, icon: Icon(Icons.trending_up_rounded))
                 ],
               ),
               SizedBox(

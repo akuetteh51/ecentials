@@ -6,6 +6,8 @@ import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/Widgets/drugInfo.dart';
 import 'package:ecentialsclone/src/Widgets/sliverFab.dart';
 import 'package:ecentialsclone/src/app_state/cart_state.dart';
+import 'package:ecentialsclone/src/app_state/pharmacy_state.dart';
+import 'package:ecentialsclone/src/app_state/user_state.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -24,14 +26,18 @@ class DrugDetails extends StatefulWidget {
 
 class _DrugDetailsState extends State<DrugDetails> {
   late bool _addedToCart;
+  bool _bookmarkingDrug = false;
   @override
   Widget build(BuildContext context) {
     CartState cartState = Provider.of<CartState>(context);
+    PharmacyState pharmacyState = Provider.of<PharmacyState>(context);
+    UserState userState = Provider.of<UserState>(context);
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     PopularPharmacy details = widget.details;
     int index = cartState.cart.indexWhere((e) => e.drug.id == details.id);
     _addedToCart = index > -1 ? true : false;
+    bool _isBookmarked = pharmacyState.bookmarkedDrugs.contains(details.id);
     return Scaffold(
       extendBody: true,
       backgroundColor: AppColors.primaryWhiteColor,
@@ -104,9 +110,30 @@ class _DrugDetailsState extends State<DrugDetails> {
                                 ),
                               ),
                               IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(Icons.favorite_border_rounded,
-                                      size: 32, color: Colors.red[700]))
+                                  onPressed: () async {
+                                    if (_bookmarkingDrug) return;
+                                    setState(() {
+                                      _bookmarkingDrug = true;
+                                    });
+                                    await pharmacyState.bookmarkDrug(
+                                        token: userState.userInfo?['token'],
+                                        drugId: details.id ?? "");
+                                    setState(() {
+                                      _bookmarkingDrug = false;
+                                    });
+                                  },
+                                  icon: _bookmarkingDrug
+                                      ? Center(
+                                          child: CircularProgressIndicator(
+                                              color:
+                                                  AppColors.primaryDeepColor),
+                                        )
+                                      : Icon(
+                                          _isBookmarked
+                                              ? Icons.favorite_rounded
+                                              : Icons.favorite_border_rounded,
+                                          size: 32,
+                                          color: Colors.red[700]))
                             ],
                           ),
                         ],

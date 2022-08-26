@@ -16,6 +16,7 @@ class CartState extends ChangeNotifier {
     notifyListeners();
     ShowToast.ecentialsToast(
       message: "Added to Cart",
+      warn: false,
     );
   }
 

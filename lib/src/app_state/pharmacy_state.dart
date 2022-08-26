@@ -15,14 +15,20 @@ class PharmacyState extends ChangeNotifier {
   int _fetchPopularDrugs = 0;
   int get fetchPopularDrugs => _fetchPopularDrugs;
 
-  int _bookmarkingDrugState = 0;
-  int get bookmarkingDrugState => _bookmarkingDrugState;
+  int _bookmarkingPharmacyState = 0;
+  int get bookmarkingPharmacyState => _bookmarkingPharmacyState;
+
+  // int _bookmarkingDrugState = 0;
+  // int get bookmarkingDrugState => _bookmarkingDrugState;
 
   int _gettingUserFavoritePharmacies = 0;
   int get gettingUserFavoritePharmacies => _gettingUserFavoritePharmacies;
 
   int _searchingPharmacies = 0;
   int get searchingPharmacies => _searchingPharmacies;
+
+  int _fetchingBookmarkedDrugs = 0;
+  int get fetchingBookmarkedDrugs => _fetchingBookmarkedDrugs;
 
   List<AllPharmaciesPreview> _allPharmacyPreviews = [];
   List<AllPharmaciesPreview> get allPharmacyPreviews => _allPharmacyPreviews;
@@ -32,6 +38,9 @@ class PharmacyState extends ChangeNotifier {
 
   List<int> _pharmacyBookmarkingIndexes = [];
   List<int> get pharmacyBookmarkingIndexes => _pharmacyBookmarkingIndexes;
+
+  List<String> _bookmarkedDrugs = [];
+  List<String> get bookmarkedDrugs => _bookmarkedDrugs;
 
   List _userFAVpharmacies = [];
   List get userFAVpharmacies => _userFAVpharmacies;
@@ -109,18 +118,16 @@ class PharmacyState extends ChangeNotifier {
           await dio.get(path, options: Options(headers: {"auth-token": token}));
 
       if (response.statusCode == 200) {
-        _fetchPopularDrugs = 2;
-        notifyListeners();
-
+        _allPopularDrugs = [];
         // log("Poular Drugs: ${response.data}");
         // _fetchPopularDrugs = response.data['message']['health'];
         List popular = response.data['data'];
 
         for (int drug = 0; drug < popular.length; drug++) {
           _allPopularDrugs.add(PopularPharmacy.fromJson(popular[drug]));
+          _fetchPopularDrugs = 2;
+          notifyListeners();
         }
-
-        notifyListeners();
 
         // ShowToast.ecentialsToast(
         //     message: "Pin updated succefully", warn: false, long: true);
@@ -145,8 +152,8 @@ class PharmacyState extends ChangeNotifier {
   // Bookmark a pharmacy
   bookmarkPharmacy(
       {String? token, required int index, required String itemId}) async {
-    _bookmarkingDrugState = 0;
-    _bookmarkingDrugState = 1;
+    _bookmarkingPharmacyState = 0;
+    _bookmarkingPharmacyState = 1;
     notifyListeners();
 
     Dio dio = Dio();
@@ -167,7 +174,7 @@ class PharmacyState extends ChangeNotifier {
           options: Options(headers: {"auth-token": token}), data: requestData);
 
       if (response.statusCode == 200) {
-        _bookmarkingDrugState = 2;
+        _bookmarkingPharmacyState = 2;
         notifyListeners();
 
         ShowToast.ecentialsToast(
@@ -178,7 +185,7 @@ class PharmacyState extends ChangeNotifier {
         getFavoritePharmacies(token: token);
       } else {
         log("fail 2: ${response.data}");
-        _bookmarkingDrugState = 3;
+        _bookmarkingPharmacyState = 3;
         _pharmacyBookmarkingIndexes.remove(index);
         notifyListeners();
         ShowToast.ecentialsToast(
@@ -186,7 +193,7 @@ class PharmacyState extends ChangeNotifier {
         );
       }
     } catch (e) {
-      _bookmarkingDrugState = 3;
+      _bookmarkingPharmacyState = 3;
       _pharmacyBookmarkingIndexes.remove(index);
       notifyListeners();
       log("There was an Error: $e");
@@ -242,6 +249,92 @@ class PharmacyState extends ChangeNotifier {
   setPharmyBookmarkingIndexToEmpty() {
     _pharmacyBookmarkingIndexes = [];
     notifyListeners();
+  }
+
+  bookmarkDrug({String? token, required String drugId}) async {
+    // _bookmarkingDrugState = 0;
+    // _bookmarkingDrugState = 1;
+    // notifyListeners();
+    if (_bookmarkedDrugs.contains(drugId)) return;
+    Dio dio = Dio();
+
+    Map<String, dynamic> requestData = {
+      "bookmark_type": "medicine",
+      "item_id": drugId,
+    };
+
+    String path =
+        APPBASEURL.BASEURL + "/api/v1/user/bookmarks/add-new-bookmark-item";
+
+    try {
+      Response response = await dio.post(path,
+          options: Options(headers: {"auth-token": token}), data: requestData);
+
+      if (response.statusCode == 200) {
+        ShowToast.ecentialsToast(
+          message: "Bookmarked",
+          warn: false,
+        );
+        _bookmarkedDrugs.add(drugId);
+        // _bookmarkingDrugState = 2;
+        // notifyListeners();
+        // return 200;
+      } else {
+        // _bookmarkingDrugState = 3;
+        // notifyListeners();
+        ShowToast.ecentialsToast(
+          message: "Failed to bookmark drug__",
+        );
+        // return 300;
+      }
+    } catch (e) {
+      // _bookmarkingDrugState = 3;
+      // notifyListeners();
+      log("There was an Error: $e");
+      ShowToast.ecentialsToast(
+        message: "Failed to bookmark drug",
+      );
+      // return 300;
+    }
+  }
+
+  fetchBookmarkedDrugs({required String? token}) async {
+    _fetchingBookmarkedDrugs = 0;
+    _fetchingBookmarkedDrugs = 1;
+    notifyListeners();
+
+    Dio dio = Dio();
+
+    String path =
+        APPBASEURL.BASEURL + "/api/v1/user/bookmarks/list-bookmark-items";
+
+    Map<String, dynamic> requestData = {
+      "bookmark_type": "medicine",
+    };
+    print("doing");
+    try {
+      Response response = await dio.post(path,
+          options: Options(headers: {"auth-token": token}), data: requestData);
+
+      if (response.statusCode == 200) {
+        print("::::::::::::::200");
+        _bookmarkedDrugs = [];
+        List bookamrks = response.data['data'];
+        for (int i = 0; i < bookamrks.length; i++) {
+          _bookmarkedDrugs.add(bookamrks[i]['item_id']);
+        }
+        _fetchingBookmarkedDrugs = 2;
+        notifyListeners();
+      } else {
+        _fetchingBookmarkedDrugs = 3;
+        notifyListeners();
+      }
+    } catch (e) {
+      log("FAILED $e");
+
+      _fetchingBookmarkedDrugs = 3;
+      notifyListeners();
+    }
   }
 
   searchForPharmacy(

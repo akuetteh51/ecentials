@@ -138,6 +138,7 @@ class _FindPharmacyState extends State<FindPharmacy> {
                         child: Search(
                       controller: searchTextController,
                       onSubmitted: searchPharmacy,
+                      onChanged: searchPharmacy,
                       width: width * .82,
                     )),
                     IconButton(
@@ -195,81 +196,105 @@ class _FindPharmacyState extends State<FindPharmacy> {
                   : pharmacyState.searchingPharmacies == 0 &&
                           pharmacyState.pharmacySearchResults.isEmpty &&
                           pharmacyState.allPharmacyPreviews.isNotEmpty &&
-                          pharmacyState.fetchingPharmaciesPreview == 2
-                      ? ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: pharmacyState.allPharmacyPreviews.length,
-                          itemBuilder: (BuildContext context, int index) =>
-                              Wrap(
-                                direction: Axis.vertical,
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      Get.to(() => DrugDashboard());
-                                    },
-                                    child: LabResultsCard(
-                                        image: "assets/images/pharHome.png",
-                                        labName: pharmacyState
-                                            .allPharmacyPreviews[index].name,
-                                        openingHours:
-                                            "Weekdays | 7:00am - 5:00pm"),
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                ],
-                              ))
-                      : pharmacyState.searchingPharmacies == 2 &&
-                              pharmacyState.pharmacySearchResults.isNotEmpty
+                          pharmacyState.fetchingPharmaciesPreview != 2
+                      ? Center(
+                          child: Container(
+                              margin: const EdgeInsets.only(top: 20.0),
+                              child: CircularProgressIndicator(
+                                  color: AppColors.primaryDeepColor)),
+                        )
+                      : pharmacyState.searchingPharmacies == 0 &&
+                              pharmacyState.pharmacySearchResults.isEmpty &&
+                              pharmacyState.allPharmacyPreviews.isNotEmpty &&
+                              pharmacyState.fetchingPharmaciesPreview == 2
                           ? ListView.builder(
                               physics: NeverScrollableScrollPhysics(),
-                              padding: EdgeInsets.only(top: 40),
                               shrinkWrap: true,
                               itemCount:
-                                  pharmacyState.pharmacySearchResults.length,
+                                  pharmacyState.allPharmacyPreviews.length,
                               itemBuilder: (BuildContext context, int index) =>
                                   Wrap(
-                                direction: Axis.vertical,
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      Get.to(() => DrugDashboard());
-                                    },
-                                    child: LabResultsCard(
-                                        image: "assets/images/pharHome.png",
-                                        labName: pharmacyState
-                                            .pharmacySearchResults[index].name,
-                                        openingHours:
-                                            "Weekdays | 7:00am - 5:00pm"),
-                                  ),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                ],
-                              ),
-                            )
+                                    direction: Axis.vertical,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          Get.to(() => DrugDashboard(
+                                              pharmacy: pharmacyState
+                                                  .allPharmacyPreviews[index]));
+                                        },
+                                        child: LabResultsCard(
+                                            image: "assets/images/pharHome.png",
+                                            labName: pharmacyState
+                                                .allPharmacyPreviews[index]
+                                                .name,
+                                            openingHours:
+                                                "Weekdays | 7:00am - 5:00pm"),
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                    ],
+                                  ))
                           : pharmacyState.searchingPharmacies == 2 &&
-                                  pharmacyState.pharmacySearchResults.isEmpty
-                              ? Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 20.0),
-                                    child: Text("No pharmacy found"),
+                                  pharmacyState.pharmacySearchResults.isNotEmpty
+                              ? ListView.builder(
+                                  physics: NeverScrollableScrollPhysics(),
+                                  padding: EdgeInsets.only(top: 40),
+                                  shrinkWrap: true,
+                                  itemCount: pharmacyState
+                                      .pharmacySearchResults.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) => Wrap(
+                                    direction: Axis.vertical,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          Get.to(() => DrugDashboard(
+                                                pharmacy: pharmacyState
+                                                        .pharmacySearchResults[
+                                                    index],
+                                              ));
+                                        },
+                                        child: LabResultsCard(
+                                            image: "assets/images/pharHome.png",
+                                            labName: pharmacyState
+                                                .pharmacySearchResults[index]
+                                                .name,
+                                            openingHours:
+                                                "Weekdays | 7:00am - 5:00pm"),
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                    ],
                                   ),
                                 )
-                              : pharmacyState.searchingPharmacies == 3
+                              : pharmacyState.searchingPharmacies == 2 &&
+                                      pharmacyState
+                                          .pharmacySearchResults.isEmpty
                                   ? Center(
                                       child: Padding(
-                                      padding: const EdgeInsets.only(top: 20.0),
-                                      child: Text(
-                                          "There was an error. Please try again."),
-                                    ))
-                                  : Center(
-                                      child: Container(
-                                          margin:
+                                        padding:
+                                            const EdgeInsets.only(top: 20.0),
+                                        child: Text("No pharmacy found"),
+                                      ),
+                                    )
+                                  : pharmacyState.searchingPharmacies == 3
+                                      ? Center(
+                                          child: Padding(
+                                          padding:
                                               const EdgeInsets.only(top: 20.0),
-                                          child: CircularProgressIndicator()),
-                                    ),
+                                          child: Text(
+                                              "There was an error. Please try again."),
+                                        ))
+                                      : Center(
+                                          child: Container(
+                                              margin: const EdgeInsets.only(
+                                                  top: 20.0),
+                                              child: CircularProgressIndicator(
+                                                  color: AppColors
+                                                      .primaryDeepColor)),
+                                        ),
               SizedBox(
                 height: 20,
               ),
@@ -418,10 +443,7 @@ class _FindPharmacyState extends State<FindPharmacy> {
                               fontWeight: FontWeight.w600,
                               fontSize: 18),
                         ),
-                        Icon(
-                          Icons.compare_arrows_rounded,
-                          color: AppColors.primaryDeepColor,
-                        )
+                        Image.asset("assets/images/Control.png")
                       ],
                     ),
                   ),

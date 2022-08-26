@@ -19,6 +19,7 @@ import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmac
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacyHome.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/scanDocument.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/drugDetails.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
@@ -188,7 +189,10 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
                               ),
                               child: InkWell(
                                 onTap: () {
-                                  Get.to(() => DrugDashboard());
+                                  Get.to(() => DrugDashboard(
+                                        pharmacy: pharmacyState
+                                            .allPharmacyPreviews[index],
+                                      ));
                                 },
                                 child: PharmacyCard(
                                   index: index,
@@ -301,7 +305,9 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
                             GestureDetector(
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (builder) => DrugDashboard()));
+                                    builder: (builder) => DrugDetails(
+                                        details: pharmacyState
+                                            .allPopularDrugs[index])));
                               },
                               child: DrugCard(
                                 drugName:
