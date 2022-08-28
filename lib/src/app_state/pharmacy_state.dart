@@ -251,11 +251,11 @@ class PharmacyState extends ChangeNotifier {
     notifyListeners();
   }
 
-  bookmarkDrug({String? token, required String drugId}) async {
+  bookmarkDrug(
+      {String? token, required String drugId, bool bookmarked = false}) async {
     // _bookmarkingDrugState = 0;
     // _bookmarkingDrugState = 1;
     // notifyListeners();
-    if (_bookmarkedDrugs.contains(drugId)) return;
     Dio dio = Dio();
 
     Map<String, dynamic> requestData = {
@@ -263,19 +263,30 @@ class PharmacyState extends ChangeNotifier {
       "item_id": drugId,
     };
 
-    String path =
-        APPBASEURL.BASEURL + "/api/v1/user/bookmarks/add-new-bookmark-item";
+    String path = bookmarked
+        ? APPBASEURL.BASEURL + "/api/v1/user/bookmarks/remove-bookmark-item"
+        : APPBASEURL.BASEURL + "/api/v1/user/bookmarks/add-new-bookmark-item";
+
+    print(path);
+    print(_bookmarkedDrugs);
 
     try {
-      Response response = await dio.post(path,
-          options: Options(headers: {"auth-token": token}), data: requestData);
+      Response response = bookmarked
+          ? await dio.delete(path,
+              options: Options(headers: {"auth-token": token}),
+              data: requestData)
+          : await dio.post(path,
+              options: Options(headers: {"auth-token": token}),
+              data: requestData);
 
       if (response.statusCode == 200) {
         ShowToast.ecentialsToast(
-          message: "Bookmarked",
+          message: bookmarked ? "Removed from bookmarks" : "Bookmarked",
           warn: false,
         );
-        _bookmarkedDrugs.add(drugId);
+        bookmarked
+            ? _bookmarkedDrugs.remove(drugId)
+            : _bookmarkedDrugs.add(drugId);
         // _bookmarkingDrugState = 2;
         // notifyListeners();
         // return 200;
@@ -283,7 +294,9 @@ class PharmacyState extends ChangeNotifier {
         // _bookmarkingDrugState = 3;
         // notifyListeners();
         ShowToast.ecentialsToast(
-          message: "Failed to bookmark drug__",
+          message: bookmarked
+              ? "Failed remove from bookmarks"
+              : "Failed to bookmark drug",
         );
         // return 300;
       }
@@ -292,7 +305,9 @@ class PharmacyState extends ChangeNotifier {
       // notifyListeners();
       log("There was an Error: $e");
       ShowToast.ecentialsToast(
-        message: "Failed to bookmark drug",
+        message: bookmarked
+            ? "Failed remove from bookmarks"
+            : "Failed to bookmark drug",
       );
       // return 300;
     }
@@ -311,13 +326,11 @@ class PharmacyState extends ChangeNotifier {
     Map<String, dynamic> requestData = {
       "bookmark_type": "medicine",
     };
-    print("doing");
     try {
       Response response = await dio.post(path,
           options: Options(headers: {"auth-token": token}), data: requestData);
 
       if (response.statusCode == 200) {
-        print("::::::::::::::200");
         _bookmarkedDrugs = [];
         List bookamrks = response.data['data'];
         for (int i = 0; i < bookamrks.length; i++) {

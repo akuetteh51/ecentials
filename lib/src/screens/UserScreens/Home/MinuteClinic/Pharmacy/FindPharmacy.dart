@@ -162,7 +162,8 @@ class _FindPharmacyState extends State<FindPharmacy> {
                     ),
                   ]),
               if (pharmacyState.searchingPharmacies == 0 &&
-                  pharmacyState.pharmacySearchResults.isEmpty)
+                  pharmacyState.pharmacySearchResults.isEmpty &&
+                  pharmacyState.allPharmacyPreviews.isNotEmpty)
                 Container(
                   margin: EdgeInsets.only(top: 56, bottom: 20),
                   child: Row(
@@ -187,22 +188,22 @@ class _FindPharmacyState extends State<FindPharmacy> {
                 ),
               pharmacyState.searchingPharmacies == 0 &&
                       pharmacyState.pharmacySearchResults.isEmpty &&
-                      pharmacyState.allPharmacyPreviews.isEmpty
+                      pharmacyState.allPharmacyPreviews.isEmpty &&
+                      pharmacyState.fetchingPharmaciesPreview == 1
                   ? Center(
-                      child: Padding(
-                      padding: const EdgeInsets.only(top: 20.0),
-                      child: Text("Search for nearby pharmacies"),
-                    ))
+                      child: Container(
+                          margin: const EdgeInsets.only(top: 20.0),
+                          child: CircularProgressIndicator(
+                              color: AppColors.primaryDeepColor)),
+                    )
                   : pharmacyState.searchingPharmacies == 0 &&
                           pharmacyState.pharmacySearchResults.isEmpty &&
-                          pharmacyState.allPharmacyPreviews.isNotEmpty &&
-                          pharmacyState.fetchingPharmaciesPreview != 2
+                          pharmacyState.allPharmacyPreviews.isEmpty
                       ? Center(
-                          child: Container(
-                              margin: const EdgeInsets.only(top: 20.0),
-                              child: CircularProgressIndicator(
-                                  color: AppColors.primaryDeepColor)),
-                        )
+                          child: Padding(
+                          padding: const EdgeInsets.only(top: 20.0),
+                          child: Text("Search for nearby pharmacies"),
+                        ))
                       : pharmacyState.searchingPharmacies == 0 &&
                               pharmacyState.pharmacySearchResults.isEmpty &&
                               pharmacyState.allPharmacyPreviews.isNotEmpty &&

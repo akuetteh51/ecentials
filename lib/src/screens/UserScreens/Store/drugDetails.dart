@@ -117,7 +117,8 @@ class _DrugDetailsState extends State<DrugDetails> {
                                     });
                                     await pharmacyState.bookmarkDrug(
                                         token: userState.userInfo?['token'],
-                                        drugId: details.id ?? "");
+                                        drugId: details.id ?? "",
+                                        bookmarked: _isBookmarked);
                                     setState(() {
                                       _bookmarkingDrug = false;
                                     });
