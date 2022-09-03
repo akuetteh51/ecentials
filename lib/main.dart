@@ -7,6 +7,7 @@ import 'package:ecentialsclone/src/Widgets/profile.dart';
 import 'package:ecentialsclone/src/app_state/Health_Info_state.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Chat/chatroom/chat_bubble.dart';
+
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/delivery_mode.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulance_map.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/labScreen.dart';
@@ -57,6 +58,7 @@ import 'package:toast/toast.dart';
 import 'src/app_state/AuthState.dart';
 import 'src/app_state/nk.dart';
 import 'src/app_state/user_state.dart';
+import 'src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/hospitalHome.dart';
 import 'src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/hospitalSchedules.dart';
 import 'src/screens/UserScreens/Home/MinuteClinic/minuteClinic.dart';
 import 'src/app_state/ambulance_state.dart';
@@ -84,12 +86,12 @@ Future main() async {
         ChangeNotifierProvider<ShopState>(create: (_) => ShopState()),
         ChangeNotifierProvider<AuthState>(create: (_) => AuthState()),
         ChangeNotifierProvider<UserState>(create: (_) => UserState()),
-        ChangeNotifierProvider<HealthInformationState>(create: (_) => HealthInformationState()),
+        ChangeNotifierProvider<HealthInformationState>(
+            create: (_) => HealthInformationState()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: MyApp(),
-        // pinCreationPrompt(),
       ),
     ),
   );

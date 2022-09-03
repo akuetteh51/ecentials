@@ -1,5 +1,3 @@
-
-
 // ignore_for_file: dead_code, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'dart:ui';
@@ -14,15 +12,10 @@ import 'package:ecentialsclone/src/Widgets/outlinedButton.dart';
 import 'package:ecentialsclone/src/Widgets/prominentDoctors.dart';
 import 'package:ecentialsclone/src/Widgets/search.dart';
 
-
-import 'package:ecentialsclone/src/Widgets/topDoctor.dart ';
-
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/Hospital2DocProfile.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/Hospital2DocProfile.dart';
 
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/LabDirection.dart';
-
-
 
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
 
@@ -288,11 +281,9 @@ class _LabDetailsState extends State<LabDetails> {
                             ),
                           ),
                           onPressed: () {
-
                             Get.to(() => LabDirection());
 
                             Get.to(() => LabChat());
-
                           },
                           child: Row(children: [
                             Text("Direction"),
@@ -322,8 +313,6 @@ class _LabDetailsState extends State<LabDetails> {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-
-
                   InkWell(
                     onTap: () {
                       Get.to(() => Hospital2DocProfile());
@@ -357,8 +346,6 @@ class _LabDetailsState extends State<LabDetails> {
                           specialization: "Neuro Surgeon"),
                     ),
                   ),
-
-
                   for (int j = 0; j < 5; j++)
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -372,24 +359,21 @@ class _LabDetailsState extends State<LabDetails> {
                             specialization: "Neuro Surgeon"),
                       ),
                     ),
-
-       ],
-
-                
-
+                ],
               ),
             ),
           ),
           SliverToBoxAdapter(
               child: Column(
-                children: [
-                  Row(
             children: [
+              Row(
+                children: [
                   Container(
                     margin: EdgeInsets.only(left: 22.82, top: 29),
                     child: Text(
                       "Lab Coverage",
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
                     ),
                   ),
                   IconButton(
@@ -404,46 +388,48 @@ class _LabDetailsState extends State<LabDetails> {
                       ),
                     ),
                   )
-            ],
-          ),
-          Container(
-              margin: EdgeInsets.only(left: 24.2, top: 24.63),
-              child: Row(children: [
-                ButtonOutlined(
-                  text: "Blood Test",
-                  style: TextStyle(color: Colors.teal),
-                  color: Colors.teal,
-                  width: 100,
-                  height: 40,
-                  radius: 8,
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: 8.8, top: 0),
-                  child: ButtonOutlined(
-                    text: "Urine Test",
-                    style: TextStyle(color: Colors.teal),
-                    color: Colors.teal,
-                    width: 100,
-                    height: 40,
-                    radius: 8,
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(left: 8.8, top: 0),
-                  child: ButtonOutlined(
-                    text: "DNA test",
-                    style: TextStyle(color: Colors.teal),
-                    color: Colors.teal,
-                    width: 100,
-                    height: 40,
-                    radius: 8,
-                  ),
-                ),
-              ]),
-            ),
-          SizedBox(height: 100,),
                 ],
-              )),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 24.2, top: 24.63),
+                child: Row(children: [
+                  ButtonOutlined(
+                    text: "Blood Test",
+                    style: TextStyle(color: Colors.teal),
+                    color: Colors.teal,
+                    width: 100,
+                    height: 40,
+                    radius: 8,
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 8.8, top: 0),
+                    child: ButtonOutlined(
+                      text: "Urine Test",
+                      style: TextStyle(color: Colors.teal),
+                      color: Colors.teal,
+                      width: 100,
+                      height: 40,
+                      radius: 8,
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 8.8, top: 0),
+                    child: ButtonOutlined(
+                      text: "DNA test",
+                      style: TextStyle(color: Colors.teal),
+                      color: Colors.teal,
+                      width: 100,
+                      height: 40,
+                      radius: 8,
+                    ),
+                  ),
+                ]),
+              ),
+              SizedBox(
+                height: 100,
+              ),
+            ],
+          )),
           // SliverToBoxAdapter(
           //   child: ,
           // ),

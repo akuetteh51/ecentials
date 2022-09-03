@@ -1,11 +1,14 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/CurvedBottomBar.dart';
+import 'package:ecentialsclone/src/app_state/hospital_state.dart';
+import 'package:ecentialsclone/src/app_state/user_state.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/nearbyHospital.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/get_core.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../Themes/ecentials_icons_icons.dart';
 import '../../../../../Widgets/navDrawer.dart';
@@ -32,6 +35,10 @@ class _HospitalHomeState extends State<HospitalHome> {
 
   @override
   Widget build(BuildContext context) {
+    HospitalState hospitalState =
+        Provider.of<HospitalState>(context, listen: false);
+    UserState userState = Provider.of<UserState>(context, listen: false);
+
     // AppBar
     final _appBar = AppBar(
       backgroundColor: AppColors.primaryWhiteColor,
@@ -68,10 +75,24 @@ class _HospitalHomeState extends State<HospitalHome> {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "Find a Nearby Hospital",
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
-            ),
+            FutureBuilder(
+                future: hospitalState.Hospital(
+                  token: userState.userInfo?['token'],
+                ),
+                builder: (context, AsyncSnapshot hospitalState) {
+                  String? hospital;
+                  if (hospitalState.hasData) {
+                    List hospital = hospitalState.data;
+                    if (hospital.isNotEmpty) {
+                      hospital = hospital.first;
+                    }
+                  }
+                  return Text(
+                    "${hospital ?? "no data"}",
+                    // "Find a Nearby Hospital",
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                  );
+                }),
             SizedBox(
               height: 10,
             ),

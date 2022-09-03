@@ -135,7 +135,7 @@ class UserState extends ChangeNotifier {
         notifyListeners();
 
         log("ONLINE DATA: ${response.data}");
-        var data = response.data['data']['personal'];        
+        var data = response.data['data']['personal'];
         _userDataModel = UserDataModel(
             name: data["name"] ?? "",
             address: data["address"] ?? "",
