@@ -37,6 +37,7 @@ class _HospitalHomeState extends State<HospitalHome> {
   Widget build(BuildContext context) {
     HospitalState hospitalState =
         Provider.of<HospitalState>(context, listen: false);
+
     UserState userState = Provider.of<UserState>(context, listen: false);
 
     // AppBar
