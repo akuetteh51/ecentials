@@ -1,8 +1,11 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:ecentialsclone/models/CartItemModel.dart';
 import 'package:ecentialsclone/src/Widgets/EcentialsToast.dart';
+import 'package:ecentialsclone/src/app_state/cart_state.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../models/AllPharmaciePreview.dart';
 import '../../models/PopularDrugs.dart';
@@ -266,9 +269,6 @@ class PharmacyState extends ChangeNotifier {
     String path = bookmarked
         ? APPBASEURL.BASEURL + "/api/v1/user/bookmarks/remove-bookmark-item"
         : APPBASEURL.BASEURL + "/api/v1/user/bookmarks/add-new-bookmark-item";
-
-    print(path);
-    print(_bookmarkedDrugs);
 
     try {
       Response response = bookmarked

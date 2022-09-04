@@ -10,6 +10,7 @@ import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
 import 'package:ecentialsclone/src/Widgets/schedulesCard.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 import 'package:ecentialsclone/src/app_state/cart_state.dart';
+import 'package:ecentialsclone/src/app_state/user_state.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacyDashboard.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
@@ -29,6 +30,7 @@ class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     CartState cartState = Provider.of<CartState>(context);
+    UserState userState = Provider.of<UserState>(context);
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       backgroundColor: AppColors.primaryWhiteColor,
@@ -309,7 +311,10 @@ class _CartState extends State<Cart> {
                           horizontal: 62.0, vertical: 26),
                       child: Button(
                           text: "Checkout",
-                          onTap: () {},
+                          onTap: () async {
+                            cartState.checkOut(
+                                token: userState.userInfo?['token']);
+                          },
                           style: TextStyle(color: AppColors.primaryWhiteColor)),
                     )))
         ],
