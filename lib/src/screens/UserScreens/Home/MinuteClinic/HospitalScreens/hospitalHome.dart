@@ -76,24 +76,6 @@ class _HospitalHomeState extends State<HospitalHome> {
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            FutureBuilder(
-                future: hospitalState.Hospital(
-                  token: userState.userInfo?['token'],
-                ),
-                builder: (context, AsyncSnapshot hospitalState) {
-                  String? hospital;
-                  if (hospitalState.hasData) {
-                    List hospital = hospitalState.data;
-                    if (hospital.isNotEmpty) {
-                      hospital = hospital.first;
-                    }
-                  }
-                  return Text(
-                    "${hospital ?? "no data"}",
-                    // "Find a Nearby Hospital",
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
-                  );
-                }),
             SizedBox(
               height: 10,
             ),

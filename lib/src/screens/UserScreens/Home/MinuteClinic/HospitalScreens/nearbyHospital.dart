@@ -17,6 +17,7 @@ class NearbyHospital extends StatefulWidget {
   State<NearbyHospital> createState() => _NearbyHospitalState();
 }
 
+// 0201855778
 class _NearbyHospitalState extends State<NearbyHospital> {
   @override
   Widget build(BuildContext context) {
@@ -91,51 +92,50 @@ class _NearbyHospitalState extends State<NearbyHospital> {
               ],
             ),
           ),
-          // FutureBuilder(
-          //     future: hospitalState.Hospital(
-          //       token: userState.userInfo?['token'],
-          //     ),
-          //     builder: (context, AsyncSnapshot hospitalState) {
-          //       String? hospital;
-          //       if (hospitalState.hasData) {
-          //         List hospital = hospitalState.data;
-          //         if (hospital.isNotEmpty) {
-          //           hospital = hospital.first;
-          //         }
-          //       }
-          //       return Text(
-          //         "${hospital ?? "no data"}",
-          //         // "Find a Nearby Hospital",
-          //         style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
-          //       );
-          //     }),
+          FutureBuilder(
+              future: hospitalState.Hospital(
+                token: userState.userInfo?['token'],
+              ),
+              builder: (context, AsyncSnapshot hospitalState) {
+                String? hospital;
+                if (hospitalState.hasData) {
+                  List hospital = hospitalState.data;
+                  if (hospital.isNotEmpty) {
+                    hospital = hospital.first;
+                  }
+                }
+                return Text(
+                  "${hospital ?? "no data"}",
+                  // "Find a Nearby Hospital",
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                );
+              }),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: FutureBuilder(
                 future: TopDoctorState.TopDoctor(
                   token: userState.userInfo?['token'],
                 ),
-                builder: (context, AsyncSnapshot TopDocotorState) {
-                  String? topDoctor;
-                  if (TopDoctorState.data != null) {
-                    List topDoctor = TopDoctorState.TopDoctor().data;
+                builder: (context, AsyncSnapshot TopDoctorState) {
+                  if (TopDoctorState.hasData) {
+                    List topDoctor = TopDoctorState.data;
                     if (topDoctor.isNotEmpty) {
-                      topDoctor = topDoctor.first;
+                      return Row(
+                        children: List.generate(
+                          topDoctor.length,
+                          (index) => TopDoctor(
+                            image: topDoctor[index]["image"],
+                            docName: topDoctor[index]["name"],
+                            days: topDoctor[index]["days"],
+                            specialization: topDoctor[index]["area"],
+                            experience: topDoctor[index]["experience"],
+                          ),
+                        ),
+                      );
                     }
-                    return CircularProgressIndicator();
+                    return Text("No Data found");
                   }
-                  return Row(
-                    children: List.generate(
-                      _docsInfo.length,
-                      (index) => TopDoctor(
-                        image: topDoctor ?? _docsInfo[index]["image"],
-                        docName: topDoctor ?? _docsInfo[index]["name"],
-                        days: topDoctor ?? _docsInfo[index]["days"],
-                        specialization: topDoctor ?? _docsInfo[index]["area"],
-                        experience: {$topDoctor} ?? 5,
-                      ),
-                    ),
-                  );
+                  return CircularProgressIndicator();
                 }),
           ),
           SingleChildScrollView(
