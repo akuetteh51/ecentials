@@ -327,7 +327,7 @@ class _FindPharmacyState extends State<FindPharmacy> {
           }
         : {"search_text": searchTextController.value.text};
     searchTextController.value.text.isEmpty && filter == false
-        ? pharmacyState.clearSearch()
+        ? pharmacyState.clearPharmacySearch()
         : await pharmacyState.searchForPharmacy(
             searchParams: _searchParams,
             token: userState.userInfo?['token'],
@@ -582,7 +582,7 @@ class _FindPharmacyState extends State<FindPharmacy> {
                                 searchTextController.clear();
                               });
                               Navigator.of(context).pop();
-                              pharmacyState.clearSearch();
+                              pharmacyState.clearPharmacySearch();
                             },
                             child: Padding(
                               padding:

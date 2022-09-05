@@ -300,7 +300,6 @@ class _CartState extends State<Cart> {
                         color: AppColors.primaryWhiteColor,
                         boxShadow: [
                           BoxShadow(
-                            offset: Offset(0, -1),
                             color: AppColors.primaryBlackColor.withOpacity(.07),
                             blurRadius: 3.0,
                             spreadRadius: 1,

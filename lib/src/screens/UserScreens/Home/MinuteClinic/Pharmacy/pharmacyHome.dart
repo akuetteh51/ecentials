@@ -1,4 +1,3 @@
-
 // ignore_for_file: prefer_const_constructors
 
 import 'package:ecentialsclone/src/Themes/colors.dart';
@@ -31,6 +30,8 @@ class PharmacyHome extends StatefulWidget {
 }
 
 class _PharmacyHomeState extends State<PharmacyHome> {
+  final controller = TextEditingController();
+
   int currentIndex = 0;
   onTap(int index) {
     setState(() {
@@ -50,7 +51,7 @@ class _PharmacyHomeState extends State<PharmacyHome> {
   Widget build(BuildContext context) {
     UserState userState = Provider.of<UserState>(
       context,
-    );    
+    );
     final _appBar = AppBar(
       toolbarHeight: 70,
       elevation: 0,
@@ -79,12 +80,13 @@ class _PharmacyHomeState extends State<PharmacyHome> {
           ),
           children: [
             TextSpan(
-                text:shortenLongString(userState.userInfo?['name'] ?? "welcome"),
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontFamily: "Montserrat",
-                  color: AppColors.primaryDeepColor,
-                ),),
+              text: shortenLongString(userState.userInfo?['name'] ?? "welcome"),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontFamily: "Montserrat",
+                color: AppColors.primaryDeepColor,
+              ),
+            ),
           ],
         ),
       ),
@@ -124,13 +126,13 @@ class _PharmacyHomeState extends State<PharmacyHome> {
         foregroundColor: AppColors.primaryBlackColor,
         elevation: 0,
         title: Search4(
-
+          controller: controller,
           searchPressed: () {
-            Get.to(() => FindDrug()); 
+            if (controller.value.text.trim() == "") return;
+            Get.to(() => FindDrug(
+                  searchTerm: controller.value.text.trim(),
+                ));
           },
-
-        
-
           micPressed: () {},
           width: MediaQuery.of(context).size.width,
           text: "Enter your search term here ",

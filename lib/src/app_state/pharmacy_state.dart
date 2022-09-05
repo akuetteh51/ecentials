@@ -29,6 +29,8 @@ class PharmacyState extends ChangeNotifier {
 
   int _searchingPharmacies = 0;
   int get searchingPharmacies => _searchingPharmacies;
+  int _searchingDrugs = 0;
+  int get searchingDrugs => _searchingDrugs;
 
   int _fetchingBookmarkedDrugs = 0;
   int get fetchingBookmarkedDrugs => _fetchingBookmarkedDrugs;
@@ -51,6 +53,9 @@ class PharmacyState extends ChangeNotifier {
   List<AllPharmaciesPreview> _pharmacySearchResults = [];
   List<AllPharmaciesPreview> get pharmacySearchResults =>
       _pharmacySearchResults;
+  List<PopularPharmacy> _generalDrugSearchResults = [];
+  List<PopularPharmacy> get generalDrugSearchResults =>
+      _generalDrugSearchResults;
 
   // Fetch all pharmacies available
   fetchPharmaciesPreview({
@@ -372,7 +377,7 @@ class PharmacyState extends ChangeNotifier {
       if (response.statusCode == 200) {
         _pharmacySearchResults = [];
         List pharmacies = response.data['data'];
-        if (response.data['data'].length == 0) {
+        if (pharmacies.isEmpty) {
           _pharmacySearchResults = [];
         } else {
           for (int pharm = 0; pharm < pharmacies.length; pharm++) {
@@ -400,9 +405,63 @@ class PharmacyState extends ChangeNotifier {
     }
   }
 
-  clearSearch() {
+  searchForDrug(
+      {String? token,
+      Map<String, dynamic>? searchParams,
+      bool? filter,
+      Function? callback}) async {
+    _searchingDrugs = 0;
+    _searchingDrugs = 1;
+    notifyListeners();
+
+    Dio dio = Dio();
+
+    String path = APPBASEURL.BASEURL + "/api/v1/pharmacy/drugs/drug-search";
+
+    try {
+      Response response = await dio.post(path,
+          data: searchParams, options: Options(headers: {"auth-token": token}));
+      if (response.statusCode == 200) {
+        _generalDrugSearchResults = [];
+        List pharmacies = response.data['data'];
+        print(pharmacies);
+        if (pharmacies.isEmpty) {
+          _generalDrugSearchResults = [];
+        } else {
+          for (int i = 0; i < pharmacies.length; i++) {
+            _generalDrugSearchResults
+                .add(PopularPharmacy.fromJson(pharmacies[i]));
+          }
+        }
+        _searchingDrugs = 2;
+        notifyListeners();
+
+        callback?.call();
+      } else {
+        _searchingDrugs = 3;
+        notifyListeners();
+        ShowToast.ecentialsToast(
+          message: "Error fetching data",
+        );
+      }
+    } catch (e) {
+      _searchingDrugs = 3;
+      notifyListeners();
+      ShowToast.ecentialsToast(
+        message: "Error making request",
+      );
+    }
+  }
+
+  clearPharmacySearch() {
     _searchingPharmacies = 0;
     _pharmacySearchResults = [];
+    notifyListeners();
+  }
+
+  clearDrugSearch() {
+    _searchingDrugs = 0;
+    _generalDrugSearchResults = [];
     notifyListeners();
   }
 }
