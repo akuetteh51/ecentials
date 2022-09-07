@@ -30,7 +30,6 @@ dependencies:
   toast: ^0.3.0
   shimmer: ^2.0.0
   geolocator: ^9.0.1
-  flutter_tesseract_ocr: ^0.4.20
 
 
 dev_dependencies:
@@ -56,4 +55,3 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-    - assets/traineddata/
