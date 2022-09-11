@@ -3,6 +3,7 @@ import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulanceNear.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/minuteClinic.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/manageAddresses.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/prescriptions.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/setting.dart';
@@ -68,6 +69,25 @@ class NavDrawer extends StatelessWidget {
             ),
             title: Text(
               "Profile",
+              style: TextStyle(
+                  fontSize: fontSize, color: AppColors.primaryBlackColor),
+            ),
+          ),
+          ListTile(
+            onTap: () {
+              Get.to(
+                () => const ManageAddress(),
+                transition: Transition.rightToLeft,
+                duration: const Duration(
+                  seconds: 1,
+                ),
+              );
+              Scaffold.of(context).openEndDrawer();
+            },
+            leading: Icon(Icons.local_shipping_rounded,
+                size: labelSize, color: AppColors.primaryDeepColor),
+            title: Text(
+              "Dilivery Adresses",
               style: TextStyle(
                   fontSize: fontSize, color: AppColors.primaryBlackColor),
             ),

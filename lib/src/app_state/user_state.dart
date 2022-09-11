@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:ecentialsclone/models/UserEducationModel.dart';
@@ -135,7 +136,7 @@ class UserState extends ChangeNotifier {
         notifyListeners();
 
         log("ONLINE DATA: ${response.data}");
-        var data = response.data['data']['personal'];        
+        var data = response.data['data']['personal'];
         _userDataModel = UserDataModel(
             name: data["name"] ?? "",
             address: data["address"] ?? "",
@@ -385,6 +386,35 @@ class UserState extends ChangeNotifier {
       _deletingEducationState = 3;
       notifyListeners();
       return null;
+    }
+  }
+
+  uploadPrescription({required String? token, required File? picture}) async {
+    Dio dio = Dio();
+    String path = APPBASEURL.BASEURL + "/api/v1/prescriptions/new-prescription";
+
+    String fileName = picture!.path.split('/').last;
+    FormData formData = FormData.fromMap({
+      "picture": await MultipartFile.fromFile(picture.path, filename: fileName),
+    });
+    print(token);
+
+    try {
+      Response response = await dio.post(path,
+          data: formData, options: Options(headers: {"auth-token": token}));
+      if (response.statusCode == 200) {
+        print(response.data["data"]);
+        return response.data["data"];
+      } else {
+        ShowToast.ecentialsToast(
+          message: "Error scanning prescription",
+        );
+      }
+    } catch (e) {
+      print("Error: ${e}");
+      ShowToast.ecentialsToast(
+        message: "Error uploading prescription",
+      );
     }
   }
 

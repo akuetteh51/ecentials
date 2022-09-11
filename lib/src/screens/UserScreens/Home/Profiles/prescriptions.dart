@@ -1,5 +1,7 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/UploadPrescription.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/prescriptionResults.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/scanDocument.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -62,6 +64,14 @@ class _PrescriptionsState extends State<Prescriptions> {
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
                 color: AppColors.primaryBlackColor.withAlpha(180))),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Get.to(() => ScanDocument());
+              },
+              icon:
+                  Icon(Icons.add, size: 32, color: AppColors.primaryDeepColor))
+        ],
       ),
       body: SingleChildScrollView(
           child: pres.isEmpty

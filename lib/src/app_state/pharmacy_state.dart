@@ -424,7 +424,6 @@ class PharmacyState extends ChangeNotifier {
       if (response.statusCode == 200) {
         _generalDrugSearchResults = [];
         List pharmacies = response.data['data'];
-        print(pharmacies);
         if (pharmacies.isEmpty) {
           _generalDrugSearchResults = [];
         } else {
@@ -450,6 +449,44 @@ class PharmacyState extends ChangeNotifier {
       ShowToast.ecentialsToast(
         message: "Error making request",
       );
+    }
+  }
+
+  Future<List<PopularPharmacy>> searchForDrugInPharmacy({
+    String? token,
+    Map<String, dynamic>? searchParams,
+    bool? filter,
+  }) async {
+    Dio dio = Dio();
+
+    String path = APPBASEURL.BASEURL +
+        "/api/v1/pharmacy/drugs/pharmacy-specific-drug-search/";
+
+    List<PopularPharmacy> results = [];
+    try {
+      Response response = await dio.post(path,
+          data: searchParams, options: Options(headers: {"auth-token": token}));
+      if (response.statusCode == 200) {
+        List pharmacies = response.data['data'];
+        if (pharmacies.isEmpty) {
+          return results;
+        } else {
+          for (int i = 0; i < pharmacies.length; i++) {
+            results.add(PopularPharmacy.fromJson(pharmacies[i]));
+          }
+          return results;
+        }
+      } else {
+        ShowToast.ecentialsToast(
+          message: "Error fetching data",
+        );
+        return results;
+      }
+    } catch (e) {
+      ShowToast.ecentialsToast(
+        message: "Error making request",
+      );
+      return results;
     }
   }
 
