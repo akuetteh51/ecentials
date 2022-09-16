@@ -389,32 +389,36 @@ class UserState extends ChangeNotifier {
     }
   }
 
-  uploadPrescription({required String? token, required File? picture}) async {
+  Future<int> uploadPrescription(
+      {required String? token,
+      required File? picture,
+      required String store_id}) async {
     Dio dio = Dio();
     String path = APPBASEURL.BASEURL + "/api/v1/prescriptions/new-prescription";
 
     String fileName = picture!.path.split('/').last;
     FormData formData = FormData.fromMap({
+      "store_id": store_id,
       "picture": await MultipartFile.fromFile(picture.path, filename: fileName),
     });
-    print(token);
 
     try {
       Response response = await dio.post(path,
           data: formData, options: Options(headers: {"auth-token": token}));
-      if (response.statusCode == 200) {
-        print(response.data["data"]);
-        return response.data["data"];
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return 2;
       } else {
         ShowToast.ecentialsToast(
           message: "Error scanning prescription",
         );
+        return 3;
       }
     } catch (e) {
       print("Error: ${e}");
       ShowToast.ecentialsToast(
         message: "Error uploading prescription",
       );
+      return 3;
     }
   }
 

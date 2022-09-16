@@ -64,14 +64,6 @@ class _PrescriptionsState extends State<Prescriptions> {
                 fontSize: 18,
                 fontWeight: FontWeight.w700,
                 color: AppColors.primaryBlackColor.withAlpha(180))),
-        actions: [
-          IconButton(
-              onPressed: () {
-                Get.to(() => ScanDocument());
-              },
-              icon:
-                  Icon(Icons.add, size: 32, color: AppColors.primaryDeepColor))
-        ],
       ),
       body: SingleChildScrollView(
           child: pres.isEmpty

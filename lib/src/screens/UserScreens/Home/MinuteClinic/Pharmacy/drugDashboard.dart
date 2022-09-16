@@ -93,7 +93,9 @@ class _DrugDashboardState extends State<DrugDashboard> {
             margin: EdgeInsets.only(left: 39.78, top: 0, right: 24.67),
             child: IconButton(
               onPressed: () {
-                Get.to(() => ScanDocument());
+                Get.to(() => ScanDocument(
+                      store_id: pharmacy.id!,
+                    ));
               },
               icon: Icon(EcentialsIcons.scan_cam),
             ),

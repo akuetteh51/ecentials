@@ -57,7 +57,9 @@ class _UploadPrescriptionState extends State<UploadPrescription> {
               margin: EdgeInsets.only(left: 55.41, top: 0, right: 24.67),
               child: IconButton(
                 onPressed: () {
-                  Get.to(() => ScanDocument());
+                  Get.to(() => ScanDocument(
+                        store_id: "1",
+                      ));
                 },
                 icon: Icon(
                   EcentialsIcons.cart,

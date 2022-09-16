@@ -449,6 +449,7 @@ class PharmacyState extends ChangeNotifier {
       ShowToast.ecentialsToast(
         message: "Error making request",
       );
+      print(e);
     }
   }
 

@@ -17,6 +17,7 @@ import 'package:ecentialsclone/src/Widgets/search.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
 import 'package:ecentialsclone/src/app_state/user_state.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/scanResults.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/prescriptions.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
@@ -25,9 +26,12 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class ScanDocument extends StatefulWidget {
-  const ScanDocument({
+  ScanDocument({
     Key? key,
+    required this.store_id,
   }) : super(key: key);
+
+  String store_id;
 
   @override
   State<ScanDocument> createState() => _ScanDocumentState();
@@ -36,6 +40,7 @@ class ScanDocument extends StatefulWidget {
 class _ScanDocumentState extends State<ScanDocument> {
   final ImagePicker _picker = ImagePicker();
   File? image;
+  int uploaded = 0;
 
   Future pickImage(ImageSource source) async {
     UserState userState = Provider.of<UserState>(context, listen: false);
@@ -55,8 +60,13 @@ class _ScanDocumentState extends State<ScanDocument> {
           image = File(capture!.path);
         });
       }
-      await userState.uploadPrescription(
-          token: userState.userInfo?['token'], picture: image);
+      final int response = await userState.uploadPrescription(
+          token: userState.userInfo?['token'],
+          picture: image,
+          store_id: widget.store_id);
+      setState(() {
+        uploaded = response;
+      });
     } on PlatformException catch (e) {
       log("Error: $e");
     }
@@ -87,7 +97,7 @@ class _ScanDocumentState extends State<ScanDocument> {
                 color: Theme.of(context).disabledColor.withOpacity(.75),
               )),
         ),
-        body: image == null
+        body: image == null && uploaded == 0
             ? SingleChildScrollView(
                 child: Container(
                   margin: const EdgeInsets.all(20),
@@ -131,7 +141,7 @@ class _ScanDocumentState extends State<ScanDocument> {
                               _showPickImageOptions(context);
                             },
                             text: "Scan",
-                            height: 20,
+                            height: 24,
                             width: 32,
                             style: TextStyle(
                                 color: AppColors.primaryWhiteColor,
@@ -143,10 +153,69 @@ class _ScanDocumentState extends State<ScanDocument> {
                       ]),
                 ),
               )
-            : Center(
-                child: CircularProgressIndicator(
-                    color: AppColors.primaryDeepColor),
-              ));
+            : image != null && uploaded == 2
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 24.0, horizontal: 20),
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Center(
+                            child: Icon(
+                              Icons.check_circle_outline,
+                              color: AppColors.primaryGreenColor,
+                              size: 102,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            child: Text(
+                              "Prescription successfully uploaded. You can track it's response in the prescriptions page.",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: AppColors.primaryBlackColor,
+                                  fontSize: 16,
+                                  fontFamily: "Roboto Mono",
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ),
+                          Button(
+                            text: "Prescriptions",
+                            onTap: () {
+                              Get.to(() => Prescriptions());
+                            },
+                            height: 46,
+                            width: 320,
+                            style: TextStyle(
+                                color: AppColors.primaryWhiteColor,
+                                fontSize: 15,
+                                fontFamily: "Roboto Mono",
+                                fontWeight: FontWeight.w400),
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                : image != null && uploaded == 3
+                    ? Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Center(
+                          child: Text(
+                            "There was an error uploading the image. Please try again after a few seconds.",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontFamily: "Roboto Mono",
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ),
+                      )
+                    : Center(
+                        child: CircularProgressIndicator(
+                            color: AppColors.primaryDeepColor),
+                      ));
   }
 
   void _showPickImageOptions(BuildContext ctx) {
