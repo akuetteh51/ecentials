@@ -43,7 +43,6 @@ class _ScanDocumentState extends State<ScanDocument> {
   int uploaded = 0;
 
   Future pickImage(ImageSource source) async {
-    UserState userState = Provider.of<UserState>(context, listen: false);
     final XFile? capture;
     Get.back();
     try {
@@ -60,16 +59,23 @@ class _ScanDocumentState extends State<ScanDocument> {
           image = File(capture!.path);
         });
       }
-      final int response = await userState.uploadPrescription(
-          token: userState.userInfo?['token'],
-          picture: image,
-          store_id: widget.store_id);
-      setState(() {
-        uploaded = response;
-      });
     } on PlatformException catch (e) {
       log("Error: $e");
     }
+  }
+
+  uploadPrescription() async {
+    setState(() {
+      uploaded = 1;
+    });
+    UserState userState = Provider.of<UserState>(context, listen: false);
+    final int response = await userState.uploadPrescription(
+        token: userState.userInfo?['token'],
+        picture: image,
+        store_id: widget.store_id);
+    setState(() {
+      uploaded = response;
+    });
   }
 
   @override
@@ -153,69 +159,118 @@ class _ScanDocumentState extends State<ScanDocument> {
                       ]),
                 ),
               )
-            : image != null && uploaded == 2
-                ? Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 24.0, horizontal: 20),
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Center(
-                            child: Icon(
-                              Icons.check_circle_outline,
-                              color: AppColors.primaryGreenColor,
-                              size: 102,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 20),
-                            child: Text(
-                              "Prescription successfully uploaded. You can track it's response in the prescriptions page.",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: AppColors.primaryBlackColor,
-                                  fontSize: 16,
-                                  fontFamily: "Roboto Mono",
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                          Button(
-                            text: "Prescriptions",
-                            onTap: () {
-                              Get.to(() => Prescriptions());
-                            },
-                            height: 46,
-                            width: 320,
-                            style: TextStyle(
-                                color: AppColors.primaryWhiteColor,
-                                fontSize: 15,
-                                fontFamily: "Roboto Mono",
-                                fontWeight: FontWeight.w400),
-                          )
-                        ],
-                      ),
-                    ),
-                  )
-                : image != null && uploaded == 3
+            : image != null && uploaded == 0
+                ? SingleChildScrollView(
+                    child: Container(
+                        margin: const EdgeInsets.all(20),
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Center(
+                                child: Image.file(image!),
+                              ),
+                              SizedBox(height: 30),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Button(
+                                    text: "Discard",
+                                    color: AppColors.primaryRedColor,
+                                    onTap: () {
+                                      setState(() {
+                                        image = null;
+                                      });
+                                    },
+                                    height: 46,
+                                    width: 220,
+                                    style: TextStyle(
+                                        color: AppColors.primaryWhiteColor,
+                                        fontSize: 15,
+                                        fontFamily: "Roboto Mono",
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                  Button(
+                                    text: "Upload",
+                                    onTap: () async {
+                                      await uploadPrescription();
+                                    },
+                                    height: 46,
+                                    width: 220,
+                                    style: TextStyle(
+                                        color: AppColors.primaryWhiteColor,
+                                        fontSize: 15,
+                                        fontFamily: "Roboto Mono",
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ],
+                              )
+                            ])))
+                : image != null && uploaded == 2
                     ? Padding(
-                        padding: const EdgeInsets.all(20.0),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 24.0, horizontal: 20),
                         child: Center(
-                          child: Text(
-                            "There was an error uploading the image. Please try again after a few seconds.",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: "Roboto Mono",
-                                fontWeight: FontWeight.w400),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Center(
+                                child: Icon(
+                                  Icons.check_circle_outline,
+                                  color: AppColors.primaryGreenColor,
+                                  size: 102,
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 80),
+                                child: Text(
+                                  "Prescription successfully uploaded. You can track it's response in the prescriptions page.",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: AppColors.primaryBlackColor,
+                                      fontSize: 16,
+                                      fontFamily: "Roboto Mono",
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              ),
+                              Button(
+                                text: "Prescriptions",
+                                onTap: () {
+                                  Get.to(() => Prescriptions());
+                                },
+                                height: 46,
+                                width: 320,
+                                style: TextStyle(
+                                    color: AppColors.primaryWhiteColor,
+                                    fontSize: 15,
+                                    fontFamily: "Roboto Mono",
+                                    fontWeight: FontWeight.w400),
+                              )
+                            ],
                           ),
                         ),
                       )
-                    : Center(
-                        child: CircularProgressIndicator(
-                            color: AppColors.primaryDeepColor),
-                      ));
+                    : image != null && uploaded == 3
+                        ? Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Center(
+                              child: Text(
+                                "There was an error uploading the image. Please try again after a few seconds.",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: "Roboto Mono",
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                          )
+                        : Center(
+                            child: CircularProgressIndicator(
+                                color: AppColors.primaryDeepColor),
+                          ));
   }
 
   void _showPickImageOptions(BuildContext ctx) {

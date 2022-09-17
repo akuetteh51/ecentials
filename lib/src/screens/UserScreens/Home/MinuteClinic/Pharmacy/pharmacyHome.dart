@@ -53,7 +53,6 @@ class _PharmacyHomeState extends State<PharmacyHome> {
       context,
     );
     final _appBar = AppBar(
-      toolbarHeight: 70,
       elevation: 0,
       backgroundColor: AppColors.primaryWhiteColor,
       // backgroundColor: Colors.amber,
@@ -138,6 +137,7 @@ class _PharmacyHomeState extends State<PharmacyHome> {
           text: "Enter your search term here ",
         ),
         centerTitle: true,
+        toolbarHeight: 80,
       ),
     );
 
