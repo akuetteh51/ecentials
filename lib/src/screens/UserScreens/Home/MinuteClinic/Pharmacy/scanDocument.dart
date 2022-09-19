@@ -136,7 +136,7 @@ class _ScanDocumentState extends State<ScanDocument> {
                               )),
                         ),
                         Container(
-                          height: 46,
+                          height: 52,
                           width: 320,
                           decoration: BoxDecoration(
                             color: Color.fromARGB(255, 230, 240, 244),
@@ -170,10 +170,8 @@ class _ScanDocumentState extends State<ScanDocument> {
                               Center(
                                 child: Image.file(image!),
                               ),
-                              SizedBox(height: 30),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                              SizedBox(height: 32),
+                              Column(
                                 children: [
                                   Button(
                                     text: "Discard",
@@ -183,21 +181,22 @@ class _ScanDocumentState extends State<ScanDocument> {
                                         image = null;
                                       });
                                     },
-                                    height: 46,
-                                    width: 220,
+                                    height: 52,
+                                    width: 300,
                                     style: TextStyle(
                                         color: AppColors.primaryWhiteColor,
                                         fontSize: 15,
                                         fontFamily: "Roboto Mono",
                                         fontWeight: FontWeight.w400),
                                   ),
+                                  SizedBox(height: 22),
                                   Button(
                                     text: "Upload",
                                     onTap: () async {
                                       await uploadPrescription();
                                     },
-                                    height: 46,
-                                    width: 220,
+                                    height: 52,
+                                    width: 300,
                                     style: TextStyle(
                                         color: AppColors.primaryWhiteColor,
                                         fontSize: 15,
@@ -241,7 +240,7 @@ class _ScanDocumentState extends State<ScanDocument> {
                                 onTap: () {
                                   Get.to(() => Prescriptions());
                                 },
-                                height: 46,
+                                height: 52,
                                 width: 320,
                                 style: TextStyle(
                                     color: AppColors.primaryWhiteColor,
