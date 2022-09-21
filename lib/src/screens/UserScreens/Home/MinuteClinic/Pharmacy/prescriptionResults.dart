@@ -1,6 +1,10 @@
+import 'package:ecentialsclone/models/PopularDrugs.dart';
 import 'package:ecentialsclone/src/Themes/colors.dart';
+import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/Widgets/drugCard.dart';
+import 'package:ecentialsclone/src/app_state/cart_state.dart';
 import 'package:ecentialsclone/src/app_state/pharmacy_state.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/cart.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Store/drugDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,11 +18,45 @@ class PrescriptionResults extends StatefulWidget {
 }
 
 class _PrescriptionResultsState extends State<PrescriptionResults> {
+  bool _addedToCart = false;
+  final List<PopularPharmacy> drugRes = [
+    PopularPharmacy(
+        id: "43w5ertytfyt",
+        name: "Ibuprofen",
+        dosage: "2 times daily",
+        store_id: "5wsrtrt6d757d7556r",
+        description: " rwaresx utdfufuy uyfuyfguyyhv ufufytdytd ufufu",
+        quantity: 3,
+        dosage_form: "liquid",
+        prize: 2.00,
+        manufacturer: "Sam Chem"),
+    PopularPharmacy(
+        id: "43w5ertytfyt",
+        name: "Ibuprofen",
+        dosage: "2 times daily",
+        store_id: "5wsrtrt6d757d7556r",
+        description: " rwaresx utdfufuy uyfuyfguyyhv ufufytdytd ufufu",
+        quantity: 3,
+        dosage_form: "liquid",
+        prize: 2.00,
+        manufacturer: "Sam Chem"),
+    PopularPharmacy(
+        id: "43w5ertytfyt",
+        name: "Ibuprofen",
+        dosage: "2 times daily",
+        store_id: "5wsrtrt6d757d7556r",
+        description: " rwaresx utdfufuy uyfuyfguyyhv ufufytdytd ufufu",
+        quantity: 3,
+        dosage_form: "liquid",
+        prize: 2.00,
+        manufacturer: "Sam Chem"),
+  ];
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     PharmacyState pharmacyState = Provider.of<PharmacyState>(context);
+    CartState cartState = Provider.of<CartState>(context);
 
     return Scaffold(
       extendBody: true,
@@ -45,16 +83,50 @@ class _PrescriptionResultsState extends State<PrescriptionResults> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Drugs",
-                    style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.primaryBlackColor.withAlpha(180))),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Drugs",
+                        style: TextStyle(
+                            fontSize: 26,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.primaryBlackColor.withAlpha(180))),
+                    Button(
+                      text: _addedToCart ? "Added to Cart " : "Add to Cart",
+                      color: _addedToCart
+                          ? AppColors.primaryGrayColor
+                          : AppColors.primaryDeepColor,
+                      onTap: () {
+                        if (_addedToCart) {
+                          setState(() {
+                            _addedToCart = !_addedToCart;
+                          });
+                          return;
+                        }
+                        cartState.addAllToCart(drugRes);
+                        Get.to(() => Cart());
+                        setState(() {
+                          _addedToCart = !_addedToCart;
+                        });
+                      },
+                      height: 52,
+                      width: 180,
+                      style: TextStyle(
+                          color: _addedToCart
+                              ? AppColors.primaryDeepColor
+                              : AppColors.primaryWhiteColor,
+                          fontSize: 15,
+                          fontFamily: "Roboto Mono",
+                          fontWeight: FontWeight.w400),
+                    ),
+                  ],
+                ),
                 GridView.builder(
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: 5,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: drugRes.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 8,
                       mainAxisSpacing: 8,
@@ -63,16 +135,15 @@ class _PrescriptionResultsState extends State<PrescriptionResults> {
                     itemBuilder: (BuildContext context, int index) =>
                         GestureDetector(
                           onTap: () {
-                            // Get.to(
-                            //   () => DrugDetails(
-                            //       details: ),
-                            // );
+                            Get.to(
+                              () => DrugDetails(details: drugRes[index]),
+                            );
                           },
                           child: DrugCard(
-                              drugName: "Ibuprofen",
-                              drugType: "Tablet",
-                              quantity: 50,
-                              price: 2.00),
+                              drugName: drugRes[index].name ?? "Drug",
+                              drugType: drugRes[index].dosage_form ?? "Tablet",
+                              quantity: drugRes[index].quantity ?? 1,
+                              price: drugRes[index].prize?.toDouble() ?? 0.00),
                         )),
                 const SizedBox(height: 24),
                 Text("Note",

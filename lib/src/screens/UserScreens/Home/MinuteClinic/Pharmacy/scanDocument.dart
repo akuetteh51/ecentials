@@ -9,7 +9,6 @@ import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/Widgets/drugCard.dart';
 import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
-import 'package:ecentialsclone/src/Widgets/image_upload_options.dart';
 import 'package:ecentialsclone/src/Widgets/navDrawer.dart';
 import 'package:ecentialsclone/src/Widgets/pharmacyCard.dart';
 import 'package:ecentialsclone/src/Widgets/schedulesCard.dart';
@@ -216,11 +215,8 @@ class _ScanDocumentState extends State<ScanDocument> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Center(
-                                child: Icon(
-                                  Icons.check_circle_outline,
-                                  color: AppColors.primaryGreenColor,
-                                  size: 102,
-                                ),
+                                child: Image.asset("assets/images/created.png",
+                                    height: 100, width: 100),
                               ),
                               Padding(
                                 padding:
@@ -279,19 +275,71 @@ class _ScanDocumentState extends State<ScanDocument> {
         context: ctx,
         builder: (ctx) => Container(
               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-              child: Row(
+              child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  UploadOption(
-                    label: "Camera",
-                    description: "Take a picture",
-                    onTap: () => pickImage(ImageSource.camera),
-                  ),
-                  UploadOption(
-                    label: "Gallery",
-                    description: "Select picture from gallery",
-                    onTap: () => pickImage(ImageSource.gallery),
-                  ),
+                  ListTile(
+                      minVerticalPadding: 10,
+                      onTap: () => pickImage(ImageSource.camera),
+                      leading: Icon(
+                        Icons.camera_alt,
+                        size: 48,
+                        color: AppColors.primaryOrangeColor.withAlpha(100),
+                      ),
+                      title: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Camera",
+                            style: TextStyle(
+                                color:
+                                    AppColors.primaryBlackColor.withAlpha(100),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24),
+                          ),
+                          const SizedBox(
+                            height: 6,
+                          ),
+                          Text(
+                            "Take a picture",
+                            style: TextStyle(
+                                color:
+                                    AppColors.primaryBlackColor.withAlpha(100),
+                                fontSize: 16),
+                          ),
+                        ],
+                      )),
+                  Divider(height: 1),
+                  ListTile(
+                      minVerticalPadding: 10,
+                      onTap: () => pickImage(ImageSource.gallery),
+                      leading: Icon(
+                        Icons.photo,
+                        size: 48,
+                        color: AppColors.primaryOrangeColor.withAlpha(100),
+                      ),
+                      title: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Gallery",
+                              style: TextStyle(
+                                  color: AppColors.primaryBlackColor
+                                      .withAlpha(100),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 24),
+                            ),
+                            const SizedBox(
+                              height: 6,
+                            ),
+                            Text(
+                              "Select picture from your gallery",
+                              style: TextStyle(
+                                  color: AppColors.primaryBlackColor
+                                      .withAlpha(100),
+                                  fontSize: 16),
+                            ),
+                          ]))
                 ],
               ),
             ));

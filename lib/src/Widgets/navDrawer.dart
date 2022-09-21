@@ -76,7 +76,7 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             onTap: () {
               Get.to(
-                () => const ManageAddress(),
+                () => ManageAddress(),
                 transition: Transition.rightToLeft,
                 duration: const Duration(
                   seconds: 1,

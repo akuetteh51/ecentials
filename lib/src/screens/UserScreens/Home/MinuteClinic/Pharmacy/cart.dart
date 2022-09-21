@@ -11,7 +11,10 @@ import 'package:ecentialsclone/src/Widgets/schedulesCard.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 import 'package:ecentialsclone/src/app_state/cart_state.dart';
 import 'package:ecentialsclone/src/app_state/user_state.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/checkingOut.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacyDashboard.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/diliveryAddress.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/manageAddresses.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -30,7 +33,6 @@ class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     CartState cartState = Provider.of<CartState>(context);
-    UserState userState = Provider.of<UserState>(context);
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       backgroundColor: AppColors.primaryWhiteColor,
@@ -251,6 +253,9 @@ class _CartState extends State<Cart> {
                                   child: TextField(
                                     maxLines: 8,
                                     cursorColor: AppColors.primaryDeepColor,
+                                    onChanged: (value) {
+                                      cartState.updateNote(value);
+                                    },
                                     decoration: InputDecoration(
                                       contentPadding: EdgeInsets.only(left: 8),
                                       hintText: "Add note...",
@@ -276,7 +281,7 @@ class _CartState extends State<Cart> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Text("SUBTOTAL: ",
+                              Text("Sub Total: ",
                                   style: TextStyle(
                                       fontSize: 18,
                                       color: AppColors.primaryBlackColor
@@ -307,12 +312,11 @@ class _CartState extends State<Cart> {
                         ]),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 62.0, vertical: 26),
+                          horizontal: 18, vertical: 26),
                       child: Button(
                           text: "Checkout",
-                          onTap: () async {
-                            cartState.checkOut(
-                                token: userState.userInfo?['token']);
+                          onTap: () {
+                            Get.to(() => CheckingOut());
                           },
                           style: TextStyle(color: AppColors.primaryWhiteColor)),
                     )))
