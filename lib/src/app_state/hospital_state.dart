@@ -1,10 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:ecentialsclone/src/Widgets/EcentialsToast.dart';
-import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
-import 'package:ecentialsclone/src/app_state/user_state.dart';
+
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 
 import '../BASEURL/BASEURL.dart';
 
@@ -12,17 +11,18 @@ class HospitalState extends ChangeNotifier {
   Hospital({
     String? token,
     Function? callback,
+    Map<String, dynamic>? SearhData,
   }) async {
     print("debug");
     Dio dio = Dio();
 
     String path =
-        APPBASEURL.BASEURL + "/api/v1/hospital/staffs/fetch-top-doctors";
+        APPBASEURL.BASEURL + "/api/v1/hospitals/search-for-hospital";
 
     print(token);
     try {
       Response response =
-          await dio.get(path, options: Options(headers: {"auth-token": token}));
+          await dio.post(path,data:SearhData,options: Options(headers: {"auth-token": token}));
 
       print(response.statusCode);
       print(response.data);
@@ -33,6 +33,9 @@ class HospitalState extends ChangeNotifier {
         List Hospital = response.data['data'];
         notifyListeners();
         callback?.call();
+        ShowToast.ecentialsToast(long: true,
+        message: "$Hospital",
+      );
         return Hospital;
       } else {
         notifyListeners();
@@ -42,8 +45,8 @@ class HospitalState extends ChangeNotifier {
       }
     } catch (e) {
       print(e);
-      ShowToast.ecentialsToast(
-        message: "Error making request",
+      ShowToast.ecentialsToast(long: true,
+        message: "$e: Error making request",
       );
     }
   }
@@ -53,11 +56,9 @@ class HospitalState extends ChangeNotifier {
     Function? callback,
   }) async {
     Dio dio = Dio();
-// add-new-hospital
-    // String path =
-    // APPBASEURL.BASEURL + "/api/v1/pharmacy/drugs/list-popular-drugs";
+
     String path =
-        // APPBASEURL.BASEURL + "/hospital/staffs/fetch-top-doctors";
+        
         APPBASEURL.BASEURL + "/api/v1/hospital/staffs/fetch-top-doctors";
 
     try {
@@ -68,11 +69,11 @@ class HospitalState extends ChangeNotifier {
         print(" Top doctor: ${response.data['data']}");
 
         List doctor = response.data['data'];
-        return doctor;
-        print(doctor);
+     
 
         notifyListeners();
         callback?.call();
+           return doctor;
       } else {
         notifyListeners();
         ShowToast.ecentialsToast(
@@ -82,11 +83,8 @@ class HospitalState extends ChangeNotifier {
     } catch (e) {
       print(e);
       ShowToast.ecentialsToast(
-        message: "Error making request",
+        message: "$e :Error making request",
       );
     }
   }
 }
-            //     ${hospitalState.Hospital(
-            //   token: userState.userInfo?['token'],
-            // ),

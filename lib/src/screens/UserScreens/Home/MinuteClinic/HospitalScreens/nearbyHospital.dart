@@ -9,9 +9,11 @@ import 'package:provider/provider.dart';
 
 import '../../../../../app_state/hospital_state.dart';
 import '../../../../../app_state/user_state.dart';
+import 'hospitalHome.dart';
 
 class NearbyHospital extends StatefulWidget {
-  const NearbyHospital({Key? key}) : super(key: key);
+  final String Searchdata;
+  const NearbyHospital({required this.Searchdata,Key? key}) : super(key: key);
 
   @override
   State<NearbyHospital> createState() => _NearbyHospitalState();
@@ -68,6 +70,7 @@ class _NearbyHospitalState extends State<NearbyHospital> {
         "openingHours": "Weekdays |7:00am -8:pm",
       },
     ];
+  
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -93,7 +96,7 @@ class _NearbyHospitalState extends State<NearbyHospital> {
             ),
           ),
           FutureBuilder(
-              future: hospitalState.Hospital(
+              future: hospitalState.Hospital(SearhData: {"search_text": widget.Searchdata},
                 token: userState.userInfo?['token'],
               ),
               builder: (context, AsyncSnapshot hospitalState) {

@@ -1,28 +1,24 @@
-// ignore_for_file: dead_code, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'dart:ui';
 
 import 'package:ecentialsclone/src/Themes/colors.dart';
-import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
-import 'package:ecentialsclone/src/Widgets/bottomNavBar.dart';
+
 import 'package:ecentialsclone/src/Widgets/button.dart';
-import 'package:ecentialsclone/src/Widgets/floatingAmbulance.dart';
-import 'package:ecentialsclone/src/Widgets/labResultsCard.dart';
+
 import 'package:ecentialsclone/src/Widgets/outlinedButton.dart';
 import 'package:ecentialsclone/src/Widgets/prominentDoctors.dart';
-import 'package:ecentialsclone/src/Widgets/search.dart';
+
 
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/Hospital2DocProfile.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/Hospital2DocProfile.dart';
+
 
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/LabDirection.dart';
 
-import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
+
 
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/doctorInformation.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labSchedules.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labChat.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labDetails.dart';
+
 
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -359,15 +355,15 @@ class _LabDetailsState extends State<LabDetails> {
                             specialization: "Neuro Surgeon"),
                       ),
                     ),
-                ],
+       ],
               ),
             ),
           ),
           SliverToBoxAdapter(
               child: Column(
-            children: [
-              Row(
                 children: [
+                  Row(
+            children: [
                   Container(
                     margin: EdgeInsets.only(left: 22.82, top: 29),
                     child: Text(
@@ -388,48 +384,48 @@ class _LabDetailsState extends State<LabDetails> {
                       ),
                     ),
                   )
-                ],
-              ),
-              Container(
-                margin: EdgeInsets.only(left: 24.2, top: 24.63),
-                child: Row(children: [
-                  ButtonOutlined(
-                    text: "Blood Test",
+            ],
+          ),
+          Container(
+              margin: EdgeInsets.only(left: 24.2, top: 24.63),
+              child: Row(children: [
+                ButtonOutlined(
+                  text: "Blood Test",
+                  style: TextStyle(color: Colors.teal),
+                  color: Colors.teal,
+                  width: 100,
+                  height: 40,
+                  radius: 8,
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 8.8, top: 0),
+                  child: ButtonOutlined(
+                    text: "Urine Test",
                     style: TextStyle(color: Colors.teal),
                     color: Colors.teal,
                     width: 100,
                     height: 40,
                     radius: 8,
                   ),
-                  Container(
-                    margin: EdgeInsets.only(left: 8.8, top: 0),
-                    child: ButtonOutlined(
-                      text: "Urine Test",
-                      style: TextStyle(color: Colors.teal),
-                      color: Colors.teal,
-                      width: 100,
-                      height: 40,
-                      radius: 8,
-                    ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 8.8, top: 0),
+                  child: ButtonOutlined(
+                    text: "DNA test",
+                    style: TextStyle(color: Colors.teal),
+                    color: Colors.teal,
+                    width: 100,
+                    height: 40,
+                    radius: 8,
                   ),
-                  Container(
-                    margin: EdgeInsets.only(left: 8.8, top: 0),
-                    child: ButtonOutlined(
-                      text: "DNA test",
-                      style: TextStyle(color: Colors.teal),
-                      color: Colors.teal,
-                      width: 100,
-                      height: 40,
-                      radius: 8,
-                    ),
-                  ),
-                ]),
-              ),
+                ),
+              ]),
+            ),
               SizedBox(
                 height: 100,
               ),
-            ],
-          )),
+                ],
+              )),
           // SliverToBoxAdapter(
           //   child: ,
           // ),

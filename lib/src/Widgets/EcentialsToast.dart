@@ -6,6 +6,7 @@ class ShowToast {
     Toast.show(
             message,
             duration: long == true ? Toast.lengthLong : Toast.lengthShort,
+           
             gravity: Toast.bottom,
             backgroundColor: warn == true? Colors.redAccent : Color.fromARGB(255, 1, 198, 50),
           );

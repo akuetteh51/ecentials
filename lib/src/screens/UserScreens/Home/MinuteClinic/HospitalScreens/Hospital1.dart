@@ -250,53 +250,59 @@ class _NearbyHState extends State<NearbyH> {
                     SizedBox(
                       width: 30,
                     ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                        backgroundColor: const Color(0xFF033A64),
-                        primary: Colors.white,
-                        textStyle: const TextStyle(fontSize: 13),
-                        shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(5))),
+                    Expanded(
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                          padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                          backgroundColor: const Color(0xFF033A64),
+                          primary: Colors.white,
+                          textStyle: const TextStyle(fontSize: 13),
+                          shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(5))),
+                        ),
+                        onPressed: () {
+                          print("hello");
+                        },
+                        child: Text("Biological"),
                       ),
-                      onPressed: () {
-                        print("hello");
-                      },
-                      child: Text("Biological"),
                     ),
                     SizedBox(
                       width: 10,
                     ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                        backgroundColor: Colors.grey,
-                        primary: Colors.white,
-                        textStyle: const TextStyle(fontSize: 13),
-                        shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(5))),
+                    Expanded(
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                          padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                          backgroundColor: Colors.grey,
+                          primary: Colors.white,
+                          textStyle: const TextStyle(fontSize: 13),
+                          shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(5))),
+                        ),
+                        onPressed: () {
+                          print("hello");
+                        },
+                        child: Text("Chemical"),
                       ),
-                      onPressed: () {
-                        print("hello");
-                      },
-                      child: Text("Chemical"),
                     ),
                     SizedBox(
                       width: 10,
                     ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                        backgroundColor: Colors.grey,
-                        primary: Colors.white,
-                        textStyle: const TextStyle(fontSize: 13),
-                        shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(5))),
+                    Expanded(
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                          padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                          backgroundColor: Colors.grey,
+                          primary: Colors.white,
+                          textStyle: const TextStyle(fontSize: 13),
+                          shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(5))),
+                        ),
+                        onPressed: () {
+                          print("hello");
+                        },
+                        child: Text("DNA test"),
                       ),
-                      onPressed: () {
-                        print("hello");
-                      },
-                      child: Text("DNA test"),
                     ),
                   ],
                 ),
@@ -305,36 +311,40 @@ class _NearbyHState extends State<NearbyH> {
                     SizedBox(
                       width: 30,
                     ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                        backgroundColor: Colors.grey,
-                        primary: Colors.white,
-                        textStyle: const TextStyle(fontSize: 13),
-                        shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(5))),
+                    Expanded(
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                          padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                          backgroundColor: Colors.grey,
+                          primary: Colors.white,
+                          textStyle: const TextStyle(fontSize: 13),
+                          shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(5))),
+                        ),
+                        onPressed: () {
+                          print("hello");
+                        },
+                        child: Text("Biological"),
                       ),
-                      onPressed: () {
-                        print("hello");
-                      },
-                      child: Text("Biological"),
                     ),
                     SizedBox(
                       width: 10,
                     ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-                        backgroundColor: Colors.grey,
-                        primary: Colors.white,
-                        textStyle: const TextStyle(fontSize: 13),
-                        shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(5))),
+                    Expanded(
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                          padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                          backgroundColor: Colors.grey,
+                          primary: Colors.white,
+                          textStyle: const TextStyle(fontSize: 13),
+                          shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(5))),
+                        ),
+                        onPressed: () {
+                          print("hello");
+                        },
+                        child: Text("Chemical"),
                       ),
-                      onPressed: () {
-                        print("hello");
-                      },
-                      child: Text("Chemical"),
                     ),
                     SizedBox(
                       width: 10,
