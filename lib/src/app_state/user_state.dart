@@ -422,6 +422,56 @@ class UserState extends ChangeNotifier {
     }
   }
 
+  Future<int> fetchPrescription({required String? token}) async {
+    Dio dio = Dio();
+    String path = APPBASEURL.BASEURL + "/api/v1/prescriptions";
+
+    try {
+      Response response =
+          await dio.get(path, options: Options(headers: {"auth-token": token}));
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        print(response.data["data"]);
+        return 2;
+      } else {
+        ShowToast.ecentialsToast(
+          message: "Error retrieving prescription",
+        );
+        return 3;
+      }
+    } catch (e) {
+      print("Error: ${e}");
+      ShowToast.ecentialsToast(
+        message: "Error retrieving prescription",
+      );
+      return 3;
+    }
+  }
+
+  Future<int> fetchAddresses({required String? token}) async {
+    Dio dio = Dio();
+    String path = APPBASEURL.BASEURL + "/api/v1/addresses";
+
+    try {
+      Response response =
+          await dio.get(path, options: Options(headers: {"auth-token": token}));
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        print(response.data["data"]);
+        return 2;
+      } else {
+        ShowToast.ecentialsToast(
+          message: "Error retrieving addresses",
+        );
+        return 3;
+      }
+    } catch (e) {
+      print("Error: ${e}");
+      ShowToast.ecentialsToast(
+        message: "Error retrieving addresses",
+      );
+      return 3;
+    }
+  }
+
   setFetchInfoLoaderState(int value) {
     _fetchInfoLoaderState = value;
     notifyListeners();

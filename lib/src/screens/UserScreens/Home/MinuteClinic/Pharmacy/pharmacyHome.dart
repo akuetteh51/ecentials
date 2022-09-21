@@ -8,6 +8,7 @@ import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/CurvedBottomBar.dart';
 
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacyDashboard.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacySearch.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -128,7 +129,7 @@ class _PharmacyHomeState extends State<PharmacyHome> {
           controller: controller,
           searchPressed: () {
             if (controller.value.text.trim() == "") return;
-            Get.to(() => FindDrug(
+            Get.to(() => PharmacySearch(
                   searchTerm: controller.value.text.trim(),
                 ));
           },

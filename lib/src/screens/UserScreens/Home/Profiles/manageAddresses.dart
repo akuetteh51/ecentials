@@ -1,6 +1,5 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/app_state/cart_state.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/checkingOut.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/diliveryAddress.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

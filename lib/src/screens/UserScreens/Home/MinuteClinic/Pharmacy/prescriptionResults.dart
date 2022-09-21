@@ -109,7 +109,6 @@ class _PrescriptionResultsState extends State<PrescriptionResults> {
                           _addedToCart = !_addedToCart;
                         });
                       },
-                      height: 52,
                       width: 180,
                       style: TextStyle(
                           color: _addedToCart

@@ -15,36 +15,43 @@ class Prescriptions extends StatefulWidget {
 class _PrescriptionsState extends State<Prescriptions> {
   final List<Map<String, dynamic>> pres = [
     {
+      "pharmacy": "Medicina Pharmacy",
       "image": "assets/images/dr_pres2.png",
       "title": "Sunday 12th August, 2022",
       "responded": true
     },
     {
+      "pharmacy": "Medicina Pharmacy",
       "image": "assets/images/dr_pres1.png",
       "title": "Tuesday 12th August, 2022",
       "responded": false
     },
     {
+      "pharmacy": "Leki Drug Store",
       "image": "assets/images/dr_pres2.png",
       "title": "Monday 12th August, 2022",
       "responded": false
     },
     {
+      "pharmacy": "Medicina Pharmacy",
       "image": "assets/images/dr_pres1.png",
       "title": "Thursday 12th August, 2022",
       "responded": true
     },
     {
+      "pharmacy": "Medicina Pharmacy",
       "image": "assets/images/dr_pres2.png",
       "title": "Sunday 12th August, 2022",
       "responded": true
     },
     {
+      "pharmacy": "Pharmacy of London",
       "image": "assets/images/dr_pres1.png",
       "title": "Monday 22nd August, 2022",
       "responded": false
     },
     {
+      "pharmacy": "Lowton Pharmacy",
       "image": "assets/images/dr_pres2.png",
       "title": "Sunday 12th August, 2022",
       "responded": true
@@ -116,8 +123,21 @@ class _PrescriptionsState extends State<Prescriptions> {
                                               color: AppColors.primaryBlackColor
                                                   .withAlpha(90)))),
                                   child: ListTile(
-                                    leading: Image.asset(pres[index]["image"]),
-                                    title: Text(pres[index]["title"]),
+                                    leading: Image.asset(
+                                      pres[index]["image"],
+                                      height: 64,
+                                      width: 64,
+                                      fit: BoxFit.cover,
+                                    ),
+                                    title: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(pres[index]["pharmacy"],
+                                            style: TextStyle(fontSize: 18)),
+                                        Text(pres[index]["title"]),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               )
@@ -168,8 +188,21 @@ class _PrescriptionsState extends State<Prescriptions> {
                                               color: AppColors.primaryBlackColor
                                                   .withAlpha(90)))),
                                   child: ListTile(
-                                    leading: Image.asset(pres[index]["image"]),
-                                    title: Text(pres[index]["title"]),
+                                    leading: Image.asset(
+                                      pres[index]["image"],
+                                      height: 64,
+                                      width: 64,
+                                      fit: BoxFit.cover,
+                                    ),
+                                    title: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(pres[index]["pharmacy"],
+                                            style: TextStyle(fontSize: 18)),
+                                        Text(pres[index]["title"]),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               )

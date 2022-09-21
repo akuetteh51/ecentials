@@ -160,9 +160,15 @@ class _FindDrugState extends State<FindDrug> {
                           ? Center(
                               child: Text("No search results"),
                             )
-                          : Center(
-                              child: Text("Search for drugs"),
-                            ),
+                          : pharmacyState.generalDrugSearchResults.isEmpty &&
+                                  pharmacyState.searchingDrugs == 3
+                              ? const Center(
+                                  child: Text(
+                                      "There was an error. Please try again"),
+                                )
+                              : Center(
+                                  child: Text("Search for drugs"),
+                                ),
               SizedBox(
                 height: 35.0,
               ),
