@@ -5,10 +5,8 @@ import 'package:ecentialsclone/src/app_state/user_state.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/nearbyHospital.dart';
 import 'package:flutter/material.dart';
 import '../../../../../Widgets/searchLocation.dart';
-import "Hospital1.dart";
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../../Themes/ecentials_icons_icons.dart';
 import '../../../../../Widgets/navDrawer.dart';
 import '../../../../../Widgets/search.dart';
@@ -16,7 +14,6 @@ import '../../../Chat/ChatHomePage.dart';
 import '../../../Notifications/notifications.dart';
 import '../../../Store/store.dart';
 import '../../Profiles/profileScreen.dart';
-
 
 class HospitalHome extends StatefulWidget {
   
@@ -113,7 +110,12 @@ class _HospitalHomeState extends State<HospitalHome> {
               ],
 
             ),
-            Text("${searchController.text}"),
+            ValueListenableBuilder(
+              valueListenable: searchController,
+              builder: (context, textEditingValue, child) {
+                return Text("${searchController.text}");
+              }
+            ),
            
           ],
         ),
@@ -122,7 +124,12 @@ class _HospitalHomeState extends State<HospitalHome> {
 
     // screens
     final _pages = [
-      NearbyHospital(Searchdata: searchController.text,),
+      ValueListenableBuilder(
+        valueListenable: searchController,
+        builder: (context, textEditingValue, child) {
+          return NearbyHospital(Searchdata: searchController.text);
+        }
+      ),
       Stores(),
       const Notifications(),
       const ChatHomePage(),

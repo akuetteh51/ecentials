@@ -2,18 +2,14 @@ import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/outlinedButton.dart';
 import 'package:ecentialsclone/src/Widgets/prominentDoctors.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital4Chat.dart';
-// import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital2DocProfile.dart';
-// import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital3Schedule.dart';
-// import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
-// import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/mapScreen.dart';
 import 'package:flutter/material.dart';
-
 import '../../Ambulance/ambulanceRouting.dart';
 import 'docotorInfo.dart';
 import 'hospitalSchedules.dart';
 
 class LabScreen extends StatefulWidget {
-  const LabScreen({Key? key}) : super(key: key);
+  final Map? data;
+  const LabScreen({Key? key, this.data}) : super(key: key);
 
   @override
   State<LabScreen> createState() => _LabScreenState();
@@ -37,8 +33,11 @@ class _LabScreenState extends State<LabScreen> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(right: 67, bottom: 10),
+                  //  image: hospital["images"][0]['image']['data'],
+                  //         labName: hospital["name"],
+                  //         openingHours: hospital["opening_hours"],
                   child: Text(
-                    "AnuTech National Hospital",
+                   "${widget.data!["name"]}",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ),
@@ -47,8 +46,9 @@ class _LabScreenState extends State<LabScreen> {
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
+                       
                       Text(
-                        "3.5km away",
+                        "${widget.data!["address"]}",
                         style: TextStyle(fontSize: 17),
                       ),
                       SizedBox(
@@ -92,12 +92,12 @@ class _LabScreenState extends State<LabScreen> {
                   child: Row(
                     children: [
                       Text(
-                        "Address:",
+                        "Address: ",
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 17),
                       ),
-                      Text(
-                        "  Accra,Ghana",
+                  Text(
+                        "${widget.data!["address"]}",
                         style: TextStyle(fontSize: 17),
                       ),
                     ],
@@ -107,13 +107,14 @@ class _LabScreenState extends State<LabScreen> {
                   padding: const EdgeInsets.fromLTRB(30, 2, 0, 2),
                   child: Row(
                     children: [
+                       
                       Text(
-                        "Hours:",
+                        "Hours: ",
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 17),
                       ),
                       Text(
-                        "24H",
+                        "${widget.data!["opening_hours"]}",
                         style: TextStyle(fontSize: 17),
                       ),
                     ],
@@ -128,13 +129,13 @@ class _LabScreenState extends State<LabScreen> {
                       Padding(
                         padding: const EdgeInsets.only(right: 56),
                         child: Text(
-                          "Phone:",
+                          "Phone: ",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 17),
                         ),
                       ),
                       Text(
-                        "+233 xxxxxxxxxxxxx",
+                        "${widget.data!["phone_number"]}",
                         style: TextStyle(fontSize: 17),
                       ),
                     ],

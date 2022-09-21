@@ -43,12 +43,18 @@ class HospitalState extends ChangeNotifier {
           message: "Error fetching data",
         );
       }
+    } on DioError catch (e) {
+      ShowToast.ecentialsToast(long: true,
+        message: "${e.error}: Error making request.",
+      );
     } catch (e) {
       print(e);
       ShowToast.ecentialsToast(long: true,
         message: "$e: Error making request",
       );
     }
+
+    return [];
   }
 
   TopDoctor({

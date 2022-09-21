@@ -1,25 +1,13 @@
 
-
 import 'package:ecentialsclone/src/Themes/colors.dart';
-
 import 'package:ecentialsclone/src/Widgets/button.dart';
-
 import 'package:ecentialsclone/src/Widgets/outlinedButton.dart';
 import 'package:ecentialsclone/src/Widgets/prominentDoctors.dart';
-
-
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/Hospital2DocProfile.dart';
-
-
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/LabDirection.dart';
-
-
-
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/doctorInformation.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labSchedules.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Lab/labChat.dart';
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
