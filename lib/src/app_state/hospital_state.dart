@@ -33,9 +33,8 @@ class HospitalState extends ChangeNotifier {
         List Hospital = response.data['data'];
         notifyListeners();
         callback?.call();
-        ShowToast.ecentialsToast(long: true,
-        message: "$Hospital",
-      );
+      
+        print("-- Checking: $Hospital");
         return Hospital;
       } else {
         notifyListeners();
@@ -44,13 +43,13 @@ class HospitalState extends ChangeNotifier {
         );
       }
     } on DioError catch (e) {
-      ShowToast.ecentialsToast(long: true,
-        message: "${e.error}: Error making request.",
+      ShowToast.ecentialsToast(
+        message: "Error making request.",
       );
     } catch (e) {
       print(e);
-      ShowToast.ecentialsToast(long: true,
-        message: "$e: Error making request",
+      ShowToast.ecentialsToast(
+        message: "Error making request",
       );
     }
 
@@ -89,7 +88,7 @@ class HospitalState extends ChangeNotifier {
     } catch (e) {
       print(e);
       ShowToast.ecentialsToast(
-        message: "$e :Error making request",
+        message: "Error making request",
       );
     }
   }

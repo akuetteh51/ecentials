@@ -9,6 +9,7 @@ import 'hospitalSchedules.dart';
 
 class LabScreen extends StatefulWidget {
   final Map? data;
+
   const LabScreen({Key? key, this.data}) : super(key: key);
 
   @override
@@ -25,70 +26,79 @@ class _LabScreenState extends State<LabScreen> {
             Column(
               children: [
                 Image(
-                  image: AssetImage("assets/images/hospitallabs.png"),
+                  image: NetworkImage(widget.data!['images'][2]),
+                  height:350 ,
+                  width: MediaQuery.of(context).size.width,
+                  fit: BoxFit.contain,
                 ),
                 SizedBox(
-                  height: 29,
-                  width: 10,
+                  height: 8,
+                 
                 ),
                 Padding(
                   padding: const EdgeInsets.only(right: 67, bottom: 10),
-                  //  image: hospital["images"][0]['image']['data'],
-                  //         labName: hospital["name"],
-                  //         openingHours: hospital["opening_hours"],
+        
                   child: Text(
-                   "${widget.data!["name"]}",
+                   " ${widget.data!["name"]}",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 28),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
+                  padding: const EdgeInsets.only(left: 2),
+                  child: Expanded(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                         
+                        Text(
+                          " 2km",
+                          style: TextStyle(fontSize: 17),
+                        ),
                        
-                      Text(
-                        "${widget.data!["address"]}",
-                        style: TextStyle(fontSize: 17),
-                      ),
-                      SizedBox(
-                        width: 80,
-                      ),
-                      Text(
-                        "Ratings: ",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 17),
-                      ),
-                      Icon(
-                        Icons.star,
-                        size: 15,
-                        color: AppColors.primaryOrangeColor,
-                      ),
-                      Icon(
-                        Icons.star,
-                        size: 15,
-                        color: AppColors.primaryOrangeColor,
-                      ),
-                      Icon(
-                        Icons.star,
-                        size: 15,
-                        color: AppColors.primaryOrangeColor,
-                      ),
-                      Icon(
-                        Icons.star,
-                        size: 15,
-                        color: AppColors.primaryOrangeColor,
-                      ),
-                      Icon(
-                        Icons.star,
-                        size: 15,
-                        color: AppColors.primaryOrangeColor,
-                      ),
-                    ],
+                        Expanded(
+                          child: Row(
+                            children: [
+                        Text(
+                          "Ratings: ",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 17),
+                        ),
+                              Icon(
+                                Icons.star,
+                                size: 15,
+                                color: AppColors.primaryOrangeColor,
+                              ),Icon(
+                            Icons.star,
+                            size: 15,
+                            color: AppColors.primaryOrangeColor,
+                          ),
+                          Icon(
+                            Icons.star,
+                            size: 15,
+                            color: AppColors.primaryOrangeColor,
+                          ),
+                          Icon(
+                            Icons.star,
+                            size: 15,
+                            color: AppColors.primaryOrangeColor,
+                          ),
+                          Icon(
+                            Icons.star,
+                            size: 15,
+                            color: AppColors.primaryOrangeColor,
+                          ),
+                            ],
+                          ),
+                        ),
+                        
+                      ],
+                    ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 2, 0, 2),
+                  padding: const EdgeInsets.fromLTRB(10, 2, 0, 2),
                   child: Row(
                     children: [
                       Text(
@@ -96,15 +106,17 @@ class _LabScreenState extends State<LabScreen> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 17),
                       ),
-                  Text(
-                        "${widget.data!["address"]}",
-                        style: TextStyle(fontSize: 17),
-                      ),
+                  Expanded(
+                    child: Text(
+                          "${widget.data!["address"]}",
+                          style: TextStyle(fontSize: 17),
+                        ),
+                  ),
                     ],
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 2, 0, 2),
+                  padding: const EdgeInsets.fromLTRB(10, 2, 0, 2),
                   child: Row(
                     children: [
                        
@@ -113,9 +125,11 @@ class _LabScreenState extends State<LabScreen> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 17),
                       ),
-                      Text(
-                        "${widget.data!["opening_hours"]}",
-                        style: TextStyle(fontSize: 17),
+                      Expanded(
+                        child: Text(
+                          "${widget.data!["opening_hours"]}",
+                          style: TextStyle(fontSize: 17),
+                        ),
                       ),
                     ],
                   ),
@@ -134,9 +148,11 @@ class _LabScreenState extends State<LabScreen> {
                               fontWeight: FontWeight.bold, fontSize: 17),
                         ),
                       ),
-                      Text(
-                        "${widget.data!["phone_number"]}",
-                        style: TextStyle(fontSize: 17),
+                      Expanded(
+                        child: Text(
+                          "${widget.data!["phone_number"]}",
+                          style: TextStyle(fontSize: 17),
+                        ),
                       ),
                     ],
                   ),
@@ -243,6 +259,8 @@ class _LabScreenState extends State<LabScreen> {
                   padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
                   child: Row(
                     children: [
+
+                    
                       GestureDetector(
                         child: ProminentDoctors(
                             image: "assets/images/doctor1.png",

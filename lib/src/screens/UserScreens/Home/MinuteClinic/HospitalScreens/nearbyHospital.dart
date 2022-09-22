@@ -29,49 +29,6 @@ class _NearbyHospitalState extends State<NearbyHospital> {
     HospitalState TopDoctorState =
         Provider.of<HospitalState>(context, listen: false);
     UserState userState = Provider.of<UserState>(context, listen: false);
-
-    final _docsInfo = [
-      {
-        "image": "assets/images/doctor1.png",
-        "name": "Sussan Agams Ayarega",
-        "days": "3 days ago",
-        "area": "Heart Surgeon",
-        "experience": "5",
-      },
-      {
-        "image": "assets/images/sussan.png",
-        "name": "Jennifer Harrison",
-        "days": "1 week ago",
-        "area": "Dentist, Neurologist",
-        "experience": "5",
-      },
-      {
-        "image": "assets/images/doctor.png",
-        "name": "Andrews Kwadwo dhgfhsgfh",
-        "days": "8 hours ago",
-        "area": "Optometry",
-        "experience": "8",
-      },
-    ];
-
-    final _hospitalInfo = [
-      {
-        "image": "assets/images/hospitalNational.png",
-        "labName": "ZIky National Hospital",
-        "openingHours": "Weekdays |7:00am -8:pm",
-      },
-      {
-        "image": "assets/images/hospitalna.png",
-        "labName": "Andrews Medical Hospital",
-        "openingHours": "Weekdays |8:00am -4:pm",
-      },
-      {
-        "image": "assets/images/hospitaln.png",
-        "labName": "Quame Medical Center",
-        "openingHours": "Weekdays |7:00am -8:pm",
-      },
-    ];
-
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -96,32 +53,6 @@ class _NearbyHospitalState extends State<NearbyHospital> {
               ],
             ),
           ),
-          FutureBuilder(
-              future: hospitalState.Hospital(
-                SearhData: {"search_text": widget.Searchdata},
-                token: userState.userInfo?['token'],
-              ),
-              builder: (context, AsyncSnapshot hospitalState) {
-                // if(hospitalState.connectionState == ConnectionState.done) {
-                //   if(hospitalState.hasError) {
-                //     return Text("--- There was an error: ${hospitalState.error} ---");
-                //   }
-                //   return Text(" --- ${hospitalState.data} --- ");
-                // }
-
-                // return Text("loading...");
-                String? hospital;
-                if (hospitalState.hasData) {
-                  List hospital = hospitalState.data;
-                  if (hospital.isNotEmpty) {
-                    hospital = hospital.first;
-                  }
-                }
-                return Text(
-                  "${hospital ?? "no data"}",
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
-                );
-              }),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: FutureBuilder(
@@ -163,8 +94,11 @@ class _NearbyHospitalState extends State<NearbyHospital> {
 
                 if (snapshot.hasData) {
                   List hospitals = snapshot.data;
+                  // print("-- Results: $hospitals");
 
-                  return ListView.builder(
+                   return ListView.builder(
+                    shrinkWrap: true,
+                    primary: false,
                     itemCount: hospitals.length,
                     itemBuilder: (context, index) {
                       Map hospital = hospitals[index];
@@ -176,7 +110,7 @@ class _NearbyHospitalState extends State<NearbyHospital> {
                           )));
                         },
                         child: HospitalResultsCard(
-                          image: hospital["images"][0]['image']['data'],
+                          image: hospital["images"][0],
                           labName: hospital["name"],
                           openingHours: hospital["opening_hours"],
                         ),
@@ -186,18 +120,18 @@ class _NearbyHospitalState extends State<NearbyHospital> {
                 }
               }
 
-              return Text("Loading...");
+              return Center(child: Column(
+                children: [SizedBox(
+            height: 40,
+          ),CircularProgressIndicator(),SizedBox(
+            height: 10,
+          ),
+                  Text("Loading..."),
+                ],
+              ),);
             },
           ),
-          SizedBox(
-            // if(hospitalState.connectionState == ConnectionState.done) {
-            //   if(hospitalState.hasError) {
-            //     return Text("--- There was an error: ${hospitalState.error} ---");
-            //   }
-            //   return Text(" --- ${hospitalState.data} --- ");
-            // }
-            height: 100,
-          ),
+         
         ],
       ),
     );

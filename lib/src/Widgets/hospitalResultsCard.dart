@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class HospitalResultsCard extends StatelessWidget {
-  final Uint8List image;
+  final String image;
   final String? labName;
   final String? openingHours;
 
@@ -38,7 +38,7 @@ class HospitalResultsCard extends StatelessWidget {
         height: 200,
         width: width - 40,
         decoration: BoxDecoration(
-          image: DecorationImage(image: MemoryImage(image), fit: BoxFit.cover),
+          image: DecorationImage(image: NetworkImage(image), fit: BoxFit.cover),
         ),
         child: Stack(
           children: [
