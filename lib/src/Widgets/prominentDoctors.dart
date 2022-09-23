@@ -1,10 +1,11 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/simple/get_widget_cache.dart';
+
 
 class ProminentDoctors extends StatelessWidget {
-  final String image;
-  final String docName;
-  final String specialization;
+  final String? image;
+  final String? docName;
+  final String? specialization;
   const ProminentDoctors(
       {Key? key,
       required this.image,
@@ -31,7 +32,7 @@ class ProminentDoctors extends StatelessWidget {
               height: 130,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage(image), fit: BoxFit.cover),
+                    image: NetworkImage(image!), fit: BoxFit.cover),
               ),
             ),
             const SizedBox(
@@ -40,7 +41,7 @@ class ProminentDoctors extends StatelessWidget {
             Container(
               margin: const EdgeInsets.only(left: 10),
               child: Text(
-                docName,
+                "${docName}",
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -53,7 +54,7 @@ class ProminentDoctors extends StatelessWidget {
             Container(
               margin: const EdgeInsets.only(left: 10),
               child: Text(
-                specialization,
+                "${specialization}",
                 style: TextStyle(fontSize: 13),
               ),
             ),

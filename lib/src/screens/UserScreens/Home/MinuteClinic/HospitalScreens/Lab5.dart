@@ -3,6 +3,9 @@ import 'package:ecentialsclone/src/Widgets/outlinedButton.dart';
 import 'package:ecentialsclone/src/Widgets/prominentDoctors.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/HospitalScreens/Hospital4Chat.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../../../../app_state/hospital_state.dart';
+import '../../../../../app_state/user_state.dart';
 import '../../Ambulance/ambulanceRouting.dart';
 import 'docotorInfo.dart';
 import 'hospitalSchedules.dart';
@@ -19,6 +22,9 @@ class LabScreen extends StatefulWidget {
 class _LabScreenState extends State<LabScreen> {
   @override
   Widget build(BuildContext context) {
+    HospitalState TopDoctorState =
+        Provider.of<HospitalState>(context, listen: false);
+    UserState userState = Provider.of<UserState>(context, listen: false);
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -29,14 +35,14 @@ class _LabScreenState extends State<LabScreen> {
                   image: NetworkImage(widget.data!['images'][2]),
                   height:350 ,
                   width: MediaQuery.of(context).size.width,
-                  fit: BoxFit.contain,
+                  fit: BoxFit.cover,
                 ),
                 SizedBox(
                   height: 8,
                  
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(right: 67, bottom: 10),
+                  padding:EdgeInsets.symmetric(vertical: 26,horizontal: 10),
         
                   child: Text(
                    " ${widget.data!["name"]}",
@@ -254,40 +260,33 @@ class _LabScreenState extends State<LabScreen> {
                     style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                   ),
                 ),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
-                  child: Row(
-                    children: [
-
-                    
-                      GestureDetector(
-                        child: ProminentDoctors(
-                            image: "assets/images/doctor1.png",
-                            docName: "Clara",
-                            specialization: "Neuro Surgeon"),
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => DocotorInfo()));
-                        },
-                      ),
-                      ProminentDoctors(
-                          image: "assets/images/doctor2.png",
-                          docName: "Clara",
-                          specialization: "Cardio Surgeon"),
-                      ProminentDoctors(
-                          image: "assets/images/doctor.png",
-                          docName: "Clara",
-                          specialization: "Neuro Surgeon"),
-                      ProminentDoctors(
-                          image: "assets/images/doctor.png",
-                          docName: "Clara",
-                          specialization: "Computer Surgeon")
-                    ],
-                  ),
+              SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: FutureBuilder(
+                future: TopDoctorState.TopDoctor(
+                  token: userState.userInfo?['token'],
                 ),
+                builder: (context, AsyncSnapshot TopDoctorState) {
+                  if (TopDoctorState.hasData) {
+                    List topDoctor = TopDoctorState.data;
+                    if (topDoctor.isNotEmpty) {
+                      return Row(
+                        children: List.generate(
+                          topDoctor.length,
+                          (index) => ProminentDoctors(
+                            image: topDoctor[index]["image"],
+                            docName: topDoctor[index]["name"],
+                            specialization:  topDoctor[index]["area"],
+                        )
+                        ),
+                      );
+                    }
+                    return Container(height: 105,width: 150,color: Colors.white60,child: Center(child: Text("No Data found")));
+                  }
+                  return CircularProgressIndicator();
+                }),
+          ),
+
                 Row(
                   children: [
                     Text(

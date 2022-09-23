@@ -76,7 +76,7 @@ class _NearbyHospitalState extends State<NearbyHospital> {
                         ),
                       );
                     }
-                    return Text("No Data found");
+                    return Container(height: 105,width: 150,color: Colors.white60,child: Center(child: Text("No Data found")));
                   }
                   return CircularProgressIndicator();
                 }),
@@ -109,10 +109,13 @@ class _NearbyHospitalState extends State<NearbyHospital> {
                             data: hospital,
                           )));
                         },
-                        child: HospitalResultsCard(
-                          image: hospital["images"][0],
-                          labName: hospital["name"],
-                          openingHours: hospital["opening_hours"],
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 26,horizontal: 26),
+                          child: HospitalResultsCard(
+                            image: hospital["images"][2],
+                            labName: hospital["name"],
+                            openingHours: hospital["opening_hours"],
+                          ),
                         ),
                       );
                     },

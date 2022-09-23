@@ -8,11 +8,7 @@ class HospitalResultsCard extends StatelessWidget {
   final String? labName;
   final String? openingHours;
 
-  final String? service1;
-  final String? service2;
-  final String? service3;
-  final String? service4;
-  final String? price;
+
   final onPressed;
   final bool isBookMarked;
   const HospitalResultsCard(
@@ -20,11 +16,7 @@ class HospitalResultsCard extends StatelessWidget {
       required this.image,
       required this.labName,
       required this.openingHours,
-      this.service1,
-      this.service2,
-      this.service3,
-      this.service4,
-      this.price,
+     
       this.onPressed,
       this.isBookMarked = false})
       : super(key: key);
@@ -60,7 +52,7 @@ class HospitalResultsCard extends StatelessWidget {
             Positioned(
               bottom: 0,
               child: Container(
-                height: 100,
+                height: 70,
                 padding: const EdgeInsets.all(10),
                 width: width - 50,
                 decoration: BoxDecoration(
@@ -73,7 +65,7 @@ class HospitalResultsCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Ziky Clinical Laboratory",
+                      "${labName}",
                       style: TextStyle(
                         color: AppColors.primaryWhiteColor,
                         fontSize: 18,
@@ -81,7 +73,7 @@ class HospitalResultsCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "Weekdays | 7:00am - 5:00pm",
+                      "${openingHours}",
                       style: TextStyle(
                         color: AppColors.primaryWhiteColor,
                         fontSize: 14,
@@ -90,51 +82,13 @@ class HospitalResultsCard extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              EcentialsIcons.lab_people,
-                              color: AppColors.primaryWhiteColor,
-                            ),
-                            RichText(
-                              text: TextSpan(
-                                style: TextStyle(fontSize: 11.0),
-                                text: service1,
-                                children: [
-                                  TextSpan(text: " | $service2"),
-                                  TextSpan(text: " | $service3"),
-                                  TextSpan(text: service4),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                        RichText(
-                          text: TextSpan(
-                            text: "\$$price",
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 16),
-                            children: [
-                              TextSpan(
-                                text: " / hr",
-                                style: TextStyle(
-                                  color: AppColors.primaryWhiteColor
-                                      .withOpacity(0.5),
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
+                    
+                       
                       ],
                     )
-                  ],
                 ),
               ),
-            ),
+            
           ],
         ),
       ),
