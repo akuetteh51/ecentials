@@ -158,11 +158,11 @@ class _CheckingOutState extends State<CheckingOut> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "${diliveryAddressIndex == null ? cartState.addresses.firstWhere((address) => address.primary == true).name : cartState.addresses[diliveryAddressIndex!].name},",
+                                      "${diliveryAddressIndex == null ? cartState.diliveryAddresses.firstWhere((address) => address.primary == true).name : cartState.diliveryAddresses[diliveryAddressIndex!].name},",
                                       style: const TextStyle(fontSize: 18),
                                     ),
                                     Text(
-                                      "${diliveryAddressIndex == null ? cartState.StringifyAddressLocation(cartState.addresses.firstWhere((address) => address.primary == true)) : cartState.StringifyAddressLocation(cartState.addresses[diliveryAddressIndex!])}, GH",
+                                      "${diliveryAddressIndex == null ? cartState.StringifyAddressLocation(cartState.diliveryAddresses.firstWhere((address) => address.primary == true)) : cartState.StringifyAddressLocation(cartState.diliveryAddresses[diliveryAddressIndex!])}, GH",
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                   ],

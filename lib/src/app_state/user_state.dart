@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:ecentialsclone/models/AddressModel.dart';
 import 'package:ecentialsclone/models/UserEducationModel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart' as getx;
@@ -46,6 +47,9 @@ class UserState extends ChangeNotifier {
 
   List<UserEducationModel>? _userEducation = [];
   List<UserEducationModel>? get userEducation => _userEducation;
+
+  List<UserEducationModel> _prescriptions = [];
+  List<UserEducationModel> get prescriptions => _prescriptions;
 
   getStoreUserInfo() async {
     final prefs = await SharedPreferences.getInstance();
@@ -422,14 +426,16 @@ class UserState extends ChangeNotifier {
     }
   }
 
-  Future<int> fetchPrescription({required String? token}) async {
+  Future<int> fetchPrescriptions({required String? token}) async {
     Dio dio = Dio();
-    String path = APPBASEURL.BASEURL + "/api/v1/prescriptions";
+    String path =
+        APPBASEURL.BASEURL + "/api/v1/prescriptions/user-prescriptions";
 
     try {
       Response response =
           await dio.get(path, options: Options(headers: {"auth-token": token}));
       if (response.statusCode == 200 || response.statusCode == 201) {
+        _prescriptions = response.data['data'];
         print(response.data["data"]);
         return 2;
       } else {
@@ -442,31 +448,6 @@ class UserState extends ChangeNotifier {
       print("Error: ${e}");
       ShowToast.ecentialsToast(
         message: "Error retrieving prescription",
-      );
-      return 3;
-    }
-  }
-
-  Future<int> fetchAddresses({required String? token}) async {
-    Dio dio = Dio();
-    String path = APPBASEURL.BASEURL + "/api/v1/addresses";
-
-    try {
-      Response response =
-          await dio.get(path, options: Options(headers: {"auth-token": token}));
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        print(response.data["data"]);
-        return 2;
-      } else {
-        ShowToast.ecentialsToast(
-          message: "Error retrieving addresses",
-        );
-        return 3;
-      }
-    } catch (e) {
-      print("Error: ${e}");
-      ShowToast.ecentialsToast(
-        message: "Error retrieving addresses",
       );
       return 3;
     }

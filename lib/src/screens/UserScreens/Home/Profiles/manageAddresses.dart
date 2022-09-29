@@ -1,5 +1,7 @@
+import 'package:ecentialsclone/models/AddressModel.dart';
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/app_state/cart_state.dart';
+import 'package:ecentialsclone/src/app_state/user_state.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/diliveryAddress.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,6 +16,16 @@ class ManageAddress extends StatefulWidget {
 }
 
 class _ManageAddressState extends State<ManageAddress> {
+  @override
+  void initState() {
+    CartState cartState = Provider.of<CartState>(context, listen: false);
+    UserState userState = Provider.of<UserState>(context, listen: false);
+    if (cartState.diliveryAddresses.isEmpty) {
+      cartState.fetchAddresses(token: userState.userInfo?['token']);
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     CartState cartState = Provider.of<CartState>(context);
@@ -51,40 +63,48 @@ class _ManageAddressState extends State<ManageAddress> {
                     size: 32, color: AppColors.primaryDeepColor))
           ],
         ),
-        body: SingleChildScrollView(
-            child: ListView.builder(
-          physics: const NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          itemCount: cartState.addresses.length,
-          itemBuilder: ((context, index) => ListTile(
-                onTap: () {
-                  widget.checkingOut
-                      ? Navigator.pop(context, index)
-                      : Get.to(() =>
-                          DiliveryAddress(address: cartState.addresses[index]));
-                },
-                minVerticalPadding: 20,
-                title: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "${cartState.addresses[index].name},",
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w700, fontSize: 18),
-                    ),
-                    Text(
-                      "${cartState.StringifyAddressLocation(cartState.addresses[index])}, GH",
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
+        body: cartState.diliveryAddresses.isEmpty
+            ? const Center(
+                child: Text(
+                  "Your dilivery addresses will appear here",
+                  style: TextStyle(fontSize: 18),
                 ),
-                trailing: widget.checkingOut == false &&
-                        cartState.addresses[index].primary != null &&
-                        cartState.addresses[index].primary == true
-                    ? Icon(Icons.check_circle_rounded,
-                        color: AppColors.primaryGreenColor, size: 36)
-                    : const SizedBox.shrink(),
-              )),
-        )));
+              )
+            : SingleChildScrollView(
+                child: ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: cartState.diliveryAddresses.length,
+                itemBuilder: ((context, index) => ListTile(
+                      onTap: () {
+                        widget.checkingOut
+                            ? Navigator.pop(context, index)
+                            : Get.to(() => DiliveryAddress(
+                                address: cartState.diliveryAddresses[index]));
+                      },
+                      minVerticalPadding: 20,
+                      title: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "${cartState.diliveryAddresses[index].name},",
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w700, fontSize: 18),
+                          ),
+                          Text(
+                            "${cartState.StringifyAddressLocation(cartState.diliveryAddresses[index])}, GH",
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
+                      trailing: widget.checkingOut == false &&
+                              cartState.diliveryAddresses[index].primary !=
+                                  null &&
+                              cartState.diliveryAddresses[index].primary == true
+                          ? Icon(Icons.check_circle_rounded,
+                              color: AppColors.primaryGreenColor, size: 36)
+                          : const SizedBox.shrink(),
+                    )),
+              )));
   }
 }

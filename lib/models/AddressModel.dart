@@ -5,6 +5,7 @@ class AddressModel {
   String town;
   String district;
   String region;
+  String country = "Ghana";
   bool? primary = false;
 
   AddressModel(
@@ -14,6 +15,7 @@ class AddressModel {
       required this.town,
       required this.district,
       required this.region,
+      this.country = "Ghana",
       this.primary = false});
 
   factory AddressModel.fromJSON(Map<String, dynamic> address) {

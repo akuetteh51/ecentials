@@ -1,7 +1,9 @@
 import 'package:ecentialsclone/models/AddressModel.dart';
 import 'package:ecentialsclone/src/Themes/colors.dart';
+import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/app_state/cart_state.dart';
+import 'package:ecentialsclone/src/app_state/user_state.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -20,9 +22,11 @@ class _DiliveryAddressState extends State<DiliveryAddress> {
       street = "",
       town = "",
       district = "",
-      region = "";
+      region = "",
+      country = "";
   bool? primary = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool adding = false;
 
   @override
   void initState() {
@@ -35,6 +39,7 @@ class _DiliveryAddressState extends State<DiliveryAddress> {
       town = widget.address!.town;
       district = widget.address!.district;
       region = widget.address!.region;
+      country = widget.address!.country;
     });
     super.initState();
   }
@@ -42,6 +47,7 @@ class _DiliveryAddressState extends State<DiliveryAddress> {
   @override
   Widget build(BuildContext context) {
     CartState cartState = Provider.of<CartState>(context);
+    UserState userState = Provider.of<UserState>(context);
     return Scaffold(
         backgroundColor: AppColors.primaryWhiteColor,
         appBar: AppBar(
@@ -55,70 +61,139 @@ class _DiliveryAddressState extends State<DiliveryAddress> {
                   fontWeight: FontWeight.w700,
                   color: AppColors.primaryBlackColor.withAlpha(180))),
         ),
-        body: SingleChildScrollView(
-          child: Column(children: [
-            Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Form(
-                  key: _formKey,
-                  child: Column(children: [
-                    textField(
-                        label: "Name of Recipient", init: widget.address?.name),
-                    textField(label: "Mobile", init: widget.address?.mobile),
-                    textField(
-                        label: "Street Name", init: widget.address?.street),
-                    textField(label: "Town", init: widget.address?.town),
-                    textField(
-                        label: "District", init: widget.address?.district),
-                    textField(label: "Region", init: widget.address?.region),
-                  ])),
-            ),
-            CheckboxListTile(
-              value: primary,
-              title: const Text(
-                "Set as primary address",
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              ),
-              onChanged: (value) {
-                setState(() {
-                  primary = value;
-                });
-              },
-              checkColor: AppColors.primaryDeepColor,
-            ),
-            const SizedBox(
-              height: 26,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Button(
-                text:
-                    widget.address == null ? "Add Address" : "Confirm Changes",
-                style: TextStyle(
-                  color: AppColors.primaryWhiteColor,
-                  fontSize: 20,
-                ),
-                onTap: () async {
-                  if (!_formKey.currentState!.validate()) {
-                    return;
-                  }
-                  _formKey.currentState!.save();
-                  final index = await cartState.addDiliveryAddress(
-                      address: AddressModel(
-                          name: name,
-                          mobile: mobile,
-                          street: street,
-                          town: town,
-                          district: district,
-                          region: region));
-                  Navigator.pop(context, index);
-                },
-              ),
-            )
-          ]),
-        ));
+        body: adding
+            ? Center(
+                child: CircularProgressIndicator(
+                color: AppColors.primaryDeepColor,
+              ))
+            : SingleChildScrollView(
+                child: Column(children: [
+                  Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: Form(
+                        key: _formKey,
+                        child: Column(children: [
+                          textField(
+                              label: "Name of Recipient",
+                              init: widget.address?.name),
+                          textField(
+                              label: "Mobile", init: widget.address?.mobile),
+                          textField(
+                              label: "Street Name",
+                              init: widget.address?.street),
+                          textField(label: "Town", init: widget.address?.town),
+                          // textField(
+                          //     label: "District",
+                          //     init: widget.address?.district),
+                          dropDown(
+                              label: "Country",
+                              init: widget.address?.country,
+                              dropDownValues: [
+                                "Ghana",
+                                "Nigeria",
+                                "Togo",
+                                "Kenya"
+                              ]),
+                          // textField(
+                          //     label: "Region", init: widget.address?.region),
+                        ])),
+                  ),
+                  CheckboxListTile(
+                    value: primary,
+                    title: const Text(
+                      "Set as primary address",
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        primary = value;
+                      });
+                    },
+                    checkColor: AppColors.primaryDeepColor,
+                  ),
+                  const SizedBox(
+                    height: 26,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: Button(
+                      text: widget.address == null
+                          ? "Add Address"
+                          : "Confirm Changes",
+                      style: TextStyle(
+                        color: AppColors.primaryWhiteColor,
+                        fontSize: 20,
+                      ),
+                      onTap: () async {
+                        if (!_formKey.currentState!.validate()) {
+                          return;
+                        }
+                        setState(() {
+                          adding = true;
+                        });
+                        _formKey.currentState!.save();
+                        final index = await cartState.addDiliveryAddress(
+                            token: userState.userInfo?['token'],
+                            address: AddressModel(
+                                name: name,
+                                mobile: mobile,
+                                street: street,
+                                town: town,
+                                district: district,
+                                region: region));
+                        Navigator.pop(context, index);
+                        setState(() {
+                          adding = false;
+                        });
+                      },
+                    ),
+                  )
+                ]),
+              ));
+  }
+
+  Widget dropDown({label, dropDownValues, init}) {
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+        label + "*",
+        style: const TextStyle(
+          fontSize: 18,
+        ),
+      ),
+      const SizedBox(
+        height: 10,
+      ),
+      Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(7),
+            border: Border.all(
+                color: AppColors.primaryDeepColor.withOpacity(.5), width: 3)),
+        child: DropdownButtonFormField<String>(
+          value: init,
+          decoration: InputDecoration(border: InputBorder.none),
+          icon: const Icon(Icons.arrow_drop_down_rounded),
+          iconSize: 24,
+          elevation: 1,
+          style: TextStyle(color: AppColors.primaryBlackColor.withAlpha(190)),
+          onChanged: (String? newValue) {
+            setState(() {
+              if (label == "Country") country = newValue!;
+            });
+          },
+          items: dropDownValues.map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
+          }).toList(),
+        ),
+      ),
+      const SizedBox(
+        height: 26,
+      ),
+    ]);
   }
 
   Widget textField({label, init}) {

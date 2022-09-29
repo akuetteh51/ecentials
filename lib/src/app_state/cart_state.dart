@@ -14,26 +14,8 @@ class CartState extends ChangeNotifier {
   double get subTotal => _subTotal;
   String _note = "";
   String get note => _note;
-  final List<AddressModel> _addresses = <AddressModel>[
-    AddressModel(
-        name: "Kwabena Gyasi",
-        mobile: "+233 248 555 678",
-        street: "Kpodo St",
-        town: "Nelo",
-        district: "Kyerepone",
-        region: "Savanah",
-        primary: true),
-    AddressModel(
-        name: "Kofi Kofi",
-        mobile: "+233 244 444 444",
-        street: "Nuckemborough St",
-        town: "George Town",
-        district: "Wihensky",
-        region: "Eastern")
-  ];
-  List<AddressModel> get addresses => _addresses;
-  // AddressModel? _diliveryAddress;
-  // AddressModel? get diliveryAddress => _diliveryAddress;
+  List<AddressModel> _diliveryAddresses = <AddressModel>[];
+  List<AddressModel> get diliveryAddresses => _diliveryAddresses;
 
   addToCart(PopularPharmacy drug) {
     _cart.add(CartItemModel(
@@ -125,9 +107,9 @@ class CartState extends ChangeNotifier {
 
     Map<String, dynamic> data = {
       "delivery_address": diliveryAddressIndex == null
-          ? StringifyAddress(
-              _addresses.firstWhere((address) => address.primary == true))
-          : StringifyAddress(_addresses[diliveryAddressIndex]),
+          ? StringifyAddress(_diliveryAddresses
+              .firstWhere((address) => address.primary == true))
+          : StringifyAddress(_diliveryAddresses[diliveryAddressIndex]),
       "delivery_date":
           "Between ${formatter.format(fromDiliveryDate)} and ${formatter.format(toDiliveryDate)}",
       "total_items_cost": _subTotal,
@@ -142,8 +124,6 @@ class CartState extends ChangeNotifier {
               })
           .toList()
     };
-
-    print(data);
 
     String path =
         APPBASEURL.BASEURL + "/api/v1/user/checkout/create-checkout-item";
@@ -176,39 +156,75 @@ class CartState extends ChangeNotifier {
       {String? token,
       required AddressModel address,
       Function? callback}) async {
-    // Dio dio = Dio();
-    // String path = APPBASEURL.BASEURL + "/api/v1/user/add-dilivery-address";
+    Dio dio = Dio();
+    String path = APPBASEURL.BASEURL +
+        "/api/v1/user/shipping-address/add-user-shipping-address";
 
-    // try {
-    //   Response response = await dio.post(path,
-    //       data: JSONifyAddress(address),
-    //       options: Options(headers: {"auth-token": token}));
-    //   if (response.statusCode == 200) {
-    ShowToast.ecentialsToast(
-      message: "Address added",
-      warn: false,
-    );
-    _addresses.add(address);
-    return _addresses.length - 1;
-    //   } else {
-    //     ShowToast.ecentialsToast(
-    //       message: "There was an error adding address, please try again.",
-    //     );
-    // return -1;
-    //   }
-    // } catch (e) {
-    //   ShowToast.ecentialsToast(
-    //     message: "There was an error adding address, please try again.",
-    //   );
-    // return -1;
-    // }
+    try {
+      Response response = await dio.post(path,
+          data: JSONifyAddress(address),
+          options: Options(headers: {"auth-token": token}));
+      if (response.statusCode == 200) {
+        ShowToast.ecentialsToast(
+          message: "Address added",
+          warn: false,
+        );
+        _diliveryAddresses.add(address);
+        return _diliveryAddresses.length - 1;
+      } else {
+        ShowToast.ecentialsToast(
+          message: "There was an error adding address, please try again.",
+        );
+        return -1;
+      }
+    } catch (e) {
+      print(e);
+      ShowToast.ecentialsToast(
+        message: "There was an error adding address, please try again.",
+      );
+      return -1;
+    }
+  }
+
+  Future<int> fetchAddresses({required String? token}) async {
+    Dio dio = Dio();
+    String path = APPBASEURL.BASEURL +
+        "/api/v1/user/shipping-address/fetch-all-shipping-addresses";
+
+    try {
+      Response response =
+          await dio.get(path, options: Options(headers: {"auth-token": token}));
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        print(response.data["data"]);
+        List addresses = response.data["data"];
+        if (addresses.isEmpty) {
+          _diliveryAddresses = [];
+        } else {
+          for (int i = 0; i < addresses.length; i++) {
+            _diliveryAddresses.add(AddressModel.fromJSON(addresses[i]));
+          }
+        }
+        return 2;
+      } else {
+        ShowToast.ecentialsToast(
+          message: "Error retrieving addresses",
+        );
+        return 3;
+      }
+    } catch (e) {
+      print("Error: ${e}");
+      ShowToast.ecentialsToast(
+        message: "Error retrieving addresses",
+      );
+      return 3;
+    }
   }
 
   Map<String, dynamic> JSONifyAddress(AddressModel address) {
     return {
-      "name": address.name,
+      "name_of_recipient": address.name,
       "mobile": address.mobile,
-      "street": address.street,
+      "street_name": address.street,
       "town": address.town,
       "district": address.district,
       "region": address.region,

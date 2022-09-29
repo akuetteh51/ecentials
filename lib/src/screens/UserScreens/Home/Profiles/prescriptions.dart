@@ -1,9 +1,12 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
+import 'package:ecentialsclone/src/app_state/cart_state.dart';
+import 'package:ecentialsclone/src/app_state/user_state.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/UploadPrescription.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/prescriptionResults.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/scanDocument.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 class Prescriptions extends StatefulWidget {
   const Prescriptions({Key? key}) : super(key: key);
@@ -13,6 +16,16 @@ class Prescriptions extends StatefulWidget {
 }
 
 class _PrescriptionsState extends State<Prescriptions> {
+  @override
+  void initState() {
+    // CartState cartState = Provider.of<CartState>(context, listen: false);
+    UserState userState = Provider.of<UserState>(context, listen: false);
+    if (userState.prescriptions.isEmpty) {
+      userState.fetchPrescriptions(token: userState.userInfo?['token']);
+    }
+    super.initState();
+  }
+
   final List<Map<String, dynamic>> pres = [
     {
       "pharmacy": "Medicina Pharmacy",
