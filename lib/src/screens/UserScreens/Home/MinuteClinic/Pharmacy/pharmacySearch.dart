@@ -36,26 +36,29 @@ class _PharmacySearchState extends State<PharmacySearch> {
         controller.text = widget.searchTerm;
         // searching = true;
       });
-      PharmacyState pharmacyState =
-          Provider.of<PharmacyState>(context, listen: false);
-      UserState userState = Provider.of<UserState>(context, listen: false);
-      await pharmacyState.searchForPharmacy(
-          token: userState.userInfo?['token'],
-          searchParams: {"search_text": widget.searchTerm});
-      await pharmacyState.searchForDrug(
-          token: userState.userInfo?['token'],
-          searchParams: {"search_text": widget.searchTerm});
-      if (pharmacyState.searchingPharmacies == 2 &&
-          pharmacyState.pharmacySearchResults.isNotEmpty &&
-          pharmacyState.searchingDrugs == 2 &&
-          pharmacyState.generalDrugSearchResults.isNotEmpty) {
-        print("geee");
-        setState(() {
-          searches = addResults();
-        });
-      }
+      await handleSearch();
     });
     super.initState();
+  }
+
+  handleSearch() async {
+    PharmacyState pharmacyState =
+        Provider.of<PharmacyState>(context, listen: false);
+    UserState userState = Provider.of<UserState>(context, listen: false);
+    await pharmacyState.searchForPharmacy(
+        token: userState.userInfo?['token'],
+        searchParams: {"search_text": controller.text});
+    await pharmacyState.searchForDrug(
+        token: userState.userInfo?['token'],
+        searchParams: {"search_text": controller.text});
+    if (pharmacyState.searchingPharmacies == 2 &&
+        pharmacyState.pharmacySearchResults.isNotEmpty &&
+        pharmacyState.searchingDrugs == 2 &&
+        pharmacyState.generalDrugSearchResults.isNotEmpty) {
+      setState(() {
+        searches = addResults();
+      });
+    }
   }
 
   @override
@@ -75,12 +78,7 @@ class _PharmacySearchState extends State<PharmacySearch> {
           controller: controller,
           searchPressed: () async {
             if (controller.text.trim().isEmpty) return;
-            pharmacyState.searchForPharmacy(
-                token: userState.userInfo?['token'],
-                searchParams: {"search_text": controller.text.trim()});
-            pharmacyState.searchForDrug(
-                token: userState.userInfo?['token'],
-                searchParams: {"search_text": controller.text.trim()});
+            await handleSearch();
           },
           micPressed: () {},
           width: MediaQuery.of(context).size.width,
@@ -112,75 +110,76 @@ class _PharmacySearchState extends State<PharmacySearch> {
                           child: Text("Enter a search term"),
                         ))
                       : pharmacyState.searchingPharmacies == 2 &&
-                              pharmacyState.pharmacySearchResults.isNotEmpty &&
+                              pharmacyState.pharmacySearchResults.isEmpty &&
                               pharmacyState.searchingDrugs == 2 &&
-                              pharmacyState
-                                  .generalDrugSearchResults.isNotEmpty &&
-                              searches.isNotEmpty
-                          ? ListView.builder(
-                              physics: const NeverScrollableScrollPhysics(),
-                              padding: const EdgeInsets.only(top: 40),
-                              shrinkWrap: true,
-                              itemCount: searches.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return searches[index]?.type == "pharmacy"
-                                    ? Wrap(
-                                        direction: Axis.vertical,
-                                        children: [
-                                          InkWell(
-                                            onTap: () {
-                                              Get.to(() => DrugDashboard(
-                                                    pharmacy: searches[index],
-                                                  ));
-                                            },
-                                            child: LabResultsCard(
-                                                image:
-                                                    "assets/images/pharHome.png",
-                                                labName: searches[index].name,
-                                                openingHours:
-                                                    "Weekdays | 7:00am - 5:00pm"),
-                                          ),
-                                          const SizedBox(
-                                            height: 20,
-                                          ),
-                                        ],
-                                      )
-                                    : Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 20.0),
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            Get.to(
-                                              () => DrugDetails(
-                                                  details: searches[index]),
-                                            );
-                                          },
-                                          child: DrugCard(
-                                              drugName: searches[index].name ??
-                                                  "Ibuprofen",
-                                              drugType:
-                                                  searches[index].dosage_form ??
-                                                      "Tablet",
-                                              quantity:
-                                                  searches[index].quantity ??
-                                                      50,
-                                              price: searches[index]
-                                                      .prize
-                                                      .toDouble() ??
-                                                  0.00),
-                                        ),
-                                      );
-                              })
+                              pharmacyState.generalDrugSearchResults.isEmpty
+                          ? const Center(
+                              child: Padding(
+                                padding: EdgeInsets.only(top: 20.0),
+                                child: Text("No pharmacy or drug found"),
+                              ),
+                            )
                           : pharmacyState.searchingPharmacies == 2 &&
-                                  pharmacyState.pharmacySearchResults.isEmpty &&
                                   pharmacyState.searchingDrugs == 2 &&
-                                  pharmacyState.generalDrugSearchResults.isEmpty
-                              ? const Center(
-                                  child: Padding(
-                                    padding: EdgeInsets.only(top: 20.0),
-                                    child: Text("No pharmacy or drug found"),
-                                  ),
-                                )
+                                  searches.isNotEmpty
+                              ? ListView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  padding: const EdgeInsets.only(top: 40),
+                                  shrinkWrap: true,
+                                  itemCount: searches.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return searches[index]?.type == "pharmacy"
+                                        ? Wrap(
+                                            direction: Axis.vertical,
+                                            children: [
+                                              InkWell(
+                                                onTap: () {
+                                                  Get.to(() => DrugDashboard(
+                                                        pharmacy:
+                                                            searches[index],
+                                                      ));
+                                                },
+                                                child: LabResultsCard(
+                                                    image:
+                                                        "assets/images/pharHome.png",
+                                                    labName:
+                                                        searches[index].name,
+                                                    openingHours:
+                                                        "Weekdays | 7:00am - 5:00pm"),
+                                              ),
+                                              const SizedBox(
+                                                height: 20,
+                                              ),
+                                            ],
+                                          )
+                                        : Padding(
+                                            padding: const EdgeInsets.only(
+                                                bottom: 20.0),
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                Get.to(
+                                                  () => DrugDetails(
+                                                      details: searches[index]),
+                                                );
+                                              },
+                                              child: DrugCard(
+                                                  drugName:
+                                                      searches[index].name ??
+                                                          "Ibuprofen",
+                                                  drugType: searches[index]
+                                                          .dosage_form ??
+                                                      "Tablet",
+                                                  quantity: searches[index]
+                                                          .quantity ??
+                                                      50,
+                                                  price: searches[index]
+                                                          .prize
+                                                          .toDouble() ??
+                                                      0.00),
+                                            ),
+                                          );
+                                  })
                               : pharmacyState.searchingPharmacies == 3 &&
                                       pharmacyState.searchingDrugs == 3
                                   ? const Center(
