@@ -18,210 +18,190 @@ class Prescriptions extends StatefulWidget {
 class _PrescriptionsState extends State<Prescriptions> {
   @override
   void initState() {
-    // CartState cartState = Provider.of<CartState>(context, listen: false);
-    UserState userState = Provider.of<UserState>(context, listen: false);
-    if (userState.prescriptions.isEmpty) {
-      userState.fetchPrescriptions(token: userState.userInfo?['token']);
-    }
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      UserState userState = Provider.of<UserState>(context, listen: false);
+      if (userState.prescriptions.isEmpty) {
+        userState.fetchPrescriptions(token: userState.userInfo?['token']);
+      }
+    });
     super.initState();
   }
 
-  final List<Map<String, dynamic>> pres = [
-    {
-      "pharmacy": "Medicina Pharmacy",
-      "image": "assets/images/dr_pres2.png",
-      "title": "Sunday 12th August, 2022",
-      "responded": true
-    },
-    {
-      "pharmacy": "Medicina Pharmacy",
-      "image": "assets/images/dr_pres1.png",
-      "title": "Tuesday 12th August, 2022",
-      "responded": false
-    },
-    {
-      "pharmacy": "Leki Drug Store",
-      "image": "assets/images/dr_pres2.png",
-      "title": "Monday 12th August, 2022",
-      "responded": false
-    },
-    {
-      "pharmacy": "Medicina Pharmacy",
-      "image": "assets/images/dr_pres1.png",
-      "title": "Thursday 12th August, 2022",
-      "responded": true
-    },
-    {
-      "pharmacy": "Medicina Pharmacy",
-      "image": "assets/images/dr_pres2.png",
-      "title": "Sunday 12th August, 2022",
-      "responded": true
-    },
-    {
-      "pharmacy": "Pharmacy of London",
-      "image": "assets/images/dr_pres1.png",
-      "title": "Monday 22nd August, 2022",
-      "responded": false
-    },
-    {
-      "pharmacy": "Lowton Pharmacy",
-      "image": "assets/images/dr_pres2.png",
-      "title": "Sunday 12th August, 2022",
-      "responded": true
-    },
-  ];
   @override
   Widget build(BuildContext context) {
+    UserState userState = Provider.of<UserState>(context);
     return Scaffold(
-      backgroundColor: AppColors.primaryWhiteColor,
-      appBar: AppBar(
         backgroundColor: AppColors.primaryWhiteColor,
-        foregroundColor: AppColors.primaryBlackColor,
-        elevation: 0,
-        leading: const BackButton(),
-        title: Text("Prescriptions",
-            style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w700,
-                color: AppColors.primaryBlackColor.withAlpha(180))),
-      ),
-      body: SingleChildScrollView(
-          child: pres.isEmpty
-              ? const Center(
-                  child: Text("Your uploaded prescriptions will appear here"),
-                )
-              : Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 6),
-                            decoration: BoxDecoration(
-                                border: Border(
-                                    bottom: BorderSide(
-                                        width: .4,
-                                        color: AppColors.primaryBlackColor
-                                            .withAlpha(180)))),
-                            child: Text("Responded",
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600,
-                                    color: AppColors.primaryBlackColor
-                                        .withAlpha(180))),
+        appBar: AppBar(
+          backgroundColor: AppColors.primaryWhiteColor,
+          foregroundColor: AppColors.primaryBlackColor,
+          elevation: 0,
+          leading: const BackButton(),
+          title: Text("Prescriptions",
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.primaryBlackColor.withAlpha(180))),
+        ),
+        body: userState.prescriptions.isEmpty &&
+                userState.fetchingPrescriptions == 2
+            ? const Center(
+                child: Text("Your uploaded prescriptions will appear here",
+                    style: TextStyle(fontSize: 16)),
+              )
+            : userState.fetchingPrescriptions == 2 &&
+                    userState.prescriptions.isNotEmpty
+                ? SingleChildScrollView(
+                    child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 6),
+                              decoration: BoxDecoration(
+                                  border: Border(
+                                      bottom: BorderSide(
+                                          width: .4,
+                                          color: AppColors.primaryBlackColor
+                                              .withAlpha(180)))),
+                              child: Text("Responded",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColors.primaryBlackColor
+                                          .withAlpha(180))),
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: pres.length,
-                        itemBuilder: (context, index) => pres[index]
-                                    ["responded"] ==
-                                true
-                            ? InkWell(
-                                onTap: () {
-                                  Get.to(() => const PrescriptionResults());
-                                },
-                                child: Container(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 10),
-                                  decoration: BoxDecoration(
-                                      border: Border(
-                                          bottom: BorderSide(
-                                              width: .4,
-                                              color: AppColors.primaryBlackColor
-                                                  .withAlpha(90)))),
-                                  child: ListTile(
-                                    leading: Image.asset(
-                                      pres[index]["image"],
-                                      height: 64,
-                                      width: 64,
-                                      fit: BoxFit.cover,
-                                    ),
-                                    title: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(pres[index]["pharmacy"],
-                                            style: TextStyle(fontSize: 18)),
-                                        Text(pres[index]["title"]),
-                                      ],
+                        ],
+                      ),
+                      ListView.builder(
+                          shrinkWrap: true,
+                          reverse: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: userState.prescriptions.length,
+                          itemBuilder: (context, index) => userState
+                                      .prescriptions[index].status ==
+                                  1
+                              ? InkWell(
+                                  onTap: () {
+                                    Get.to(() => PrescriptionResults(
+                                        pres: userState.prescriptions[index]));
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10),
+                                    decoration: BoxDecoration(
+                                        border: Border(
+                                            bottom: BorderSide(
+                                                width: .4,
+                                                color: AppColors
+                                                    .primaryBlackColor
+                                                    .withAlpha(90)))),
+                                    child: ListTile(
+                                      leading: Image.network(
+                                        userState.prescriptions[index].image,
+                                        height: 64,
+                                        width: 64,
+                                        fit: BoxFit.cover,
+                                      ),
+                                      title: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                              userState.prescriptions[index]
+                                                  .store_id,
+                                              style: TextStyle(fontSize: 18)),
+                                          Text(userState
+                                              .prescriptions[index].createdAt
+                                              .toString()),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                              )
-                            : const SizedBox.shrink()),
-                    const SizedBox(
-                      height: 42,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 6),
-                            decoration: BoxDecoration(
-                                border: Border(
-                                    bottom: BorderSide(
-                                        width: .4,
-                                        color: AppColors.primaryBlackColor
-                                            .withAlpha(90)))),
-                            child: Text("Not Responded",
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600,
-                                    color: AppColors.primaryBlackColor
-                                        .withAlpha(180))),
+                                )
+                              : const SizedBox.shrink()),
+                      const SizedBox(
+                        height: 42,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 6),
+                              decoration: BoxDecoration(
+                                  border: Border(
+                                      bottom: BorderSide(
+                                          width: .4,
+                                          color: AppColors.primaryBlackColor
+                                              .withAlpha(90)))),
+                              child: Text("Not Responded",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColors.primaryBlackColor
+                                          .withAlpha(180))),
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: pres.length,
-                        itemBuilder: (context, index) => pres[index]
-                                    ["responded"] ==
-                                false
-                            ? InkWell(
-                                onTap: () {
-                                  Get.to(() => const PrescriptionResults());
-                                },
-                                child: Container(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 10),
-                                  decoration: BoxDecoration(
-                                      border: Border(
-                                          bottom: BorderSide(
-                                              width: .4,
-                                              color: AppColors.primaryBlackColor
-                                                  .withAlpha(90)))),
-                                  child: ListTile(
-                                    leading: Image.asset(
-                                      pres[index]["image"],
-                                      height: 64,
-                                      width: 64,
-                                      fit: BoxFit.cover,
-                                    ),
-                                    title: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(pres[index]["pharmacy"],
-                                            style: TextStyle(fontSize: 18)),
-                                        Text(pres[index]["title"]),
-                                      ],
+                        ],
+                      ),
+                      ListView.builder(
+                          shrinkWrap: true,
+                          reverse: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: userState.prescriptions.length,
+                          itemBuilder: (context, index) => userState
+                                      .prescriptions[index].status ==
+                                  0
+                              ? InkWell(
+                                  onTap: () {
+                                    Get.to(() => PrescriptionResults(
+                                          pres: userState.prescriptions[index],
+                                        ));
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10),
+                                    decoration: BoxDecoration(
+                                        border: Border(
+                                            bottom: BorderSide(
+                                                width: .4,
+                                                color: AppColors
+                                                    .primaryBlackColor
+                                                    .withAlpha(90)))),
+                                    child: ListTile(
+                                      leading: Image.network(
+                                        userState.prescriptions[index].image,
+                                        height: 64,
+                                        width: 64,
+                                        fit: BoxFit.cover,
+                                      ),
+                                      title: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                              userState.prescriptions[index]
+                                                  .store_id,
+                                              style: TextStyle(fontSize: 18)),
+                                          Text(userState
+                                              .prescriptions[index].createdAt
+                                              .toString()),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                              )
-                            : const SizedBox.shrink()),
-                  ],
-                )),
-    );
+                                )
+                              : const SizedBox.shrink()),
+                    ],
+                  ))
+                : Center(
+                    child: CircularProgressIndicator(
+                    color: AppColors.primaryDeepColor,
+                  )));
   }
 }

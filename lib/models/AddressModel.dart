@@ -26,6 +26,7 @@ class AddressModel {
         town: address["town"],
         district: address["district"],
         region: address["region"],
+        country: address["country"],
         primary: address["primary"]);
   }
 }

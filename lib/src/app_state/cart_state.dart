@@ -16,7 +16,8 @@ class CartState extends ChangeNotifier {
   String get note => _note;
   List<AddressModel> _diliveryAddresses = <AddressModel>[];
   List<AddressModel> get diliveryAddresses => _diliveryAddresses;
-
+  int _fetchingAddresses = 0;
+  int get fetchingAddresses => _fetchingAddresses;
   addToCart(PopularPharmacy drug) {
     _cart.add(CartItemModel(
         drug: drug, quantity: 1, price: drug.prize.toDouble() * 1));
@@ -164,7 +165,7 @@ class CartState extends ChangeNotifier {
       Response response = await dio.post(path,
           data: JSONifyAddress(address),
           options: Options(headers: {"auth-token": token}));
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         ShowToast.ecentialsToast(
           message: "Address added",
           warn: false,
@@ -172,9 +173,12 @@ class CartState extends ChangeNotifier {
         _diliveryAddresses.add(address);
         return _diliveryAddresses.length - 1;
       } else {
+        print(response.statusCode);
+        print(response.data);
         ShowToast.ecentialsToast(
           message: "There was an error adding address, please try again.",
         );
+        print("There was an error adding address, please try again.");
         return -1;
       }
     } catch (e) {
@@ -182,15 +186,18 @@ class CartState extends ChangeNotifier {
       ShowToast.ecentialsToast(
         message: "There was an error adding address, please try again.",
       );
+      print("_______________________");
       return -1;
     }
   }
 
-  Future<int> fetchAddresses({required String? token}) async {
+  Future fetchAddresses({required String? token}) async {
     Dio dio = Dio();
     String path = APPBASEURL.BASEURL +
         "/api/v1/user/shipping-address/fetch-all-shipping-addresses";
-
+    _fetchingAddresses = 0;
+    _fetchingAddresses = 1;
+    notifyListeners();
     try {
       Response response =
           await dio.get(path, options: Options(headers: {"auth-token": token}));
@@ -204,19 +211,22 @@ class CartState extends ChangeNotifier {
             _diliveryAddresses.add(AddressModel.fromJSON(addresses[i]));
           }
         }
-        return 2;
+        _fetchingAddresses = 2;
+        notifyListeners();
       } else {
         ShowToast.ecentialsToast(
           message: "Error retrieving addresses",
         );
-        return 3;
+        _fetchingAddresses = 3;
+        notifyListeners();
       }
     } catch (e) {
       print("Error: ${e}");
       ShowToast.ecentialsToast(
         message: "Error retrieving addresses",
       );
-      return 3;
+      _fetchingAddresses = 3;
+      notifyListeners();
     }
   }
 
@@ -241,6 +251,7 @@ class CartState extends ChangeNotifier {
   String StringifyAddressLocation(AddressModel? address) {
     return address == null
         ? ""
-        : "${address.mobile}, ${address.street}, ${address.town}, ${address.district}, ${address.region}";
+        : "${address.mobile}, ${address.street}, ${address.town}, ${address.country}";
+    // : "${address.mobile}, ${address.street}, ${address.town}, ${address.district}, ${address.region}";
   }
 }

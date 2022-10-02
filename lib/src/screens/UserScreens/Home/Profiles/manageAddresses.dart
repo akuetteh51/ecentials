@@ -18,11 +18,13 @@ class ManageAddress extends StatefulWidget {
 class _ManageAddressState extends State<ManageAddress> {
   @override
   void initState() {
-    CartState cartState = Provider.of<CartState>(context, listen: false);
-    UserState userState = Provider.of<UserState>(context, listen: false);
-    if (cartState.diliveryAddresses.isEmpty) {
-      cartState.fetchAddresses(token: userState.userInfo?['token']);
-    }
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      CartState cartState = Provider.of<CartState>(context, listen: false);
+      UserState userState = Provider.of<UserState>(context, listen: false);
+      if (cartState.diliveryAddresses.isEmpty) {
+        cartState.fetchAddresses(token: userState.userInfo?['token']);
+      }
+    });
     super.initState();
   }
 
@@ -63,48 +65,57 @@ class _ManageAddressState extends State<ManageAddress> {
                     size: 32, color: AppColors.primaryDeepColor))
           ],
         ),
-        body: cartState.diliveryAddresses.isEmpty
+        body: cartState.diliveryAddresses.isEmpty &&
+                cartState.fetchingAddresses == 2
             ? const Center(
                 child: Text(
                   "Your dilivery addresses will appear here",
                   style: TextStyle(fontSize: 18),
                 ),
               )
-            : SingleChildScrollView(
-                child: ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: cartState.diliveryAddresses.length,
-                itemBuilder: ((context, index) => ListTile(
-                      onTap: () {
-                        widget.checkingOut
-                            ? Navigator.pop(context, index)
-                            : Get.to(() => DiliveryAddress(
-                                address: cartState.diliveryAddresses[index]));
-                      },
-                      minVerticalPadding: 20,
-                      title: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "${cartState.diliveryAddresses[index].name},",
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 18),
+            : cartState.diliveryAddresses.isNotEmpty &&
+                    cartState.fetchingAddresses == 2
+                ? SingleChildScrollView(
+                    child: ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: cartState.diliveryAddresses.length,
+                    itemBuilder: ((context, index) => ListTile(
+                          onTap: () {
+                            widget.checkingOut
+                                ? Navigator.pop(context, index)
+                                : Get.to(() => DiliveryAddress(
+                                    address:
+                                        cartState.diliveryAddresses[index]));
+                          },
+                          minVerticalPadding: 20,
+                          title: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "${cartState.diliveryAddresses[index].name},",
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w700, fontSize: 18),
+                              ),
+                              Text(
+                                "${cartState.StringifyAddressLocation(cartState.diliveryAddresses[index])}",
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
                           ),
-                          Text(
-                            "${cartState.StringifyAddressLocation(cartState.diliveryAddresses[index])}, GH",
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ],
-                      ),
-                      trailing: widget.checkingOut == false &&
-                              cartState.diliveryAddresses[index].primary !=
-                                  null &&
-                              cartState.diliveryAddresses[index].primary == true
-                          ? Icon(Icons.check_circle_rounded,
-                              color: AppColors.primaryGreenColor, size: 36)
-                          : const SizedBox.shrink(),
-                    )),
-              )));
+                          trailing: widget.checkingOut == false &&
+                                  cartState.diliveryAddresses[index].primary !=
+                                      null &&
+                                  cartState.diliveryAddresses[index].primary ==
+                                      true
+                              ? Icon(Icons.check_circle_rounded,
+                                  color: AppColors.primaryGreenColor, size: 36)
+                              : const SizedBox.shrink(),
+                        )),
+                  ))
+                : Center(
+                    child: CircularProgressIndicator(
+                    color: AppColors.primaryDeepColor,
+                  )));
   }
 }

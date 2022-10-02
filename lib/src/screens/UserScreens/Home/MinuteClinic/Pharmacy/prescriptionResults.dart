@@ -1,4 +1,5 @@
 import 'package:ecentialsclone/models/PopularDrugs.dart';
+import 'package:ecentialsclone/models/PrescriptionModel.dart';
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/Widgets/drugCard.dart';
@@ -11,7 +12,9 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class PrescriptionResults extends StatefulWidget {
-  const PrescriptionResults({Key? key}) : super(key: key);
+  PrescriptionResults({Key? key, required this.pres}) : super(key: key);
+
+  PrescriptionModel pres;
 
   @override
   State<PrescriptionResults> createState() => _PrescriptionResultsState();
@@ -70,8 +73,8 @@ class _PrescriptionResultsState extends State<PrescriptionResults> {
           pinned: true,
           floating: true,
           flexibleSpace: FlexibleSpaceBar(
-            background: Image.asset(
-              "assets/images/dr_pres2.png",
+            background: Image.network(
+              widget.pres.image,
               width: double.maxFinite,
               fit: BoxFit.cover,
             ),

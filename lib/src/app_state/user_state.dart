@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:ecentialsclone/models/AddressModel.dart';
+import 'package:ecentialsclone/models/PrescriptionModel.dart';
 import 'package:ecentialsclone/models/UserEducationModel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart' as getx;
@@ -42,14 +43,18 @@ class UserState extends ChangeNotifier {
       0; // 0 = nothing, 1 = loading, 2= okay, 3 = failed
   int get deletingEducationState => _deletingEducationState;
 
+  int _fetchingPrescriptions =
+      0; // 0 = nothing, 1 = loading, 2= okay, 3 = failed
+  int get fetchingPrescriptions => _fetchingPrescriptions;
+
   UserDataModel? _userDataModel;
   UserDataModel? get userDataModel => _userDataModel;
 
   List<UserEducationModel>? _userEducation = [];
   List<UserEducationModel>? get userEducation => _userEducation;
 
-  List<UserEducationModel> _prescriptions = [];
-  List<UserEducationModel> get prescriptions => _prescriptions;
+  List<PrescriptionModel> _prescriptions = [];
+  List<PrescriptionModel> get prescriptions => _prescriptions;
 
   getStoreUserInfo() async {
     final prefs = await SharedPreferences.getInstance();
@@ -426,30 +431,42 @@ class UserState extends ChangeNotifier {
     }
   }
 
-  Future<int> fetchPrescriptions({required String? token}) async {
+  Future fetchPrescriptions({required String? token}) async {
     Dio dio = Dio();
     String path =
         APPBASEURL.BASEURL + "/api/v1/prescriptions/user-prescriptions";
-
+    _fetchingPrescriptions = 0;
+    _fetchingPrescriptions = 1;
+    notifyListeners();
     try {
       Response response =
           await dio.get(path, options: Options(headers: {"auth-token": token}));
       if (response.statusCode == 200 || response.statusCode == 201) {
-        _prescriptions = response.data['data'];
-        print(response.data["data"]);
-        return 2;
+        List res = response.data['data'];
+        if (res.isEmpty) {
+          _prescriptions = [];
+        } else {
+          for (var i = 0; i < res.length; i++) {
+            print(res[i]);
+            _prescriptions.add(PrescriptionModel.fromJson(res[i]));
+          }
+        }
+        _fetchingPrescriptions = 2;
+        notifyListeners();
       } else {
         ShowToast.ecentialsToast(
           message: "Error retrieving prescription",
         );
-        return 3;
+        _fetchingPrescriptions = 3;
+        notifyListeners();
       }
     } catch (e) {
       print("Error: ${e}");
       ShowToast.ecentialsToast(
         message: "Error retrieving prescription",
       );
-      return 3;
+      _fetchingPrescriptions = 3;
+      notifyListeners();
     }
   }
 

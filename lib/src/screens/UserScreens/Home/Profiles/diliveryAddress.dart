@@ -87,7 +87,7 @@ class _DiliveryAddressState extends State<DiliveryAddress> {
                           //     init: widget.address?.district),
                           dropDown(
                               label: "Country",
-                              init: widget.address?.country,
+                              init: widget.address?.country ?? "Ghana",
                               dropDownValues: [
                                 "Ghana",
                                 "Nigeria",
@@ -170,24 +170,29 @@ class _DiliveryAddressState extends State<DiliveryAddress> {
             borderRadius: BorderRadius.circular(7),
             border: Border.all(
                 color: AppColors.primaryDeepColor.withOpacity(.5), width: 3)),
-        child: DropdownButtonFormField<String>(
-          value: init,
-          decoration: InputDecoration(border: InputBorder.none),
-          icon: const Icon(Icons.arrow_drop_down_rounded),
-          iconSize: 24,
-          elevation: 1,
-          style: TextStyle(color: AppColors.primaryBlackColor.withAlpha(190)),
-          onChanged: (String? newValue) {
-            setState(() {
-              if (label == "Country") country = newValue!;
-            });
-          },
-          items: dropDownValues.map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Text(value),
-            );
-          }).toList(),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 6.0),
+          child: DropdownButtonFormField<String>(
+            value: init,
+            decoration: InputDecoration(border: InputBorder.none),
+            icon: const Icon(Icons.arrow_drop_down_rounded),
+            iconSize: 24,
+            elevation: 1,
+            style: TextStyle(
+                color: AppColors.primaryBlackColor.withAlpha(190),
+                fontSize: 18),
+            onChanged: (String? newValue) {
+              setState(() {
+                if (label == "Country") country = newValue!;
+              });
+            },
+            items: dropDownValues.map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
+          ),
         ),
       ),
       const SizedBox(
@@ -259,7 +264,7 @@ class _DiliveryAddressState extends State<DiliveryAddress> {
                 break;
               case "Street Name":
                 setState(() {
-                  name = value.toString();
+                  street = value.toString();
                 });
                 break;
               case "Town":
