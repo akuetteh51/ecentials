@@ -11,26 +11,16 @@ import 'package:ecentialsclone/src/Widgets/pharmacyCard.dart';
 import 'package:ecentialsclone/src/Widgets/schedulesCard.dart';
 import 'package:ecentialsclone/src/Widgets/search.dart';
 import 'package:ecentialsclone/src/Widgets/topDoctor.dart';
-
-
 import 'package:ecentialsclone/src/app_state/user_state.dart';
-
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/UploadPrescription.dart';
-
-
-import 'package:ecentialsclone/src/app_state/user_state.dart';
-
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/UploadPrescription.dart';
-
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/cart.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/cart.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/drugDashboard.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacyHome.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/scanDocument.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/drugDetails.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/FindPharmacy.dart';
-
 import 'package:get/get.dart';
 import 'package:ecentialsclone/src/Widgets/searchForh.dart';
 import 'package:provider/provider.dart';
@@ -91,112 +81,6 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
             children: [
               Container(
                 margin: const EdgeInsets.only(
-                  top: 20, // left: 24.78
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.85 / 2,
-                      height: 150,
-                      child: Neumorphic(
-                        style: NeumorphicStyle(
-                          shape: NeumorphicShape.flat,
-                          depth: 10,
-                          lightSource: LightSource.top,
-                          color: Colors.white,
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset("assets/images/upload.png"),
-                            SizedBox(
-                              height: 20,
-                            ),
-
-                            Builder(
-                              builder: (context) {
-                                return Button(
-                                   onTap: () {
-                               Get.to(() => UploadPrescription());
-                                   },
-                                  text: "Upload",
-                                  height: 30,
-                                  width: 100,
-                                  style:
-                                      TextStyle(color: AppColors.primaryWhiteColor),
-                                );
-                              }
-
-                          
-                          
- //                           Button(
- //                             onTap: () {
-  //                              Navigator.of(context).push(MaterialPageRoute(
-  //                                  builder: (builder) => UploadPrescription()));
- //                               // Navigator.of(context).push(MaterialPageRoute(
-   //                             //     builder: (builder) => ScanDocument()));
-    //                          },
-  //                            text: "Upload",
-   //                           height: 30,
-  //                            width: 100,
- //                             style:
-      //                            TextStyle(color: AppColors.primaryWhiteColor),
-    //                        )
-  //                        ],
-//
-                        ),
-                          
-                      
-                    
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.85 / 2,
-                      height: 150,
-                      child: Neumorphic(
-                        style: NeumorphicStyle(
-                          shape: NeumorphicShape.flat,
-                          depth: 10,
-                          lightSource: LightSource.top,
-                          color: Colors.white,
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset("assets/images/Find.png"),
-                            SizedBox(
-                              height: 20,
-                            ),
-
-                            Builder(
-                              builder: (context) {
-                                 
-                                return Button(
-                                   onTap: () {
-                               Get.to(() => FindPharmacy());
-                                   },
-                                 
-                                  text: "Find",
-                                  height: 30,
-                                  width: 100,
-                                  style:
-                                      TextStyle(color: AppColors.primaryWhiteColor),
-                                );
-                              }
-
-                            )
-                          ] 
-
-                        ),
-                      ),
-                    ),
-                  ]
-                ),
-              ),
-              // const SizedBox(
-             //   height: 20,
-             ),
-               Container(
-                margin: const EdgeInsets.only(
                   top: 15, // left: 24.78
                 ),
                 child: Text(
@@ -226,7 +110,10 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
                               ),
                               child: InkWell(
                                 onTap: () {
-                                  Get.to(() => DrugDashboard());
+                                  Get.to(() => DrugDashboard(
+                                        pharmacy: pharmacyState
+                                            .allPharmacyPreviews[index],
+                                      ));
                                 },
                                 child: PharmacyCard(
                                   index: index,
@@ -248,11 +135,11 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
                                       index: index,
                                       itemId: pharmacyState
                                           .allPharmacyPreviews[index].id!,
-                                      token:  userState.userInfo?['token'],                                      
+                                      token: userState.userInfo?['token'],
                                     );
                                   },
                                   pharmacyId: pharmacyState
-                                          .allPharmacyPreviews[index].id!,
+                                      .allPharmacyPreviews[index].id!,
                                 ),
                               ),
                             ),
@@ -337,8 +224,11 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
                             Column(
                           children: [
                             GestureDetector(
-                              onTap:(){
-                                Navigator.of(context).push(MaterialPageRoute(builder: (builder)=>DrugDashboard()));
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (builder) => DrugDetails(
+                                        details: pharmacyState
+                                            .allPopularDrugs[index])));
                               },
                               child: DrugCard(
                                 drugName:
@@ -348,7 +238,8 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
                                 quantity: pharmacyState
                                         .allPopularDrugs[index].quantity ??
                                     1,
-                                price: pharmacyState.allPopularDrugs[index].prize
+                                price: pharmacyState
+                                        .allPopularDrugs[index].prize
                                         .toDouble() ??
                                     0.00,
                               ),
@@ -392,10 +283,6 @@ class _PharmacyDashboardState extends State<PharmacyDashboard> {
             ],
           ),
         ),
-            ]
-          )
-        )    
-          
       ),
     );
   }

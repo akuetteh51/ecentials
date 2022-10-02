@@ -62,6 +62,8 @@ class Search4 extends StatelessWidget {
               borderSide: BorderSide.none,
             ),
           ),
+          onSubmitted: (value) => searchPressed.call(),
+          textInputAction: TextInputAction.search,
         ),
       ),
     );

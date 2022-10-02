@@ -57,7 +57,9 @@ class _UploadPrescriptionState extends State<UploadPrescription> {
               margin: EdgeInsets.only(left: 55.41, top: 0, right: 24.67),
               child: IconButton(
                 onPressed: () {
-                  Get.to(() => ScanDocument());
+                  Get.to(() => ScanDocument(
+                        store_id: "1",
+                      ));
                 },
                 icon: Icon(
                   EcentialsIcons.cart,
@@ -94,9 +96,7 @@ class _UploadPrescriptionState extends State<UploadPrescription> {
                   margin: const EdgeInsets.only(top: 69.72, left: 130.88),
                   height: 66.67,
                   width: 50,
-                  child: Image.asset("assets/images/vector2.png")),
-                  //child: Image.asset("assets/images/Vector3.png")),
-
+                  child: Image.asset("assets/images/Vector3.png")),
               Container(
                 margin: const EdgeInsets.only(top: 78.67, left: 10.65),
                 height: 33.33,

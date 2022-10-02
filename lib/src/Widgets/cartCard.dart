@@ -1,128 +1,105 @@
+import 'package:ecentialsclone/models/CartItemModel.dart';
+import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
+import 'package:ecentialsclone/src/app_state/cart_state.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/drugDetails.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
-class cartCard extends StatelessWidget {
-  final String pharmacyName;
-  final String location;
-  final String drugName;
-  final double price;
-
-  const cartCard(
-      {Key? key,
-      required this.pharmacyName,
-      required this.location,
-      required this.drugName,
-      required this.price})
+class CartCard extends StatelessWidget {
+  CartItemModel item;
+  int index;
+  CartCard({Key? key, required this.item, required this.index})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    int data_val = 0;
-    return Container(
-      width: double.infinity,
-      height: 100.0,
-      color: Colors.white70,
-      child: Stack(children: [
-        Image.asset(
-          "assets/images/drug.png",
-          height: 90.0,
-          width: 90.0,
-        ),
-        Positioned(
-          top: 0,
-          left: 100,
-          right: 0,
-          child: Text(
-            "$pharmacyName -$location",
-            style: TextStyle(
-              color: Colors.blue[900],
-              fontSize: 16.0,
-            ),
+    final width = MediaQuery.of(context).size.width;
+    CartState cartState = Provider.of<CartState>(context);
+
+    return InkWell(
+      onTap: () {
+        Get.to(() => DrugDetails(details: item.drug));
+      },
+      child: Container(
+        decoration:
+            BoxDecoration(color: AppColors.primaryWhiteColor, boxShadow: [
+          BoxShadow(
+            offset: Offset(0, .5),
+            color: AppColors.primaryBlackColor.withOpacity(.07),
+            blurRadius: 3.0,
+            spreadRadius: 1,
+          ),
+        ]),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
+          child: Row(
+            children: [
+              SizedBox(
+                  width: width / 7,
+                  child: Image.asset("assets/images/drug.png")),
+              SizedBox(
+                width: 20,
+              ),
+              Expanded(
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("${cartState.cart[index].drug.store_id} - Spintex",
+                          style: TextStyle(
+                            color: AppColors.primaryDeepColor.withAlpha(180),
+                          )),
+                      Text(cartState.cart[index].drug.name ?? "Drug",
+                          style: TextStyle(
+                              color: AppColors.primaryBlackColor.withAlpha(210),
+                              fontSize: 22)),
+                      Row(children: [
+                        Text("Quantity",
+                            style: TextStyle(
+                                color: AppColors.primaryBlackColor
+                                    .withAlpha(120))),
+                        IconButton(
+                            onPressed: () {
+                              cartState.decreaseItemQuantity(index);
+                            },
+                            icon: const Icon(Icons.remove)),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child:
+                              Text(cartState.cart[index].quantity.toString()),
+                        ),
+                        IconButton(
+                            onPressed: () {
+                              cartState.increaseItemQuantity(index);
+                            },
+                            icon: const Icon(Icons.add)),
+                      ]),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("GHc ${cartState.cart[index].price.toString()}",
+                              style: TextStyle(
+                                fontSize: 17,
+                                color:
+                                    AppColors.primaryDeepColor.withAlpha(180),
+                              )),
+                          IconButton(
+                              onPressed: () {
+                                cartState.removeFromCart(index);
+                              },
+                              icon: const Icon(
+                                EcentialsIcons.bin,
+                                size: 22,
+                              ))
+                        ],
+                      )
+                    ]),
+              )
+            ],
           ),
         ),
-        SizedBox(
-          height: 10,
-        ),
-        Positioned(
-          top: 19,
-          left: 100,
-          right: 100,
-          child: Text(
-            "$drugName",
-            style: TextStyle(
-              fontSize: 17.0,
-            ),
-          ),
-        ),
-        Positioned(
-          bottom: 20,
-          left: 100,
-          right: 0,
-          child: Center(
-            child: Row(
-              children: [
-                Text(
-                  "Quantity",
-                  style: TextStyle(color: Colors.grey),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 0),
-                  child: TextButton(
-                    onPressed: () {
-                      print("clicked");
-                    },
-                    child:
-                        const Icon(Icons.remove, color: Colors.black, size: 14),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 0),
-                  child: Text("$data_val"),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 0),
-                  child: TextButton(
-                    onPressed: () {
-                      print("clicked");
-                    },
-                    child: const Icon(
-                      Icons.add,
-                      color: Colors.black,
-                      size: 14,
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
-        Positioned(
-          top: 80,
-          left: -35,
-          right: 90,
-          child: Center(
-            child: Text(
-              'GHC $price',
-              style: TextStyle(
-                  fontSize: 15.0, color: Color.fromARGB(227, 12, 108, 218)),
-            ),
-          ),
-        ),
-        Positioned(
-          top: 60,
-          left: 300,
-          right: 0,
-          child: IconButton(
-            onPressed: () {
-              print("hello");
-            },
-            icon: Icon(
-              EcentialsIcons.bin,
-              size: 15.0,
-            ),
-          ),
-        ),
-      ]),
+      ),
     );
   }
 }

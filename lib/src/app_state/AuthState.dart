@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'dart:developer';
 
@@ -132,12 +131,12 @@ class AuthState extends ChangeNotifier {
         ShowToast.ecentialsToast(
           message: "There was an error while making the request",
         );
-
+        print("Error: response.statusCode !== 200");
         _loginLoaderState = 3;
         notifyListeners();
       }
     } catch (e) {
-      // log("There was an Error: $e");
+      log("There was an Error: $e");
       ShowToast.ecentialsToast(
         message: "There was an error while making the request",
       );
@@ -340,7 +339,7 @@ class AuthState extends ChangeNotifier {
   }
 
   // Update Local Data
-   updateSavedUserInfo(
+  updateSavedUserInfo(
       {Map<String, dynamic>? value, String? email, String? nameOf}) async {
     final prefs = await SharedPreferences.getInstance();
     Map<String, dynamic>? settValue = value;
@@ -355,7 +354,6 @@ class AuthState extends ChangeNotifier {
     String valueEncoded = json.encode(settValue);
 
     prefs.setString('user_info', valueEncoded);
-
   }
 
   Future<bool> getLoginState() async {

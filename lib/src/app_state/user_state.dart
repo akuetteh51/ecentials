@@ -1,7 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:ecentialsclone/models/AddressModel.dart';
+import 'package:ecentialsclone/models/PrescriptionModel.dart';
 import 'package:ecentialsclone/models/UserEducationModel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart' as getx;
@@ -40,11 +43,18 @@ class UserState extends ChangeNotifier {
       0; // 0 = nothing, 1 = loading, 2= okay, 3 = failed
   int get deletingEducationState => _deletingEducationState;
 
+  int _fetchingPrescriptions =
+      0; // 0 = nothing, 1 = loading, 2= okay, 3 = failed
+  int get fetchingPrescriptions => _fetchingPrescriptions;
+
   UserDataModel? _userDataModel;
   UserDataModel? get userDataModel => _userDataModel;
 
   List<UserEducationModel>? _userEducation = [];
   List<UserEducationModel>? get userEducation => _userEducation;
+
+  List<PrescriptionModel> _prescriptions = [];
+  List<PrescriptionModel> get prescriptions => _prescriptions;
 
   getStoreUserInfo() async {
     final prefs = await SharedPreferences.getInstance();
@@ -385,6 +395,78 @@ class UserState extends ChangeNotifier {
       _deletingEducationState = 3;
       notifyListeners();
       return null;
+    }
+  }
+
+  Future<int> uploadPrescription(
+      {required String? token,
+      required File? picture,
+      required String store_id}) async {
+    Dio dio = Dio();
+    String path = APPBASEURL.BASEURL + "/api/v1/prescriptions/new-prescription";
+
+    String fileName = picture!.path.split('/').last;
+    FormData formData = FormData.fromMap({
+      "store_id": store_id,
+      "picture": await MultipartFile.fromFile(picture.path, filename: fileName),
+    });
+
+    try {
+      Response response = await dio.post(path,
+          data: formData, options: Options(headers: {"auth-token": token}));
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return 2;
+      } else {
+        ShowToast.ecentialsToast(
+          message: "Error scanning prescription",
+        );
+        return 3;
+      }
+    } catch (e) {
+      print("Error: ${e}");
+      ShowToast.ecentialsToast(
+        message: "Error uploading prescription",
+      );
+      return 3;
+    }
+  }
+
+  Future fetchPrescriptions({required String? token}) async {
+    Dio dio = Dio();
+    String path =
+        APPBASEURL.BASEURL + "/api/v1/prescriptions/user-prescriptions";
+    _fetchingPrescriptions = 0;
+    _fetchingPrescriptions = 1;
+    notifyListeners();
+    try {
+      Response response =
+          await dio.get(path, options: Options(headers: {"auth-token": token}));
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        List res = response.data['data'];
+        if (res.isEmpty) {
+          _prescriptions = [];
+        } else {
+          for (var i = 0; i < res.length; i++) {
+            print(res[i]);
+            _prescriptions.add(PrescriptionModel.fromJson(res[i]));
+          }
+        }
+        _fetchingPrescriptions = 2;
+        notifyListeners();
+      } else {
+        ShowToast.ecentialsToast(
+          message: "Error retrieving prescription",
+        );
+        _fetchingPrescriptions = 3;
+        notifyListeners();
+      }
+    } catch (e) {
+      print("Error: ${e}");
+      ShowToast.ecentialsToast(
+        message: "Error retrieving prescription",
+      );
+      _fetchingPrescriptions = 3;
+      notifyListeners();
     }
   }
 

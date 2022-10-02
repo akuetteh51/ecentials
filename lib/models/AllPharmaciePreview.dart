@@ -9,24 +9,39 @@ class AllPharmaciesPreview {
   final String? licence_no;
   final String? logo;
   final bool? accept_nhis;
-  final  gps_lat;
-  final  gps_lng;
-  AllPharmaciesPreview({this.id, this.user_id, this.store_pin, this.description, this.address, this.city, this.licence_no, this.logo, this.accept_nhis, this.gps_lat, this.gps_lng, this.name});
+  final gps_lat;
+  final gps_lng;
+  final type;
+  AllPharmaciesPreview(
+      {this.id,
+      this.user_id,
+      this.store_pin,
+      this.description,
+      this.address,
+      this.city,
+      this.licence_no,
+      this.logo,
+      this.accept_nhis,
+      this.gps_lat,
+      this.gps_lng,
+      this.name,
+      this.type = "pharmacy"});
 
   factory AllPharmaciesPreview.fromJson(data) {
     return AllPharmaciesPreview(
-      logo: data['logo'] ?? "",
-      name: data['name'] ?? "",
-      description: data['description'] ?? "",
-      address: data['address'] ?? "" ,
-      city: data['city'] ?? "",
-      accept_nhis: data['accept_nhis'] ?? false,
-      licence_no: data['licence_no'] ?? "",
-      gps_lat: data['gps_lat'] ?? 0.0,
-      gps_lng: data['gps_lng'] ?? 0.0,
-      id: data['_id'] ?? "",
-      store_pin: data['store_pin'] ?? "",
-      user_id: data['user_id'] ?? "",);
+        logo: data['logo'] ?? "",
+        name: data['name'] ?? "",
+        description: data['description'] ?? "",
+        address: data['address'] ?? "",
+        city: data['city'] ?? "",
+        accept_nhis: data['accept_nhis'] ?? false,
+        licence_no: data['licence_no'] ?? "",
+        gps_lat: data['gps_lat'] ?? 0.0,
+        gps_lng: data['gps_lng'] ?? 0.0,
+        id: data['_id'] ?? "",
+        store_pin: data['store_pin'] ?? "",
+        user_id: data['user_id'] ?? "",
+        type: "pharmacy");
   }
 }
 

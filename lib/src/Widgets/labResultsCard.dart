@@ -31,112 +31,76 @@ class LabResultsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: Container(
-        height: 200,
-        width: width - 40,
-        decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage(image!), fit: BoxFit.cover),
+    return Container(
+      decoration:
+          BoxDecoration(borderRadius: BorderRadius.circular(10), boxShadow: [
+        BoxShadow(
+          offset: const Offset(3, 2),
+          color: AppColors.primaryGrayColor.withAlpha(200),
+          blurRadius: 8,
+          spreadRadius: 1,
         ),
-        child: Stack(
-          children: [
-            Positioned(
-              right: 5,
-              child: IconButton(
-                icon: isBookMarked == false
-                    ? Icon(
-                        Icons.bookmark_outline,
-                        color: AppColors.primaryWhiteColor,
-                      )
-                    : Icon(
-                        Icons.bookmark,
-                        color: AppColors.primaryWhiteColor,
-                      ),
-                onPressed: onPressed,
-              ),
+      ]),
+      child: Stack(children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Container(
+            height: 200,
+            width: width - 40,
+            decoration: BoxDecoration(
+              image:
+                  DecorationImage(image: AssetImage(image!), fit: BoxFit.cover),
             ),
-            Positioned(
-              bottom: 0,
-              child: Container(
-                height: 100,
-                padding: const EdgeInsets.all(10),
-                width: width - 50,
-                decoration: BoxDecoration(
-                  color: AppColors.primaryBlackColor.withOpacity(.50),
-                  borderRadius: const BorderRadius.only(
-                    topRight: Radius.circular(20),
+            child: Stack(
+              children: [
+                Positioned(
+                  right: 5,
+                  child: IconButton(
+                    icon: isBookMarked == false
+                        ? Icon(
+                            Icons.bookmark_outline,
+                            color: AppColors.primaryOrangeColor,
+                          )
+                        : Icon(
+                            Icons.bookmark,
+                            color: AppColors.primaryOrangeColor,
+                          ),
+                    onPressed: () {
+                      print("Hello world");
+                    },
+                    iconSize: 28,
                   ),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Ziky Clinical Laboratory",
-                      style: TextStyle(
-                        color: AppColors.primaryWhiteColor,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      "Weekdays | 7:00am - 5:00pm",
-                      style: TextStyle(
-                        color: AppColors.primaryWhiteColor,
-                        fontSize: 14,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Positioned(
+                  bottom: 0,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              EcentialsIcons.lab_people,
-                              color: AppColors.primaryWhiteColor,
-                            ),
-                            RichText(
-                              text: TextSpan(
-                                style: TextStyle(fontSize: 11.0),
-                                text: service1,
-                                children: [
-                                  TextSpan(text: " | $service2"),
-                                  TextSpan(text: " | $service3"),
-                                  TextSpan(text: service4),
-                                ],
-                              ),
-                            )
-                          ],
+                        Text(
+                          labName ?? "Ziky Clinical Laboratory",
+                          style: TextStyle(
+                              color: AppColors.primaryBlackColor.withAlpha(190),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18),
                         ),
-                        RichText(
-                          text: TextSpan(
-                            text: "\$$price",
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 16),
-                            children: [
-                              TextSpan(
-                                text: " / hr",
-                                style: TextStyle(
-                                  color: AppColors.primaryWhiteColor
-                                      .withOpacity(0.5),
-                                ),
-                              ),
-                            ],
+                        Text(
+                          openingHours ?? "Weekdays | 7:00am - 5:00pm",
+                          style: TextStyle(
+                            color: AppColors.primaryBlackColor.withAlpha(190),
+                            fontSize: 14,
                           ),
-                        )
+                        ),
                       ],
-                    )
-                  ],
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
+          ),
         ),
-      ),
+      ]),
     );
   }
 }
