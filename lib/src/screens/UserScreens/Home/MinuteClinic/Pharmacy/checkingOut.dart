@@ -1,3 +1,4 @@
+import 'package:ecentialsclone/models/AddressModel.dart';
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/button.dart';
 import 'package:ecentialsclone/src/app_state/cart_state.dart';
@@ -158,11 +159,11 @@ class _CheckingOutState extends State<CheckingOut> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "${diliveryAddressIndex == null ? cartState.diliveryAddresses.firstWhere((address) => address.primary == true).name : cartState.diliveryAddresses[diliveryAddressIndex!].name},",
+                                      "${diliveryAddressIndex == null ? cartState.diliveryAddresses.firstWhere((address) => address.primary == true, orElse: () => AddressModel(name: "name", mobile: "mobile", street: "street", town: "town", district: "district", region: "region")).name : cartState.diliveryAddresses[diliveryAddressIndex!].name},",
                                       style: const TextStyle(fontSize: 18),
                                     ),
                                     Text(
-                                      "${diliveryAddressIndex == null ? cartState.StringifyAddressLocation(cartState.diliveryAddresses.firstWhere((address) => address.primary == true)) : cartState.StringifyAddressLocation(cartState.diliveryAddresses[diliveryAddressIndex!])}, GH",
+                                      "${diliveryAddressIndex == null ? cartState.StringifyAddressLocation(cartState.diliveryAddresses.firstWhere((address) => address.primary == true, orElse: () => AddressModel(name: "name", mobile: "mobile", street: "street", town: "town", district: "district", region: "region"))) : cartState.StringifyAddressLocation(cartState.diliveryAddresses[diliveryAddressIndex!])}, GH",
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                   ],
