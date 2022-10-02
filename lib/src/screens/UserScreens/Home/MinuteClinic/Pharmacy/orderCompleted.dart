@@ -196,7 +196,7 @@ class _OrderCompletedState extends State<OrderCompleted> {
                 ),
                 child: Button(
                   onTap: () {
-                    Get.to(() => DrugDashboard());
+                    // Get.to(() => DrugDashboard());
                   },
                   text: "Continue Shopping",
                   height: 18,
@@ -208,20 +208,22 @@ class _OrderCompletedState extends State<OrderCompleted> {
                       fontWeight: FontWeight.w400),
                 ),
               ),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               Container(
-                  margin: EdgeInsets.only(top: 10,left: 35, right: 35),
-                  child: Wrap(
-                    children: [
-                    ButtonOutlined(
-                      text: "Track Delivery",
-                      style: TextStyle(color: const Color(0xFF033A64)),
-                      color: const Color(0xFF033A64),
-                      width: 338,
-                      height: 55,
-                      radius: 10,
-                    ),
-                  ]),),
+                margin: EdgeInsets.only(top: 10, left: 35, right: 35),
+                child: Wrap(children: [
+                  ButtonOutlined(
+                    text: "Track Delivery",
+                    style: TextStyle(color: const Color(0xFF033A64)),
+                    color: const Color(0xFF033A64),
+                    width: 338,
+                    height: 55,
+                    radius: 10,
+                  ),
+                ]),
+              ),
             ],
           ),
         ),

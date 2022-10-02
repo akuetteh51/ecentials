@@ -51,6 +51,7 @@ class DrugCard extends StatelessWidget {
                         drugName,
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ),

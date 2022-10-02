@@ -3,6 +3,8 @@ import 'package:ecentialsclone/src/Themes/ecentials_icons_icons.dart';
 import 'package:ecentialsclone/src/screens/AuthScreens/login.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Ambulance/ambulanceNear.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/minuteClinic.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/manageAddresses.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/prescriptions.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Profiles/profileScreen.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Settings/setting.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/Wallet/useCardWallet.dart';
@@ -22,8 +24,7 @@ class NavDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  
-  AuthState authState = Provider.of<AuthState>(context);
+    AuthState authState = Provider.of<AuthState>(context);
 
     double fontSize = 18.0;
     double labelSize = 22.0;
@@ -73,6 +74,44 @@ class NavDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
+            onTap: () {
+              Get.to(
+                () => ManageAddress(),
+                transition: Transition.rightToLeft,
+                duration: const Duration(
+                  seconds: 1,
+                ),
+              );
+              Scaffold.of(context).openEndDrawer();
+            },
+            leading: Icon(Icons.local_shipping_rounded,
+                size: labelSize, color: AppColors.primaryDeepColor),
+            title: Text(
+              "Dilivery Adresses",
+              style: TextStyle(
+                  fontSize: fontSize, color: AppColors.primaryBlackColor),
+            ),
+          ),
+          ListTile(
+            onTap: () {
+              Get.to(
+                () => const Prescriptions(),
+                transition: Transition.rightToLeft,
+                duration: const Duration(
+                  seconds: 1,
+                ),
+              );
+              Scaffold.of(context).openEndDrawer();
+            },
+            leading: Icon(Icons.note,
+                size: labelSize, color: AppColors.primaryDeepColor),
+            title: Text(
+              "Prescriptions",
+              style: TextStyle(
+                  fontSize: fontSize, color: AppColors.primaryBlackColor),
+            ),
+          ),
+          ListTile(
             onTap: () {},
             leading: Image.asset(
               "assets/images/cart.png",
@@ -103,7 +142,7 @@ class NavDrawer extends StatelessWidget {
               Get.to(
                 () => const MinuteClinic(),
                 transition: Transition.rightToLeft,
-                duration:const Duration(
+                duration: const Duration(
                   seconds: 1,
                 ),
               );
@@ -174,12 +213,12 @@ class NavDrawer extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
-            authState.saveLoginSuccessState(false);
-            
-            // Go to the Login Screen
-            Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (builder) => Login()),
-                (route) => false);
+              authState.saveLoginSuccessState(false);
+
+              // Go to the Login Screen
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (builder) => Login()),
+                  (route) => false);
             },
             leading: SizedBox(
               width: labelSize,

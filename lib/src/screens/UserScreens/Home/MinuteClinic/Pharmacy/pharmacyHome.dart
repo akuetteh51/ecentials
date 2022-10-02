@@ -1,4 +1,3 @@
-
 // ignore_for_file: prefer_const_constructors
 
 import 'package:ecentialsclone/src/Themes/colors.dart';
@@ -9,6 +8,7 @@ import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/CurvedBottomBar.dart';
 
 import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacyDashboard.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Home/MinuteClinic/Pharmacy/pharmacySearch.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -31,6 +31,8 @@ class PharmacyHome extends StatefulWidget {
 }
 
 class _PharmacyHomeState extends State<PharmacyHome> {
+  final controller = TextEditingController();
+
   int currentIndex = 0;
   onTap(int index) {
     setState(() {
@@ -50,9 +52,8 @@ class _PharmacyHomeState extends State<PharmacyHome> {
   Widget build(BuildContext context) {
     UserState userState = Provider.of<UserState>(
       context,
-    );    
+    );
     final _appBar = AppBar(
-      toolbarHeight: 70,
       elevation: 0,
       backgroundColor: AppColors.primaryWhiteColor,
       // backgroundColor: Colors.amber,
@@ -79,12 +80,13 @@ class _PharmacyHomeState extends State<PharmacyHome> {
           ),
           children: [
             TextSpan(
-                text:shortenLongString(userState.userInfo?['name'] ?? "welcome"),
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontFamily: "Montserrat",
-                  color: AppColors.primaryDeepColor,
-                ),),
+              text: shortenLongString(userState.userInfo?['name'] ?? "welcome"),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontFamily: "Montserrat",
+                color: AppColors.primaryDeepColor,
+              ),
+            ),
           ],
         ),
       ),
@@ -124,18 +126,19 @@ class _PharmacyHomeState extends State<PharmacyHome> {
         foregroundColor: AppColors.primaryBlackColor,
         elevation: 0,
         title: Search4(
-
+          controller: controller,
           searchPressed: () {
-            Get.to(() => FindDrug()); 
+            if (controller.value.text.trim() == "") return;
+            Get.to(() => PharmacySearch(
+                  searchTerm: controller.value.text.trim(),
+                ));
           },
-
-        
-
           micPressed: () {},
           width: MediaQuery.of(context).size.width,
           text: "Enter your search term here ",
         ),
         centerTitle: true,
+        toolbarHeight: 80,
       ),
     );
 

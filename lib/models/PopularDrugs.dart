@@ -13,7 +13,9 @@ class PopularPharmacy {
   final nhis;
   final prize;
   final List? images;
-  PopularPharmacy({this.prize, 
+  final type;
+  PopularPharmacy(
+      {this.prize,
       this.dosage,
       this.store_id,
       this.quantity,
@@ -25,24 +27,25 @@ class PopularPharmacy {
       this.images,
       this.id,
       this.description,
-      this.name});
+      this.name,
+      this.type = "drug"});
 
   factory PopularPharmacy.fromJson(data) {
     return PopularPharmacy(
-      id: data['_id'] ?? "",
-      description: data['description'] ?? "",
-      name: data['name'] ?? "",
-      discount: data['discount'] ?? 0,
-      dosage: data['dosage'] ?? "",
-      dosage_form: data['dosage_form'] ?? "",
-      images: data['images'] ?? [],
-      manufacturer: data['manufacturer'] ?? "",
-      nhis: data['nhis'] ?? "",
-      quantity: data['quantity'] ?? 0,
-      store_id: data['store_id'] ?? "",
-      views: data['views'] ?? 0,
-      prize: data['prize'] ?? 0.0,
-    );
+        id: data['_id'] ?? "",
+        description: data['description'] ?? "",
+        name: data['name'] ?? "",
+        discount: data['discount'] ?? 0,
+        dosage: data['dosage'] ?? "",
+        dosage_form: data['dosage_form'] ?? "",
+        images: data['images'] ?? [],
+        manufacturer: data['manufacturer'] ?? "",
+        nhis: data['nhis'] ?? "",
+        quantity: data['quantity'] ?? 0,
+        store_id: data['store_id'] ?? "",
+        views: data['views'] ?? 0,
+        prize: data['prize'] ?? 0.0,
+        type: "drug");
   }
 }
 

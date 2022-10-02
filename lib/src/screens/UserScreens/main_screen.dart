@@ -1,6 +1,7 @@
 // ignore_for_file: unused_import
 
 import 'package:ecentialsclone/src/Themes/colors.dart';
+import 'package:ecentialsclone/src/app_state/pharmacy_state.dart';
 import 'package:ecentialsclone/src/app_state/user_state.dart';
 import 'package:ecentialsclone/src/screens/UserScreens/Home/homeScreen.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +21,13 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) async {
       UserState userState = Provider.of<UserState>(context, listen: false);
-      userState.getStoreUserInfo();
+      PharmacyState pharmacyState =
+          Provider.of<PharmacyState>(context, listen: false);
+      await userState.getStoreUserInfo();
+      await pharmacyState.fetchBookmarkedDrugs(
+          token: userState.userInfo?['token']);
     });
   }
 

@@ -1,7 +1,7 @@
 import 'package:ecentialsclone/src/Themes/colors.dart';
 import 'package:ecentialsclone/src/Widgets/druglisttile.dart';
 import 'package:ecentialsclone/src/Widgets/search.dart';
-import 'package:ecentialsclone/src/screens/UserScreens/Store/drugDetails.dart';
+import 'package:ecentialsclone/src/screens/UserScreens/Store/inventoryDrugDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -118,7 +118,7 @@ class _InventoryState extends State<Inventory> {
               (index) => DrugListTile(
                 onTap: () {
                   Get.to(
-                    () => DrugDetails(),
+                    () => InventoryDrugDetails(),
                   );
                 },
                 image: _inventory[index]["image"],
